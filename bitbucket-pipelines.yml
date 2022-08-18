@@ -6,22 +6,14 @@ definitions:
     jest: .jest
 pipelines:
   default:
-    - parallel:
-        - step:
-            name: Test with Jest
-            caches:
-              - npm
-              - jest
-            script:
-              - npm ci
-              - npm run ci-test
-        - step:
-            name: Lint
-            caches:
-              - npm
-            script:
-              - npm ci
-              - npm run lint
+      - step:
+          name: Test with Jest
+          caches:
+            - npm
+            - jest
+          script:
+            - npm ci
+            - npm run ci-test
   branches:
     develop:
       - parallel:
