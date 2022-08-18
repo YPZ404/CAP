@@ -42,5 +42,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-
+.expo/
+.eslintrc.js
 bitbucket-pipelines.yml
+
