@@ -19,6 +19,7 @@ import MTFive from './app/screens/MemoryTests/MTFive';
 import ChooseProfileScreen from './app/screens/ChooseProfileScreen';
 import ProfileInfoScreen from './app/screens/ProfileInfoScreen';
 import ReportScreen from './app/screens/ReportScreen';
+import ActionPlanScreen from './app/screens/ActionPlanScreen';
 
 import NextStepsScreen from './app/screens/NextStepsScreen';
 import ChecklistQuestionScreen from './app/screens/RedFlagsChecklist';
@@ -80,6 +81,7 @@ export default function App() {
     <GlobalContextProvider>
       <NavigationContainer>
         <RootStack.Navigator initialRouteName="Disclaimer">
+          <RootStack.Screen name="Action Plan" component={ActionPlanScreen} />
           <RootStack.Screen name="Home" component={HomeScreen} />
           <RootStack.Screen name="Disclaimer" component={Disclaimer} />
           <RootStack.Screen
