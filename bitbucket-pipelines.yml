@@ -26,13 +26,6 @@ pipelines:
                 - npm ci
                 - npm run ci-test
           - step:
-              name: Lint
-              caches:
-                - npm
-              script:
-                - npm ci
-                - npm run lint
-          - step:
               name: Deploy to Expo
               trigger: manual
               deployment: production
@@ -44,22 +37,14 @@ pipelines:
                 - npm install -g expo-cli
                 - npx expo publish --non-interactive
     master:
-      - parallel:
-          - step:
-              name: Test with Jest
-              caches:
-                - npm
-                - jest
-              script:
-                - npm ci
-                - npm run ci-test
-          - step:
-              name: Lint
-              caches:
-                - npm
-              script:
-                - npm ci
-                - npm run lint
+      - step:
+          name: Test with Jest
+          caches:
+            - npm
+            - jest
+          script:
+            - npm ci
+            - npm run ci-test
       - step:
           name: Deploy to Expo
           deployment: production
