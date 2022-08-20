@@ -1,26 +1,43 @@
 import * as React from 'react';
-import { Pressable, StyleSheet, Text, View, LayoutAnimation } from 'react-native';
-import { useState } from 'react';
+import { Pressable, StyleSheet, Text, View, Animated } from 'react-native';
+import { useState, useRef } from 'react';
+import { back, ease } from 'react-native/Libraries/Animated/Easing';
 
 const ExpandableTab = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const heightAnim = useRef(new Animated.Value(0)).current
 
 	const onPress = () => {
-		LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 		if(props.children != null){
-			setIsOpen((current) => !current);
+			setIsOpen((current) => {
+				if(current){
+					Animated.timing(heightAnim, {
+						toValue: 0,
+						duration: 300,
+						useNativeDriver: false,
+					  }).start();	
+				}else{
+					Animated.timing(heightAnim, {
+						toValue: 1000,
+						duration: 500,
+						useNativeDriver: false,
+					  }).start();	
+				}
+				return !current;
+			});
+			
 		}
 	}
-
 	return (
 		<Pressable style={[styles.container, {borderColor: props.color}]} onPress={onPress}>
 			<View style={styles.topRowContainer}>
 				<Text style={[styles.titleText, {backgroundColor: props.color, borderColor: props.color}]}>{props.title}</Text>
 				<Text style={styles.infoText}>{props.subtitle}</Text>
 			</View>
-			<View style={[styles.collapsableContainer, {borderColor: props.color}, !isOpen && styles.collapsableContainerClosed]}>
-				<Text>{props.children}</Text>
-			</View>
+			<Animated.View style={[styles.collapsableContainer, {borderColor: props.color}, {maxHeight: heightAnim}]}>
+				<View style={styles.childrenContainer}>{props.children}</View>
+				{props.footer && <Text style={[styles.footer, {backgroundColor: props.color}]}>{props.footer}</Text> }
+			</Animated.View>
 		</Pressable>
 	);
 };
@@ -67,14 +84,18 @@ const styles = StyleSheet.create({
 	},
 
 	collapsableContainer: {
-		padding: 10,
-		overflow: "hidden"
+		overflow: "hidden",
 	},
 
-	collapsableContainerClosed: {
-		borderTopWidth: 0,
-		padding: 0,
-		height: 0,
+	footer: {
+		color: "white",
+		fontWeight: "bold",
+		padding: 10,
+		textAlign: "center",
+	},
+
+	childrenContainer: {
+		padding: 10,
 	}
 });
 

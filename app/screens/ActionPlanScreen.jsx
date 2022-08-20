@@ -15,7 +15,8 @@ function ActionPlanScreen({ navigation }) {
 		<SafeAreaView>
 			<ScrollView>
 				<Text style={[uiStyle.text, {textAlign: "center"}]}>Concussion Action Plan</Text>
-				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color="red">
+				<Text style={[{textAlign: "center", padding: 10}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear.</Text>
+				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color="red" footer="After 2 days of acute rest, you may move on to the next zone.">
 					<Text style={{fontWeight:"bold"}}>Rest your child from any physical or cognitive activity.{"\n\n\n"}</Text>
 					<Text style={{fontWeight:"bold"}}>Supportive Care:{"\n\n"}</Text>
 					<Text>
@@ -26,7 +27,7 @@ function ActionPlanScreen({ navigation }) {
 						- Encourage your child to have a positive mental attitude towards their recovery.
 					</Text>
 				</ExpandableTab>
-				<ExpandableTab title="Orange Zone" subtitle="Until cleared for light activity" color="orange">
+				<ExpandableTab title="Orange Zone" subtitle="Until cleared for light activity" color="orange" footer="See your GP to check that your child may progress to the next zone. Your child must be symptom tolerant before moving on to Step 1">
 					<Text style={{fontWeight:"bold"}}>Reccomendations:{"\n\n"}</Text>
 					<Text>
 						- Start low level physical and cognitive activity. Your child can now move around more freely.{"\n\n"}
