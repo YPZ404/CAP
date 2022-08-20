@@ -16,7 +16,7 @@ function ActionPlanScreen({ navigation }) {
 			<ScrollView>
 				<Text style={[uiStyle.text, {textAlign: "center"}]}>Concussion Action Plan</Text>
 				<Text style={[{textAlign: "center", padding: 10}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear.</Text>
-				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color="red" footer="After 2 days of acute rest, you may move on to the next zone.">
+				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color="red" footer="After 2 days of acute rest, you may move on to the next zone." header="RPE - Nothing at all, very very light">
 					<Text style={{fontWeight:"bold"}}>Rest your child from any physical or cognitive activity.{"\n\n\n"}</Text>
 					<Text style={{fontWeight:"bold"}}>Supportive Care:{"\n\n"}</Text>
 					<Text>
@@ -27,7 +27,7 @@ function ActionPlanScreen({ navigation }) {
 						- Encourage your child to have a positive mental attitude towards their recovery.
 					</Text>
 				</ExpandableTab>
-				<ExpandableTab title="Orange Zone" subtitle="Until cleared for light activity" color="orange" footer="See your GP to check that your child may progress to the next zone. Your child must be symptom tolerant before moving on to Step 1">
+				<ExpandableTab title="Orange Zone" subtitle="Until cleared for light activity" color="orange" footer="See your GP to check that your child may progress to the next zone. Your child must be symptom tolerant before moving on to Step 1" header="RPE - Very light or light to moderate">
 					<Text style={{fontWeight:"bold"}}>Reccomendations:{"\n\n"}</Text>
 					<Text>
 						- Start low level physical and cognitive activity. Your child can now move around more freely.{"\n\n"}
@@ -43,8 +43,44 @@ function ActionPlanScreen({ navigation }) {
 						This will require medical supervision and is best discussed with your local GP.
 					</Text>
 				</ExpandableTab>
-				<ExpandableTab title="Yellow Zone" subtitle="GRADED RETURN TO ACTIVITY" color="#F0C54C"/>
-				<ExpandableTab title="Green Zone" subtitle="RETURNING TO PRE-INJURY ACTIVITY" color="green"/>
+				<ExpandableTab title="Yellow Zone" subtitle="GRADED RETURN TO ACTIVITY" color="#F0C54C" footer="Progress to the next step if your child is symptom free for 24 hours." header="RPE - Moderate to Hard">
+					<Text style={{fontWeight:"bold"}}>Step 1 - Light cognitive and physical activity{"\n"}</Text>
+					<Text>
+						{"\n\t"}- Progress toward 30 minutes of cognitive exertion.
+						{"\n\t"}- Your child can perform 20 minutes of aerobic activity at 80% of their heart rate threshold (HRt), increasing by 10% each week.
+						{"\n\n"}Progress to the next step if your child is symptom free for 24 hours.
+					</Text>
+					<Text style={{fontWeight:"bold"}}>{"\n\n"}Step 2 - Moderate cognitive and physical activity{"\n"}</Text>
+					<Text>
+						{"\n\t"}- Part time school with accommodations (rest breaks, minimal homework, no exams) until able to handle 60 minutes or more of cognitive exertion.
+						{"\n\t"}- Specific skills and moderate aerobic activity for 20-30 minutes.
+						{"\n\n"}Progress to the next step if your child is symptom free for 24 hours.
+					</Text>
+					<Text style={{fontWeight:"bold"}}>{"\n\n"}Step 3 - Extended activity{"\n"}</Text>
+					<Text>
+						{"\n\t"}- Progress towards full time school with minimal accommodations.
+						{"\n\t"}- More intense aerobic and skill-based activity on a more regular basis. 
+					</Text>
+				</ExpandableTab>
+				<ExpandableTab title="Green Zone" subtitle="RETURNING TO PRE-INJURY ACTIVITY" color="green" header="RPE - Very Hard to Maximal">
+					<Text>Once your child has been cleared to commence a return to activity protocol, they are ready to progress as follows:{"\n"}</Text>
+						<Text style={{fontWeight:"bold"}}>{"\n\n"}Step 4 - Pre-injury activity (without contact){"\n"}</Text>
+						<Text>
+							{"\n\t"}- Full time school with minimal accommodations progressing when able to handle all classroom activities.
+							{"\n\t"}-  Attend sport practice, however with no contact or collision activities.
+						</Text>
+						<Text style={{fontWeight:"bold"}}>{"\n\n"}Step 5 - Reconditioning (without contact){"\n"}</Text>
+						<Text>
+							{"\n\t"}- Full school.
+							{"\n\t"}- Progressively return to non-contact sports over the next few weeks (e.g. 10 minutes half game full game).
+							{"\n\t"}- Prepare for return to play with extra aerobic and (if relevant) resistance training. Your child must have 14 days symptom free before returning to contact sport.
+						</Text>
+						<Text>Your child must be symptom free for 14 days before moving on to Step 6. If clearance is needed for your child's school or sporting club, see your GP to obtain the sign off below.</Text>
+						<Text style={{fontWeight:"bold"}}>{"\n\n"}Step 6 - Full activity (with contact){"\n"}</Text>
+						<Text>
+							{"\n\t"}- Once your child has been symptom free for 14 days, return to all activities without restriction, including contact and collision sports.
+						</Text>
+				</ExpandableTab>
 			</ScrollView>
 		</SafeAreaView>
 	)
