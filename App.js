@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
@@ -73,24 +74,8 @@ import VMS3 from './app/screens/VOMSTests/ROW5VMS/VMS3';
 import BTFour from './app/screens/BalanceTests/BTFour';
 import BTFive from './app/screens/BalanceTests/BTFive';
 
-const RootStack = createNativeStackNavigator();
+const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
-function CustomDrawerContent(props) {
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      {/* <DrawerItem
-        label="Close drawer"
-        onPress={() => props.navigation.closeDrawer()}
-      />
-      <DrawerItem
-        label="Toggle drawer"
-        onPress={() => props.navigation.toggleDrawer()}
-      /> */}
-    </DrawerContentScrollView>
-  );
-}
 
 function CustomNavContent(){
   return (
@@ -214,24 +199,23 @@ function CustomNavContent(){
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator
-      useLegacyImplementation
-      
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-    >
-      <Drawer.Screen name="Home Page" component={CustomNavContent}/>
+    <Drawer.Navigator options={{screenOptions: {
+      headerShown: false,
+    }}}>
+      <Drawer.Screen name="Home Page" component={CustomNavContent} />
       {/* <Drawer.Screen name="Home" component={HomeScreen} /> */}
       <Drawer.Screen name="Choose Profile" component={ChooseProfileScreen} />
       <Drawer.Screen name="Red Flags Checklist" component={RedFlagsChecklist} />
       <Drawer.Screen name="PCSS Checklist" component={PCSSChecklist} />
       <Drawer.Screen name="Mechanism Of Injury Check" component={MechanismOfInjuryCheck} />
       <Drawer.Screen name="Preliminary Tests" component={MTOne} />
-      {/* <Drawer.Screen name="Reaction Tests" component={RTOne} />
-      <Drawer.Screen name="Balance Tests" component={BTOne} /> */}
-      <Drawer.Screen name="VOMS Tests" component={VOMSStart} />
+      <Drawer.Screen name="Reaction Tests" component={RTOne} />
+      <Drawer.Screen name="Balance Tests" component={BTOne} /> 
+      <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
     </Drawer.Navigator>
   );
 }
+
 /**
  * The entry point for the application.
  *
