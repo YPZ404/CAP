@@ -74,6 +74,15 @@ function BTFive({ navigation }) {
       >
         <Text style={uiStyle.buttonLabel}>Next</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}
+        style={styles.homeButton}
+      >
+        <Text style={uiStyle.buttonLabel}>Return Home</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -109,6 +118,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 60,
     fontWeight: 'bold',
+  },
+  homeButton: {
+    // consistent with "View History" button on Home screen, i.e long red button on bottom
+    width: 300,
+    height: 50,
+    padding: 10,
+    borderRadius: 100,
+    backgroundColor: '#008000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 50,
+    marginTop: 20,
+    alignSelf: 'center',
   },
 });
 

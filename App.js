@@ -219,15 +219,15 @@ function MyDrawer() {
       
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
-      <Drawer.Screen name="Start" component={CustomNavContent} />
-      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Home Page" component={CustomNavContent}/>
+      {/* <Drawer.Screen name="Home" component={HomeScreen} /> */}
       <Drawer.Screen name="Choose Profile" component={ChooseProfileScreen} />
       <Drawer.Screen name="Red Flags Checklist" component={RedFlagsChecklist} />
       <Drawer.Screen name="PCSS Checklist" component={PCSSChecklist} />
       <Drawer.Screen name="Mechanism Of Injury Check" component={MechanismOfInjuryCheck} />
-      <Drawer.Screen name="Memory Tests" component={MTOne} />
-      <Drawer.Screen name="Reaction Tests" component={RTOne} />
-      <Drawer.Screen name="Balance Tests" component={BTOne} />
+      <Drawer.Screen name="Preliminary Tests" component={MTOne} />
+      {/* <Drawer.Screen name="Reaction Tests" component={RTOne} />
+      <Drawer.Screen name="Balance Tests" component={BTOne} /> */}
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} />
     </Drawer.Navigator>
   );
