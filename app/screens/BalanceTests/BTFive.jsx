@@ -11,7 +11,7 @@ import {
 import uiStyle from '../../components/uiStyle.jsx';
 import { useContext, useState } from 'react';
 import {
-  dataContext,
+  dataContext2,
   IncidentReportRepoContext,
   PatientContext,
   PatientRepoContext,
@@ -39,7 +39,7 @@ function BTFive({ navigation }) {
       (err) => console.log(err),
     );
   };
-  const [data2, setData2] = useContext(dataContext);
+  const [data2, setData2] = useContext(dataContext2);
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>

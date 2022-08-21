@@ -10,9 +10,10 @@ import {
 import { Accelerometer } from "expo-sensors";
 
 import uiStyle from "../../components/uiStyle.jsx";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { dataContext } from "../../components/GlobalContextProvider";
 import getStandardDeviation from "../../model/standardDeviation";
+import { useIsFocused } from "@react-navigation/native";
 
 function BTTwo({ navigation }) {
   const [text, setText] = useState("Start!");
@@ -23,7 +24,34 @@ function BTTwo({ navigation }) {
   const x_arr = [];
   const y_arr = [];
   const z_arr = [];
-  const [timer, setTimer] = useState(null);
+  // const [timer, setTimer] = useState(null);
+  var timer = null;
+  const [started, setStarted] = useState(false);
+  const focussed = useIsFocused();
+
+  useEffect(() => {
+    if (focussed) {
+      if (started) {
+        _subscribe();
+        startedText();
+        timer = setTimeout(() => {
+          Accelerometer.removeAllListeners();
+          Vibration.vibrate();
+          setSubscription(null);
+          resetText();
+          navigation.navigate("Balance Test 3");
+        }, 10000);
+      } else {
+        return () => {};
+      }
+    }
+    return () => {
+      Accelerometer.removeAllListeners();
+      setSubscription(null);
+      setStarted(false)
+      clearTimeout(timer);
+    };
+  }, [focussed, started]);
 
   const _subscribe = () => {
     setSubscription(
@@ -56,17 +84,16 @@ function BTTwo({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           if (!subscription) {
-            _subscribe();
-            startedText();
-            setTimer(
-              setTimeout(() => {
-                Accelerometer.removeAllListeners();
-                Vibration.vibrate();
-                setSubscription(null);
-                resetText();
-                navigation.navigate("Balance Test 3");
-              }, 10000)
-            );
+            setStarted(true);
+            //   _subscribe();
+            //   startedText();
+            //   timer1 = setTimeout(() => {
+            //       Accelerometer.removeAllListeners();
+            //       Vibration.vibrate();
+            //       setSubscription(null);
+            //       resetText();
+            //       navigation.navigate("Balance Test 3");
+            //     }, 10000)
           }
         }}
         style={styles.startCheckButton}
@@ -77,8 +104,8 @@ function BTTwo({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             // console.log("Cancelled")
-            Accelerometer.removeAllListeners();
-            clearTimeout(timer);
+            // Accelerometer.removeAllListeners();
+            // clearTimeout(timer);
             navigation.navigate("Balance Test 1");
           }}
           style={uiStyle.bottomButton}
