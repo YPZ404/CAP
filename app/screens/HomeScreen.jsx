@@ -38,7 +38,7 @@ function HomeScreen({ navigation }) {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('Start', { screen: 'Red flags checklist' } ),
+          onPress: () => navigation.navigate('Home Page', { screen: 'Red flags checklist' } ),
         },
       ],
     );
