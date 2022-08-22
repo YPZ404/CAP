@@ -24,6 +24,7 @@ import MTFive from './app/screens/MemoryTests/MTFive';
 import ChooseProfileScreen from './app/screens/ChooseProfileScreen';
 import ProfileInfoScreen from './app/screens/ProfileInfoScreen';
 import ReportScreen from './app/screens/ReportScreen';
+import ActionPlanScreen from './app/screens/ActionPlanScreen';
 
 import NextStepsScreen from './app/screens/NextStepsScreen';
 import ChecklistQuestionScreen from './app/screens/RedFlagsChecklist';
