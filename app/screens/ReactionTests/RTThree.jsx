@@ -52,7 +52,7 @@ export default function RTThree({ route, navigation }) {
         onPress={() => navigation.navigate('Balance Test 1')}
         style={uiStyle.bottomButton}
       >
-        <Text style={uiStyle.buttonLabel}>Start!</Text>
+        <Text style={uiStyle.buttonLabel}>Start Balance Test!</Text>
       </TouchableOpacity>
     </View>
   );

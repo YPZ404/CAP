@@ -8,6 +8,8 @@ import {
   View,
   Alert,
 } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 import uiStyle from '../components/uiStyle';
 import { useContext } from 'react';
@@ -17,6 +19,7 @@ import {
   ReportIdContext,
 } from '../components/GlobalContextProvider';
 
+const RootStack = createNativeStackNavigator();
 /**
  * Starting screen that handles navigation to main app flows.
  *
@@ -35,12 +38,13 @@ function HomeScreen({ navigation }) {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('Red flags checklist'),
+          onPress: () => navigation.navigate('Home Page', { screen: 'Red flags checklist' } ),
         },
       ],
     );
 
   return (
+    
     <SafeAreaView style={styles.screen}>
       <Text style={styles.titleText}>Concussion Check</Text>
       <View style={styles.container}>
@@ -57,41 +61,8 @@ function HomeScreen({ navigation }) {
           <Text style={uiStyle.buttonLabel}>View History</Text>
         </TouchableOpacity>
       </View>
-      {/*<View style={styles.container2}>*/}
-      {/*<TouchableOpacity
-        onPress={() => navigation.navigate('Voms Start')}
-        style={uiStyle.bottomButton}
-      >
-        <Text style={uiStyle.buttonLabel}>Test</Text>
-      </TouchableOpacity>
-      </View>
-      <View style={styles.container2}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Sample Database')}
-        style={uiStyle.bottomButton}
-      >
-        <Text style={uiStyle.buttonLabel}>sample database</Text>
-      </TouchableOpacity>*/}
-      {/*</View>*/}
-      {/*<TouchableOpacity
-        onPress={() => navigation.navigate('VOMS VMS 1')}
-        style={uiStyle.bottomButton}
-      >
-        <Text style={uiStyle.buttonLabel}>Voms Start</Text>
-      </TouchableOpacity>*/}
-      {/*<TouchableOpacity*/}
-      {/*  onPress={() => navigation.navigate('Sample Database')}*/}
-      {/*  style={uiStyle.bottomButton}*/}
-      {/*>*/}
-      {/*  <Text style={uiStyle.buttonLabel}>sample database</Text>*/}
-      {/*</TouchableOpacity>*/}
-      {/*<TouchableOpacity*/}
-      {/*  onPress={() => navigation.navigate('Balance Test 1')}*/}
-      {/*  style={uiStyle.bottomButton}*/}
-      {/*>*/}
-      {/*  <Text style={uiStyle.buttonLabel}>Test</Text>*/}
-      {/*</TouchableOpacity>*/}
-    </SafeAreaView>
+      </SafeAreaView>
+    
   );
 }
 
