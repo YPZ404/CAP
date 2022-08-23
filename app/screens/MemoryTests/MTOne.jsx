@@ -38,7 +38,6 @@ function MTOne({ navigation }) {
       <TouchableOpacity
         onPress={() => navigation.navigate('Memory Test 2')}
         style={styles.bottomButton}
-        color
       >
         <Text style={uiStyle.buttonLabel}>Start!</Text>
       </TouchableOpacity>
