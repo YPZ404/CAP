@@ -64,7 +64,7 @@ function BTFive({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('VOMS Start');
+          navigation.navigate('Memory Test 5');
           handleCreateMultiResponse([
             Math.round(data2 * 1000) / 1000,
             Math.round(Math.pow(data2, 2) * 1000) / 1000,
