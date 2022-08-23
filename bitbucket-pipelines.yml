@@ -34,7 +34,7 @@ pipelines:
               script:
                 - apk add --no-cache bash
                 - npm ci
-                - npm install -g expo-cli
+                - npm install -g expo-cli 6.0.5
                 - npx expo publish --non-interactive
     master:
       - step:
