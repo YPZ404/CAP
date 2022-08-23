@@ -14,6 +14,7 @@ import cbStyle from '../components/checkboxStyle';
 
 import {
   IncidentReportRepoContext,
+  PreliminaryReportRepoContext,
   ReportIdContext,
 } from '../components/GlobalContextProvider';
 
@@ -24,6 +25,7 @@ import {
 function RedFlagsChecklist({ navigation }) {
   const [, setReportId] = useContext(ReportIdContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
 
   const MyCheckbox = (props) => {
     const [checked, onChange] = useState(false);
@@ -118,17 +120,25 @@ function RedFlagsChecklist({ navigation }) {
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
-          incidentRepoContext.createReport(null).then((id) => {
+          preliminaryReportRepoContext.createReport(null).then((id) => {
             // Update ReportId context;
             setReportId(id);
 
             // Create MultiResponse in db
             const desc = 'Red Flags';
-            incidentRepoContext
-              .setMultiResponse(id, desc, chosenList)
-              .catch(console.log);
+             preliminaryReportRepoContext
+              .setBalanceTestResult(4, 5).then(
+                () => {
+                  preliminaryReportRepoContext
+                    .getCurrentReport(4)
+                    .then((data) => console.log(data));
+                },
+                (err) => console.log(err),
+              );
+              
+            
           });
-
+        
           if (chosenList.length === 0) {
             navigation.navigate('Next Steps');
           } else {

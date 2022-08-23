@@ -15,6 +15,7 @@ import {
   IncidentReportRepoContext,
   PatientContext,
   PatientRepoContext,
+  PreliminaryReportRepoContext,
   ReportIdContext,
 } from '../components/GlobalContextProvider';
 import * as target from 'react-native';
@@ -29,19 +30,29 @@ function PCSSChecklist({ navigation }) {
   const [reportId, setReportId] = useContext(ReportIdContext);
   const patientRepoContext = useContext(PatientRepoContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
 
   const [responses, setResponses] = useState(null);
 
   const handleCreateMultiResponse = (answers) => {
     const desc = 'PCSS Checklist';
-    incidentRepoContext.setMultiResponse(reportId, desc, answers).then(
+    preliminaryReportRepoContext
+              .setReactionTestResult(4, 7).then(
       () => {
-        incidentRepoContext
-          .getMultiResponses(reportId)
-          .then((mrs) => console.log(mrs));
+        preliminaryReportRepoContext
+            .getCurrentReport(4)
+            .then((data) => console.log(data));
       },
       (err) => console.log(err),
     );
+    // incidentRepoContext.setMultiResponse(reportId, desc, answers).then(
+    //   () => {
+    //     incidentRepoContext
+    //       .getMultiResponses(reportId)
+    //       .then((mrs) => console.log(mrs));
+    //   },
+    //   (err) => console.log(err),
+    // );
   };
 
   const MyCheckbox = (props) => {

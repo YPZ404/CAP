@@ -4,6 +4,7 @@ import { Patient } from '../model/database/Patient';
 import { DatabaseAdapter } from '../model/database/DatabaseAdapter';
 import { PatientRepo } from '../model/database/PatientRepo';
 import { IncidentReportRepo } from '../model/database/IncidentReportRepo';
+import { PreliminaryReportRepo } from '../model/database/PreliminaryReportRepo';
 import * as SQLite from 'expo-sqlite';
 
 const DB_FILE = 'measurements.db';
@@ -32,6 +33,12 @@ export const PatientRepoContext = React.createContext(null);
  * @type {React.Context<IncidentReportRepo>}
  */
 export const IncidentReportRepoContext = React.createContext(null);
+
+/**
+ *
+ * @type {React.Context<PreliminaryReportRepo>}
+ */
+ export const PreliminaryReportRepoContext = React.createContext(null);
 
 /**
  *
@@ -64,12 +71,16 @@ export function GlobalContextProvider(props) {
   const [daContext, setDaContext] = useState(null);
   const [daContext2, setDaContext2] = useState(null);
   const [incidentRepoContext, setIncidentRepoContext] = useState(null);
+  const [preliminaryReportRepoContext, setPreliminaryReportRepoContext] = useState(null);
+
+
 
   useEffect(() => {
     DatabaseAdapter.initDatabase(SQLite.openDatabase(DB_FILE)).then((daNew) => {
       setDaContext(daNew);
       setPatientRepoContext(new PatientRepo(daNew));
       setIncidentRepoContext(new IncidentReportRepo(daNew));
+      setPreliminaryReportRepoContext(new PreliminaryReportRepo(daNew));
     });
   }, []);
 
@@ -78,15 +89,17 @@ export function GlobalContextProvider(props) {
       <PatientContext.Provider value={[patient, setPatient]}>
         <PatientRepoContext.Provider value={patientRepoContext}>
           <IncidentReportRepoContext.Provider value={incidentRepoContext}>
-            <DaContext.Provider value={daContext}>
-              <DaContext2.Provider value={DaContext2}>
-                <dataContext.Provider value={[data, setData]}>
-                  <dataContext2.Provider value={[data2, setData2]}>
-                    {props.children}
-                  </dataContext2.Provider>
-                </dataContext.Provider>
-              </DaContext2.Provider>
-            </DaContext.Provider>
+            <PreliminaryReportRepoContext.Provider value={preliminaryReportRepoContext}>
+              <DaContext.Provider value={daContext}>
+                <DaContext2.Provider value={DaContext2}>
+                  <dataContext.Provider value={[data, setData]}>
+                    <dataContext2.Provider value={[data2, setData2]}>
+                      {props.children}
+                    </dataContext2.Provider>
+                  </dataContext.Provider>
+                </DaContext2.Provider>
+              </DaContext.Provider>
+            </PreliminaryReportRepoContext.Provider>  
           </IncidentReportRepoContext.Provider>
         </PatientRepoContext.Provider>
       </PatientContext.Provider>
