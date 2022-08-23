@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         marginTop: 20,
         alignSelf: 'center',
-    },
+    }
 });
 
 export default MTOne;
