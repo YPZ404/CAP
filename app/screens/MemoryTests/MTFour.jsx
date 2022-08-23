@@ -67,7 +67,7 @@ function MTFour({ navigation }) {
           handleCreateMultiResponse(chosenList);
           navigation.navigate('Reaction Test 1');
         }}
-        style={uiStyle.bottomButton}
+        style={styles.bottomButton}
       >
         <Text style={uiStyle.buttonLabel}>Submit</Text>
       </TouchableOpacity>
@@ -75,6 +75,20 @@ function MTFour({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    bottomButton: {
+        // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
+        width: 300,
+        height: 50,
+        padding: 10,
+        borderRadius: 100,
+        backgroundColor: '#007AFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 50,
+        marginTop: 20,
+        alignSelf: 'center',
+    }
+});
 
 export default MTFour;

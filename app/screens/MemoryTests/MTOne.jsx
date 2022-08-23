@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 
     },
     bottomButton: {
-        // consistent with "View History" button on Home screen, i.e long red button on bottom
+        // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
         width: 300,
         height: 50,
         padding: 10,
