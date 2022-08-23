@@ -85,15 +85,6 @@ function BTTwo({ navigation }) {
         onPress={() => {
           if (!subscription) {
             setStarted(true);
-            //   _subscribe();
-            //   startedText();
-            //   timer1 = setTimeout(() => {
-            //       Accelerometer.removeAllListeners();
-            //       Vibration.vibrate();
-            //       setSubscription(null);
-            //       resetText();
-            //       navigation.navigate("Balance Test 3");
-            //     }, 10000)
           }
         }}
         style={styles.startCheckButton}

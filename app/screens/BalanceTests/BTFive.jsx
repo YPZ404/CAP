@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Text,
   SafeAreaView,
@@ -6,17 +6,18 @@ import {
   TouchableOpacity,
   Button,
   ScrollView,
-} from 'react-native';
+  Image,
+} from "react-native";
 
-import uiStyle from '../../components/uiStyle.jsx';
-import { useContext, useState } from 'react';
+import uiStyle from "../../components/uiStyle.jsx";
+import { useContext, useState } from "react";
 import {
   dataContext2,
   IncidentReportRepoContext,
   PatientContext,
   PatientRepoContext,
   ReportIdContext,
-} from '../../components/GlobalContextProvider';
+} from "../../components/GlobalContextProvider";
 
 function BTFive({ navigation }) {
   // Context variables
@@ -29,46 +30,66 @@ function BTFive({ navigation }) {
   const [responses, setResponses] = useState(null);
 
   const handleCreateMultiResponse = (answers) => {
-    const desc = 'BalanceTest-response: first SD, second VAR, one leg up';
+    const desc = "BalanceTest-response: first SD, second VAR, one leg up";
     incidentRepoContext.setMultiResponse(reportId, desc, answers).then(
       () => {
         incidentRepoContext
           .getMultiResponses(reportId)
           .then((mrs) => console.log(mrs));
       },
-      (err) => console.log(err),
+      (err) => console.log(err)
     );
   };
   const [data2, setData2] = useContext(dataContext2);
+  var variation = Math.round(Math.pow(data2, 2) * 1000) / 1000;
+  var deviation = Math.round(data2 * 1000) / 1000;
+
+  const checkResult = (deviation, variation) => {
+    var result = "FAIL";
+    var imgLink = require("../../../assets/unchecked_box.png");
+
+    if (deviation < 0.2 && variation < 0.05) {
+      result = "PASS";
+      imgLink = require("../../../assets/checked_box.png");
+    }
+
+    return (
+      <SafeAreaView style={uiStyle.container}>
+        <Text style={styles.resultText}>
+          {"\n"}
+          <Image style={styles.resultImg} source={imgLink}></Image>
+          {"\t\t"}
+          {result}
+        </Text>
+        <SafeAreaView style={styles.rowContainer}>
+          <Text style={[uiStyle.stackedText, styles.centerValueText]}>
+            Deviation
+            {"\n"}
+            {deviation}
+          </Text>
+          <Text style={[uiStyle.stackedText, styles.centerValueText]}>
+            Variation
+            {"\n"}
+            {variation}
+          </Text>
+        </SafeAreaView>
+      </SafeAreaView>
+    );
+  };
+
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
           <Text style={uiStyle.titleText}>Stability Grade</Text>
-          <Text style={uiStyle.stackedText}>
-            {'\n'}
-            Variation:{'\n'}
-            {'\n'}
-            X: Y: Z: Average: {Math.round(Math.pow(data2, 2) * 1000) /
-              1000}{' '}
-            {'\n'}
-            {'\n'}
-            Deviation:{'\n'}
-            {'\n'}
-            X: Y: Z: Average: {Math.round(data2 * 1000) / 1000} {'\n'}
-            {'\n'}
-            Please pass the phone to your supervisor {'\n'}
-          </Text>
+          {checkResult(deviation, variation)}
         </SafeAreaView>
       </ScrollView>
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('VOMS Start');
-          handleCreateMultiResponse([
-            Math.round(data2 * 1000) / 1000,
-            Math.round(Math.pow(data2, 2) * 1000) / 1000,
-          ]);
+          navigation.navigate("VOMS Start");
+          handleCreateMultiResponse([deviation, variation]);
         }}
         style={uiStyle.bottomButton}
       >
@@ -78,37 +99,51 @@ function BTFive({ navigation }) {
   );
 }
 
-const title = '#000000';
-const text = '#fff';
-const background = '#fff';
-const buttons = '#ff3333';
+const title = "#000000";
+const text = "#fff";
+const background = "#fff";
+const buttons = "#ff3333";
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     backgroundColor: background,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   startCheckButton: {
     width: 200,
     height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
     borderRadius: 100,
     backgroundColor: buttons,
   },
   startCheckText: {
     color: text,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 20,
   },
   titleText: {
     color: title,
     fontSize: 30,
-    position: 'absolute',
+    position: "absolute",
     top: 60,
-    fontWeight: 'bold',
+    fontWeight: "bold",
+  },
+  resultText: {
+    fontSize: 24,
+  },
+  resultImg: {
+    resizeMode: "contain",
+    height: 24,
+    width: 24,
+  },
+  rowContainer: {
+    flexDirection: "row",
+  },
+  centerValueText: {
+    textAlign: "center",
   },
 });
 
