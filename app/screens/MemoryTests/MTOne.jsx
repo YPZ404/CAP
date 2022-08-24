@@ -6,6 +6,7 @@ import {
   Pressable,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 
 import uiStyle from '../../components/uiStyle.jsx';
@@ -18,7 +19,9 @@ import uiStyle from '../../components/uiStyle.jsx';
  */
 function MTOne({ navigation }) {
   return (
+    <SafeAreaView style={uiStyle.container}>
     <View style={uiStyle.container}>
+      <Text style={uiStyle.titleText}>Preliminary Test</Text>
       <ScrollView>
         <Text style={uiStyle.stackedText}>
           Welcome to the first memory test. {'\n'}
@@ -40,6 +43,7 @@ function MTOne({ navigation }) {
         <Text style={uiStyle.buttonLabel}>Start!</Text>
       </TouchableOpacity>
     </View>
+    </SafeAreaView>
   );
 }
 
