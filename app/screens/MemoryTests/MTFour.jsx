@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    SafeAreaView,
+    ScrollView, Pressable,
 } from 'react-native';
 
 import uiStyle from '../../components/uiStyle.jsx';
@@ -18,6 +18,10 @@ import {
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
+import MyCheckbox from "../../components/MyCheckbox";
+import updateProps from "react-native-reanimated/src/reanimated2/UpdateProps";
+import cbStyle from "../../components/checkboxStyle";
+import {Ionicons} from "@expo/vector-icons";
 
 /**
  * The screen will be perform memory test.
@@ -34,10 +38,19 @@ function MTFour({ navigation }) {
   // Local state
   const [options] = useState(getShuffledOptions());
 
+
   const handleCreateMultiResponse = (res) => {
     const desc = 'Memory Test Part 1';
-    incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+    incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {
+        incidentRepoContext
+            .getMultiResponses(reportId)
+            .then((mrs) => console.log(mrs));
+        },
+        (err) => console.log(err),
+    );
   };
+
+
 
   // updates const list when onCheckmarkPress() is called
   function onUpdate(name) {
@@ -49,6 +62,8 @@ function MTFour({ navigation }) {
     }
     return { chosenList };
   }
+
+
 
   const chosenList = [];
 
@@ -65,6 +80,7 @@ function MTFour({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           handleCreateMultiResponse(chosenList);
+
           navigation.navigate('Reaction Test 1');
         }}
         style={styles.bottomButton}
