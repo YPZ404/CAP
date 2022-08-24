@@ -87,7 +87,7 @@ function SelectProfileScreen({ navigation }) {
   } else {
     usersButtons.push(
       <Text key={-1} style={styles.text}>
-        There is no existing profile can be selected.
+        There is no existing profile to be selected.
       </Text>,
     );
   }
