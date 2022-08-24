@@ -50,6 +50,23 @@ function MTFour({ navigation }) {
     );
   };
 
+  const MyCheckbox = (props) => {
+      const [checked, onChange] = useState(false);
+
+      function onCheckmarkPress() {
+          onChange(!checked);
+          onUpdate(props.value);
+      }
+
+      return (
+          <Pressable
+              style={[cbStyle.checkboxBase, checked && cbStyle.checkboxChecked]}
+              onPress={onCheckmarkPress}
+          >
+              {checked && <Ionicons name="checkmark" size={24} color="black" />}
+          </Pressable>
+      );
+  };
 
 
   // updates const list when onCheckmarkPress() is called
