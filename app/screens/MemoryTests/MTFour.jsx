@@ -15,6 +15,7 @@ import { useContext, useState } from 'react';
 import {
   IncidentReportRepoContext,
   ReportIdContext,
+  MemoryCorrectAnswerContext
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -29,6 +30,8 @@ import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
 function MTFour({ navigation }) {
   // Context variables
   const [reportId] = useContext(ReportIdContext);
+  
+  const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
 
   // Local state
@@ -36,6 +39,7 @@ function MTFour({ navigation }) {
 
   const handleCreateMultiResponse = (res) => {
     const desc = 'Memory Test Part 1';
+    console.log(memoryCorrectAnswerContext);
     incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
   };
 
@@ -64,6 +68,8 @@ function MTFour({ navigation }) {
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
+          //Logic to generate Pass or fail mark
+
           handleCreateMultiResponse(chosenList);
           navigation.navigate('Reaction Test 1');
         }}

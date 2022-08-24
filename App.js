@@ -135,9 +135,9 @@ function CustomNavContent(){
     />
 
     <RootStack.Screen name="Memory Test 1" component={MTOne} />
-    <RootStack.Screen name="Memory Test 2" component={MTTwo} />
-    <RootStack.Screen name="Memory Test 3" component={MTThree} />
-    <RootStack.Screen name="Memory Test 4" component={MTFour} />
+    <RootStack.Screen name="Memory Test 2" component={MTTwo} options={{ title: 'Memory Test ' }} />
+    <RootStack.Screen name="Memory Test 3" component={MTThree} options={{ title: 'Memory Test ' }}  />
+    <RootStack.Screen name="Memory Test 4" component={MTFour} options={{ title: 'Memory Test 1' }}  />
 
     <RootStack.Screen name="Reaction Test 1" component={RTOne} />
     <RootStack.Screen name="Reaction Test 2" component={RTTwo} />
@@ -148,7 +148,7 @@ function CustomNavContent(){
     <RootStack.Screen name="Balance Test 4" component={BTFour} />
     <RootStack.Screen name="Balance Test 5" component={BTFive} />
 
-    <RootStack.Screen name="Memory Test 5" component={MTFive} />
+    <RootStack.Screen name="Memory Test 5" component={MTFive} options={{ title: 'Memory Test 2' }}  />
 
     <RootStack.Screen name="VOMS Start" component={VOMSStart} />
     <RootStack.Screen

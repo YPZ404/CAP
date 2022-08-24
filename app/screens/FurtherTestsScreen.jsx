@@ -7,8 +7,13 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import { useContext, useState } from 'react';
 
 import uiStyle from '../components/uiStyle.jsx';
+import {
+  PreliminaryReportRepoContext,
+  prelimReportIdContext,
+} from '../components/GlobalContextProvider';
 
 /**
  * The screen will be perform memory test.
@@ -17,6 +22,9 @@ import uiStyle from '../components/uiStyle.jsx';
  * is Reaction Test.
  */
 function FurtherTests({ navigation }) {
+  const [prelimReportId, setPrelimReportId] = useContext(prelimReportIdContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+
   return (
     <View style={uiStyle.container}>
       <Text style={uiStyle.titleText}>Further Tests</Text>
@@ -32,7 +40,19 @@ function FurtherTests({ navigation }) {
       </ScrollView>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate('Memory Test 1')}
+        onPress={() => {
+          var counter = prelimReportId;
+          counter++;
+          setPrelimReportId(counter);
+          preliminaryReportRepoContext.createReport(null, counter, -10,-10, -10, -10).then(() => {
+            preliminaryReportRepoContext
+              .getCurrentReportInformation(counter)
+              .then((data) => console.log(data))
+                
+            
+          });  
+          navigation.navigate('Memory Test 1')
+        }}
         style={uiStyle.bottomButton}
       >
         <Text style={uiStyle.buttonLabel}>Start!</Text>
