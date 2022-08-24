@@ -67,10 +67,10 @@ function HomeScreen({ navigation }) {
 }
 
 // https://reactnative.dev/docs/colors
-const title = '#000000';
+const title = '#fff';
 const text = '#fff';
-const background = '#fff';
-const buttons = '#ff3333';
+const background = '#349BEB';
+const buttons = '#9AD3FF';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
     flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#349BEB',
   },
   container2: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    backgroundColor: '#fff',
+    backgroundColor: '#349BEB',
   },
   startCheckButton: {
     width: 200,
