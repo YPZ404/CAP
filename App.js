@@ -25,6 +25,7 @@ import ChooseProfileScreen from './app/screens/ChooseProfileScreen';
 import ProfileInfoScreen from './app/screens/ProfileInfoScreen';
 import ReportScreen from './app/screens/ReportScreen';
 import ActionPlanScreen from './app/screens/ActionPlanScreen';
+import HeadBumpsScreen from './app/screens/HeadBumpsScreen';
 
 import NextStepsScreen from './app/screens/NextStepsScreen';
 import ChecklistQuestionScreen from './app/screens/RedFlagsChecklist';
@@ -83,6 +84,8 @@ function CustomNavContent(){
     <RootStack.Navigator initialRouteName="Disclaimer">
     <RootStack.Screen name="Home" component={HomeScreen} />
     <RootStack.Screen name="Disclaimer" component={Disclaimer} />
+    <RootStack.Screen name="Action Plan" component={ActionPlanScreen} />
+    <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
       name="Choose Profile"
       component={ChooseProfileScreen}

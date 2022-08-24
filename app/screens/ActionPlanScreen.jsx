@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {
 	Text,
-	FlatList,
-	View,
+	Alert,
 	SafeAreaView,
 	ScrollView,
   } from 'react-native';
@@ -10,9 +9,28 @@ import ExpandableTab from '../components/ExpandableTab';
 
 import uiStyle from '../components/uiStyle';
 
+
+
 function ActionPlanScreen({ navigation }) {
+	const createAlert = () =>
+    Alert.alert(
+      'Alert',
+      'Over the next few days, symptoms may worsen or other symptoms may appear. Watch out for HEAD BUMPS. If they occur, seek urgent medical attention',
+      [
+        {
+          text: 'View Action Plan',
+          onPress: () => console.log('Cancel Pressed'),
+        },
+        {
+          text: 'Check Symptoms',
+          onPress: () => navigation.navigate('HEAD BUMPS', { screen: 'Head Bumps' } ),
+        },
+      ],
+    );
+
 	return (
 		<SafeAreaView>
+			{createAlert()}
 			<ScrollView>
 				<Text style={[uiStyle.text, {textAlign: "center"}]}>Concussion Action Plan</Text>
 				<Text style={[{textAlign: "center", padding: 10}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear.</Text>
