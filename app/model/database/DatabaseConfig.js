@@ -9,6 +9,10 @@ DROP TABLE IF EXISTS IncidentReport;
   `,
   //TODO: remove
   `
+DROP TABLE IF EXISTS PreliminaryReport;
+  `,
+  //TODO: remove
+  `
 DROP TABLE IF EXISTS MultiResponse;
   `,
 
@@ -50,6 +54,7 @@ CREATE TABLE IF NOT EXISTS IncidentReport (
     patient_id INTEGER REFERENCES Patient(patient_id)
 );`,
 
+
 `
 CREATE TABLE IF NOT EXISTS PreliminaryReport (
     report_id INTEGER PRIMARY KEY,
@@ -59,9 +64,9 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
     reaction_test_result INTEGER,
     balance_test_result INTEGER
 
-);
-
-`,
+  );
+`
+,
   //Instance of a multiple part response
   `
 CREATE TABLE IF NOT EXISTS MultiResponse (

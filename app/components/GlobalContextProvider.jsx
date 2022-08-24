@@ -88,6 +88,7 @@ export function GlobalContextProvider(props) {
 
 
 
+
   useEffect(() => {
     DatabaseAdapter.initDatabase(SQLite.openDatabase(DB_FILE)).then((daNew) => {
       setDaContext(daNew);
@@ -98,6 +99,7 @@ export function GlobalContextProvider(props) {
   }, []);
 
   return (
+
     <prelimReportIdContext.Provider value={[prelimReportId, setPrelimReportId]}>
       <ReportIdContext.Provider value={[reportId, setReportId]}>
         <PatientContext.Provider value={[patient, setPatient]}>
@@ -121,5 +123,6 @@ export function GlobalContextProvider(props) {
         </PatientContext.Provider>
       </ReportIdContext.Provider>
     </prelimReportIdContext.Provider>
+
   );
 }

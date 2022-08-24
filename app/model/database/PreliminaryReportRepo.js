@@ -16,10 +16,11 @@
      * @param {number} patientId patient to create report for
      * @return {Promise<number>} promise of the inserted report id
      */
+
     async createReport(patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test_result) {
       const sql = 'INSERT INTO PreliminaryReport (patient_id, report_id, memory_test1_result,memory_test2_result, reaction_test_result, balance_test_result) VALUES (?, ?, ?, ?, ?, ?);';
       const args = [patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test_result];
-  
+
       let rs = await this.da.runSqlStmt(sql, args);
   
       return rs.insertId;
@@ -89,6 +90,7 @@
   
       const rs = await this.da.runSqlStmt(sql, args);
       return rs.rows.item(0);
+
     }
     /**
      * 
@@ -115,7 +117,9 @@
       
         const rs = await this.da.runSqlStmt(
         `UPDATE PreliminaryReport SET reaction_test_result = ? WHERE report_id== ?;`,
+
         [reaction_test_result, reportId],
+
         );
         return rs.insertId;
 
@@ -131,6 +135,7 @@
         const rs = await this.da.runSqlStmt(
         `UPDATE PreliminaryReport SET balance_test_result = ? WHERE report_id = ?;`,
         [balance_test_result, reportId],
+
         );
         return rs.insertId;
 
