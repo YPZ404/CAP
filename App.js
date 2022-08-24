@@ -80,9 +80,9 @@ const Drawer = createDrawerNavigator();
 
 function CustomNavContent(){
   return (
-    <RootStack.Navigator initialRouteName="Disclaimer">
+    <RootStack.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
+      <RootStack.Screen name="Disclaimer" component={Disclaimer} />
     <RootStack.Screen name="Home" component={HomeScreen} />
-    <RootStack.Screen name="Disclaimer" component={Disclaimer} />
     <RootStack.Screen
       name="Choose Profile"
       component={ChooseProfileScreen}
@@ -198,20 +198,21 @@ function CustomNavContent(){
   );
 }
 
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
+  );
+}
+
 function MyDrawer() {
   return (
-    <Drawer.Navigator options={{screenOptions: {
-      headerShown: false,
-    }}}>
+    <Drawer.Navigator screenOptions={{headerShown: false}} drawerContent={(props) => <CustomDrawerContent {...props}/>}>
       <Drawer.Screen name="Home Page" component={CustomNavContent} />
-      {/* <Drawer.Screen name="Home" component={HomeScreen} /> */}
-      <Drawer.Screen name="Choose Profile" component={ChooseProfileScreen} />
-      <Drawer.Screen name="Red Flags Checklist" component={RedFlagsChecklist} />
-      <Drawer.Screen name="PCSS Checklist" component={PCSSChecklist} />
-      <Drawer.Screen name="Mechanism Of Injury Check" component={MechanismOfInjuryCheck} />
+      <Drawer.Screen name="Profile" component={ChooseProfileScreen} />
       <Drawer.Screen name="Preliminary Tests" component={MTOne} />
-      <Drawer.Screen name="Reaction Tests" component={RTOne} />
-      <Drawer.Screen name="Balance Tests" component={BTOne} /> 
+      <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
     </Drawer.Navigator>
   );

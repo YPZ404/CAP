@@ -67,9 +67,21 @@ function SelectProfileScreen({ navigation }) {
   } else {
     usersButtons.push(
       <Text key={-1} style={styles.text}>
-        There is no existing profile can be selected.
+        There is no existing profile to be selected.
       </Text>,
     );
+    usersButtons.push(
+      <TouchableOpacity
+      key={1}
+        onPress={() => {
+          navigation.navigate('Create Profile');
+        }}
+        style={styles.selectUserButton}
+      >
+        <Text style={uiStyle.buttonLabel}>Create a Profile</Text>
+      </TouchableOpacity>
+    )
+
   }
   return (
     <SafeAreaView style={uiStyle.container}>
