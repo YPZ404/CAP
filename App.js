@@ -33,12 +33,14 @@ import { GlobalContextProvider } from './app/components/GlobalContextProvider';
 import PCSSChecklist from './app/screens/PCSSChecklist';
 import FurtherTestsScreen from './app/screens/FurtherTestsScreen';
 import FurtherTestsResultsScreen from './app/screens/FurtherTestsResultsScreen';
+import PrelimTestResultScreen from './app/screens/PrelimTestResultScreen';
 import RTOne from './app/screens/ReactionTests/RTOne';
 import RTTwo from './app/screens/ReactionTests/RTTwo';
 import RTThree from './app/screens/ReactionTests/RTThree';
 import BTOne from './app/screens/BalanceTests/BTOne';
 import BTTwo from './app/screens/BalanceTests/BTTwo';
 import BTThree from './app/screens/BalanceTests/BTThree';
+
 
 import VOMSStart from './app/screens/VOMSTests/VOMSStart';
 import VOMSInitialSymptoms from './app/screens/VOMSTests/VOMSInitialSymptoms';
@@ -129,21 +131,28 @@ function CustomNavContent(){
       component={FurtherTestsScreen}
     />
 
+<RootStack.Screen
+      name="Prelim Test Results"
+      component={PrelimTestResultScreen}
+    />
+
     <RootStack.Screen
       name="Further Tests Results"
       component={FurtherTestsResultsScreen}
     />
 
-    <RootStack.Screen name="Memory Test 1" component={MTOne} />
-    <RootStack.Screen name="Memory Test 2" component={MTTwo} options={{ title: 'Memory Test ' }} />
-    <RootStack.Screen name="Memory Test 3" component={MTThree} options={{ title: 'Memory Test ' }}  />
+    <RootStack.Screen name="Memory Test 1" component={MTOne} options={{ title: 'Memory Test ' }} />
+    <RootStack.Screen name="Memory Test 2" component={MTTwo} options={{ title: 'Memory Test 1' }} />
+    <RootStack.Screen name="Memory Test 3" component={MTThree} options={{ title: 'Memory Test 1 ' }}  />
     <RootStack.Screen name="Memory Test 4" component={MTFour} options={{ title: 'Memory Test 1' }}  />
 
-    <RootStack.Screen name="Reaction Test 1" component={RTOne} />
-    <RootStack.Screen name="Reaction Test 2" component={RTTwo} />
+    <RootStack.Screen name="Reaction Test 1" component={RTOne} options={{ title: 'Reaction Test ' }}/>
+    <RootStack.Screen name="Reaction Test 2" component={RTTwo} options={{ title: 'Reaction Test ' }}/>
     <RootStack.Screen name="Reaction Test 3" component={RTThree} />
-    <RootStack.Screen name="Balance Test 1" component={BTOne} />
-    <RootStack.Screen name="Balance Test 2" component={BTTwo} />
+
+
+    <RootStack.Screen name="Balance Test 1" component={BTOne} options={{ title: 'Balance Tests ' }} />
+    <RootStack.Screen name="Balance Test 2" component={BTTwo} options={{ title: 'Balance Test 1 ' }}/>
     <RootStack.Screen name="Balance Test 3" component={BTThree} />
     <RootStack.Screen name="Balance Test 4" component={BTFour} />
     <RootStack.Screen name="Balance Test 5" component={BTFive} />

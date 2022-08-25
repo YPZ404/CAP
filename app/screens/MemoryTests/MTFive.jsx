@@ -87,7 +87,7 @@ function MTFive({ navigation }) {
             preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,0);
           }
           preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
-          navigation.navigate('Further Tests Results', {
+          navigation.navigate('Prelim Test Results', {
             secondMemoryTestResponses: chosenList,
           });
         }}
