@@ -16,7 +16,7 @@ function ActionPlanScreen({ navigation }) {
 			<ScrollView>
 				<Text style={[uiStyle.text, {textAlign: "center"}]}>Concussion Action Plan</Text>
 				<Text style={[{textAlign: "center", padding: 10}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear.</Text>
-				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color="red" footer="After 2 days of acute rest, you may move on to the next zone." header="RPE - Nothing at all, very very light">
+				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color="red" footer="After 2 days of acute rest, you may move on to the next zone." header="RPE - Nothing at all, very very light. Heart rate < 120 bpm">
 					<Text style={{fontWeight:"bold"}}>Rest your child from any physical or cognitive activity.{"\n\n\n"}</Text>
 					<Text style={{fontWeight:"bold"}}>Supportive Care:{"\n\n"}</Text>
 					<Text>
@@ -27,7 +27,7 @@ function ActionPlanScreen({ navigation }) {
 						- Encourage your child to have a positive mental attitude towards their recovery.
 					</Text>
 				</ExpandableTab>
-				<ExpandableTab title="Orange Zone" subtitle="Until cleared for light activity" color="orange" footer="See your GP to check that your child may progress to the next zone. Your child must be symptom tolerant before moving on to Step 1" header="RPE - Very light or light to moderate">
+				<ExpandableTab title="Orange Zone" subtitle="Until cleared for light activity" color="orange" footer="See your GP to check that your child may progress to the next zone. Your child must be symptom tolerant before moving on to Step 1" header="RPE - Very light or light to moderate. Heart rate 120 - 140 bpm">
 					<Text style={{fontWeight:"bold"}}>Reccomendations:{"\n\n"}</Text>
 					<Text>
 						- Start low level physical and cognitive activity. Your child can now move around more freely.{"\n\n"}
@@ -43,7 +43,7 @@ function ActionPlanScreen({ navigation }) {
 						This will require medical supervision and is best discussed with your local GP.
 					</Text>
 				</ExpandableTab>
-				<ExpandableTab title="Yellow Zone" subtitle="GRADED RETURN TO ACTIVITY" color="#F0C54C" footer="Progress to the next step if your child is symptom free for 24 hours." header="RPE - Moderate to Hard">
+				<ExpandableTab title="Yellow Zone" subtitle="GRADED RETURN TO ACTIVITY" color="#F0C54C" footer="Progress to the next step if your child is symptom free for 24 hours." header="RPE - Moderate to Hard. Heart rate 80% HRt +10% each week">
 					<Text style={{fontWeight:"bold"}}>Step 1 - Light cognitive and physical activity{"\n"}</Text>
 					<Text>
 						{"\n\t"}- Progress toward 30 minutes of cognitive exertion.
@@ -62,7 +62,7 @@ function ActionPlanScreen({ navigation }) {
 						{"\n\t"}- More intense aerobic and skill-based activity on a more regular basis. 
 					</Text>
 				</ExpandableTab>
-				<ExpandableTab title="Green Zone" subtitle="RETURNING TO PRE-INJURY ACTIVITY" color="green" header="RPE - Very Hard to Maximal">
+				<ExpandableTab title="Green Zone" subtitle="RETURNING TO PRE-INJURY ACTIVITY" color="green" header="RPE - Very Hard to Maximal. Heart rate 80 - 100% HRt">
 					<Text>Once your child has been cleared to commence a return to activity protocol, they are ready to progress as follows:{"\n"}</Text>
 						<Text style={{fontWeight:"bold"}}>{"\n\n"}Step 4 - Pre-injury activity (without contact){"\n"}</Text>
 						<Text>

@@ -6,19 +6,23 @@ import {
   Pressable,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 
 import uiStyle from '../../components/uiStyle.jsx';
 
 /**
- * The screen will be perform memory test.
+ * The screen will be performed memory test.
  * This is the first test out of the Further Tests
  * After this test is completed, user needs to navigate to the next test which
  * is Reaction Test.
  */
 function MTOne({ navigation }) {
   return (
+
+    //<SafeAreaView style={uiStyle.container}>
     <View style={styles.container}>
+      <Text style={uiStyle.titleText}>Preliminary Test</Text>
       <ScrollView>
         <Text style={styles.text}>
             {'\n'} {'\n'}
@@ -42,6 +46,7 @@ function MTOne({ navigation }) {
         <Text style={styles.buttonLabel}>Start!</Text>
       </TouchableOpacity>
     </View>
+
   );
 }
 
