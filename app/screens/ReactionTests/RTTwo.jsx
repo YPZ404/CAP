@@ -32,39 +32,29 @@ function RTTwo({ navigation }) {
   // Start time in milliseconds
   const [startMs, setStartMs] = useState(null);
 
-  // Stage = button stage from start -> wait -> press
+  // stage = button stage from start -> wait -> press
   const [stage, setStage] = useState(0);
 
   let btnStyle;
   let btnOnPress = () => {};
   let btnTxt;
-
-  // Stage 0 is the start stage, waiting for user to press button
   if (stage === 0) {
     btnStyle = styles.startButton;
     btnOnPress = () => {
       setStage(1);
       setTimeout(() => {
-
-        // Start timer as soon as the circle turns yellow
         setStartMs(Date.now());
         setStage(2);
-      }, getRandomInt(2000, 5000)); // Wait between 2 and 5 seconds, then set to next stage
+      }, getRandomInt(2000, 5000)); // wait between 2 and 5 seconds, then set to next stage
     };
     btnTxt = 'Start';
-
-  // Stage 1 is the wait stage
   } else if (stage === 1) {
     btnTxt = 'Wait...';
     btnStyle = styles.waitButton;
-
-  // Stage 2 is the press stage
   } else if (stage === 2) {
     btnTxt = 'Press!';
     btnStyle = styles.pressButton;
     btnOnPress = () => {
-
-      // Fix this later, maybe delete?
       setAttemptResults((prevAttemptResults) => [
         ...prevAttemptResults,
         Date.now() - startMs,
@@ -75,13 +65,13 @@ function RTTwo({ navigation }) {
     };
   }
 
-  // Check if user has failed or passed tests 
   useEffect(() => {
     if (attemptResults.length === 3) {
-      let grade = 'pass';
-      if (attemptResults[0] >= 500 || attemptResults[1] >= 500 || 
-        attemptResults[2] >= 500) {
-            grade = 'fail';
+      const avg =
+        attemptResults.reduce((a, b) => a + b) / attemptResults.length;
+      let grade = 'fail';
+      if (avg < 500) {
+        grade = 'pass';
       }
 
       if(grade == 'fail'){
@@ -91,8 +81,6 @@ function RTTwo({ navigation }) {
         preliminaryReportRepoContext.updateReactionTestResult(prelimReportId,1); 
       }
       preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
-      let avg = 300; // FIX THIS SO IT'S NOT HARDCODED
-
       incidentRepoContext
         .setReactionTest(reportId, attemptResults, avg, grade)
         .catch(console.log);
