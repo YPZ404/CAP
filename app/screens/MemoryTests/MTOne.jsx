@@ -18,7 +18,7 @@ import uiStyle from '../../components/uiStyle.jsx';
  */
 function MTOne({ navigation }) {
   return (
-    <View style={uiStyle.container}>
+    <View style={styles.container}>
       <ScrollView>
         <Text style={styles.text}>
             {'\n'} {'\n'}
@@ -39,7 +39,7 @@ function MTOne({ navigation }) {
         onPress={() => navigation.navigate('Memory Test 2')}
         style={styles.bottomButton}
       >
-        <Text style={uiStyle.buttonLabel}>Start!</Text>
+        <Text style={styles.buttonLabel}>Start!</Text>
       </TouchableOpacity>
     </View>
   );
@@ -54,13 +54,29 @@ const styles = StyleSheet.create({
         marginVertical: 20,
 
     },
+
+    buttonLabel: {
+        // consistent with "View History" button on Home screen, i.e. white text in the button
+        color: '#003A67',
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+    },
+
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: '#9AD3FF',
+    },
+
     bottomButton: {
         // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
         width: 300,
         height: 50,
         padding: 10,
         borderRadius: 100,
-        backgroundColor: '#007AFF',
+        backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 50,

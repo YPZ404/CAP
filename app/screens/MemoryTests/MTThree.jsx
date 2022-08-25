@@ -17,8 +17,8 @@ import uiStyle from '../../components/uiStyle.jsx';
  */
 function MTThree({ navigation }) {
   return (
-    <View style={uiStyle.container}>
-      <View style={uiStyle.container}>
+    <View style={styles.container}>
+      <View style={styles.container}>
         <Text style={uiStyle.titleText}>Instructions</Text>
         <Text style={uiStyle.stackedText}>
           Please pass the phone to your supervisor so they can input the
@@ -30,7 +30,7 @@ function MTThree({ navigation }) {
           onPress={() => navigation.navigate('Memory Test 4')}
           style={styles.bottomButton}
         >
-          <Text style={uiStyle.buttonLabel}>Next</Text>
+          <Text style={styles.buttonLabel}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -44,12 +44,27 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 100,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 50,
     marginTop: 20,
     alignSelf: 'center',
+  },
+
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#9AD3FF',
+  },
+
+  buttonLabel: {
+    // consistent with "View History" button on Home screen, i.e. white text in the button
+    color: '#003A67',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   }
 });
 

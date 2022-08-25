@@ -54,12 +54,12 @@ function MTFive({ navigation }) {
 
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#9AD3FF' }}>
       <Text style={uiStyle.text}>
         What three images does your patient remember?
       </Text>
       <ScrollView style={{ margin: 10 }}>
-        <SafeAreaView style={uiStyle.container}>
+        <SafeAreaView style={styles.container}>
           <DisplayOptions options={options} updateOption={onUpdate} />
         </SafeAreaView>
       </ScrollView>
@@ -71,7 +71,7 @@ function MTFive({ navigation }) {
         }}
         style={styles.bottomButton}
       >
-        <Text style={uiStyle.buttonLabel}>Submit</Text>
+        <Text style={styles.buttonLabel}>Submit</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -117,12 +117,27 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 100,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 50,
     marginTop: 20,
     alignSelf: 'center',
+  },
+
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#9AD3FF',
+  },
+
+  buttonLabel: {
+    // consistent with "View History" button on Home screen, i.e. white text in the button
+    color: '#003A67',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   }
 });
 
