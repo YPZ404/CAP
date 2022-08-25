@@ -15,12 +15,14 @@ import { useContext, useState } from 'react';
 import {
   IncidentReportRepoContext,
   ReportIdContext,
-  MemoryCorrectAnswerContext
+  MemoryCorrectAnswerContext,
+  PreliminaryReportRepoContext,
+  PrelimReportIdContext,
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
 
-/**
+/**a
  * The screen will be perform memory test.
  * This is the first test out of the Further Tests
  * After this test is completed, user needs to navigate to the next test which
@@ -29,18 +31,26 @@ import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
 
 function MTFour({ navigation }) {
   // Context variables
-  const [reportId] = useContext(ReportIdContext);
-  
-  const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext); 
+  const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
-
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  
   // Local state
   const [options] = useState(getShuffledOptions());
 
+  function isEqual(a, b)
+  {
+      return a.join() == b.join();
+  }
+
   const handleCreateMultiResponse = (res) => {
-    const desc = 'Memory Test Part 1';
-    console.log(memoryCorrectAnswerContext);
-    incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+    // const desc = 'Memory Test Part 1';
+    // incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+    // console.log(memoryCorrectAnswerContext);
+    // console.log(res)
+    
+
   };
 
   // updates const list when onCheckmarkPress() is called
@@ -70,7 +80,18 @@ function MTFour({ navigation }) {
         onPress={() => {
           //Logic to generate Pass or fail mark
 
-          handleCreateMultiResponse(chosenList);
+          memoryCorrectAnswerContext.sort();
+          chosenList.sort();
+          console.log(isEqual(memoryCorrectAnswerContext,chosenList));
+        
+
+          if(isEqual(memoryCorrectAnswerContext,chosenList) == true){
+            preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);
+          }
+          else{
+            preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,0);
+          }
+          preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
           navigation.navigate('Reaction Test 1');
         }}
         style={uiStyle.bottomButton}

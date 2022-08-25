@@ -11,7 +11,7 @@ import { Accelerometer } from "expo-sensors";
 
 import uiStyle from "../../components/uiStyle.jsx";
 import { useContext, useState, useEffect } from "react";
-import { dataContext } from "../../components/GlobalContextProvider";
+import { dataContext, PrelimReportIdContext, PreliminaryReportRepoContext, } from "../../components/GlobalContextProvider";
 import getStandardDeviation from "../../model/standardDeviation";
 import { useIsFocused } from "@react-navigation/native";
 
@@ -21,6 +21,9 @@ function BTTwo({ navigation }) {
   const resetText = () => setText("Start!");
   const [data, setData] = useContext(dataContext);
   const [subscription, setSubscription] = useState(null);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext);
+
   const x_arr = [];
   const y_arr = [];
   const z_arr = [];
@@ -39,6 +42,7 @@ function BTTwo({ navigation }) {
           Vibration.vibrate();
           setSubscription(null);
           resetText();
+          // storeResult(data);
           navigation.navigate("Balance Test 3");
         }, 10000);
       } else {
@@ -49,9 +53,30 @@ function BTTwo({ navigation }) {
       Accelerometer.removeAllListeners();
       setSubscription(null);
       setStarted(false)
+      storeResult(data);
       clearTimeout(timer);
     };
   }, [focussed, started]);
+
+  const storeResult = (info) => {
+    var variation = Math.round(Math.pow(info, 2) * 1000) / 1000;
+    var deviation = Math.round(info * 1000) / 1000;
+
+    var result = "FAIL";
+    if (deviation < 0.2 && variation < 0.05) {
+      result = "PASS";
+    }
+
+    if(result == "FAIL"){
+      preliminaryReportRepoContext.updateBalanceTest1Result(prelimReportId,0);
+    }
+    else{
+      preliminaryReportRepoContext.updateBalanceTest1Result(prelimReportId,1);
+    }
+
+    preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
+
+  }
 
   const _subscribe = () => {
     setSubscription(
@@ -70,6 +95,13 @@ function BTTwo({ navigation }) {
         // console.log("sd:" + sd);
         // console.log("\n");
         setData(sd);
+        // storeResult(sd);
+      
+        //Logic for storing result in table
+        
+
+
+
       })
     );
   };

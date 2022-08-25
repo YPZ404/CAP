@@ -12,6 +12,8 @@ import uiStyle from '../../components/uiStyle';
 import {
   IncidentReportRepoContext,
   ReportIdContext,
+  PreliminaryReportRepoContext,
+  PrelimReportIdContext
 } from '../../components/GlobalContextProvider';
 
 function getRandomInt(min, max) {
@@ -24,6 +26,8 @@ function RTTwo({ navigation }) {
   const [attemptResults, setAttemptResults] = useState([]);
   const [reportId] = useContext(ReportIdContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext);
 
   // Start time in milliseconds
   const [startMs, setStartMs] = useState(null);
@@ -69,6 +73,14 @@ function RTTwo({ navigation }) {
       if (avg < 500) {
         grade = 'pass';
       }
+
+      if(grade == 'fail'){
+        preliminaryReportRepoContext.updateReactionTestResult(prelimReportId,0);
+      }
+      else{
+        preliminaryReportRepoContext.updateReactionTestResult(prelimReportId,1); 
+      }
+      preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
       incidentRepoContext
         .setReactionTest(reportId, attemptResults, avg, grade)
         .catch(console.log);

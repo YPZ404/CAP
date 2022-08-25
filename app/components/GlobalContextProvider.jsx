@@ -26,7 +26,7 @@ export const ReportIdContext = React.createContext(null);
  *
  * @type {React.Context<[number, (newPatient: number) => void]>}
  */
- export const prelimReportIdContext = React.createContext(null);
+ export const PrelimReportIdContext = React.createContext(null);
 
 /**
  *
@@ -100,7 +100,7 @@ export function GlobalContextProvider(props) {
 
   return (
 
-    <prelimReportIdContext.Provider value={[prelimReportId, setPrelimReportId]}>
+    <PrelimReportIdContext.Provider value={[prelimReportId, setPrelimReportId]}>
       <ReportIdContext.Provider value={[reportId, setReportId]}>
         <PatientContext.Provider value={[patient, setPatient]}>
           <PatientRepoContext.Provider value={patientRepoContext}>
@@ -122,7 +122,7 @@ export function GlobalContextProvider(props) {
           </PatientRepoContext.Provider>
         </PatientContext.Provider>
       </ReportIdContext.Provider>
-    </prelimReportIdContext.Provider>
+    </PrelimReportIdContext.Provider>
 
   );
 }

@@ -12,7 +12,7 @@ import { useContext, useState } from 'react';
 import uiStyle from '../components/uiStyle.jsx';
 import {
   PreliminaryReportRepoContext,
-  prelimReportIdContext,
+  PrelimReportIdContext,
 } from '../components/GlobalContextProvider';
 
 /**
@@ -22,7 +22,7 @@ import {
  * is Reaction Test.
  */
 function FurtherTests({ navigation }) {
-  const [prelimReportId, setPrelimReportId] = useContext(prelimReportIdContext);
+  const [prelimReportId, setPrelimReportId] = useContext(PrelimReportIdContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
 
   return (
@@ -44,7 +44,7 @@ function FurtherTests({ navigation }) {
           var counter = prelimReportId;
           counter++;
           setPrelimReportId(counter);
-          preliminaryReportRepoContext.createReport(null, counter, -10,-10, -10, -10).then(() => {
+          preliminaryReportRepoContext.createReport(null, counter, -10, -10,-10, -10, -10).then(() => {
             preliminaryReportRepoContext
               .getCurrentReportInformation(counter)
               .then((data) => console.log(data))

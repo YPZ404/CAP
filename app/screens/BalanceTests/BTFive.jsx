@@ -88,7 +88,7 @@ function BTFive({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("VOMS Start");
+          navigation.navigate("Memory Test 5");
           handleCreateMultiResponse([deviation, variation]);
         }}
         style={uiStyle.bottomButton}

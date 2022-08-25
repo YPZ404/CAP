@@ -17,9 +17,9 @@
      * @return {Promise<number>} promise of the inserted report id
      */
 
-    async createReport(patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test_result) {
-      const sql = 'INSERT INTO PreliminaryReport (patient_id, report_id, memory_test1_result,memory_test2_result, reaction_test_result, balance_test_result) VALUES (?, ?, ?, ?, ?, ?);';
-      const args = [patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test_result];
+    async createReport(patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result) {
+      const sql = 'INSERT INTO PreliminaryReport (patient_id, report_id, memory_test1_result,memory_test2_result, reaction_test_result, balance_test1_result , balance_test2_result) VALUES (?, ?, ?, ?, ?, ?, ?);';
+      const args = [patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result,balance_test2_result];
 
       let rs = await this.da.runSqlStmt(sql, args);
   
@@ -85,7 +85,7 @@
         throw 'Invalid reportId';
       }
   
-      const sql = `SELECT report_id, patient_id, memory_test1_result, memory_test2_result, reaction_test_result, balance_test_result FROM PreliminaryReport WHERE report_id = ?;`;
+      const sql = `SELECT report_id, patient_id, memory_test1_result, memory_test2_result, reaction_test_result, balance_test1_result, balance_test2_result FROM PreliminaryReport WHERE report_id = ?;`;
       const args = [reportId];
   
       const rs = await this.da.runSqlStmt(sql, args);
@@ -98,25 +98,34 @@
      * @param {number} memory_test_result 
      * @returns 
      */  
-    async setMemoryTestResult(reportId, memory_test_result){
+    async updateMemoryTest1Result(reportId, memory_test1_result){
       
         const rs = await this.da.runSqlStmt(
-        `UPDATE PreliminaryReport SET memory_test_result = ? WHERE report_id== ?;`,
-        [reportId, memory_test_result],
+        `UPDATE PreliminaryReport SET memory_test1_result = ? WHERE report_id = ?;`,
+        [memory_test1_result, reportId],
         );
         return rs.insertId;
 
     }
+    async updateMemoryTest2Result(reportId, memory_test2_result){
+      
+      const rs = await this.da.runSqlStmt(
+      `UPDATE PreliminaryReport SET memory_test2_result = ? WHERE report_id = ?;`,
+      [memory_test2_result, reportId],
+      );
+      return rs.insertId;
+
+  }
     /**
      * 
      * @param {number} reportId 
      * @param {number} memory_test_result 
      * @returns 
      */  
-     async setReactionTestResult(reportId, reaction_test_result){
+     async updateReactionTestResult(reportId, reaction_test_result){
       
         const rs = await this.da.runSqlStmt(
-        `UPDATE PreliminaryReport SET reaction_test_result = ? WHERE report_id== ?;`,
+        `UPDATE PreliminaryReport SET reaction_test_result = ? WHERE report_id = ?;`,
 
         [reaction_test_result, reportId],
 
@@ -130,16 +139,26 @@
      * @param {number} memory_test_result 
      * @returns 
      */  
-     async updateBalanceTestResult(reportId, balance_test_result){
+     async updateBalanceTest1Result(reportId, balance_test1_result){
       
         const rs = await this.da.runSqlStmt(
-        `UPDATE PreliminaryReport SET balance_test_result = ? WHERE report_id = ?;`,
-        [balance_test_result, reportId],
+        `UPDATE PreliminaryReport SET balance_test1_result = ? WHERE report_id = ?;`,
+        [balance_test1_result, reportId],
 
         );
         return rs.insertId;
 
     }
+    async updateBalanceTest2Result(reportId, balance_test2_result){
+      
+      const rs = await this.da.runSqlStmt(
+      `UPDATE PreliminaryReport SET balance_test2_result = ? WHERE report_id = ?;`,
+      [balance_test2_result, reportId],
+
+      );
+      return rs.insertId;
+
+  }
   
     /**
      *

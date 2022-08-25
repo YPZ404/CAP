@@ -62,7 +62,8 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
     memory_test1_result INTEGER,
     memory_test2_result INTEGER,
     reaction_test_result INTEGER,
-    balance_test_result INTEGER
+    balance_test1_result INTEGER,
+    balance_test2_result INTEGER
 
   );
 `

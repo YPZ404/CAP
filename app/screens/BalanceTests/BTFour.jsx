@@ -11,7 +11,7 @@ import { Accelerometer } from "expo-sensors";
 
 import uiStyle from "../../components/uiStyle.jsx";
 import { useContext, useState, useEffect } from "react";
-import { dataContext2 } from "../../components/GlobalContextProvider";
+import { dataContext2, PrelimReportIdContext, PreliminaryReportRepoContext, } from "../../components/GlobalContextProvider";
 import getStandardDeviation from "../../model/standardDeviation";
 import { useIsFocused } from "@react-navigation/native";
 
@@ -21,6 +21,8 @@ function BTFour({ navigation }) {
   const resetText = () => setText("Start!");
   const [data2, setData2] = useContext(dataContext2);
   const [subscription, setSubscription] = useState(null);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext);
   const x_arr = [];
   const y_arr = [];
   const z_arr = [];
@@ -38,6 +40,7 @@ function BTFour({ navigation }) {
           Vibration.vibrate();
           setSubscription(null);
           resetText();
+          // storeResult(data2);
           navigation.navigate("Balance Test 5");
         }, 10000);
       } else {
@@ -48,9 +51,30 @@ function BTFour({ navigation }) {
       Accelerometer.removeAllListeners();
       setSubscription(null);
       setStarted(false);
+      storeResult(data2);
       clearTimeout(timer);
     };
   }, [focussed, started]);
+
+  const storeResult = (info) => {
+    var variation = Math.round(Math.pow(info, 2) * 1000) / 1000;
+    var deviation = Math.round(info * 1000) / 1000;
+
+    var result = "FAIL";
+    if (deviation < 0.2 && variation < 0.05) {
+      result = "PASS";
+    }
+
+    if(result == "FAIL"){
+      preliminaryReportRepoContext.updateBalanceTest2Result(prelimReportId,0);
+    }
+    else{
+      preliminaryReportRepoContext.updateBalanceTest2Result(prelimReportId,1);
+    }
+
+    preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
+
+  }
 
   const _subscribe = () => {
     setSubscription(
@@ -65,6 +89,7 @@ function BTFour({ navigation }) {
         const z_sd = getStandardDeviation(z_arr);
         const sd = (x_sd + y_sd + z_sd) / 3;
         setData2(sd);
+        // storeResult(sd);
       })
     );
   };
