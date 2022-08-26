@@ -20,6 +20,7 @@ import {
 } from '../components/GlobalContextProvider';
 
 const RootStack = createNativeStackNavigator();
+
 /**
  * Starting screen that handles navigation to main app flows.
  *
