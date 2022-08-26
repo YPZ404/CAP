@@ -9,34 +9,39 @@ import {
   Alert,
 } from 'react-native';
 import uiStyle from '../components/uiStyle';
+import {useNavigation} from '@react-navigation/native';
 
 function Disclaimer({ navigation }) {
+ 
   return (
-    <SafeAreaView style={uiStyle.container}>
-      
-        <Text style={styles.text}>
-          This App does not represent a substitute for expert medical attention.
-          {'\n'} {'\n'} {'\n'}
-          You must not rely on the information on this App as an alternative to
-          medical advice from your doctor or other professional healthcare
-          provider.
-          {'\n'} {'\n'} {'\n'}
-          We strongly recommend that you consult your own physician or another
-          available health professional regarding any diagnosis, findings,
-          interpretation or course of treatment.
-        </Text>
-
-          <TouchableOpacity
-            // onPress={() => navigation.navigate('Voms Start')}
-            onPress={() => navigation.navigate('Home')}
-            style={[styles.bottomButton, styles.shadowProp]}
-          >
-            <Text style={styles.buttonLabel}>I understand</Text>
-          </TouchableOpacity>
-      
+    <SafeAreaView style={styles.screen}>
+      <SafeAreaView style={uiStyle.container}>
+        
+          <Text style={styles.text}>
+            This App does not represent a substitute for expert medical attention.
+            {'\n'} {'\n'} 
+            You must not rely on the information on this App as an alternative to
+            medical advice from your doctor or other professional healthcare
+            provider.
+            {'\n'} {'\n'} 
+            We strongly recommend that you consult your own physician or another
+            available health professional regarding any diagnosis, findings,
+            interpretation or course of treatment.
+          </Text>
+  
+            <TouchableOpacity
+              // onPress={() => navigation.navigate('Voms Start')}
+              onPress={() => navigation.navigate('Home')}
+              style={[styles.bottomButton, styles.shadowProp]}
+            >
+              <Text style={styles.buttonLabel}>I understand</Text>
+            </TouchableOpacity>
+        
+      </SafeAreaView>
     </SafeAreaView>
   );
 }
+
 
 // Change the detailed styles of the disclaimer page
 // Note: the general background color of this page is defined in the uiStyle.jsx
@@ -46,13 +51,18 @@ function Disclaimer({ navigation }) {
 // 3. Text color
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#9AD3FF',
+  },
   text: {
-    lineHeight: 25,
+    lineHeight: 20,
     letterSpacing: 0.3,
     marginHorizontal: 35,
     marginVertical: 90,
     color: '#fff',
-    fontWeight: '800',
+    fontWeight: '700',
     fontSize: 16,
     textAlign: 'center',
   },

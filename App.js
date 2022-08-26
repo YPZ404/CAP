@@ -1,11 +1,14 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem, } from '@react-navigation/drawer';
+import { getHeaderTitle } from '@react-navigation/elements';
+import { View, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from './app/screens/HomeScreen';
 import MechanismOfInjuryCheck from './app/screens/MechanismOfInjuryCheck';
 import CreateProfileScreen from './app/screens/CreateProfileScreen';
@@ -76,14 +79,32 @@ import VMS3 from './app/screens/VOMSTests/ROW5VMS/VMS3';
 import BTFour from './app/screens/BalanceTests/BTFour';
 import BTFive from './app/screens/BalanceTests/BTFive';
 
+import Header from './Header';
+
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
+
+
 function CustomNavContent(){
+
   return (
     <RootStack.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <RootStack.Screen name="Disclaimer" component={Disclaimer} />
-    <RootStack.Screen name="Home" component={HomeScreen} />
+      <RootStack.Screen 
+        name="Disclaimer" 
+        component={Disclaimer}
+        options={{
+          headerTitle: () => <Header name="Disclaimer"></Header>,
+          headerStyle: {
+            height: 159,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: '#9AD3FF',
+            elevation: 25
+          }
+        }}
+      />
+    <RootStack.Screen name="Home" component={HomeScreen}/>
     <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
       name="Choose Profile"
@@ -225,7 +246,7 @@ function MyDrawer() {
  *
  * Contains the root navigation stack.
  */
-export default function App() {
+ export default function App() {
   return (
     <GlobalContextProvider>
       <NavigationContainer>
