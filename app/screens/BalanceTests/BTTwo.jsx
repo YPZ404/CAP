@@ -43,7 +43,7 @@ function BTTwo({ navigation }) {
           setSubscription(null);
           resetText();
           // storeResult(data);
-          navigation.navigate("Balance Test 4");
+          navigation.navigate("Balance Test Complete");
         }, 10000);
       } else {
         return () => {};

@@ -60,25 +60,64 @@ function PrelimTestResultScreen({ route, navigation }) {
     
   }, [preliminaryReportRepoContext, prelimReportId]);
   let allTestResults = [];
+  var dict = {0:'FAIL', 1:'PASS'};
   Object.entries(reportResults).forEach(([key, value]) => {
-    console.log(key , value); // key ,value
-    allTestResults.push(
-        <Text key={0} style={uiStyle.text}>
-          {[key, value]}
-        </Text>,
-      );
-  });
-  if (reportResults.length > 0) {
-    let i = 0;
-    for (; i < mtAndBtResults.length; i++) {
-      allTestResults.push(
-        <Text key={i} style={uiStyle.text}>
-          {reportResults[i]}
-        </Text>,
-      );
+    switch(key){
+      case 'memory_test1_result':
+        allTestResults.push(
+          <Text key={0} style={uiStyle.text}>
+            {'Memory Test 1 Result: ' + dict[value]}
+          </Text>,
+          
+        );
+        break
+      case 'memory_test2_result':
+        allTestResults.push(
+          <Text key={1} style={uiStyle.text}>
+            {'Memory Test 2 Result: ' + dict[value]}
+          </Text>,
+        );
+        break
+      case 'reaction_test_result':
+        allTestResults.push(
+          <Text key={2} style={uiStyle.text}>
+            {'Reaction Test Result: ' + dict[value]}
+          </Text>,
+        );
+        break
+      case 'balance_test1_result':
+        allTestResults.push(
+          <Text key={3} style={uiStyle.text}>
+            {'Balance Test 1 Result: ' + dict[value]}
+          </Text>,
+        );
+        break
+      case 'balance_test2_result':
+        allTestResults.push(
+          <Text key={4} style={uiStyle.text}>
+            {'Balance Test 2 Result: ' + dict[value]}
+          </Text>,
+        );
+      
+      
+     
+
     }
+
+    console.log(key , value); // key ,value
     
-  }
+  });
+  // if (reportResults.length > 0) {
+  //   let i = 0;
+  //   for (; i < mtAndBtResults.length; i++) {
+  //     allTestResults.push(
+  //       <Text key={i} style={uiStyle.text}>
+  //         {reportResults[i]}
+  //       </Text>,
+  //     );
+  //   }
+    
+  // }
 
   return (
     <View style={uiStyle.container}>

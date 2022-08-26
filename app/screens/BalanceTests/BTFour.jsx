@@ -41,7 +41,7 @@ function BTFour({ navigation }) {
           setSubscription(null);
           resetText();
           // storeResult(data2);
-          navigation.navigate("Memory Test 5");
+          navigation.navigate("Balance Test Complete 2");
         }, 10000);
       } else {
         return () => {};
