@@ -1,34 +1,91 @@
 import * as React from 'react';
-import { Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  Button,
+  View,
+  Alert,
+} from 'react-native';
 import uiStyle from '../components/uiStyle';
 
 function Disclaimer({ navigation }) {
   return (
     <SafeAreaView style={uiStyle.container}>
-      <ScrollView>
-        <Text style={uiStyle.stackedText}>
+      
+        <Text style={styles.text}>
           This App does not represent a substitute for expert medical attention.
-          {'\n'} {'\n'}
+          {'\n'} {'\n'} {'\n'}
           You must not rely on the information on this App as an alternative to
           medical advice from your doctor or other professional healthcare
           provider.
-          {'\n'} {'\n'}
+          {'\n'} {'\n'} {'\n'}
           We strongly recommend that you consult your own physician or another
           available health professional regarding any diagnosis, findings,
           interpretation or course of treatment.
         </Text>
-        <SafeAreaView style={uiStyle.contentContainerCentered}>
+
           <TouchableOpacity
             // onPress={() => navigation.navigate('Voms Start')}
             onPress={() => navigation.navigate('Home')}
-            style={[uiStyle.bottomButton]}
+            style={[styles.bottomButton, styles.shadowProp]}
           >
-            <Text style={uiStyle.buttonLabel}>I understand</Text>
+            <Text style={styles.buttonLabel}>I understand</Text>
           </TouchableOpacity>
-        </SafeAreaView>
-      </ScrollView>
+      
     </SafeAreaView>
   );
 }
+
+// Change the detailed styles of the disclaimer page
+// Note: the general background color of this page is defined in the uiStyle.jsx
+// Elements defined in the following:
+// 1. "I understand" button
+// 2. Text position
+// 3. Text color
+
+const styles = StyleSheet.create({
+  text: {
+    lineHeight: 25,
+    letterSpacing: 0.3,
+    marginHorizontal: 35,
+    marginVertical: 90,
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+
+  bottomButton: {
+    width: 297,
+    height: 59,
+    padding: 10,
+    borderRadius: 11,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 100,
+    marginTop: 5,
+    alignSelf: 'center',
+  },
+
+  buttonLabel: {
+    // consistent with "View History" button on Home screen, i.e. white text in the button
+    color: '#003A67',
+    fontSize: 20,
+    fontWeight: '800',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+
+});
 
 export default Disclaimer;
