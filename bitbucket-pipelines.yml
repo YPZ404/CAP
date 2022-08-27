@@ -47,6 +47,7 @@ pipelines:
             - npm run ci-test
       - step:
           name: Deploy to Expo
+          trigger: manual
           deployment: production
           caches:
             - npm
