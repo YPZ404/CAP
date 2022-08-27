@@ -17,6 +17,7 @@ import {
   PatientContext,
   PatientRepoContext,
   ReportIdContext,
+  MemoryCorrectAnswerContext
 } from '../../components/GlobalContextProvider';
 
 /**
@@ -32,11 +33,14 @@ function MTTwo({ navigation }) {
   const [reportId, setReportId] = useContext(ReportIdContext);
   const patientRepoContext = useContext(PatientRepoContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
+
 
   const handleCreateMultiResponse = (res) => {
     console.log('correct answers: ' + res);
     const desc = 'Memory Test Correct Answers';
     incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+    setMemoryCorrectAnswerContext(res);
   };
 
   const arr = [];
