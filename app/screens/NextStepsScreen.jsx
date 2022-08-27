@@ -14,7 +14,7 @@ import uiStyle from '../components/uiStyle';
 function NextStepsScreen({ navigation }) {
   return (
     <SafeAreaView style={uiStyle.container}>
-      <Text style={uiStyle.titleText}>Next Steps</Text>
+      <Text style={uiStyle.titleText}>Information</Text>
       <ScrollView>
         <Text style={uiStyle.stackedText}>
           At this stage, the affected individual presents no symptoms

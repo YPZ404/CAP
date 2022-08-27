@@ -135,6 +135,12 @@ function PrelimTestResultScreen({ route, navigation }) {
       >
         <Text style={uiStyle.buttonLabel}>Save to existing profile</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.bottomButton}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Text style={uiStyle.buttonLabel}>Return to Home</Text>
+      </TouchableOpacity>
     </View>
   );
 }

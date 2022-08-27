@@ -27,7 +27,7 @@ function FurtherTests({ navigation }) {
 
   return (
     <View style={uiStyle.container}>
-      <Text style={uiStyle.titleText}>Further Tests</Text>
+      <Text style={uiStyle.titleText}>Preliminary Tests</Text>
       <ScrollView>
         <Text style={uiStyle.stackedText}>
           There are 5 more tests that will determine the likelihood of the
@@ -35,7 +35,10 @@ function FurtherTests({ navigation }) {
           {'\n'}
           {'\n'}
           The tests consists of two memory tests, at the start and again at the
-          end, a reaction test, a balance test and VOMS.
+          end, a reaction test and a balance test.
+          {'\n'}
+          {'\n'}
+          Press Start to begin the tests.
         </Text>
       </ScrollView>
 

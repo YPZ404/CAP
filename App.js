@@ -133,6 +133,7 @@ function CustomNavContent(){
     <RootStack.Screen
       name="Further Tests"
       component={FurtherTestsScreen}
+      options={{ title: 'Preliminary Tests ' }}
     />
 
 <RootStack.Screen
@@ -228,7 +229,7 @@ function MyDrawer() {
     <Drawer.Navigator screenOptions={{headerShown: false}} drawerContent={(props) => <CustomDrawerContent {...props}/>}>
       <Drawer.Screen name="Home Page" component={CustomNavContent} />
       <Drawer.Screen name="Profile" component={ChooseProfileScreen} />
-      <Drawer.Screen name="Preliminary Tests" component={MTOne} />
+      <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
     </Drawer.Navigator>
