@@ -90,6 +90,7 @@ function BTFive({ navigation }) {
         onPress={() => {
           navigation.navigate("Memory Test 5");
           handleCreateMultiResponse([deviation, variation]);
+
         }}
         style={uiStyle.bottomButton}
       >

@@ -1,11 +1,14 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem, } from '@react-navigation/drawer';
+import { getHeaderTitle } from '@react-navigation/elements';
+import { View, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from './app/screens/HomeScreen';
 import MechanismOfInjuryCheck from './app/screens/MechanismOfInjuryCheck';
 import CreateProfileScreen from './app/screens/CreateProfileScreen';
@@ -27,6 +30,7 @@ import ChooseProfileScreen from './app/screens/ChooseProfileScreen';
 import ProfileInfoScreen from './app/screens/ProfileInfoScreen';
 import ReportScreen from './app/screens/ReportScreen';
 import ActionPlanScreen from './app/screens/ActionPlanScreen';
+import HeadBumpsScreen from './app/screens/HeadBumpsScreen';
 
 import NextStepsScreen from './app/screens/NextStepsScreen';
 import ChecklistQuestionScreen from './app/screens/RedFlagsChecklist';
@@ -81,14 +85,33 @@ import BTFive from './app/screens/BalanceTests/BTFive';
 import BTComplete from './app/screens/BalanceTests/BTComplete';
 import BTComplete2 from './app/screens/BalanceTests/BTComplete2';
 
+import Header from './Header';
+
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
+
+
 function CustomNavContent(){
+
   return (
     <RootStack.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <RootStack.Screen name="Disclaimer" component={Disclaimer} />
-    <RootStack.Screen name="Home" component={HomeScreen} />
+      <RootStack.Screen 
+        name="Disclaimer" 
+        component={Disclaimer}
+        options={{
+          headerTitle: () => <Header name="Disclaimer"></Header>,
+          headerStyle: {
+            height: 159,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: '#9AD3FF',
+            elevation: 25
+          }
+        }}
+      />
+    <RootStack.Screen name="Home" component={HomeScreen}/>
+    <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
       name="Choose Profile"
       component={ChooseProfileScreen}
@@ -241,7 +264,7 @@ function MyDrawer() {
  *
  * Contains the root navigation stack.
  */
-export default function App() {
+ export default function App() {
   return (
     <GlobalContextProvider>
       <NavigationContainer>
