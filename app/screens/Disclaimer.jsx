@@ -7,16 +7,19 @@ import {
   Button,
   View,
   Alert,
+  Image,
+  Dimensions
 } from 'react-native';
 import uiStyle from '../components/uiStyle';
-import {useNavigation} from '@react-navigation/native';
+import Background from '../../assets/b1.png';
 
 function Disclaimer({ navigation }) {
  
   return (
-    <SafeAreaView style={styles.screen}>
-      <SafeAreaView style={uiStyle.container}>
-        
+   
+    <View style={styles.screen}>
+      <View style={styles.container}> 
+        <View style={styles.containerText}> 
           <Text style={styles.text}>
             This App does not represent a substitute for expert medical attention.
             {'\n'} {'\n'} 
@@ -28,7 +31,6 @@ function Disclaimer({ navigation }) {
             available health professional regarding any diagnosis, findings,
             interpretation or course of treatment.
           </Text>
-  
             <TouchableOpacity
               // onPress={() => navigation.navigate('Voms Start')}
               onPress={() => navigation.navigate('Home')}
@@ -36,9 +38,10 @@ function Disclaimer({ navigation }) {
             >
               <Text style={styles.buttonLabel}>I understand</Text>
             </TouchableOpacity>
-        
-      </SafeAreaView>
-    </SafeAreaView>
+          </View>
+      </View>
+    </View>
+    
   );
 }
 
@@ -55,35 +58,36 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#9AD3FF',
+ 
   },
   text: {
-    lineHeight: 20,
-    letterSpacing: 0.3,
-    marginHorizontal: 35,
-    marginVertical: 90,
+    lineHeight: Dimensions.get('window').width/20,
+    letterSpacing: Dimensions.get('window').width/600,
+    marginHorizontal: Dimensions.get('window').width/15,
+    marginVertical: Dimensions.get('window').height/11,
     color: '#fff',
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: Dimensions.get('window').width/25,
     textAlign: 'center',
   },
 
   bottomButton: {
-    width: 297,
-    height: 59,
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7,
     padding: 10,
     borderRadius: 11,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 100,
-    marginTop: 5,
+    marginBottom: (Dimensions.get('window').height)/1,
+    marginTop: (Dimensions.get('window').height)/300,
     alignSelf: 'center',
   },
 
   buttonLabel: {
     // consistent with "View History" button on Home screen, i.e. white text in the button
     color: '#003A67',
-    fontSize: 20,
+    fontSize: Dimensions.get('window').width/20,
     fontWeight: '800',
     textAlign: 'center',
     textAlignVertical: 'center',
@@ -94,6 +98,24 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.5,
     shadowRadius: 4,
+  },
+  
+  container: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    alignItems: 'center',
+    backgroundColor: '#349BEB',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+
+  containerText: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height/1.5,
+    alignItems: 'center',
+    backgroundColor: '#349BEB',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   },
 
 });

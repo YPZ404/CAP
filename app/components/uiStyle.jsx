@@ -9,7 +9,6 @@ const test_background = '#9AD3FF'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    flex: 1,
     alignItems: 'center',
     backgroundColor: background,
     borderTopLeftRadius: 20,
