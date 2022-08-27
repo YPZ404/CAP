@@ -8,8 +8,7 @@ const test_background = '#9AD3FF'
 
 export default StyleSheet.create({
   container: {
-    height: 780,
-    width: 414,
+    flex: 1,
     alignItems: 'center',
     backgroundColor: background,
     borderTopLeftRadius: 20,

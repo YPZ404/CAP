@@ -7,7 +7,7 @@ import { createDrawerNavigator,
   DrawerItemList,
   DrawerItem, } from '@react-navigation/drawer';
 import { getHeaderTitle } from '@react-navigation/elements';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Dimensions} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from './app/screens/HomeScreen';
 import MechanismOfInjuryCheck from './app/screens/MechanismOfInjuryCheck';
@@ -96,7 +96,7 @@ function CustomNavContent(){
         options={{
           headerTitle: () => <Header name="Disclaimer"></Header>,
           headerStyle: {
-            height: 159,
+            height: (Dimensions.get('window').height)/6,
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
             backgroundColor: '#9AD3FF',
