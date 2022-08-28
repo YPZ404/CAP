@@ -60,7 +60,6 @@ function RTTwo({ navigation }) {
     btnStyle = styles.pressButton;
     btnOnPress = () => {
 
-      // Fix this later, maybe delete?
       setAttemptResults((prevAttemptResults) => [
         ...prevAttemptResults,
         Date.now() - startMs,
@@ -71,16 +70,19 @@ function RTTwo({ navigation }) {
     };
   }
 
+  const threshold = 500;
+
   // Check if user has failed or passed tests 
   useEffect(() => {
     if (attemptResults.length === 3) {
       let grade = 'pass';
-      if (attemptResults[0] >= 500 || attemptResults[1] >= 500 || 
-        attemptResults[2] >= 500) {
+      if (attemptResults[0] >= threshold || attemptResults[1] >= threshold || 
+        attemptResults[2] >= threshold) {
             grade = 'fail';
       }
 
-      let avg = 300; // FIX THIS SO IT'S NOT HARDCODED
+      // Possibly get rid of this? Do we really need the average anymore?
+      const avg = attemptResults.reduce((a, b) => a + b) / attemptResults.length;
 
       incidentRepoContext
         .setReactionTest(reportId, attemptResults, avg, grade)
