@@ -12,6 +12,8 @@ import uiStyle from '../../components/uiStyle';
 import {
   IncidentReportRepoContext,
   ReportIdContext,
+  PreliminaryReportRepoContext,
+  PrelimReportIdContext
 } from '../../components/GlobalContextProvider';
 
 function getRandomInt(min, max) {
@@ -24,6 +26,8 @@ function RTTwo({ navigation }) {
   const [attemptResults, setAttemptResults] = useState([]);
   const [reportId] = useContext(ReportIdContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext);
 
   // Start time in milliseconds
   const [startMs, setStartMs] = useState(null);
@@ -79,11 +83,15 @@ function RTTwo({ navigation }) {
       if (attemptResults[0] >= threshold || attemptResults[1] >= threshold || 
         attemptResults[2] >= threshold) {
             grade = 'fail';
+            preliminaryReportRepoContext.updateReactionTestResult(prelimReportId,0);
+      } else {
+        preliminaryReportRepoContext.updateReactionTestResult(prelimReportId,1); 
       }
 
       // Possibly get rid of this? Do we really need the average anymore?
-      const avg = attemptResults.reduce((a, b) => a + b) / attemptResults.length;
-
+      const avg = (attemptResults[0] + attemptResults[1] + attemptResults[2]) / 3;
+      
+      preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
       incidentRepoContext
         .setReactionTest(reportId, attemptResults, avg, grade)
         .catch(console.log);
