@@ -25,11 +25,10 @@ function RTOne({ navigation }) {
           <Text style={uiStyle.titleText}>Reaction Test</Text>
             <Text style={uiStyle.stackedText}>
               On the next screen, the affected individual will see a red start
-              button.
+              button. Press anywhere to start.
               {'\n'}
-              {'\n'}
-              They will be presented with a blue circle that will turn yellow after
-              a period of time. They should tap the cirle the moment it turns yellow.
+              They will be presented with a blue circle, which they should tap on
+              as quickly as they can after it turns yellow.
               {'\n'} {'\n'}
               The test will run three times.
               {'\n'} {'\n'}
