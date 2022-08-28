@@ -24,16 +24,16 @@ function RTOne({ navigation }) {
         <SafeAreaView style={uiStyle.container}>
           <Text style={uiStyle.titleText}>Reaction Test</Text>
             <Text style={uiStyle.stackedText}>
-              On the next screen, the affected individual will see a red start
+              On the next screen, there will be a red start
               button. Press anywhere to start.
               {'\n'}
               {'\n'}
-              They will be presented with a blue circle, which they should tap on
-              as quickly as they can after it turns yellow.
+              A blue circle will be presented which turns yellow after a
+              period of time. You should press the button as soon as it 
+              turns yellow.
               {'\n'} {'\n'}
-              The test will run three times.
-              {'\n'} {'\n'}
-              Please pass the phone to the affected person.
+              Your reaction time will be recorded, and the test will run 
+              three times.
             </Text>
         </SafeAreaView>
       </ScrollView>
