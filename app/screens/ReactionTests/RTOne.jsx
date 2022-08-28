@@ -27,6 +27,7 @@ function RTOne({ navigation }) {
               On the next screen, the affected individual will see a red start
               button. Press anywhere to start.
               {'\n'}
+              {'\n'}
               They will be presented with a blue circle, which they should tap on
               as quickly as they can after it turns yellow.
               {'\n'} {'\n'}
