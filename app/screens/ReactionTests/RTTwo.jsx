@@ -88,7 +88,7 @@ function RTTwo({ navigation }) {
         .setReactionTest(reportId, attemptResults, avg, grade)
         .catch(console.log);
       setAttemptResults([]);
-      navigation.navigate('Reaction Test 3', {
+      navigation.navigate('Balance Test 1', {
         attemptResults: attemptResults,
         avg: avg,
         grade: grade,
