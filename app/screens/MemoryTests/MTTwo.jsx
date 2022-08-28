@@ -17,6 +17,7 @@ import {
   PatientContext,
   PatientRepoContext,
   ReportIdContext,
+  MemoryCorrectAnswerContext
 } from '../../components/GlobalContextProvider';
 
 /**
@@ -32,11 +33,14 @@ function MTTwo({ navigation }) {
   const [reportId, setReportId] = useContext(ReportIdContext);
   const patientRepoContext = useContext(PatientRepoContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
+
 
   const handleCreateMultiResponse = (res) => {
     console.log('correct answers: ' + res);
     const desc = 'Memory Test Correct Answers';
     incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+    setMemoryCorrectAnswerContext(res);
   };
 
   const arr = [];
@@ -87,7 +91,7 @@ function MTTwo({ navigation }) {
           }}
           style={styles.bottomButton}
         >
-          <Text style={uiStyle.buttonLabel}>Next</Text>
+          <Text style={styles.buttonLabel}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -109,13 +113,23 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 100,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 50,
     marginTop: 20,
     alignSelf: 'center',
+  },
+
+  buttonLabel: {
+    // consistent with "View History" button on Home screen, i.e. white text in the button
+    color: '#003A67',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   }
+
 });
 
 export default MTTwo;

@@ -86,9 +86,9 @@ function SecondCheckResults({ route, navigation }) {
           <Text style={styles.text}>
             The affected individual is displaying some symptoms of concussion.
             {'\n'} {'\n'}
-            We strongly recommend you complete our further testing.
+            We strongly recommend you complete our preliminary tests.
             {'\n'} {'\n'}
-            If you are concerned, immediately see a GP.
+            If you are concerned, immediately contact a GP.
           </Text>
           <View style={styles.textContainer}>
             <TouchableOpacity
@@ -107,7 +107,7 @@ function SecondCheckResults({ route, navigation }) {
               style={styles.bottomButton}
               onPress={() => navigation.navigate('Further Tests')}
             >
-              <Text style={styles.buttonLabel}>Further Testing</Text>
+              <Text style={styles.buttonLabel}>Complete Preliminary Tests</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -121,7 +121,7 @@ function SecondCheckResults({ route, navigation }) {
             There is a low probability of a concussion injury.
             {'\n'} {'\n'}
             However, we strongly recommend you immediately remove yourself from
-            play and complete our further tests.
+            play and complete the preliminary tests down below.
             {'\n'} {'\n'}
             You should rest for the next 24 hours. If symptoms should develop,
             see a GP immediately.
@@ -143,7 +143,7 @@ function SecondCheckResults({ route, navigation }) {
               style={styles.bottomButton}
               onPress={() => navigation.navigate('Further Tests')}
             >
-              <Text style={styles.buttonLabel}>Further Testing</Text>
+              <Text style={styles.buttonLabel}>Complete Preliminary Tests</Text>
             </TouchableOpacity>
           </View>
         </View>

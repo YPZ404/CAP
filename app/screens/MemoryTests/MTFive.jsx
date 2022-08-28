@@ -15,6 +15,9 @@ import { useContext, useState } from 'react';
 import {
   IncidentReportRepoContext,
   ReportIdContext,
+  MemoryCorrectAnswerContext,
+  PrelimReportIdContext,
+  PreliminaryReportRepoContext,
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -27,12 +30,19 @@ import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
  */
 function MTFive({ navigation }) {
   // Context variables
-  const [reportId] = useContext(ReportIdContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext); 
   const [responses, setResponses] = useState(null);
+  const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
 
   // Local state
   const [options] = useState(getShuffledOptions());
+
+  function isEqual(a, b)
+  {
+      return a.join() == b.join();
+  }
 
   const handleCreateMultiResponse = (res) => {
     const desc = 'Memory Test Part 2';
@@ -66,8 +76,24 @@ function MTFive({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          handleCreateMultiResponse(chosenList);
-          navigation.navigate('VOMS Start');
+
+          memoryCorrectAnswerContext.sort();
+          chosenList.sort();
+          console.log(isEqual(memoryCorrectAnswerContext,chosenList));
+        
+
+          if(isEqual(memoryCorrectAnswerContext,chosenList) == true){
+            preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,1);
+          }
+          else{
+            preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,0);
+          }
+          preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
+          navigation.navigate('Prelim Test Results', {
+            secondMemoryTestResponses: chosenList,
+          });
+
+
         }}
         style={styles.bottomButton}
       >
