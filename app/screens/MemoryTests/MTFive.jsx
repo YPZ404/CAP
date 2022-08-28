@@ -15,6 +15,9 @@ import { useContext, useState } from 'react';
 import {
   IncidentReportRepoContext,
   ReportIdContext,
+  MemoryCorrectAnswerContext,
+  PrelimReportIdContext,
+  PreliminaryReportRepoContext,
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -27,12 +30,19 @@ import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
  */
 function MTFive({ navigation }) {
   // Context variables
-  const [reportId] = useContext(ReportIdContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext); 
   const [responses, setResponses] = useState(null);
+  const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
 
   // Local state
   const [options] = useState(getShuffledOptions());
+
+  function isEqual(a, b)
+  {
+      return a.join() == b.join();
+  }
 
   const handleCreateMultiResponse = (res) => {
     const desc = 'Memory Test Part 2';
@@ -52,27 +62,42 @@ function MTFive({ navigation }) {
 
   const chosenList = [];
 
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#9AD3FF' }}>
       <Text style={uiStyle.text}>
         What three images does your patient remember?
       </Text>
       <ScrollView style={{ margin: 10 }}>
-        <SafeAreaView style={uiStyle.container}>
+        <SafeAreaView style={styles.container}>
           <DisplayOptions options={options} updateOption={onUpdate} />
         </SafeAreaView>
       </ScrollView>
 
       <TouchableOpacity
         onPress={() => {
-          handleCreateMultiResponse(chosenList);
-          navigation.navigate('Further Tests Results', {
+
+          memoryCorrectAnswerContext.sort();
+          chosenList.sort();
+          console.log(isEqual(memoryCorrectAnswerContext,chosenList));
+        
+
+          if(isEqual(memoryCorrectAnswerContext,chosenList) == true){
+            preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,1);
+          }
+          else{
+            preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,0);
+          }
+          preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
+          navigation.navigate('Prelim Test Results', {
             secondMemoryTestResponses: chosenList,
           });
+
+
         }}
-        style={uiStyle.bottomButton}
+        style={styles.bottomButton}
       >
-        <Text style={uiStyle.buttonLabel}>Submit</Text>
+        <Text style={styles.buttonLabel}>Submit</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -111,6 +136,35 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 14,
   },
+
+  bottomButton: {
+    // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
+    width: 300,
+    height: 50,
+    padding: 10,
+    borderRadius: 100,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 50,
+    marginTop: 20,
+    alignSelf: 'center',
+  },
+
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#9AD3FF',
+  },
+
+  buttonLabel: {
+    // consistent with "View History" button on Home screen, i.e. white text in the button
+    color: '#003A67',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  }
 });
 
 export default MTFive;

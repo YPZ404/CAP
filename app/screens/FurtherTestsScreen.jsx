@@ -7,8 +7,13 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import { useContext, useState } from 'react';
 
 import uiStyle from '../components/uiStyle.jsx';
+import {
+  PreliminaryReportRepoContext,
+  PrelimReportIdContext,
+} from '../components/GlobalContextProvider';
 
 /**
  * The screen will be perform memory test.
@@ -17,9 +22,12 @@ import uiStyle from '../components/uiStyle.jsx';
  * is Reaction Test.
  */
 function FurtherTests({ navigation }) {
+  const [prelimReportId, setPrelimReportId] = useContext(PrelimReportIdContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+
   return (
     <View style={uiStyle.container}>
-      <Text style={uiStyle.titleText}>Further Tests</Text>
+      <Text style={uiStyle.titleText}>Preliminary Tests</Text>
       <ScrollView>
         <Text style={uiStyle.stackedText}>
           There are 5 more tests that will determine the likelihood of the
@@ -27,12 +35,27 @@ function FurtherTests({ navigation }) {
           {'\n'}
           {'\n'}
           The tests consists of two memory tests, at the start and again at the
-          end, a reaction test, a balance test and VOMS.
+          end, a reaction test and a balance test.
+          {'\n'}
+          {'\n'}
+          Press Start to begin the tests.
         </Text>
       </ScrollView>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate('Memory Test 1')}
+        onPress={() => {
+          var counter = prelimReportId;
+          counter++;
+          setPrelimReportId(counter);
+          preliminaryReportRepoContext.createReport(null, counter, -10, -10,-10, -10, -10).then(() => {
+            preliminaryReportRepoContext
+              .getCurrentReportInformation(counter)
+              .then((data) => console.log(data))
+                
+            
+          });  
+          navigation.navigate('Memory Test 1')
+        }}
         style={uiStyle.bottomButton}
       >
         <Text style={uiStyle.buttonLabel}>Start!</Text>
