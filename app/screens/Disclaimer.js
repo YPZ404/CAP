@@ -47,7 +47,7 @@ function Disclaimer({ navigation }) {
 
 
 // Change the detailed styles of the disclaimer page
-// Note: the general background color of this page is defined in the uiStyle.jsx
+// Note: the general background color of this page is defined in the uiStyle
 // Elements defined in the following:
 // 1. "I understand" button
 // 2. Text position

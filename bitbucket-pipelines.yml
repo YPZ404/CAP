@@ -46,6 +46,17 @@ pipelines:
             - npm ci
             - npm run ci-test
       - step:
+          name: Deploy Development Build to Expo
+          deployment: staging
+          caches: 
+            - npm
+          script:
+            - apk add --no-cache bash
+            - apk add --no-cache git
+            - npm ci
+            - npm install -g eas-cli
+            - npm run build
+      - step:
           name: Deploy to Expo
           trigger: manual
           deployment: production

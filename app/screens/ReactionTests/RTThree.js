@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, TouchableOpacity, Button } from 'react-native';
 
-import uiStyle from '../../components/uiStyle.jsx';
+import uiStyle from '../../components/uiStyle';
 
 /**
  * The screen will be perform memory test.
