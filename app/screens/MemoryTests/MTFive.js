@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import uiStyle from '../../components/uiStyle.jsx';
+import uiStyle from '../../components/uiStyle';
 
 import { useContext, useState } from 'react';
 

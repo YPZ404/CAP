@@ -53,7 +53,7 @@ pipelines:
           script:
             - apk add --no-cache bash
             - npm ci
-            - npx eas-cli build --platform all --non-interactive
+            - npx eas-cli build --platform all --profile preview --non-interactive
       - step:
           name: Deploy to Expo
           trigger: manual

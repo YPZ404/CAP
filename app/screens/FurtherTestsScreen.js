@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useContext, useState } from 'react';
 
-import uiStyle from '../components/uiStyle.jsx';
+import uiStyle from '../components/uiStyle';
 import {
   PreliminaryReportRepoContext,
   PrelimReportIdContext,

@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.soft3888.dev"
     },
     "android": {
       "adaptiveIcon": {

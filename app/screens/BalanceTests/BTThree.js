@@ -9,17 +9,17 @@ import {
   Image,
 } from "react-native";
 
-import uiStyle from "../../components/uiStyle.jsx";
+import uiStyle from "../../components/uiStyle";
 import { useContext, useState } from "react";
 import {
-  dataContext2,
+  dataContext,
   IncidentReportRepoContext,
   PatientContext,
   PatientRepoContext,
   ReportIdContext,
 } from "../../components/GlobalContextProvider";
 
-function BTFive({ navigation }) {
+function BTThree({ navigation }) {
   // Context variables
   const [patient, setPatient] = useContext(PatientContext);
   const [reportId, setReportId] = useContext(ReportIdContext);
@@ -30,7 +30,8 @@ function BTFive({ navigation }) {
   const [responses, setResponses] = useState(null);
 
   const handleCreateMultiResponse = (answers) => {
-    const desc = "BalanceTest-response: first SD, second VAR, one leg up";
+    const desc =
+      "BalanceTest-response: first SD, second VAR, one foot in front of the other";
     incidentRepoContext.setMultiResponse(reportId, desc, answers).then(
       () => {
         incidentRepoContext
@@ -40,9 +41,9 @@ function BTFive({ navigation }) {
       (err) => console.log(err)
     );
   };
-  const [data2, setData2] = useContext(dataContext2);
-  var variation = Math.round(Math.pow(data2, 2) * 1000) / 1000;
-  var deviation = Math.round(data2 * 1000) / 1000;
+  const [data, setData] = useContext(dataContext);
+  var variation = Math.round(Math.pow(data, 2) * 1000) / 1000;
+  var deviation = Math.round(data * 1000) / 1000;
 
   const checkResult = (deviation, variation) => {
     var result = "FAIL";
@@ -88,22 +89,12 @@ function BTFive({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Memory Test 5");
+          navigation.navigate("Balance Test 4");
           handleCreateMultiResponse([deviation, variation]);
-
         }}
         style={uiStyle.bottomButton}
       >
         <Text style={uiStyle.buttonLabel}>Next</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Home');
-        }}
-        style={styles.homeButton}
-      >
-        <Text style={uiStyle.buttonLabel}>Return Home</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -112,7 +103,7 @@ function BTFive({ navigation }) {
 const title = "#000000";
 const text = "#fff";
 const background = "#fff";
-const buttons = "#ff3333";
+const buttons = "#ff0000";
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -155,19 +146,6 @@ const styles = StyleSheet.create({
   centerValueText: {
     textAlign: "center",
   },
-  homeButton: {
-    // consistent with "View History" button on Home screen, i.e long red button on bottom
-    width: 300,
-    height: 50,
-    padding: 10,
-    borderRadius: 100,
-    backgroundColor: '#008000',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 50,
-    marginTop: 20,
-    alignSelf: 'center',
-  },
 });
 
-export default BTFive;
+export default BTThree;
