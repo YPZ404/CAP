@@ -51,7 +51,7 @@ function HomeScreen({ navigation }) {
     
     <View style={styles.screen}>
      <View style={styles.container}>
-        <ImageBackground source = {require('../../assets/Logo.png')} style={styles.image}>
+        <ImageBackground source = {require('../../assets/logo.png')} style={styles.image}>
          <View style={styles.containerText}>
             <Text style={styles.titleText}>Concussion Check</Text> 
             
