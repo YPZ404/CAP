@@ -50,22 +50,19 @@ function HomeScreen({ navigation }) {
   return (
     
     <View style={styles.screen}>
-      <View style={styles.container}>
-        <ImageBackground style={styles.image} 
-          source = {require('../../assets/logo.png')}>
-          <Text style={styles.titleText}>Concussion Check</Text>
-          
+     <View style={styles.container}>
+         <ImageBackground source = {require('../../assets/Logo.png')} style={styles.image}>
+          <View style={styles.containerText}>
+            <Text style={styles.titleText}>Concussion Check</Text> 
             <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
               <Text style={styles.buttonLabel}>Begin Check</Text>
             </TouchableOpacity>
-
             <TouchableOpacity
-              onPress={() => navigation.navigate('Choose Profile')}
-              style={styles.viewHistoryButton}
-            >
+              onPress={() => navigation.navigate('Choose Profile')} style={styles.viewHistoryButton}>
               <Text style={styles.buttonLabel}>View History</Text>
             </TouchableOpacity>
-          </ImageBackground>
+            </View>
+         </ImageBackground>
         </View>
       </View>
       
@@ -91,6 +88,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#fff',
     margin: 10,
+    marginBottom: (Dimensions.get('window').height)/100,
+    marginTop: (Dimensions.get('window').height)/15,
   },
   startCheckText: {
     color: text,
@@ -100,8 +99,9 @@ const styles = StyleSheet.create({
   titleText: {
     color: title,
     fontSize: 30,
-    marginTop: 60,
     fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   shadowProp: {
     shadowColor: '#171717',
@@ -117,6 +117,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#9AD3FF',
     margin: 10,
+    marginBottom: Dimensions.get('window').height,
+    marginTop: (Dimensions.get('window').height)/60,
   },
   buttonLabel: {
     color: '#003A67',
@@ -127,23 +129,25 @@ const styles = StyleSheet.create({
   },
   containerText: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    height: Dimensions.get('window').height/20,
     alignItems: 'center',
     backgroundColor: '#349BEB',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
+    marginBottom: Dimensions.get('window').height,
+    marginTop: (Dimensions.get('window').height)/4.8,
   },
   container: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     alignItems: 'center',
     backgroundColor: '#349BEB',
-    alignItems: 'center',
   },
   image: {
-    width: Dimensions.get('window').width/0.99,
-    height: Dimensions.get('window').height/1.2,
+    width: Dimensions.get('window').width/2.8,
+    height: Dimensions.get('window').width/2.8,
+    marginBottom: (Dimensions.get('window').height)/1,
+    marginTop: (Dimensions.get('window').height)/15,
     resizeMode: 'cover',
+    alignItems: 'center',
   },
 });
 

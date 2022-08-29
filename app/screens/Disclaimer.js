@@ -19,7 +19,7 @@ function Disclaimer({ navigation }) {
     <View style={styles.screen}>    
         <View style={styles.containerText}> 
           <ImageBackground style={styles.image} 
-          source = {require('../../assets/b1.png')}>
+              source = {require('../../assets/b1.png')}>
             <Text style={styles.text}>
               This App does not represent a substitute for expert medical attention.
               {'\n'} {'\n'} 
