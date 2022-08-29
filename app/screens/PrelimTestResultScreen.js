@@ -14,7 +14,7 @@ import {
   PrelimReportIdContext,
   PreliminaryReportRepoContext
 } from '../components/GlobalContextProvider';
-import uiStyle from '../components/uiStyle.jsx';
+import uiStyle from '../components/uiStyle';
 
 
 
