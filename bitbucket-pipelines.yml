@@ -47,7 +47,7 @@ pipelines:
             - npm run ci-test
       - step:
           name: Deploy Development Build to Expo
-          deployment: development
+          deployment: staging
           caches: 
             - npm
           script:
