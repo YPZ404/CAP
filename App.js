@@ -1,11 +1,14 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem, } from '@react-navigation/drawer';
+import { getHeaderTitle } from '@react-navigation/elements';
+import { View, TouchableOpacity, Dimensions} from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from './app/screens/HomeScreen';
 import MechanismOfInjuryCheck from './app/screens/MechanismOfInjuryCheck';
 import CreateProfileScreen from './app/screens/CreateProfileScreen';
@@ -20,6 +23,8 @@ import MTTwo from './app/screens/MemoryTests/MTTwo';
 import MTThree from './app/screens/MemoryTests/MTThree';
 import MTFour from './app/screens/MemoryTests/MTFour';
 import MTFive from './app/screens/MemoryTests/MTFive';
+import MTFiveIntro from './app/screens/MemoryTests/MTFiveIntro';
+
 
 import ChooseProfileScreen from './app/screens/ChooseProfileScreen';
 import ProfileInfoScreen from './app/screens/ProfileInfoScreen';
@@ -34,12 +39,14 @@ import { GlobalContextProvider } from './app/components/GlobalContextProvider';
 import PCSSChecklist from './app/screens/PCSSChecklist';
 import FurtherTestsScreen from './app/screens/FurtherTestsScreen';
 import FurtherTestsResultsScreen from './app/screens/FurtherTestsResultsScreen';
+import PrelimTestResultScreen from './app/screens/PrelimTestResultScreen';
 import RTOne from './app/screens/ReactionTests/RTOne';
 import RTTwo from './app/screens/ReactionTests/RTTwo';
 import RTThree from './app/screens/ReactionTests/RTThree';
 import BTOne from './app/screens/BalanceTests/BTOne';
 import BTTwo from './app/screens/BalanceTests/BTTwo';
 import BTThree from './app/screens/BalanceTests/BTThree';
+
 
 import VOMSStart from './app/screens/VOMSTests/VOMSStart';
 import VOMSInitialSymptoms from './app/screens/VOMSTests/VOMSInitialSymptoms';
@@ -75,15 +82,35 @@ import VMS2 from './app/screens/VOMSTests/ROW5VMS/VMS2';
 import VMS3 from './app/screens/VOMSTests/ROW5VMS/VMS3';
 import BTFour from './app/screens/BalanceTests/BTFour';
 import BTFive from './app/screens/BalanceTests/BTFive';
+import BTComplete from './app/screens/BalanceTests/BTComplete';
+import BTComplete2 from './app/screens/BalanceTests/BTComplete2';
+
+import Header from './Header';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
+
+
 function CustomNavContent(){
+
   return (
     <RootStack.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <RootStack.Screen name="Disclaimer" component={Disclaimer} />
-    <RootStack.Screen name="Home" component={HomeScreen} />
+      <RootStack.Screen 
+        name="Disclaimer" 
+        component={Disclaimer}
+        options={{
+          headerTitle: () => <Header name="Disclaimer"></Header>,
+          headerStyle: {
+            height: (Dimensions.get('window').height)/6,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: '#9AD3FF',
+            elevation: 25
+          }
+        }}
+      />
+    <RootStack.Screen name="Home" component={HomeScreen}/>
     <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
       name="Choose Profile"
@@ -129,6 +156,12 @@ function CustomNavContent(){
     <RootStack.Screen
       name="Further Tests"
       component={FurtherTestsScreen}
+      options={{ title: 'Preliminary Tests ' }}
+    />
+
+<RootStack.Screen
+      name="Prelim Test Results"
+      component={PrelimTestResultScreen}
     />
 
     <RootStack.Screen
@@ -136,21 +169,27 @@ function CustomNavContent(){
       component={FurtherTestsResultsScreen}
     />
 
-    <RootStack.Screen name="Memory Test 1" component={MTOne} />
-    <RootStack.Screen name="Memory Test 2" component={MTTwo} />
-    <RootStack.Screen name="Memory Test 3" component={MTThree} />
-    <RootStack.Screen name="Memory Test 4" component={MTFour} />
+    <RootStack.Screen name="Memory Test 1" component={MTOne} options={{ title: 'Memory Test ' }} />
+    <RootStack.Screen name="Memory Test 2" component={MTTwo} options={{ title: 'Memory Test 1' }} />
+    <RootStack.Screen name="Memory Test 3" component={MTThree} options={{ title: 'Memory Test 1 ' }}  />
+    <RootStack.Screen name="Memory Test 4" component={MTFour} options={{ title: 'Memory Test 1' }}  />
 
-    <RootStack.Screen name="Reaction Test 1" component={RTOne} />
-    <RootStack.Screen name="Reaction Test 2" component={RTTwo} />
+    <RootStack.Screen name="Reaction Test 1" component={RTOne} options={{ title: 'Reaction Test ' }}/>
+    <RootStack.Screen name="Reaction Test 2" component={RTTwo} options={{ title: 'Reaction Test ' }}/>
     <RootStack.Screen name="Reaction Test 3" component={RTThree} />
-    <RootStack.Screen name="Balance Test 1" component={BTOne} />
-    <RootStack.Screen name="Balance Test 2" component={BTTwo} />
-    <RootStack.Screen name="Balance Test 3" component={BTThree} />
-    <RootStack.Screen name="Balance Test 4" component={BTFour} />
-    <RootStack.Screen name="Balance Test 5" component={BTFive} />
 
-    <RootStack.Screen name="Memory Test 5" component={MTFive} />
+
+    <RootStack.Screen name="Balance Test 1" component={BTOne} options={{ title: 'Balance Tests ' }} />
+    <RootStack.Screen name="Balance Test 2" component={BTTwo} options={{ title: 'Balance Test 1 ' }}/>
+    <RootStack.Screen name="Balance Test 3" component={BTThree} />
+    <RootStack.Screen name="Balance Test 4" component={BTFour} options={{ title: 'Balance Test 2 ' }}/>
+    <RootStack.Screen name="Balance Test 5" component={BTFive} />
+    <RootStack.Screen name="Balance Test Complete" component={BTComplete} options={{ title: 'Balance Test 1 Complete ' }} />
+    <RootStack.Screen name="Balance Test Complete 2" component={BTComplete2} options={{ title: 'Balance Tests Complete ' }} />
+
+    <RootStack.Screen name="Memory Test 5 Intro" component={MTFiveIntro} options={{ title: 'Memory Test 2' }}  />
+    <RootStack.Screen name="Memory Test 5" component={MTFive} options={{ title: 'Memory Test 2' }}  />
+
 
     <RootStack.Screen name="VOMS Start" component={VOMSStart} />
     <RootStack.Screen
@@ -213,7 +252,7 @@ function MyDrawer() {
     <Drawer.Navigator screenOptions={{headerShown: false}} drawerContent={(props) => <CustomDrawerContent {...props}/>}>
       <Drawer.Screen name="Home Page" component={CustomNavContent} />
       <Drawer.Screen name="Profile" component={ChooseProfileScreen} />
-      <Drawer.Screen name="Preliminary Tests" component={MTOne} />
+      <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
     </Drawer.Navigator>
@@ -225,7 +264,7 @@ function MyDrawer() {
  *
  * Contains the root navigation stack.
  */
-export default function App() {
+ export default function App() {
   return (
     <GlobalContextProvider>
       <NavigationContainer>

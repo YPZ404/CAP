@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-native";
 
-import uiStyle from "../../components/uiStyle.jsx";
+import uiStyle from "../../components/uiStyle";
 import { useContext, useState } from "react";
 import {
   dataContext,

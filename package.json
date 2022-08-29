@@ -1,5 +1,4 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -10,7 +9,8 @@
     "lint": "eslint --fix --ext .js,.jsx ./",
     "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"\n",
     "ci-test": "npx jest --ci --coverage",
-    "doc": "jsdoc -c jsdoc.config.json -r app/ App.js -d doc/"
+    "doc": "jsdoc -c jsdoc.config.json -r app/ App.js -d doc/",
+    "build": "npx eas-cli build --platform all --profile preview --non-interactive"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
@@ -23,6 +23,7 @@
     "@unimodules/core": "~7.2.0",
     "expo": "^44.0.0",
     "expo-asset": "~8.4.6",
+    "expo-dev-client": "~0.8.6",
     "expo-file-system": "~13.1.4",
     "expo-sharing": "~10.1.0",
     "expo-sqlite": "~10.1.0",

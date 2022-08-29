@@ -8,13 +8,16 @@ import {
     ScrollView, Pressable,
 } from 'react-native';
 
-import uiStyle from '../../components/uiStyle.jsx';
+import uiStyle from '../../components/uiStyle';
 
 import { useContext, useState } from 'react';
 
 import {
   IncidentReportRepoContext,
   ReportIdContext,
+  MemoryCorrectAnswerContext,
+  PreliminaryReportRepoContext,
+  PrelimReportIdContext,
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -23,7 +26,7 @@ import updateProps from "react-native-reanimated/src/reanimated2/UpdateProps";
 import cbStyle from "../../components/checkboxStyle";
 import {Ionicons} from "@expo/vector-icons";
 
-/**
+/**a
  * The screen will be perform memory test.
  * This is the first test out of the Further Tests
  * After this test is completed, user needs to navigate to the next test which
@@ -32,23 +35,38 @@ import {Ionicons} from "@expo/vector-icons";
 
 function MTFour({ navigation }) {
   // Context variables
-  const [reportId] = useContext(ReportIdContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext); 
+  const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
-
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  
   // Local state
   const [options] = useState(getShuffledOptions());
 
 
+  function isEqual(a, b)
+  {
+      return a.join() == b.join();
+  }
+
   const handleCreateMultiResponse = (res) => {
-    const desc = 'Memory Test Part 1';
-    incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {
-        incidentRepoContext
-            .getMultiResponses(reportId)
-            .then((mrs) => console.log(mrs));
-        },
-        (err) => console.log(err),
-    );
+    // const desc = 'Memory Test Part 1';
+    // incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+    // console.log(memoryCorrectAnswerContext);
+    // console.log(res)
+    
   };
+
+  // const handleCreateMultiResponse = (res) => {
+  //   const desc = 'Memory Test Part 1';
+  //   incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {
+  //       incidentRepoContext
+  //           .getMultiResponses(reportId)
+  //           .then((mrs) => console.log(mrs));
+  //       },
+  //       (err) => console.log(err),
+  //   );
+  // };
 
   const MyCheckbox = (props) => {
       const [checked, onChange] = useState(false);
@@ -66,6 +84,7 @@ function MTFour({ navigation }) {
               {checked && <Ionicons name="checkmark" size={24} color="black" />}
           </Pressable>
       );
+
   };
 
 
@@ -96,7 +115,20 @@ function MTFour({ navigation }) {
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
-          handleCreateMultiResponse(chosenList);
+          //Logic to generate Pass or fail mark
+
+          memoryCorrectAnswerContext.sort();
+          chosenList.sort();
+          console.log(isEqual(memoryCorrectAnswerContext,chosenList));
+        
+
+          if(isEqual(memoryCorrectAnswerContext,chosenList) == true){
+            preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);
+          }
+          else{
+            preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,0);
+          }
+          preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
 
           navigation.navigate('Reaction Test 1');
         }}

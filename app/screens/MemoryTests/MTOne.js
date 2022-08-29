@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import uiStyle from '../../components/uiStyle.jsx';
+import uiStyle from '../../components/uiStyle';
 
 /**
  * The screen will be performed memory test.
@@ -19,34 +19,33 @@ import uiStyle from '../../components/uiStyle.jsx';
  */
 function MTOne({ navigation }) {
   return (
-
-    //<SafeAreaView style={uiStyle.container}>
-    <View style={styles.container}>
-      <Text style={uiStyle.titleText}>Preliminary Test</Text>
-      <ScrollView>
-        <Text style={styles.text}>
-            {'\n'} {'\n'}
-          Welcome to the first memory test.{'\n'}
-          {'\n'}
-          The affected person will be presented with three images to remember.
-          {'\n'}
-          {'\n'}
-          They will be tested on these images once now and then again at the end
-          other assessments. {'\n'}
-          {'\n'}
-          Please pass the phone to the affected person. {'\n'}
+    <SafeAreaView style={uiStyle.container}>
+      <View style={uiStyle.container}>
+        <Text style={uiStyle.titleText}>Memory Test 1</Text>
+        <ScrollView>
+          <Text style={styles.text}>
+              {'\n'} {'\n'}
+            Welcome to the first memory test.{'\n'}
             {'\n'}
-        </Text>
-      </ScrollView>
+            The affected person will be presented with three images to remember.
+            {'\n'}
+            {'\n'}
+            They will be tested on these images once now and then again at the end
+            other assessments. {'\n'}
+            {'\n'}
+            Please pass the phone to the affected person. {'\n'}
+              {'\n'}
+          </Text>
+        </ScrollView>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Memory Test 2')}
-        style={styles.bottomButton}
-      >
-        <Text style={styles.buttonLabel}>Start!</Text>
-      </TouchableOpacity>
-    </View>
-
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Memory Test 2')}
+          style={styles.bottomButton}
+        >
+          <Text style={styles.buttonLabel}>Start!</Text>
+        </TouchableOpacity>
+      </View>
+   </SafeAreaView>
   );
 }
 

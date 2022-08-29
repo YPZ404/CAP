@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-native";
 
-import uiStyle from "../../components/uiStyle.jsx";
+import uiStyle from "../../components/uiStyle";
 import { useContext, useState } from "react";
 import {
   dataContext2,
@@ -88,12 +88,8 @@ function BTFive({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-
-          navigation.navigate('Memory Test 5');
-          handleCreateMultiResponse([
-            Math.round(data2 * 1000) / 1000,
-            Math.round(Math.pow(data2, 2) * 1000) / 1000,
-          ]);
+          navigation.navigate("Memory Test 5");
+          handleCreateMultiResponse([deviation, variation]);
 
         }}
         style={uiStyle.bottomButton}

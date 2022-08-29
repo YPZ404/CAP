@@ -2,14 +2,17 @@ import { StyleSheet } from 'react-native';
 
 const title = '#000000';
 const text = '#fff';
-const background = '#fff';
+const background = '#349BEB';
 const buttons = '#ff3333';
+const test_background = '#9AD3FF'
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: background,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   },
   textContainer: {
     flex: 1,
@@ -21,6 +24,12 @@ export default StyleSheet.create({
     fontSize: 30,
     marginTop: 20,
     fontWeight: 'bold',
+  },
+
+  container_tests: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: test_background,
   },
 
   textNoAbsolute: {
@@ -81,6 +90,7 @@ export default StyleSheet.create({
     backgroundColor: buttons,
     margin: 10,
   },
+  
   startCheckText: {
     color: text,
     fontWeight: 'bold',
