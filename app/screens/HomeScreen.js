@@ -7,6 +7,7 @@ import {
   Button,
   View,
   Alert,
+  Dimensions,
 } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -48,20 +49,18 @@ function HomeScreen({ navigation }) {
     
     <SafeAreaView style={styles.screen}>
       <Text style={styles.titleText}>Concussion Check</Text>
-      <View style={styles.container}>
+      
         <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
-          <Text style={styles.startCheckText}>Begin Check</Text>
+          <Text style={styles.buttonLabel}>Begin Check</Text>
         </TouchableOpacity>
-        {/*<Button style={styles.startCheckText} {'Start Check'} onPress={createAlert} />*/}
-      </View>
-      <View style={styles.container2}>
+
         <TouchableOpacity
           onPress={() => navigation.navigate('Choose Profile')}
-          style={uiStyle.bottomButton}
+          style={styles.viewHistoryButton}
         >
-          <Text style={uiStyle.buttonLabel}>View History</Text>
+          <Text style={styles.buttonLabel}>View History</Text>
         </TouchableOpacity>
-      </View>
+    
       </SafeAreaView>
     
   );
@@ -71,32 +70,19 @@ function HomeScreen({ navigation }) {
 const title = '#fff';
 const text = '#fff';
 const background = '#349BEB';
-const buttons = '#9AD3FF';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: background,
   },
-  container: {
-    flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#349BEB',
-  },
-  container2: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    backgroundColor: '#349BEB',
-  },
   startCheckButton: {
-    width: 200,
-    height: 200,
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 100,
-    backgroundColor: buttons,
+    borderRadius: 20,
+    backgroundColor: '#fff',
     margin: 10,
   },
   startCheckText: {
@@ -109,6 +95,28 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginTop: 60,
     fontWeight: 'bold',
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+  viewHistoryButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#9AD3FF',
+    margin: 10,
+  },
+  buttonLabel: {
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/20,
+    fontWeight: '800',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
 });
 

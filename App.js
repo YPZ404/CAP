@@ -110,7 +110,21 @@ function CustomNavContent(){
           }
         }}
       />
-    <RootStack.Screen name="Home" component={HomeScreen}/>
+    <RootStack.Screen 
+      name="Home" 
+      component={HomeScreen}
+      options={{
+        headerTitle: () => <Header name=""></Header>,
+        headerStyle: {
+          height: (Dimensions.get('window').height)/9,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+          backgroundColor: '#9AD3FF',
+          elevation: 25
+        }
+      }}
+
+    />
     <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
       name="Choose Profile"

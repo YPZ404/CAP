@@ -65,7 +65,7 @@ export default StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 100,
-    backgroundColor: '#ff3333',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 50,
@@ -74,7 +74,7 @@ export default StyleSheet.create({
   },
   buttonLabel: {
     // consistent with "View History" button on Home screen, i.e. white text in the button
-    color: '#fff',
+    color: '#003A67',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
