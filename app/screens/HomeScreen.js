@@ -51,21 +51,26 @@ function HomeScreen({ navigation }) {
     
     <View style={styles.screen}>
      <View style={styles.container}>
-         <ImageBackground source = {require('../../assets/Logo.png')} style={styles.image}>
-          <View style={styles.containerText}>
+        <ImageBackground source = {require('../../assets/Logo.png')} style={styles.image}>
+         <View style={styles.containerText}>
             <Text style={styles.titleText}>Concussion Check</Text> 
-            <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
-              <Text style={styles.buttonLabel}>Begin Check</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Choose Profile')} style={styles.viewHistoryButton}>
-              <Text style={styles.buttonLabel}>View History</Text>
-            </TouchableOpacity>
-            </View>
+            
+            <ImageBackground source = {require('../../assets/b2.png')} style={styles.imageBackground}>
+            <View style={[styles.containerButton, styles.shadowProp]}>
+              <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
+                <Text style={styles.buttonLabel}>Begin Check</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Choose Profile')} style={[styles.viewHistoryButton, styles.shadowProp]}>
+                <Text style={styles.buttonLabel}>View History</Text>
+              </TouchableOpacity>
+              </View>      
+             </ImageBackground>       
+                
+          </View>
          </ImageBackground>
         </View>
       </View>
-      
     
   );
 }
@@ -87,9 +92,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     backgroundColor: '#fff',
-    margin: 10,
     marginBottom: (Dimensions.get('window').height)/100,
-    marginTop: (Dimensions.get('window').height)/15,
+    marginTop: (Dimensions.get('window').height)/25,
   },
   startCheckText: {
     color: text,
@@ -116,9 +120,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     backgroundColor: '#9AD3FF',
-    margin: 10,
-    marginBottom: Dimensions.get('window').height,
-    marginTop: (Dimensions.get('window').height)/60,
+    marginTop: (Dimensions.get('window').height)/40,
   },
   buttonLabel: {
     color: '#003A67',
@@ -132,14 +134,19 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height/20,
     alignItems: 'center',
     backgroundColor: '#349BEB',
-    marginBottom: Dimensions.get('window').height,
-    marginTop: (Dimensions.get('window').height)/4.8,
+    marginTop: (Dimensions.get('window').height)/5
   },
   container: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     alignItems: 'center',
     backgroundColor: '#349BEB',
+  },
+  containerButton: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height/4,
+    alignItems: 'center',
+    marginTop: -(Dimensions.get('window').height)/3
   },
   image: {
     width: Dimensions.get('window').width/2.8,
@@ -148,6 +155,12 @@ const styles = StyleSheet.create({
     marginTop: (Dimensions.get('window').height)/15,
     resizeMode: 'cover',
     alignItems: 'center',
+  },
+  imageBackground: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/7,
+    alignItems: 'center',
+    margin: Dimensions.get('window').height/2.3
   },
 });
 
