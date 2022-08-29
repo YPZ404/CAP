@@ -8,6 +8,8 @@ import {
   View,
   Alert,
   Dimensions,
+  Image,
+  ImageBackground
 } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -47,21 +49,26 @@ function HomeScreen({ navigation }) {
 
   return (
     
-    <SafeAreaView style={styles.screen}>
-      <Text style={styles.titleText}>Concussion Check</Text>
-      
-        <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
-          <Text style={styles.buttonLabel}>Begin Check</Text>
-        </TouchableOpacity>
+    <View style={styles.screen}>
+      <View style={styles.container}>
+        <ImageBackground style={styles.image} 
+          source = {require('../../assets/logo.png')}>
+          <Text style={styles.titleText}>Concussion Check</Text>
+          
+            <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
+              <Text style={styles.buttonLabel}>Begin Check</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Choose Profile')}
-          style={styles.viewHistoryButton}
-        >
-          <Text style={styles.buttonLabel}>View History</Text>
-        </TouchableOpacity>
-    
-      </SafeAreaView>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Choose Profile')}
+              style={styles.viewHistoryButton}
+            >
+              <Text style={styles.buttonLabel}>View History</Text>
+            </TouchableOpacity>
+          </ImageBackground>
+        </View>
+      </View>
+      
     
   );
 }
@@ -117,6 +124,26 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     textAlign: 'center',
     textAlignVertical: 'center',
+  },
+  containerText: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    alignItems: 'center',
+    backgroundColor: '#349BEB',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+  container: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    alignItems: 'center',
+    backgroundColor: '#349BEB',
+    alignItems: 'center',
+  },
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.2,
+    resizeMode: 'cover',
   },
 });
 
