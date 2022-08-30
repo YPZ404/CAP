@@ -86,6 +86,7 @@ import BTComplete from './app/screens/BalanceTests/BTComplete';
 import BTComplete2 from './app/screens/BalanceTests/BTComplete2';
 
 import Header from './Header';
+import LoginScreen from './app/screens/Login';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -129,7 +130,7 @@ function CustomNavContent(){
       component={SelectProfileScreen}
     />
     <RootStack.Screen name="Profile Info" component={ProfileInfoScreen} />
-    <RootStack.Screen name="Report Screen" component={ReportScreen} />
+    <RootStack.Screen name="Login" component={LoginScreen} />
     <RootStack.Screen
       name="Red flags checklist"
       component={RedFlagsChecklist}
@@ -249,9 +250,9 @@ function CustomDrawerContent(props) {
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator screenOptions={{headerShown: false}} drawerContent={(props) => <CustomDrawerContent {...props}/>}>
+    <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
       <Drawer.Screen name="Home Page" component={CustomNavContent} />
-      <Drawer.Screen name="Profile" component={ChooseProfileScreen} />
+      <Drawer.Screen name="Login" component={LoginScreen} />
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
