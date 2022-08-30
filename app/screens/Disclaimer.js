@@ -7,40 +7,41 @@ import {
   Button,
   View,
   Alert,
-  Image,
+  ImageBackground,
   Dimensions
 } from 'react-native';
-import uiStyle from '../components/uiStyle';
-import Background from '../../assets/b1.png';
+
 
 function Disclaimer({ navigation }) {
  
   return (
    
-    <View style={styles.screen}>
-      <View style={styles.container}> 
+    <View style={styles.screen}>    
         <View style={styles.containerText}> 
-          <Text style={styles.text}>
-            This App does not represent a substitute for expert medical attention.
-            {'\n'} {'\n'} 
-            You must not rely on the information on this App as an alternative to
-            medical advice from your doctor or other professional healthcare
-            provider.
-            {'\n'} {'\n'} 
-            We strongly recommend that you consult your own physician or another
-            available health professional regarding any diagnosis, findings,
-            interpretation or course of treatment.
-          </Text>
-            <TouchableOpacity
-              // onPress={() => navigation.navigate('Voms Start')}
-              onPress={() => navigation.navigate('Home')}
-              style={[styles.bottomButton, styles.shadowProp]}
-            >
-              <Text style={styles.buttonLabel}>I understand</Text>
-            </TouchableOpacity>
+          <ImageBackground style={styles.image} 
+              source = {require('../../assets/b1.png')}>
+            <Text style={styles.text}>
+              This App does not represent a substitute for expert medical attention.
+              {'\n'} {'\n'} 
+              You must not rely on the information on this App as an alternative to
+              medical advice from your doctor or other professional healthcare
+              provider.
+              {'\n'} {'\n'} 
+              We strongly recommend that you consult your own physician or another
+              available health professional regarding any diagnosis, findings,
+              interpretation or course of treatment.
+            </Text>
+              <TouchableOpacity
+                // onPress={() => navigation.navigate('Voms Start')}
+                onPress={() => navigation.navigate('Home')}
+                style={[styles.bottomButton, styles.shadowProp]}
+              >
+                <Text style={styles.buttonLabel}>I understand</Text>
+              </TouchableOpacity>
+            </ImageBackground>
           </View>
       </View>
-    </View>
+   
     
   );
 }
@@ -85,7 +86,6 @@ const styles = StyleSheet.create({
   },
 
   buttonLabel: {
-    // consistent with "View History" button on Home screen, i.e. white text in the button
     color: '#003A67',
     fontSize: Dimensions.get('window').width/20,
     fontWeight: '800',
@@ -111,11 +111,23 @@ const styles = StyleSheet.create({
 
   containerText: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height/1.5,
+    height: Dimensions.get('window').height,
     alignItems: 'center',
     backgroundColor: '#349BEB',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20
+  },
+  containerBackground: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height/2,
+    alignItems: 'center',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.2,
+    resizeMode: 'cover',
   },
 
 });
