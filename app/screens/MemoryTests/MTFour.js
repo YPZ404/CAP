@@ -104,7 +104,7 @@ function MTFour({ navigation }) {
   const chosenList = [];
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#9AD3FF' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#349BEB' }}>
       <Text style={uiStyle.text}>
         What three images does your patient remember?
       </Text>
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#9AD3FF',
+        backgroundColor: '#349BEB',
     },
 
     buttonLabel: {
