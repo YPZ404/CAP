@@ -90,42 +90,41 @@ import LoginScreen from './app/screens/Login';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const OpenStack = createStackNavigator();
 
-
+function OpenDisclaimer(){
+  return (
+      <OpenStack.Navigator screenOptions={{headerShown: false}}>
+          <OpenStack.Screen 
+              name="Disclaimer" 
+              component={Disclaimer}
+              options={{
+                headerTitle: () => <Header name="Disclaimer"></Header>,
+                headerLeft: () => (
+                  <View>
+                    <TouchableOpacity 
+                      style={{marginLeft: 15}}>
+                      <MaterialCommunityIcons name='dots-vertical' size={28} color='#000'/>
+                    </TouchableOpacity>
+                  </View>
+                ),
+                headerStyle: {
+                  height: (Dimensions.get('window').height)/6,
+                  borderBottomLeftRadius: 0,
+                  borderBottomRightRadius: 0,
+                  backgroundColor: '#9AD3FF',
+                  elevation: 25
+                }
+              }}
+          />
+      </OpenStack.Navigator>
+  );
+}
 
 function CustomNavContent(){
-
   return (
-    <RootStack.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <RootStack.Screen 
-        name="Disclaimer" 
-        component={Disclaimer}
-        options={{
-          headerTitle: () => <Header name="Disclaimer"></Header>,
-          headerStyle: {
-            height: (Dimensions.get('window').height)/6,
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-            backgroundColor: '#9AD3FF',
-            elevation: 25
-          }
-        }}
-      />
-    <RootStack.Screen 
-      name="Home" 
-      component={HomeScreen}
-      options={{
-        headerTitle: () => <Header name=""></Header>,
-        headerStyle: {
-          height: (Dimensions.get('window').height)/9,
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-          backgroundColor: '#9AD3FF',
-          elevation: 25
-        }
-      }}
-
-    />
+    <RootStack.Navigator screenOptions={{headerShown: false}}>
+    <RootStack.Screen name="Home" component={HomeScreen}/>
     <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
       name="Choose Profile"
@@ -265,7 +264,29 @@ function CustomDrawerContent(props) {
 function MyDrawer() {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <Drawer.Screen name="Home Page" component={CustomNavContent} />
+      <Drawer.Screen setOptions={{headerShown: false}} name="Start" component={OpenDisclaimer} 
+        options={{
+          headerTitle: () => <Header name="Disclaimer"></Header>,
+          headerLeft: () => (<View/>),
+          headerStyle: {
+            height: (Dimensions.get('window').height)/6,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: '#9AD3FF',
+            elevation: 25
+          }
+        }}/>
+      <Drawer.Screen name="Home Page" component={CustomNavContent} 
+        options={{
+          headerTitle: () => <Header name=""></Header>,
+          headerStyle: {
+            height: (Dimensions.get('window').height)/9,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: '#9AD3FF',
+            elevation: 25
+          }
+        }}/>
       <Drawer.Screen name="Login" component={LoginScreen} />
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
@@ -273,6 +294,7 @@ function MyDrawer() {
     </Drawer.Navigator>
   );
 }
+
 
 /**
  * The entry point for the application.
@@ -282,8 +304,8 @@ function MyDrawer() {
  export default function App() {
   return (
     <GlobalContextProvider>
-      <NavigationContainer>
-      <MyDrawer />
+      <NavigationContainer >
+          <MyDrawer />
       </NavigationContainer>
     </GlobalContextProvider>
   );

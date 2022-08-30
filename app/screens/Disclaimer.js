@@ -33,7 +33,7 @@ function Disclaimer({ navigation }) {
             </Text>
               <TouchableOpacity
                 // onPress={() => navigation.navigate('Voms Start')}
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => navigation.navigate('Home Page')}
                 style={[styles.bottomButton, styles.shadowProp]}
               >
                 <Text style={styles.buttonLabel}>I understand</Text>
