@@ -12,6 +12,8 @@ import {
   PatientContext,
   PatientRepoContext,
   ReportIdContext,
+  AccountContext,
+  AccountRepoContext
 } from '../components/GlobalContextProvider';
 import { useContext, useState, useRef, useEffect } from 'react';
 import uiStyle from '../components/uiStyle';
@@ -22,13 +24,14 @@ import uiStyle from '../components/uiStyle';
 function CreateProfileScreen({ navigation }) {
   // Context variables
   const [reportId] = useContext(ReportIdContext);
-  const patientRepoContext = useContext(PatientRepoContext);
+  const accountRepoContext = useContext(AccountRepoContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
 
   const [firstNameOfUser, onChangeFirstName] = useState('');
   const [lastNameOfUser, onChangeLastName] = useState('');
   const [ageOfUser, onChangeAge] = useState('');
   const [weightOfUser, onChangeWeight] = useState('');
+  const [password, onChangePassword] = useState('');
 
   const mounted = useRef(false);
 
@@ -40,12 +43,12 @@ function CreateProfileScreen({ navigation }) {
     };
   }, []);
 
-  const onCreatePatient = (firstName, lastName, age, weight) => {
-    if (patientRepoContext !== null) {
-      patientRepoContext.createPatient(firstName, lastName, age, weight).then(
-        (patientId) => {
+  const onCreateAccount = (firstName, lastName, age, weight, password) => {
+    if (accountRepoContext !== null) {
+      accountRepoContext.createAccount(firstName, lastName, age, weight, password).then(
+        (accountId) => {
           incidentRepoContext
-            .updateReport(patientId, reportId)
+            .updateReport(accountId, reportId)
             .catch(console.log);
         },
         (err) => console.log('Error: ' + err),
@@ -93,14 +96,23 @@ function CreateProfileScreen({ navigation }) {
           keyboardType="numeric"
           returnKeyType="done"
         />
+        <TextInput
+          maxLength={9}
+          style={styles.input}
+          onChangeText={onChangePassword}
+          value={password}
+          placeholder="Password (maximum 9 characters)"
+          returnKeyType="done"
+        />
         <TouchableOpacity
           style={styles.bottomButton}
           onPress={() => {
-            onCreatePatient(
+            onCreateAccount(
               firstNameOfUser,
               lastNameOfUser,
               ageOfUser,
               weightOfUser,
+              password,
             );
             navigation.navigate('Home');
           }}

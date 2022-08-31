@@ -8,24 +8,24 @@ import {
   ScrollView,
 } from 'react-native';
 
-import uiStyle from '../../components/uiStyle.jsx';
+import uiStyle from '../../components/uiStyle';
 
-function BTComplete({ navigation }) {
+function BTComplete2({ navigation }) {
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
-          <Text style={uiStyle.titleText}>Balance Test Complete</Text>
+          <Text style={uiStyle.titleText}>Balance Tests Complete</Text>
           <Text style={uiStyle.stackedText}>
-            You have successfully completed the first balance test. Press next
-            to continue to the second balance test. 
+            You have successfully completed both the balance tests. Press next
+            to continue with testing. 
             
           </Text>
         </SafeAreaView>
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Balance Test 4');
+          navigation.navigate('Memory Test 5 Intro');
         }}
         style={uiStyle.bottomButton}
       >
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BTComplete;
+export default BTComplete2;

@@ -86,30 +86,44 @@ import BTComplete from './app/screens/BalanceTests/BTComplete';
 import BTComplete2 from './app/screens/BalanceTests/BTComplete2';
 
 import Header from './Header';
+import LoginScreen from './app/screens/Login';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const OpenStack = createStackNavigator();
 
-
+function OpenDisclaimer(){
+  return (
+      <OpenStack.Navigator screenOptions={{headerShown: false}}>
+          <OpenStack.Screen 
+              name="Disclaimer" 
+              component={Disclaimer}
+              options={{
+                headerTitle: () => <Header name="Disclaimer"></Header>,
+                headerLeft: () => (
+                  <View>
+                    <TouchableOpacity 
+                      style={{marginLeft: 15}}>
+                      <MaterialCommunityIcons name='dots-vertical' size={28} color='#000'/>
+                    </TouchableOpacity>
+                  </View>
+                ),
+                headerStyle: {
+                  height: (Dimensions.get('window').height)/6,
+                  borderBottomLeftRadius: 0,
+                  borderBottomRightRadius: 0,
+                  backgroundColor: '#9AD3FF',
+                  elevation: 25
+                }
+              }}
+          />
+      </OpenStack.Navigator>
+  );
+}
 
 function CustomNavContent(){
-
   return (
-    <RootStack.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <RootStack.Screen 
-        name="Disclaimer" 
-        component={Disclaimer}
-        options={{
-          headerTitle: () => <Header name="Disclaimer"></Header>,
-          headerStyle: {
-            height: (Dimensions.get('window').height)/6,
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-            backgroundColor: '#9AD3FF',
-            elevation: 25
-          }
-        }}
-      />
+    <RootStack.Navigator screenOptions={{headerShown: false}}>
     <RootStack.Screen name="Home" component={HomeScreen}/>
     <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
@@ -129,7 +143,7 @@ function CustomNavContent(){
       component={SelectProfileScreen}
     />
     <RootStack.Screen name="Profile Info" component={ProfileInfoScreen} />
-    <RootStack.Screen name="Report Screen" component={ReportScreen} />
+    <RootStack.Screen name="Login" component={LoginScreen} />
     <RootStack.Screen
       name="Red flags checklist"
       component={RedFlagsChecklist}
@@ -249,15 +263,38 @@ function CustomDrawerContent(props) {
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator screenOptions={{headerShown: false}} drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <Drawer.Screen name="Home Page" component={CustomNavContent} />
-      <Drawer.Screen name="Profile" component={ChooseProfileScreen} />
+    <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
+      <Drawer.Screen setOptions={{headerShown: false}} name="Start" component={OpenDisclaimer} 
+        options={{
+          headerTitle: () => <Header name="Disclaimer"></Header>,
+          headerLeft: () => (<View/>),
+          headerStyle: {
+            height: (Dimensions.get('window').height)/6,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: '#9AD3FF',
+            elevation: 25
+          }
+        }}/>
+      <Drawer.Screen name="Home Page" component={CustomNavContent} 
+        options={{
+          headerTitle: () => <Header name=""></Header>,
+          headerStyle: {
+            height: (Dimensions.get('window').height)/9,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: '#9AD3FF',
+            elevation: 25
+          }
+        }}/>
+      <Drawer.Screen name="Login" component={LoginScreen} />
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
     </Drawer.Navigator>
   );
 }
+
 
 /**
  * The entry point for the application.
@@ -267,8 +304,8 @@ function MyDrawer() {
  export default function App() {
   return (
     <GlobalContextProvider>
-      <NavigationContainer>
-      <MyDrawer />
+      <NavigationContainer >
+          <MyDrawer />
       </NavigationContainer>
     </GlobalContextProvider>
   );

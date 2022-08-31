@@ -1,8 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Patient } from '../model/database/Patient';
+import { Account } from '../model/database/Account';
 import { DatabaseAdapter } from '../model/database/DatabaseAdapter';
 import { PatientRepo } from '../model/database/PatientRepo';
+import {AccountRepo} from '../model/database/AccountRepo';
 import { IncidentReportRepo } from '../model/database/IncidentReportRepo';
 import { PreliminaryReportRepo } from '../model/database/PreliminaryReportRepo';
 import * as SQLite from 'expo-sqlite';
@@ -15,6 +17,10 @@ const DB_FILE = 'measurements.db';
  * @type {React.Context<[Patient, (newPatient: Patient) => void]>}
  */
 export const PatientContext = React.createContext(null);
+
+export const AccountContext = React.createContext(null);
+
+export const AccountRepoContext = React.createContext(null);
 
 /**
  *
@@ -71,6 +77,8 @@ export function GlobalContextProvider(props) {
   // Global patient
   const [patient, setPatient] = useState(new Patient(null, 'John', null));
 
+  const [account, setAccount] = useState(new Account(null, 'John', null, 0, 0, null));
+
   // Global report id
   const [reportId, setReportId] = useState(null);
 
@@ -79,6 +87,7 @@ export function GlobalContextProvider(props) {
 
   // Global Repositories
   const [patientRepoContext, setPatientRepoContext] = useState(null);
+  const [accountRepoContext, setAccountRepoContext] = useState(null);
   const [daContext, setDaContext] = useState(null);
   const [daContext2, setDaContext2] = useState(null);
   const [incidentRepoContext, setIncidentRepoContext] = useState(null);
@@ -93,6 +102,7 @@ export function GlobalContextProvider(props) {
     DatabaseAdapter.initDatabase(SQLite.openDatabase(DB_FILE)).then((daNew) => {
       setDaContext(daNew);
       setPatientRepoContext(new PatientRepo(daNew));
+      setAccountRepoContext(new AccountRepo(daNew));
       setIncidentRepoContext(new IncidentReportRepo(daNew));
       setPreliminaryReportRepoContext(new PreliminaryReportRepo(daNew));
     });
@@ -103,6 +113,8 @@ export function GlobalContextProvider(props) {
     <PrelimReportIdContext.Provider value={[prelimReportId, setPrelimReportId]}>
       <ReportIdContext.Provider value={[reportId, setReportId]}>
         <PatientContext.Provider value={[patient, setPatient]}>
+        <AccountContext.Provider value={[account, setAccount]}>
+        <AccountRepoContext.Provider value={accountRepoContext}>
           <PatientRepoContext.Provider value={patientRepoContext}>
             <IncidentReportRepoContext.Provider value={incidentRepoContext}>
               <PreliminaryReportRepoContext.Provider value={preliminaryReportRepoContext}>
@@ -120,6 +132,8 @@ export function GlobalContextProvider(props) {
               </PreliminaryReportRepoContext.Provider>  
             </IncidentReportRepoContext.Provider>
           </PatientRepoContext.Provider>
+          </AccountRepoContext.Provider>
+          </AccountContext.Provider>
         </PatientContext.Provider>
       </ReportIdContext.Provider>
     </PrelimReportIdContext.Provider>

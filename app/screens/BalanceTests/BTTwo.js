@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Accelerometer } from "expo-sensors";
 
-import uiStyle from "../../components/uiStyle.jsx";
+import uiStyle from "../../components/uiStyle";
 import { useContext, useState, useEffect } from "react";
 import { dataContext, PrelimReportIdContext, PreliminaryReportRepoContext, } from "../../components/GlobalContextProvider";
 import getStandardDeviation from "../../model/standardDeviation";

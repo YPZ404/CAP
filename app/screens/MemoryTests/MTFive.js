@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import uiStyle from '../../components/uiStyle.jsx';
+import uiStyle from '../../components/uiStyle';
 
 import { useContext, useState } from 'react';
 
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#9AD3FF',
+    backgroundColor: '#349BEB',
   },
 
   buttonLabel: {

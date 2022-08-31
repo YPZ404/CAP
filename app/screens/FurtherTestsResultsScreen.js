@@ -12,7 +12,7 @@ import {
   IncidentReportRepoContext,
   ReportIdContext,
 } from '../components/GlobalContextProvider';
-import uiStyle from '../components/uiStyle.jsx';
+import uiStyle from '../components/uiStyle';
 
 const parseMultiResponses = (mrs, memoryTest2Responses) => {
   const memoryTestCorrectAnswers = [];
