@@ -17,10 +17,10 @@ import {
 import uiStyle from '../components/uiStyle';
 
 
-
+const reactionThreshold = 500;
 const parseReactionTest = (rt) => {
   const reactionTestResponses = [];
-  if ((rt.time_attempt_1 + rt.time_attempt_2 + rt.time_attempt_3) / 3 < 500) {
+  if ((rt.time_attempt_1 < reactionThreshold || rt.time_attempt_2 < reactionThreshold || rt.time_attempt_3 < reactionThreshold)) {
     reactionTestResponses.push('Reaction Test Result: Passed');
   } else {
     reactionTestResponses.push('Reaction Test Result: Failed');
