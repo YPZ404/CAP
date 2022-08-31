@@ -69,6 +69,7 @@ pipelines:
             - npm install -g eas
             - export ANDROID_BUILD_URL=$(eas build:list --json --limit=1 --platform=android | jq '.[0].artifacts.buildUrl' | cut -d "|" -f 2 | sed 's:^.\(.*\).$:\1:')
             - export IOS_BUILD_URL=$(eas build:list --json --limit=1 --platform=ios | jq '.[0].artifacts.buildUrl' | cut -d "|" -f 2 | sed 's:^.\(.*\).$:\1:')
+            - echo $ANDROID_BUILD_URL
             - wget -O android.apk $ANDROID_BUILD_URL
             - wget -O ios.tar.gz $IOS_BUILD_URL
             - pipe: atlassian/bitbucket-upload-file:0.1.2
