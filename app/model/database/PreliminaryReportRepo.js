@@ -17,13 +17,24 @@
      * @return {Promise<number>} promise of the inserted report id
      */
 
-    async createReport(patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result) {
-      const sql = 'INSERT INTO PreliminaryReport (patient_id, report_id, memory_test1_result,memory_test2_result, reaction_test_result, balance_test1_result , balance_test2_result) VALUES (?, ?, ?, ?, ?, ?, ?);';
-      const args = [patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result,balance_test2_result];
+    // async createReport(patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result) {
+    //   const sql = 'INSERT INTO PreliminaryReport (patient_id, report_id, memory_test1_result,memory_test2_result, reaction_test_result, balance_test1_result , balance_test2_result) VALUES (?, ?, ?, ?, ?, ?, ?);';
+    //   const args = [patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result,balance_test2_result];
 
-      let rs = await this.da.runSqlStmt(sql, args);
+    //   let rs = await this.da.runSqlStmt(sql, args);
   
-      return rs.insertId;
+    //   return rs.insertId;
+    // }
+
+    async createReport(patientId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result) {
+      const sql =
+        'INSERT INTO PreliminaryReport (patient_id, memory_test1_result,memory_test2_result, reaction_test_result, balance_test1_result , balance_test2_result) VALUES (?, ?, ?, ?, ?, ?);';
+  
+      return new Promise((resolve, reject) => {
+        this.da.runSqlStmt(sql, [patientId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result]).then((rs) => {
+          resolve(rs.insertId);
+        }, reject);
+      });
     }
   
     /**
