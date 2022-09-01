@@ -3,7 +3,6 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  TouchableOpacity,
   Button,
   View,
   Alert,
@@ -11,6 +10,7 @@ import {
   Image,
   ImageBackground
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
