@@ -3,11 +3,14 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  TouchableOpacity,
   Button,
   View,
   Alert,
+  Dimensions,
+  Image,
+  ImageBackground
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -46,58 +49,51 @@ function HomeScreen({ navigation }) {
 
   return (
     
-    <SafeAreaView style={styles.screen}>
-      <Text style={styles.titleText}>Concussion Check</Text>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
-          <Text style={styles.startCheckText}>Begin Check</Text>
-        </TouchableOpacity>
-        {/*<Button style={styles.startCheckText} {'Start Check'} onPress={createAlert} />*/}
+    <View style={styles.screen}>
+     <View style={styles.container}>
+        <ImageBackground source = {require('../../assets/logo.png')} style={styles.image}>
+         <View style={styles.containerText}>
+            <Text style={styles.titleText}>Concussion Check</Text> 
+            
+            <ImageBackground source = {require('../../assets/b2.png')} style={styles.imageBackground}>
+            <View style={[styles.containerButton, styles.shadowProp]}>
+              <TouchableOpacity onPress={createAlert} style={styles.startCheckButton}>
+                <Text style={styles.buttonLabel}>Begin Check</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Choose Profile')} style={[styles.viewHistoryButton, styles.shadowProp]}>
+                <Text style={styles.buttonLabel}>View History</Text>
+              </TouchableOpacity>
+              </View>      
+             </ImageBackground>       
+                
+          </View>
+         </ImageBackground>
+        </View>
       </View>
-      <View style={styles.container2}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Choose Profile')}
-          style={uiStyle.bottomButton}
-        >
-          <Text style={uiStyle.buttonLabel}>View History</Text>
-        </TouchableOpacity>
-      </View>
-      </SafeAreaView>
     
   );
 }
 
 // https://reactnative.dev/docs/colors
-const title = '#000000';
+const title = '#fff';
 const text = '#fff';
-const background = '#fff';
-const buttons = '#ff3333';
+const background = '#349BEB';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: background,
   },
-  container: {
-    flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  container2: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    backgroundColor: '#fff',
-  },
   startCheckButton: {
-    width: 200,
-    height: 200,
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 100,
-    backgroundColor: buttons,
-    margin: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    marginBottom: (Dimensions.get('window').height)/100,
+    marginTop: (Dimensions.get('window').height)/25,
   },
   startCheckText: {
     color: text,
@@ -107,8 +103,64 @@ const styles = StyleSheet.create({
   titleText: {
     color: title,
     fontSize: 30,
-    marginTop: 60,
     fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+  viewHistoryButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#9AD3FF',
+    marginTop: (Dimensions.get('window').height)/40,
+  },
+  buttonLabel: {
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/20,
+    fontWeight: '800',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  containerText: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height/20,
+    alignItems: 'center',
+    backgroundColor: '#349BEB',
+    marginTop: (Dimensions.get('window').height)/5
+  },
+  container: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    alignItems: 'center',
+    backgroundColor: '#349BEB',
+  },
+  containerButton: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height/4,
+    alignItems: 'center',
+    marginTop: -(Dimensions.get('window').height)/3
+  },
+  image: {
+    width: Dimensions.get('window').width/2.8,
+    height: Dimensions.get('window').width/2.8,
+    marginBottom: (Dimensions.get('window').height)/1,
+    marginTop: (Dimensions.get('window').height)/15,
+    resizeMode: 'cover',
+    alignItems: 'center',
+  },
+  imageBackground: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/7,
+    alignItems: 'center',
+    margin: Dimensions.get('window').height/2.3
   },
 });
 

@@ -48,7 +48,7 @@ const ExpandableTab = (props) => {
 
 	return (
 		<Animated.View style={{transform: [{scale: buttonAnim}]}}>
-			<Pressable style={[styles.container, {borderColor: props.color}]} onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
+			<Pressable style={[styles.container, {borderColor: props.color}]} onPress={() => {onPress(); if(props.onPress) props.onPress()}} onPressIn={onPressIn} onPressOut={onPressOut}>
 				<View style={styles.topRowContainer}>
 					<Text style={[styles.titleText, {backgroundColor: props.color, borderColor: props.color}]}>{props.title}</Text>
 					<Text style={styles.infoText}>{props.subtitle}</Text>
