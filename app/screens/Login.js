@@ -39,8 +39,11 @@ function LoginScreen({ navigation }){
 const [accounts, setAccounts] = useState([]);
   const patientRepoContext = useContext(PatientRepoContext);
   const accountRepoContext = useContext(AccountRepoContext);
+  const incidentRepoContext = useContext(IncidentReportRepoContext);
   const [, setPatient] = useContext(PatientContext);
   const [, setAccount] = useContext(AccountContext);
+  
+  const [reportId] = useContext(ReportIdContext);
   const mounted = useRef(false);
   const [firstNameOfUser, onChangeFirstName] = useState('');
   const [lastNameOfUser, onChangeLastName] = useState('');
@@ -69,11 +72,13 @@ const [accounts, setAccounts] = useState([]);
   }, [accountRepoContext]);
 
   const checkAccount = (firstNameValue, lastNameValue, passwordValue)=> {
-    if (patientRepoContext !== null) {
+    if (accountRepoContext !== null) {
         
         for(let i = 0; i< accounts.length; i++){
             if(accounts[i].first_name == firstNameValue && accounts[i].last_name == lastNameValue && accounts[i].password == passwordValue){
                 setAccount(accounts[i]);
+                
+                incidentRepoContext.updateReport(accounts[i].account_id, reportId);
                 return true;
             }
         }
