@@ -144,9 +144,7 @@ function CustomNavContent(){
     />
     <RootStack.Screen name="Profile Info" component={ProfileInfoScreen} />
     <RootStack.Screen name="Login" component={LoginScreen} />
-    <RootStack.Screen
-      name="Red flags checklist"
-      component={RedFlagsChecklist}
+    <RootStack.Screen name="Red flags checklist" component={RedFlagsChecklist}
     />
     <RootStack.Screen name="PCSS Checklist" component={PCSSChecklist} />
     <RootStack.Screen name="Next Steps" component={NextStepsScreen} />
@@ -276,7 +274,7 @@ function MyDrawer() {
             elevation: 25
           }
         }}/>
-      <Drawer.Screen name="Home Page" component={CustomNavContent} 
+      <Drawer.Screen name="Home Page" component={HomeScreen} 
         options={{
           headerTitle: () => <Header name=""></Header>,
           headerStyle: {
@@ -291,6 +289,7 @@ function MyDrawer() {
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
+      <Drawer.Screen name="Continue Tests" component={CustomNavContent} />
     </Drawer.Navigator>
   );
 }
