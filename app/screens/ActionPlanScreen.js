@@ -4,6 +4,9 @@ import {
 	Alert,
 	SafeAreaView,
 	ScrollView,
+	View,
+	TouchableOpacity,
+	StyleSheet
   } from 'react-native';
 import ExpandableTab from '../components/ExpandableTab';
 import Badge from '../components/Badge';
@@ -24,7 +27,7 @@ function ActionPlanScreen({ navigation }) {
         },
         {
           text: 'Check Symptoms',
-          onPress: () => navigation.navigate('HEAD BUMPS', { screen: 'Head Bumps' } ),
+          onPress: () => navigation.navigate('HEAD BUMPS'),
         },
       ],
     );
@@ -141,9 +144,38 @@ function ActionPlanScreen({ navigation }) {
 							{"\n\t"}- Once your child has been symptom free for 14 days, return to all activities without restriction, including contact and collision sports.
 						</Text>
 				</ExpandableTab>
+				<View style={uiStyle.container}>
+					<TouchableOpacity style={styles.bottomButton} onPress={() => navigation.navigate("HEAD BUMPS")}>
+						<Text style={uiStyle.buttonLabel}>Check Symptoms</Text>
+					</TouchableOpacity>
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	)
 };
+
+const styles = StyleSheet.create({
+	container: {
+		padding: 10,
+		backgroundColor: "white",
+	},
+
+	letter: {
+		fontSize: 20,
+		fontWeight: "bold" 
+	},
+
+	bottomButton: {
+		marginLeft: 5,
+		width: 300,
+		height: 50,
+		padding: 10,
+		marginVertical: 10,
+		borderRadius: 100,
+		backgroundColor: '#ff0000',
+		alignItems: 'center',
+		justifyContent: 'center',
+	  },
+});
 
 export default ActionPlanScreen;
