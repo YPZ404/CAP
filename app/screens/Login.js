@@ -14,7 +14,10 @@ import {
   PatientRepoContext,
   ReportIdContext,
   AccountContext,
-  AccountRepoContext
+  AccountRepoContext,
+  PrelimReportIdContext,
+  PreliminaryReportRepoContext
+  
 } from '../components/GlobalContextProvider';
 import { useContext, useState, useRef, useEffect } from 'react';
 import uiStyle from '../components/uiStyle';
@@ -42,7 +45,8 @@ const [accounts, setAccounts] = useState([]);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const [, setPatient] = useContext(PatientContext);
   const [, setAccount] = useContext(AccountContext);
-  
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext);
   const [reportId] = useContext(ReportIdContext);
   const mounted = useRef(false);
   const [firstNameOfUser, onChangeFirstName] = useState('');
@@ -77,8 +81,12 @@ const [accounts, setAccounts] = useState([]);
         for(let i = 0; i< accounts.length; i++){
             if(accounts[i].first_name == firstNameValue && accounts[i].last_name == lastNameValue && accounts[i].password == passwordValue){
                 setAccount(accounts[i]);
-                
-                incidentRepoContext.updateReport(accounts[i].account_id, reportId);
+                if(reportId != null){
+                    incidentRepoContext.updateReport(accounts[i].account_id, reportId);
+                }
+                if(prelimReportId != 0){
+                    incidentRepoContext.updatePrelimReport(accounts[i].account_id, prelimReportId);
+                }
                 return true;
             }
         }
