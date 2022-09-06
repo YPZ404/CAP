@@ -7,7 +7,7 @@ import { createDrawerNavigator,
   DrawerItemList,
   DrawerItem, } from '@react-navigation/drawer';
 import { getHeaderTitle } from '@react-navigation/elements';
-import { View, TouchableOpacity, Dimensions} from 'react-native';
+import { View, TouchableOpacity, Dimensions, StyleSheet} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from './app/screens/HomeScreen';
 import MechanismOfInjuryCheck from './app/screens/MechanismOfInjuryCheck';
@@ -145,6 +145,9 @@ function CustomNavContent(){
     <RootStack.Screen name="Profile Info" component={ProfileInfoScreen} />
     <RootStack.Screen name="Login" component={LoginScreen} />
     <RootStack.Screen name="Red flags checklist" component={RedFlagsChecklist}
+      options={{
+        headerTitle: () => <Header name="Red"></Header>
+      }}
     />
     <RootStack.Screen name="PCSS Checklist" component={PCSSChecklist} />
     <RootStack.Screen name="Next Steps" component={NextStepsScreen} />
@@ -281,7 +284,7 @@ function MyDrawer() {
             height: (Dimensions.get('window').height)/9,
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
-            backgroundColor: '#9AD3FF',
+            backgroundColor: '#E2F2FF',
             elevation: 25
           }
         }}/>
@@ -289,10 +292,32 @@ function MyDrawer() {
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
-      <Drawer.Screen name="Continue Tests" component={CustomNavContent} />
+      <Drawer.Screen name="Continue Tests" component={CustomNavContent} 
+       options={{
+        headerTitle: () => <Header name=""></Header>,
+        headerStyle: {
+          height: (Dimensions.get('window').height)/9,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+          backgroundColor: '#E2F2FF',
+          elevation: 25
+        }
+      }}/>
     </Drawer.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+
+  TestHeader: {
+    height: (Dimensions.get('window').height)/9,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+          backgroundColor: '#E2F2FF',
+          elevation: 25
+  }
+
+});
 
 
 /**
