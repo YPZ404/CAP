@@ -13,8 +13,11 @@ import { useState } from 'react';
 const MyCheckbox = (props) => {
   const [checked, onChange] = useState(false);
   function onCheckmarkPress() {
-    onChange(!checked);
-    props.onUpdate();
+    onChange((prev) => {
+      let checked = !prev;
+      props.onUpdate(checked);
+      return checked;
+    });
   }
 
   return (

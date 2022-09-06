@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Alert
 } from 'react-native';
 
 import { useEffect, useContext, useState, useRef } from 'react';
@@ -115,6 +116,7 @@ function FurtherTestsResultsScreen({ route, navigation }) {
   const [reportId] = useContext(ReportIdContext);
   const [mtAndBtResults, setMTBTResults] = useState([]);
   const [reactionTest, setReactionTest] = useState(null);
+  const [account] = useContext(AccountContext);
   const mounted = useRef(false);
 
   useEffect(() => {
@@ -152,23 +154,43 @@ function FurtherTestsResultsScreen({ route, navigation }) {
       </Text>,
     );
   }
+  const createAlert = () =>
+  Alert.alert(
+    'Alert',
+    'Save To Profile',
+    [
+      {
+        text: 'Save to new profile',
+        onPress: () => navigation.navigate('Login'),
+      },
+      {
+        text: 'Save to logged profile',
+        onPress: () => {
+          console.log(account.account_id);
+          console.log(prelimReportId);
+          incidentRepoContext.updateReport(account.account_id, prelimReportId);
+          navigation.navigate('Home')}
+        ,
+      },
+    ],
+  );
 
   return (
     <View style={uiStyle.container}>
       <Text style={uiStyle.titleText}>Further Tests Results</Text>
       <ScrollView>{allTestResults}</ScrollView>
-      <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation.navigate('Create Profile')}
-      >
-        <Text style={uiStyle.buttonLabel}>Save to new profile</Text>
+      <TouchableOpacity onPress={()=>{
+        if(account.account_id != null && account.first_name != 'John'){
+          
+          createAlert();
+        }
+        else{
+          navigation.navigate('Login');
+        }
+      }} style={styles.bottomButton}>
+                <Text style={styles.buttonLabel}>Save Report</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation.navigate('Select Profile')}
-      >
-        <Text style={uiStyle.buttonLabel}>Save to existing profile</Text>
-      </TouchableOpacity>
+      
     </View>
   );
 }

@@ -6,11 +6,16 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Alert
 } from 'react-native';
 import { useContext, useEffect, useRef, useState } from 'react';
 import {
   IncidentReportRepoContext,
+  PatientContext,
+  PatientRepoContext,
   ReportIdContext,
+  AccountContext,
+  AccountRepoContext
 } from '../components/GlobalContextProvider';
 import uiStyle from '../components/uiStyle';
 
@@ -43,6 +48,9 @@ function SecondCheckResults({ route, navigation }) {
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const mounted = useRef(false);
   const [symptoms, setSymptoms] = useState(0);
+  const [accounts, setAccounts] = useState([]);
+  const accountRepoContext = useContext(AccountRepoContext);
+  const [account] = useContext(AccountContext);
 
   useEffect(() => {
     mounted.current = true; // Component is mounted
@@ -78,8 +86,29 @@ function SecondCheckResults({ route, navigation }) {
       }
     });
   }, [responses]);
+  const createAlert = () =>
+  Alert.alert(
+    'Alert',
+    'Save To Profile',
+    [
+      {
+        text: 'Save to new profile',
+        onPress: () => navigation.navigate('Login'),
+      },
+      {
+        text: 'Save to logged profile',
+        onPress: () => {
+          console.log(account.account_id);
+          
+          incidentRepoContext.updateReport(account.account_id, reportId);
+          navigation.navigate('Home')}
+        ,
+      },
+    ],
+  );
 
   if (symptoms > 0) {
+
     screen = (
       <ScrollView styles={styles.scroll}>
         <View style={uiStyle.container}>
@@ -91,18 +120,17 @@ function SecondCheckResults({ route, navigation }) {
             If you are concerned, immediately contact a GP.
           </Text>
           <View style={styles.textContainer}>
-            <TouchableOpacity
-              style={styles.bottomButton}
-              onPress={() => navigation.navigate('Create Profile')}
-            >
-              <Text style={styles.buttonLabel}>Save to new profile</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.bottomButton}
-              onPress={() => navigation.navigate('Select Profile')}
-            >
-              <Text style={styles.buttonLabel}>Save to existing profile</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{
+        if(account.account_id != null && account.first_name != 'John'){
+          
+          createAlert();
+        }
+        else{
+          navigation.navigate('Login');
+        }
+      }} style={styles.bottomButton}>
+                <Text style={styles.buttonLabel}>Save Report</Text>
+              </TouchableOpacity>
             <TouchableOpacity
               style={styles.bottomButton}
               onPress={() => navigation.navigate('Further Tests')}
@@ -127,18 +155,17 @@ function SecondCheckResults({ route, navigation }) {
             see a GP immediately.
           </Text>
           <View style={styles.textContainer}>
-            <TouchableOpacity
-              style={styles.bottomButton}
-              onPress={() => navigation.navigate('Create Profile')}
-            >
-              <Text style={styles.buttonLabel}>Save to new profile</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.bottomButton}
-              onPress={() => navigation.navigate('Select Profile')}
-            >
-              <Text style={styles.buttonLabel}>Save to existing profile</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{
+        if(account.account_id != null && account.first_name != 'John'){
+          
+          createAlert();
+        }
+        else{
+          navigation.navigate('Login');
+        }
+      }} style={styles.bottomButton}>
+                <Text style={styles.buttonLabel}>Save Report</Text>
+              </TouchableOpacity>
             <TouchableOpacity
               style={styles.bottomButton}
               onPress={() => navigation.navigate('Further Tests')}

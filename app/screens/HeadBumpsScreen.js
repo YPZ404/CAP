@@ -35,7 +35,7 @@ function HeadBumpsScreen ({navigation}) {
 				/>
 			</View>
 			<View style={uiStyle.container}>
-				<TouchableOpacity style={styles.bottomButton} onPress={() => navigation.goBack()}>
+				<TouchableOpacity style={styles.bottomButton} onPress={() => navigation.navigate("Concussion Action Plan")}>
 					<Text style={uiStyle.buttonLabel}>Back</Text>
 				</TouchableOpacity>
 			</View>
