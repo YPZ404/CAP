@@ -142,7 +142,7 @@ const [accounts, setAccounts] = useState([]);
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.bottomButton}
-          onPress={() => navigation.navigate('Create Profile')}
+          onPress={() => navigation.navigate('Continue Tests', {screen: 'Create Profile'})}
         >
           <Text style={uiStyle.buttonLabel}>Create Login</Text>
         </TouchableOpacity>
