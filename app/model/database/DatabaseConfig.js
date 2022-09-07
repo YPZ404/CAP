@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS SingleResponse (
   `
 CREATE TABLE IF NOT EXISTS ReactionTest (
     rt_id INTEGER PRIMARY KEY,
-    report_id INTEGER REFERENCES IncidentReport(report_id),
+    report_id INTEGER REFERENCES PreliminaryReport(report_id),
     time_attempt_1 INTEGER,
     time_attempt_2 INTEGER,
     time_attempt_3 INTEGER,

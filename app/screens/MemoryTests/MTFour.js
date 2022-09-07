@@ -46,7 +46,14 @@ function MTFour({ navigation }) {
 
   function isEqual(a, b)
   {
-      return a.join() == b.join();
+    var counter = 3;
+
+    for(var i=0;i<a.length;i++){
+      if(a[i] != b[i]){
+        counter--;
+      }
+    }
+      return counter;
   }
 
   const handleCreateMultiResponse = (res) => {
@@ -116,13 +123,12 @@ function MTFour({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           //Logic to generate Pass or fail mark
-
           memoryCorrectAnswerContext.sort();
           chosenList.sort();
           console.log(isEqual(memoryCorrectAnswerContext,chosenList));
-        
 
-          if(isEqual(memoryCorrectAnswerContext,chosenList) == true){
+
+          if(isEqual(memoryCorrectAnswerContext,chosenList) == 3){
             preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);
           }
           else{
