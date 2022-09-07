@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Alert
 } from 'react-native';
 
 import { useEffect, useContext, useState, useRef } from 'react';
@@ -12,7 +13,9 @@ import {
   IncidentReportRepoContext,
   ReportIdContext,
   PrelimReportIdContext,
-  PreliminaryReportRepoContext
+  PreliminaryReportRepoContext,
+  AccountContext,
+  AccountRepoContext
 } from '../components/GlobalContextProvider';
 import uiStyle from '../components/uiStyle';
 
@@ -44,6 +47,7 @@ function PrelimTestResultScreen({ route, navigation }) {
   const [reactionTest, setReactionTest] = useState(null);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [prelimReportId] = useContext(PrelimReportIdContext);
+  const [account] = useContext(AccountContext);
   const mounted = useRef(false);
 
   useEffect(() => {
@@ -107,6 +111,26 @@ function PrelimTestResultScreen({ route, navigation }) {
     console.log(key , value); // key ,value
     
   });
+  const createAlert = () =>
+  Alert.alert(
+    'Alert',
+    'Save To Profile',
+    [
+      {
+        text: 'Save to new profile',
+        onPress: () => navigation.navigate('Login'),
+      },
+      {
+        text: 'Save to logged profile',
+        onPress: () => {
+          console.log(account.account_id);
+          console.log(prelimReportId);
+          incidentRepoContext.updateReport(account.account_id, prelimReportId);
+          navigation.navigate('Home')}
+        ,
+      },
+    ],
+  );
   // if (reportResults.length > 0) {
   //   let i = 0;
   //   for (; i < mtAndBtResults.length; i++) {
@@ -123,17 +147,16 @@ function PrelimTestResultScreen({ route, navigation }) {
     <View style={uiStyle.container}>
       <Text style={uiStyle.titleText}>Preliminary Tests Results</Text>
       <ScrollView>{allTestResults}</ScrollView>
-      <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation.navigate('Create Profile')}
-      >
-        <Text style={uiStyle.buttonLabel}>Save to new profile</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation.navigate('Select Profile')}
-      >
-        <Text style={uiStyle.buttonLabel}>Save to existing profile</Text>
+      <TouchableOpacity onPress={()=>{
+        if(account.account_id != null && account.first_name != 'John'){
+          
+          createAlert();
+        }
+        else{
+          navigation.navigate('Login');
+        }
+      }} style={styles.bottomButton}>
+                <Text style={styles.buttonLabel}>Save Report</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomButton}

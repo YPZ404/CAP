@@ -5,13 +5,73 @@ import {
   View,
   TouchableOpacity,
   SafeAreaView,
+  Alert
 } from 'react-native';
+import {
+  IncidentReportRepoContext,
+  PatientContext,
+  PatientRepoContext,
+  ReportIdContext,
+  AccountContext,
+  AccountRepoContext
+} from '../components/GlobalContextProvider';
+import { useContext, useState, useRef, useEffect } from 'react';
 
 import uiStyle from '../components/uiStyle';
 /**
  * Shows result for check if patient have any selected non-well symptoms.
  */
 function BadCheckScreen({ navigation }) {
+  const [accounts, setAccounts] = useState([]);
+  const accountRepoContext = useContext(AccountRepoContext);
+  const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const mounted = useRef(false);
+  const [reportId] = useContext(ReportIdContext);
+  const [account] = useContext(AccountContext);
+
+  useEffect(() => {
+    mounted.current = true; // Component is mounted
+    return () => {
+      // Component is unmounted
+      mounted.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    // Everytime there is a new patientRepoContext we
+    // get patients from it.
+    if (accountRepoContext !== null) {
+        accountRepoContext.getAllAccounts().then((pts) => {
+        if (mounted.current) {
+          setAccounts(pts);
+        }
+      });
+    } else {
+      console.log('null patientRepo');
+    }
+  }, [accountRepoContext]);
+
+
+  const createAlert = () =>
+  Alert.alert(
+    'Alert',
+    'Save To Profile',
+    [
+      {
+        text: 'Save to new profile',
+        onPress: () => navigation.navigate('Login'),
+      },
+      {
+        text: 'Save to logged profile',
+        onPress: () => {
+          
+          incidentRepoContext.updateReport(account.account_id, reportId);
+          navigation.navigate('Home')}
+        ,
+      },
+    ],
+  );
+
   return (
     <SafeAreaView style={uiStyle.container}>
       <Text style={uiStyle.text}>
@@ -21,7 +81,19 @@ function BadCheckScreen({ navigation }) {
       <View style={uiStyle.startCheckButton}>
         <Text style={uiStyle.startCheckText}>Call 000</Text>
       </View>
-      <TouchableOpacity
+      <TouchableOpacity onPress={()=>{
+        if(account.account_id != null && account.first_name != 'John'){
+          console.log(account.account_id);
+          console.log(account.first_name);
+          createAlert();
+        }
+        else{
+          navigation.navigate('Login');
+        }
+      }} style={styles.bottomButton}>
+                <Text style={styles.buttonLabel}>Save Report</Text>
+              </TouchableOpacity>
+      {/* <TouchableOpacity
         style={styles.bottomButton}
         onPress={() => navigation.navigate('Create Profile')}
       >
@@ -32,7 +104,7 @@ function BadCheckScreen({ navigation }) {
         onPress={() => navigation.navigate('Select Profile')}
       >
         <Text style={uiStyle.buttonLabel}>Save to existing profile</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeAreaView>
   );
 }
