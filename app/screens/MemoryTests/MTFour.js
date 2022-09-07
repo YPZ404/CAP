@@ -18,6 +18,7 @@ import {
   MemoryCorrectAnswerContext,
   PreliminaryReportRepoContext,
   PrelimReportIdContext,
+  MemoryTestReportRepoContext
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -39,6 +40,8 @@ function MTFour({ navigation }) {
   const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const memoryTestReportRepoContext = useContext(MemoryTestReportRepoContext);
+
   
   // Local state
   const [options] = useState(getShuffledOptions());
@@ -47,13 +50,12 @@ function MTFour({ navigation }) {
   function isEqual(a, b)
   {
     var counter = 3;
-
     for(var i=0;i<a.length;i++){
-      if(a[i] != b[i]){
+      if(!(a.includes(b[i]))){
         counter--;
       }
     }
-      return counter;
+    return counter;
   }
 
   const handleCreateMultiResponse = (res) => {
@@ -123,12 +125,15 @@ function MTFour({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           //Logic to generate Pass or fail mark
-          memoryCorrectAnswerContext.sort();
-          chosenList.sort();
-          console.log(isEqual(memoryCorrectAnswerContext,chosenList));
+          // memoryCorrectAnswerContext.sort();
+          // chosenList.sort();
+  
+          const result = isEqual(memoryCorrectAnswerContext,chosenList);
+          console.log(result);
+          memoryTestReportRepoContext.updateMemoryTest1Result(prelimReportId,result);
+          memoryTestReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
 
-
-          if(isEqual(memoryCorrectAnswerContext,chosenList) == 3){
+          if(result == 3){
             preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);
           }
           else{

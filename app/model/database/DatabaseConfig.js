@@ -1,44 +1,44 @@
 export const TABLES_SQL = [
+  // TODO: remove
+  `
+DROP TABLE IF EXISTS Patient;
+  `,
   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS Patient;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS IncidentReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponse;
-//   `,
+  `
+DROP TABLE IF EXISTS IncidentReport;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS PreliminaryReport;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS MultiResponse;
+  `,
 
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,  
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponsePart;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS SingleResponse;
-//   `,
-//   // TODO: remove
-//   `
-// DROP TABLE IF EXISTS ReactionTest;
-// `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSSymptoms;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSNPCDistance;
-//   `,
+  `
+DROP TABLE IF EXISTS PreliminaryReport;
+  `,  
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS MultiResponsePart;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS SingleResponse;
+  `,
+  // TODO: remove
+  `
+DROP TABLE IF EXISTS ReactionTest;
+`,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS VOMSSymptoms;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS VOMSNPCDistance;
+  `,
   `
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INTEGER PRIMARY KEY,
@@ -76,6 +76,15 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
 
   );
 `
+,
+
+`CREATE TABLE IF NOT EXISTS MemoryTestReport (
+  mt_id INTEGER PRIMARY KEY,
+  report_id INTEGER REFERENCES PreliminaryReport(report_id),
+  memory_test_1 INTEGER,
+  memory_test_2 INTEGER
+);`
+
 ,
   //Instance of a multiple part response
   `
