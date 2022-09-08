@@ -18,7 +18,7 @@ import {
   MemoryCorrectAnswerContext,
   PrelimReportIdContext,
   PreliminaryReportRepoContext,
-  MemoryTestReportRepoContext
+  MedicalReportRepoContext
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -36,7 +36,7 @@ function MTFive({ navigation }) {
   const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
-  const memoryTestReportRepoContext = useContext(MemoryTestReportRepoContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
 
 
   // Local state
@@ -52,10 +52,10 @@ function MTFive({ navigation }) {
     }
     return counter;
   }
-  const handleCreateMultiResponse = (res) => {
-    const desc = 'Memory Test Part 2';
-    incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
-  };
+  // const handleCreateMultiResponse = (res) => {
+  //   const desc = 'Memory Test Part 2';
+  //   incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+  // };
 
   // updates const list when onCheckmarkPress() is called
   function onUpdate(name) {
@@ -90,8 +90,8 @@ function MTFive({ navigation }) {
   
           const result = isEqual(memoryCorrectAnswerContext,chosenList);
           console.log(result);
-          memoryTestReportRepoContext.updateMemoryTest2Result(prelimReportId,result);
-          memoryTestReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
+          medicalReportRepoContext.updateMemoryTestReportResult2(prelimReportId,result);
+          medicalReportRepoContext.getCurrentMemoryTestReportInformation(prelimReportId).then((data) => console.log(data));
 
           if(result == 3){
             preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);

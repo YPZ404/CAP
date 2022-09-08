@@ -18,7 +18,7 @@ import {
   MemoryCorrectAnswerContext,
   PreliminaryReportRepoContext,
   PrelimReportIdContext,
-  MemoryTestReportRepoContext
+  MedicalReportRepoContext
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -40,7 +40,7 @@ function MTFour({ navigation }) {
   const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
-  const memoryTestReportRepoContext = useContext(MemoryTestReportRepoContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
 
   
   // Local state
@@ -130,8 +130,8 @@ function MTFour({ navigation }) {
   
           const result = isEqual(memoryCorrectAnswerContext,chosenList);
           console.log(result);
-          memoryTestReportRepoContext.updateMemoryTest1Result(prelimReportId,result);
-          memoryTestReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
+          medicalReportRepoContext.updateMemoryTestReportResult1(prelimReportId,result);
+          medicalReportRepoContext.getCurrentMemoryTestReportInformation(prelimReportId).then((data) => console.log(data));
 
           if(result == 3){
             preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);

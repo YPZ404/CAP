@@ -2,7 +2,7 @@
  * @module
  */
 
- export class MemoryTestReportRepo {
+ export class MedicalReportRepo {
     /**
      *
      * @param {DatabaseAdapter} da
@@ -10,23 +10,8 @@
     constructor(da) {
       this.da = da;
     }
-  
-    /**
-     *
-     * @param {number} patientId patient to create report for
-     * @return {Promise<number>} promise of the inserted report id
-     */
 
-    // async createReport(patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result) {
-    //   const sql = 'INSERT INTO PreliminaryReport (patient_id, report_id, memory_test1_result,memory_test2_result, reaction_test_result, balance_test1_result , balance_test2_result) VALUES (?, ?, ?, ?, ?, ?, ?);';
-    //   const args = [patientId, reportId, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result,balance_test2_result];
-
-    //   let rs = await this.da.runSqlStmt(sql, args);
-  
-    //   return rs.insertId;
-    // }
-
-    async createReport(report_id, memory_test_1,memory_test_2) {
+    async createMemoryTestReport(report_id, memory_test_1,memory_test_2) {
       const sql =
         'INSERT INTO MemoryTestReport (report_id, memory_test_1,memory_test_2) VALUES (?, ?, ?);';
   
@@ -37,61 +22,7 @@
       });
     }
   
-    /**
-     *
-     * @param {number} patientId patient to update report for
-     * @param {number} reportId report to be updated
-     * @return {Promise<number>} promise of the affected rows
-     */
-    async updateReportPatientId(patientId, reportId) {
-      const sql =
-        'UPDATE PreliminaryReport SET patient_id = ? WHERE report_id == ?;';
-      const args = [patientId, reportId];
-  
-      return new Promise((resolve, reject) => {
-        this.da.runSqlStmt(sql, args).then(
-          (rs) => resolve(rs.rowsAffected),
-          (err) => reject(err),
-        );
-      });
-    }
-  
-    /**
-     *
-     * @param {number} patientId patient to update report for
-     * @return {Promise<any[]>} promise of the reportIds
-     */
-    async getPatientReports(patientId) {
-      const sql = 'SELECT * FROM PreliminaryReport WHERE patient_id == ?;';
-      const args = [patientId];
-  
-      return new Promise((resolve, reject) => {
-        this.da.runSqlStmt(sql, args).then(
-          (rs) => resolve(rs.rows._array),
-          (err) => reject(err),
-        );
-      });
-    }
-    /**
-     *
-     * @param {number} reportId report id
-     * @return {Promise<any[]>} array of SingleResponse rows
-     */
-    // async getListofPatientReports(patientId) {
-    //     const sql = 'SELECT * FROM PreliminaryReport WHERE patient_id == ?;';
-    //     const args = [patientId];
-
-    //     return new Promise((resolve, reject) => {
-    //     this.da.runSqlStmt(sql, args).then((rs) => {
-    //         if (rs.rows.length < 1) {
-    //         reject(new Error(`No report in  ${reportId}`));
-    //         return;
-    //         }
-    //         resolve(rs.rows._array);
-    //     });
-    //     });
-    // }
-    async getCurrentReportInformation(reportId) {
+    async getCurrentMemoryTestReportInformation(reportId) {
       if (reportId === undefined || reportId === null) {
         throw 'Invalid reportId';
       }
@@ -109,7 +40,7 @@
      * @param {number} memory_test_result 
      * @returns 
      */  
-    async updateMemoryTest1Result(reportId, memory_test_1){
+    async updateMemoryTestReportResult1(reportId, memory_test_1){
       
         const rs = await this.da.runSqlStmt(
         `UPDATE MemoryTestReport SET memory_test_1 = ? WHERE report_id = ?;`,
@@ -118,7 +49,7 @@
         return rs.insertId;
 
     }
-    async updateMemoryTest2Result(reportId, memory_test_2){
+    async updateMemoryTestReportResult2(reportId, memory_test_2){
       
       const rs = await this.da.runSqlStmt(
       `UPDATE MemoryTestReport SET memory_test_2 = ? WHERE report_id = ?;`,
@@ -127,23 +58,43 @@
       return rs.insertId;
 
   }
-    /**
-     * 
-     * @param {number} reportId 
-     * @param {number} memory_test_result 
-     * @returns 
-     */  
-     async updateReactionTestResult(reportId, reaction_test_result){
+
+  async createReactionTestReport(report_id, time_attempt_1,time_attempt_2, time_attempt_3) {
+    const sql =
+      'INSERT INTO ReactionTestReport (report_id, time_attempt_1,time_attempt_2, time_attempt_3) VALUES (?, ?, ?, ?);';
+
+    return new Promise((resolve, reject) => {
+      this.da.runSqlStmt(sql, [report_id, time_attempt_1,time_attempt_2, time_attempt_3]).then((rs) => {
+        resolve(rs.insertId);
+      }, reject);
+    });
+  }
+  async getCurrentReactionTestReportInformation(reportId) {
+    if (reportId === undefined || reportId === null) {
+      throw 'Invalid reportId';
+    }
+
+    const sql = `SELECT report_id, time_attempt_1, time_attempt_2, time_attempt_3 FROM ReactionTestReport WHERE report_id = ?;`;
+    const args = [reportId];
+
+    const rs = await this.da.runSqlStmt(sql, args);
+    return rs.rows.item(0);
+
+  }
+
+
+  async updateReactionTestResults(reportId, time_attempt_1){
       
-        const rs = await this.da.runSqlStmt(
-        `UPDATE PreliminaryReport SET reaction_test_result = ? WHERE report_id = ?;`,
+    const rs = await this.da.runSqlStmt(
+    `UPDATE ReactionTestReport SET time_attempt_1 = ? WHERE report_id = ?;`,
 
-        [reaction_test_result, reportId],
+    [time_attempt_1, reportId],
 
-        );
-        return rs.insertId;
+    );
+    return rs.insertId;
 
     }
+
     /**
      * 
      * @param {number} reportId 

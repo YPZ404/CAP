@@ -7,7 +7,7 @@ import { PatientRepo } from '../model/database/PatientRepo';
 import {AccountRepo} from '../model/database/AccountRepo';
 import { IncidentReportRepo } from '../model/database/IncidentReportRepo';
 import { PreliminaryReportRepo } from '../model/database/PreliminaryReportRepo';
-import { MemoryTestReportRepo } from '../model/database/MemoryTestReportRepo';
+import { MedicalReportRepo } from '../model/database/MedicalReportRepo';
 import * as SQLite from 'expo-sqlite';
 
 const DB_FILE = 'measurements.db';
@@ -57,7 +57,7 @@ export const IncidentReportRepoContext = React.createContext(null);
  *
  * @type {React.Context<PreliminaryReportRepo>}
  */
-  export const MemoryTestReportRepoContext = React.createContext(null);
+  export const MedicalReportRepoContext = React.createContext(null);
 
 /**
  *
@@ -101,7 +101,7 @@ export function GlobalContextProvider(props) {
   const [daContext2, setDaContext2] = useState(null);
   const [incidentRepoContext, setIncidentRepoContext] = useState(null);
   const [preliminaryReportRepoContext, setPreliminaryReportRepoContext] = useState(null);
-  const [memoryTestReportRepoContext, setMemoryTestReportRepoContext] = useState(null);
+  const [medicalReportRepoContext, setMedicalReportRepoContext] = useState(null);
 
   const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useState([]);
 
@@ -116,7 +116,7 @@ export function GlobalContextProvider(props) {
       setAccountRepoContext(new AccountRepo(daNew));
       setIncidentRepoContext(new IncidentReportRepo(daNew));
       setPreliminaryReportRepoContext(new PreliminaryReportRepo(daNew));
-      setMemoryTestReportRepoContext(new MemoryTestReportRepo(daNew));
+      setMedicalReportRepoContext(new MedicalReportRepo(daNew));
     });
   }, []);
 
@@ -130,7 +130,7 @@ export function GlobalContextProvider(props) {
           <PatientRepoContext.Provider value={patientRepoContext}>
             <IncidentReportRepoContext.Provider value={incidentRepoContext}>
               <PreliminaryReportRepoContext.Provider value={preliminaryReportRepoContext}>
-                <MemoryTestReportRepoContext.Provider value={memoryTestReportRepoContext}>
+                <MedicalReportRepoContext.Provider value={medicalReportRepoContext}>
                   <MemoryCorrectAnswerContext.Provider value={[memoryCorrectAnswerContext, setMemoryCorrectAnswerContext]}>
                     <DaContext.Provider value={daContext}>
                       <DaContext2.Provider value={DaContext2}>
@@ -142,7 +142,7 @@ export function GlobalContextProvider(props) {
                       </DaContext2.Provider>
                     </DaContext.Provider>
                   </MemoryCorrectAnswerContext.Provider>
-                </MemoryTestReportRepoContext.Provider>
+                </MedicalReportRepoContext.Provider>
               </PreliminaryReportRepoContext.Provider>  
             </IncidentReportRepoContext.Provider>
           </PatientRepoContext.Provider>

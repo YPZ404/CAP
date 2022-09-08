@@ -114,14 +114,12 @@ CREATE TABLE IF NOT EXISTS SingleResponse (
 `,
   // Reaction time table that stores times in milliseconds
   `
-CREATE TABLE IF NOT EXISTS ReactionTest (
+CREATE TABLE IF NOT EXISTS ReactionTestReport (
     rt_id INTEGER PRIMARY KEY,
     report_id INTEGER REFERENCES PreliminaryReport(report_id),
     time_attempt_1 INTEGER,
     time_attempt_2 INTEGER,
-    time_attempt_3 INTEGER,
-    time_average INTEGER,
-    grade VARCHAR(10)
+    time_attempt_3 INTEGER
 );
   `,
 

@@ -18,7 +18,7 @@ import {
   PatientRepoContext,
   PrelimReportIdContext,
   MemoryCorrectAnswerContext,
-  MemoryTestReportRepoContext
+  MedicalReportRepoContext
 } from '../../components/GlobalContextProvider';
 
 /**
@@ -35,7 +35,7 @@ function MTTwo({ navigation }) {
   const patientRepoContext = useContext(PatientRepoContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
-  const memoryTestReportRepoContext = useContext(MemoryTestReportRepoContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
 
 
   const handleCreateMultiResponse = (res) => {
@@ -43,7 +43,7 @@ function MTTwo({ navigation }) {
     const desc = 'Memory Test Correct Answers';
     // incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
     setMemoryCorrectAnswerContext(res);
-    memoryTestReportRepoContext.createReport(prelimReportId, -10, -10);
+    medicalReportRepoContext.createMemoryTestReport(prelimReportId, -10, -10);
   };
 
   const arr = [];
