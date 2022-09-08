@@ -13,7 +13,10 @@ import uiStyle from "../../components/uiStyle";
 import { useContext, useState, useEffect } from "react";
 import { useIsFocused } from "@react-navigation/native";
 
+import { AgeHopTestContext } from "../../components/GlobalContextProvider";
+
 function HTTwo({ navigation }) {
+  const [ageHopTestContext] = useContext(AgeHopTestContext);
   const [text, setText] = useState("Start!");
   const startedText = () => setText("Recording!");
   const resetText = () => setText("Start!");
