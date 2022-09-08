@@ -19,7 +19,8 @@ function HTTwo({ navigation }) {
   const resetText = () => setText("Start!");
   const [subscription, setSubscription] = useState(null);
 
-  var timer = null;
+  var startTimer = null;
+  var endTimer = null;
   const [started, setStarted] = useState(false);
   const focussed = useIsFocused();
   var hopCnt = 0;
@@ -28,17 +29,20 @@ function HTTwo({ navigation }) {
   useEffect(() => {
     if (focussed) {
       if (started) {
-        _subscribe();
-        startedText();
-        timer = setTimeout(() => {
-          Accelerometer.removeAllListeners();
+        startTimer = setTimeout(() => {
           Vibration.vibrate();
-          setSubscription(null);
-          resetText();
-          // storeResult(data);
-          console.log("Hops: " + hopCnt);
-          navigation.navigate("Hop Test Complete");
-        }, 15000);
+          _subscribe();
+          startedText();
+          endTimer = setTimeout(() => {
+            Accelerometer.removeAllListeners();
+            Vibration.vibrate();
+            setSubscription(null);
+            resetText();
+            // storeResult(data);
+            console.log("Hops: " + hopCnt);
+            navigation.navigate("Hop Test Complete");
+          }, 15000);
+        }, 1000)
       } else {
         return () => {};
       }
@@ -47,7 +51,8 @@ function HTTwo({ navigation }) {
       Accelerometer.removeAllListeners();
       setSubscription(null);
       setStarted(false)
-      clearTimeout(timer);
+      clearTimeout(startTimer);
+      clearTimeout(endTimer);
     };
   }, [focussed, started]);
 
@@ -76,8 +81,8 @@ function HTTwo({ navigation }) {
   return (
     <SafeAreaView style={uiStyle.container}>
       <Text style={uiStyle.stackedText}>
-        Hold the phone to your chest. Click "Start!" and begin hopping on your dominant
-        foot (i.e. the foot you would usually kick a ball with) for 15 seconds. {"\n"}
+        Hold the phone to your chest and click "Start!". Upon the vibration, begin hopping on your
+        dominant foot (i.e. the foot you would usually kick a ball with) for 15 seconds. {"\n"}
         {"\n"}
       </Text>
       <TouchableOpacity

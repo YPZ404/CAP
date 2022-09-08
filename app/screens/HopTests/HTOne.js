@@ -20,7 +20,7 @@ function HTOne({ navigation }) {
             Push 'Next' to navigate to the recording page, and hold the phone to
             your chest while recording.{'\n'}
             {'\n'}
-            The vibration indicates that the recording has finished.
+            The vibration indicates that the recording has started and finished.
           </Text>
         </SafeAreaView>
       </ScrollView>
