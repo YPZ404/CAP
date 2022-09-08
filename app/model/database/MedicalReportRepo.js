@@ -94,6 +94,48 @@
     return rs.insertId;
 
     }
+    async createBalanceTestReport(report_id, balance_test1_variance,balance_test1_deviation, balance_test2_variance, balance_test2_deviation) {
+      const sql =
+        'INSERT INTO BalanceTestReport (report_id, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation) VALUES (?, ?, ?, ?, ?);';
+  
+      return new Promise((resolve, reject) => {
+        this.da.runSqlStmt(sql, [report_id, balance_test1_variance,balance_test1_deviation,balance_test2_variance,balance_test2_deviation]).then((rs) => {
+          resolve(rs.insertId);
+        }, reject);
+      });
+    }
+    async updateBalanceTest1Result(reportId, balance_test1_variance, balance_test1_deviation){
+      
+      const rs = await this.da.runSqlStmt(
+      `UPDATE BalanceTestReport SET balance_test1_variance = ?, balance_test1_deviation = ? WHERE report_id = ?;`,
+      [balance_test1_variance,balance_test1_deviation, reportId],
+
+      );
+      return rs.insertId;
+
+  }
+  async updateBalanceTest2Result(reportId, balance_test2_variance, balance_test2_deviation){
+      
+    const rs = await this.da.runSqlStmt(
+    `UPDATE BalanceTestReport SET balance_test2_variance = ?, balance_test2_deviation = ? WHERE report_id = ?;`,
+    [balance_test2_variance,balance_test2_deviation, reportId],
+
+    );
+    return rs.insertId;
+
+}
+    async getCurrentBalanceTestReportInformation(reportId) {
+      if (reportId === undefined || reportId === null) {
+        throw 'Invalid reportId';
+      }
+  
+      const sql = `SELECT report_id, balance_test1_variance,balance_test1_deviation, balance_test2_variance, balance_test2_deviation FROM BalanceTestReport WHERE report_id = ?;`;
+      const args = [reportId];
+  
+      const rs = await this.da.runSqlStmt(sql, args);
+      return rs.rows.item(0);
+  
+    }
 
     /**
      * 
@@ -101,26 +143,7 @@
      * @param {number} memory_test_result 
      * @returns 
      */  
-     async updateBalanceTest1Result(reportId, balance_test1_result){
-      
-        const rs = await this.da.runSqlStmt(
-        `UPDATE PreliminaryReport SET balance_test1_result = ? WHERE report_id = ?;`,
-        [balance_test1_result, reportId],
 
-        );
-        return rs.insertId;
-
-    }
-    async updateBalanceTest2Result(reportId, balance_test2_result){
-      
-      const rs = await this.da.runSqlStmt(
-      `UPDATE PreliminaryReport SET balance_test2_result = ? WHERE report_id = ?;`,
-      [balance_test2_result, reportId],
-
-      );
-      return rs.insertId;
-
-  }
   
     /**
      *

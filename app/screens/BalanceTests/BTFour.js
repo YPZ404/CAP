@@ -11,7 +11,7 @@ import { Accelerometer } from "expo-sensors";
 
 import uiStyle from "../../components/uiStyle";
 import { useContext, useState, useEffect } from "react";
-import { dataContext2, PrelimReportIdContext, PreliminaryReportRepoContext, } from "../../components/GlobalContextProvider";
+import { dataContext2, PrelimReportIdContext, PreliminaryReportRepoContext, MedicalReportRepoContext } from "../../components/GlobalContextProvider";
 import getStandardDeviation from "../../model/standardDeviation";
 import { useIsFocused } from "@react-navigation/native";
 
@@ -23,6 +23,7 @@ function BTFour({ navigation }) {
   const [subscription, setSubscription] = useState(null);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [prelimReportId] = useContext(PrelimReportIdContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
   const x_arr = [];
   const y_arr = [];
   const z_arr = [];
@@ -60,6 +61,8 @@ function BTFour({ navigation }) {
     var variation = Math.round(Math.pow(info, 2) * 1000) / 1000;
     var deviation = Math.round(info * 1000) / 1000;
 
+    medicalReportRepoContext.updateBalanceTest2Result(prelimReportId,variation,deviation);
+    medicalReportRepoContext.getCurrentBalanceTestReportInformation(prelimReportId).then((data)=> console.log(data));
     var result = "FAIL";
     if (deviation < 0.2 && variation < 0.05) {
       result = "PASS";

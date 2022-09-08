@@ -8,9 +8,14 @@ import {
   ScrollView,
 } from 'react-native';
 
+import { MedicalReportRepoContext, PrelimReportIdContext } from '../../components/GlobalContextProvider';
+
+import { useContext } from 'react';
 import uiStyle from '../../components/uiStyle';
 
 function BTComplete({ navigation }) {
+  const [prelimReportId] = useContext(PrelimReportIdContext)
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>

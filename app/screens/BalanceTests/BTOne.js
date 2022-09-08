@@ -8,9 +8,14 @@ import {
   ScrollView,
 } from 'react-native';
 
+import { useContext } from 'react';
+
+import { MedicalReportRepoContext, PrelimReportIdContext } from '../../components/GlobalContextProvider';
 import uiStyle from '../../components/uiStyle';
 
 function BTOne({ navigation }) {
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
+  const [prelimReportId] = React.useContext(PrelimReportIdContext);
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
@@ -29,6 +34,7 @@ function BTOne({ navigation }) {
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
+          medicalReportRepoContext.createBalanceTestReport(prelimReportId, -1.0,-1.0,-1.0,-1.0);
           navigation.navigate('Balance Test 2');
         }}
         style={uiStyle.bottomButton}

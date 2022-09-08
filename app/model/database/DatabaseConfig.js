@@ -1,44 +1,47 @@
 export const TABLES_SQL = [
   // TODO: remove
-  `
-DROP TABLE IF EXISTS Patient;
-  `,
-  //TODO: remove
-  `
-DROP TABLE IF EXISTS IncidentReport;
-  `,
-  //TODO: remove
-  `
-DROP TABLE IF EXISTS PreliminaryReport;
-  `,
-  //TODO: remove
-  `
-DROP TABLE IF EXISTS MultiResponse;
-  `,
+//   `
+// DROP TABLE IF EXISTS Patient;
+//   `,
+//   //TODO: remove
+//   `
+// DROP TABLE IF EXISTS IncidentReport;
+//   `,
+//   //TODO: remove
+//   `
+// DROP TABLE IF EXISTS PreliminaryReport;
+//   `,
+//   //TODO: remove
+//   `
+// DROP TABLE IF EXISTS MultiResponse;
+//   `,
 
-  `
-DROP TABLE IF EXISTS PreliminaryReport;
-  `,  
-  //TODO: remove
-  `
-DROP TABLE IF EXISTS MultiResponsePart;
-  `,
-  //TODO: remove
-  `
-DROP TABLE IF EXISTS SingleResponse;
-  `,
-  // TODO: remove
-  `
-DROP TABLE IF EXISTS ReactionTest;
-`,
-  //TODO: remove
-  `
-DROP TABLE IF EXISTS VOMSSymptoms;
-  `,
-  //TODO: remove
-  `
-DROP TABLE IF EXISTS VOMSNPCDistance;
-  `,
+//   `
+// DROP TABLE IF EXISTS PreliminaryReport;
+//   `,  
+//   //TODO: remove
+//   `
+// DROP TABLE IF EXISTS MultiResponsePart;
+//   `,
+//   //TODO: remove
+//   `
+// DROP TABLE IF EXISTS SingleResponse;
+//   `,
+//   // TODO: remove
+//   `
+// DROP TABLE IF EXISTS ReactionTest;
+// `,
+//   //TODO: remove
+//   `
+// DROP TABLE IF EXISTS VOMSSymptoms;
+//   `,
+//   //TODO: remove
+//   `
+// DROP TABLE IF EXISTS VOMSNPCDistance;
+//   `,
+//   `
+// DROP TABLE IF EXISTS BalanceTestReport;
+//   `,
   `
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INTEGER PRIMARY KEY,
@@ -122,6 +125,20 @@ CREATE TABLE IF NOT EXISTS ReactionTestReport (
     time_attempt_3 INTEGER
 );
   `,
+
+  
+  // Reaction time table that stores times in milliseconds
+  `
+CREATE TABLE IF NOT EXISTS BalanceTestReport (
+    bt_id INTEGER PRIMARY KEY,
+    report_id INTEGER REFERENCES PreliminaryReport(report_id),
+    balance_test1_variance FLOAT,
+    balance_test1_deviation FLOAT,
+    balance_test2_variance FLOAT,
+    balance_test2_deviation FLOAT
+);
+  `
+  ,
 
   // User responses for symptom check after each VOMS test section
   `
