@@ -87,6 +87,9 @@ import BTComplete2 from './app/screens/BalanceTests/BTComplete2';
 
 import Header from './Header';
 import LoginScreen from './app/screens/Login';
+import AllReports from './app/screens/AllReports';
+import AllPrelimReports from './app/screens/AllPrelimReports';
+import AllIncidentReports from './app/screens/AllIncidentReports';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -157,6 +160,18 @@ function CustomNavContent(){
     <RootStack.Screen
       name="Text Question (IR3)"
       component={TextQuestionScreen}
+    />
+    <RootStack.Screen
+      name="All Reports"
+      component={AllReports}
+    />
+    <RootStack.Screen
+      name="Prelim Report"
+      component={AllPrelimReports}
+    />
+    <RootStack.Screen
+      name="Incident Reports"
+      component={AllIncidentReports}
     />
     <RootStack.Screen
       name="Checklist Question (Start Check)"
@@ -288,6 +303,7 @@ function MyDrawer() {
           }
         }}/>
       <Drawer.Screen name="Login" component={LoginScreen} />
+      <Drawer.Screen name="Reports" component={AllReports} />
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
