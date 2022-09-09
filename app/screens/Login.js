@@ -14,7 +14,10 @@ import {
   PatientRepoContext,
   ReportIdContext,
   AccountContext,
-  AccountRepoContext
+  AccountRepoContext,
+  PrelimReportIdContext,
+  PreliminaryReportRepoContext
+  
 } from '../components/GlobalContextProvider';
 import { useContext, useState, useRef, useEffect } from 'react';
 import uiStyle from '../components/uiStyle';
@@ -39,8 +42,12 @@ function LoginScreen({ navigation }){
 const [accounts, setAccounts] = useState([]);
   const patientRepoContext = useContext(PatientRepoContext);
   const accountRepoContext = useContext(AccountRepoContext);
+  const incidentRepoContext = useContext(IncidentReportRepoContext);
   const [, setPatient] = useContext(PatientContext);
   const [, setAccount] = useContext(AccountContext);
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext);
+  const [reportId] = useContext(ReportIdContext);
   const mounted = useRef(false);
   const [firstNameOfUser, onChangeFirstName] = useState('');
   const [lastNameOfUser, onChangeLastName] = useState('');
@@ -69,11 +76,17 @@ const [accounts, setAccounts] = useState([]);
   }, [accountRepoContext]);
 
   const checkAccount = (firstNameValue, lastNameValue, passwordValue)=> {
-    if (patientRepoContext !== null) {
+    if (accountRepoContext !== null) {
         
         for(let i = 0; i< accounts.length; i++){
             if(accounts[i].first_name == firstNameValue && accounts[i].last_name == lastNameValue && accounts[i].password == passwordValue){
                 setAccount(accounts[i]);
+                if(reportId != null){
+                    incidentRepoContext.updateReport(accounts[i].account_id, reportId);
+                }
+                if(prelimReportId != 0){
+                    incidentRepoContext.updatePrelimReport(accounts[i].account_id, prelimReportId);
+                }
                 return true;
             }
         }
@@ -137,7 +150,7 @@ const [accounts, setAccounts] = useState([]);
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.bottomButton}
-          onPress={() => navigation.navigate('Create Profile')}
+          onPress={() => navigation.navigate('Continue Tests', {screen: 'Create Profile'})}
         >
           <Text style={uiStyle.buttonLabel}>Create Login</Text>
         </TouchableOpacity>

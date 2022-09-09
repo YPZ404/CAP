@@ -79,7 +79,8 @@ export class AccountRepo {
       });
     });
   }
-
+  
+  
   /**
    * Returns all the patients in the database
    * @returns {Promise<any[]>} array of Accounts first name and last name rows
