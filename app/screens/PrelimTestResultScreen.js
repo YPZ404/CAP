@@ -15,11 +15,13 @@ import {
   PrelimReportIdContext,
   PreliminaryReportRepoContext,
   AccountContext,
-  AccountRepoContext
+  AccountRepoContext,
+  MedicalReportRepoContext
 } from '../components/GlobalContextProvider';
 import uiStyle from '../components/uiStyle';
 import { printToFileAsync } from 'expo-print';
 import { shareAsync } from 'expo-sharing';
+import { exportMapAsCsv } from '../model/exportAsCsv';
 
 const reactionThreshold = 500;
 const parseReactionTest = (rt) => {
@@ -50,6 +52,7 @@ function PrelimTestResultScreen({ route, navigation }) {
   const [prelimReportId] = useContext(PrelimReportIdContext);
   const [account] = useContext(AccountContext);
   const mounted = useRef(false);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
 
   useEffect(() => {
     mounted.current = true; // Component is mounted
@@ -176,7 +179,9 @@ function PrelimTestResultScreen({ route, navigation }) {
   //   }
     
   // }
-
+  const createCSV = () => {
+    medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>exportMapAsCsv("test", data));
+  }
   return (
     <View style={uiStyle.container}>
       <Text style={uiStyle.titleText}>Preliminary Tests Results</Text>
@@ -194,9 +199,9 @@ function PrelimTestResultScreen({ route, navigation }) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomButton}
-        onPress={createPDF}
+        onPress={createCSV}
       >
-        <Text style={uiStyle.buttonLabel}>Generate PDF</Text>
+        <Text style={uiStyle.buttonLabel}>Generate Excel</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomButton}

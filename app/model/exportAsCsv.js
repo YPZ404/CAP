@@ -11,10 +11,7 @@ import * as Sharing from 'expo-sharing';
  */
 const exportMapAsCsv = async (
   fileName,
-  mapping,
-  vomsMapping,
-  npcDistance,
-  shareDialog,
+  medical_tests
 ) => {
   if (!(await Sharing.isAvailableAsync())) {
     // eslint-disable-next-line no-alert
@@ -28,58 +25,28 @@ const exportMapAsCsv = async (
   let attributes = '';
   let values = '';
   let first = true;
-  mapping.forEach((v, k) => {
-    let sep = ',';
-    if (first) {
-      sep = '';
-      first = false;
-    }
-    attributes = attributes.concat(sep, k);
-    values = values.concat(sep, v);
-  });
-
-  let contents = ''.concat(attributes, '\n', values);
-
-  //voms
-  let vomsContents = '';
-
-  vomsMapping.forEach((test) => {
-    let desc = '';
-    let ratings = '';
-    let sep = ',';
-    desc = desc.concat(
-      test[0],
-      sep,
-      test[1],
-      sep,
-      test[3],
-      sep,
-      test[5],
-      sep,
-      test[7],
-    );
-    ratings = ratings.concat(
-      sep,
-      test[2],
-      sep,
-      test[4],
-      sep,
-      test[6],
-      sep,
-      test[8],
-    );
-    vomsContents = vomsContents.concat('\n', desc, '\n', ratings);
-  });
-
-  //voms end
-
+  console.log('Tests',medical_tests);
   let totalContents = '';
-  totalContents = totalContents.concat(contents, '\n', vomsContents);
+  totalContents = totalContents.concat('test,result', '\n');
+  console.log(totalContents);
+  let medical_test_content = '';
+
+  Object.entries(medical_tests).forEach(([key, value]) => {
+    let sep = ',';
+    let end = '\n';
+    if (key != 'report_id'){
+      medical_test_content = medical_test_content.concat(key,sep,value,end); 
+    }
+    
+  });
+
+  totalContents = totalContents.concat(medical_test_content);
+
 
   await FileSystem.writeAsStringAsync(filePath, totalContents);
 
   // Share file
-  await Sharing.shareAsync(filePath, { dialogTitle: shareDialog });
+  await Sharing.shareAsync(filePath);
 };
 
 export { exportMapAsCsv };

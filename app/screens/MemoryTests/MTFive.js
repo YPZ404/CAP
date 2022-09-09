@@ -91,7 +91,7 @@ function MTFive({ navigation }) {
           const result = isEqual(memoryCorrectAnswerContext,chosenList);
           console.log(result);
           medicalReportRepoContext.updateMemoryTestReportResult2(prelimReportId,result);
-          medicalReportRepoContext.getCurrentMemoryTestReportInformation(prelimReportId).then((data) => console.log(data));
+          medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data) => console.log(data));
 
           if(result == 3){
             preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,1);

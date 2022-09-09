@@ -34,7 +34,6 @@ function BTOne({ navigation }) {
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
-          medicalReportRepoContext.createBalanceTestReport(prelimReportId, -1.0,-1.0,-1.0,-1.0);
           navigation.navigate('Balance Test 2');
         }}
         style={uiStyle.bottomButton}

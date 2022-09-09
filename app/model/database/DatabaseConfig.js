@@ -80,6 +80,22 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
   );
 `
 ,
+`
+CREATE TABLE IF NOT EXISTS MedicalReport (
+    report_id INTEGER PRIMARY KEY,
+    memory_test1_correct_count INTEGER,
+    memory_test2_correct_count INTEGER,
+    reaction_test_time_1 INTEGER,
+    reaction_test_time_2 INTEGER,
+    reaction_test_time_3 INTEGER,
+    balance_test1_variance FLOAT,
+    balance_test1_deviation FLOAT,
+    balance_test2_variance FLOAT,
+    balance_test2_deviation FLOAT
+
+  );
+`
+,
 
 `CREATE TABLE IF NOT EXISTS MemoryTestReport (
   mt_id INTEGER PRIMARY KEY,

@@ -26,6 +26,7 @@ import MyCheckbox from "../../components/MyCheckbox";
 import updateProps from "react-native-reanimated/src/reanimated2/UpdateProps";
 import cbStyle from "../../components/checkboxStyle";
 import {Ionicons} from "@expo/vector-icons";
+import { exportMapAsCsv } from '../../model/exportAsCsv';
 
 /**a
  * The screen will be perform memory test.
@@ -127,12 +128,12 @@ function MTFour({ navigation }) {
           //Logic to generate Pass or fail mark
           // memoryCorrectAnswerContext.sort();
           // chosenList.sort();
-  
+          
           const result = isEqual(memoryCorrectAnswerContext,chosenList);
           console.log(result);
           medicalReportRepoContext.updateMemoryTestReportResult1(prelimReportId,result);
-          medicalReportRepoContext.getCurrentMemoryTestReportInformation(prelimReportId).then((data) => console.log(data));
-
+          medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>console.log(data));
+          // exportMapAsCsv("test",medicalReportRepoContext.getCurrentMemoryTestReportInformation(prelimReportId));
           if(result == 3){
             preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);
           }

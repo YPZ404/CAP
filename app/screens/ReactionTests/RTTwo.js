@@ -26,7 +26,6 @@ function getRandomInt(min, max) {
 function RTTwo({ navigation }) {
   const [attemptResults, setAttemptResults] = useState([]);
   const [reportId] = useContext(ReportIdContext);
-  const incidentRepoContext = useContext(IncidentReportRepoContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [prelimReportId] = useContext(PrelimReportIdContext);
   const medicalReportRepoContext = useContext(MedicalReportRepoContext);
@@ -93,13 +92,14 @@ function RTTwo({ navigation }) {
       
       preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
       setAttemptResults([]);
-      medicalReportRepoContext.createReactionTestReport(prelimReportId,attemptResults[0],attemptResults[1],attemptResults[2]);
-      medicalReportRepoContext.getCurrentReactionTestReportInformation(prelimReportId).then((data)=>console.log(data));
+      medicalReportRepoContext.updateReactionTestResults(prelimReportId,attemptResults[0],attemptResults[1],attemptResults[2]);
+      medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>console.log(data));
+
       navigation.navigate('Balance Test 1', {
 
       });
     }
-  }, [reportId, attemptResults, incidentRepoContext, navigation]);
+  }, [reportId, attemptResults, navigation]);
 
   return (
     <View style={uiStyle.textContainer} onTouchStart={btnOnPress}>

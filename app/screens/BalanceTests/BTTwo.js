@@ -65,7 +65,7 @@ function BTTwo({ navigation }) {
     console.log(variation);
     console.log(deviation);
     medicalReportRepoContext.updateBalanceTest1Result(prelimReportId,variation,deviation);
-    medicalReportRepoContext.getCurrentBalanceTestReportInformation(prelimReportId).then((data)=>console.log(data));
+    medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>console.log(data));
 
     var result = "FAIL";
     if (deviation < 0.2 && variation < 0.05) {

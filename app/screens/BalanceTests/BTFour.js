@@ -62,7 +62,7 @@ function BTFour({ navigation }) {
     var deviation = Math.round(info * 1000) / 1000;
 
     medicalReportRepoContext.updateBalanceTest2Result(prelimReportId,variation,deviation);
-    medicalReportRepoContext.getCurrentBalanceTestReportInformation(prelimReportId).then((data)=> console.log(data));
+    medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=> console.log(data));
     var result = "FAIL";
     if (deviation < 0.2 && variation < 0.05) {
       result = "PASS";
