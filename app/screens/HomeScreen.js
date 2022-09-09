@@ -42,7 +42,7 @@ function HomeScreen({ navigation }) {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('Home Page', { screen: 'Red flags checklist' } ),
+          onPress: () => navigation.navigate('Continue Tests', { screen: 'Red flags checklist' } ),
         },
       ],
     );

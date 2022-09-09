@@ -1,18 +1,18 @@
 import { StyleSheet } from 'react-native';
 
+// This file is for the UI of the test & reports. 
+// UI for disclaimer page, home page, account management are in their individual file
 const title = '#000000';
 const text = '#fff';
-const background = '#349BEB';
+const background = '#9AD3FF';
 const buttons = '#ff3333';
-const test_background = '#9AD3FF'
+const test_background = '#9AD3FF';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: background,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
   },
   textContainer: {
     flex: 1,
