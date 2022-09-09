@@ -40,7 +40,7 @@ function BTOne({ navigation }) {
 }
 
 const title = '#000000';
-const text = '#fff';
+const text = '#003A67';
 const background = '#fff';
 const buttons = '#ff0000';
 const styles = StyleSheet.create({
