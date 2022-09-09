@@ -94,10 +94,10 @@ function MTFive({ navigation }) {
           medicalReportRepoContext.getCurrentMemoryTestReportInformation(prelimReportId).then((data) => console.log(data));
 
           if(result == 3){
-            preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);
+            preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,1);
           }
           else{
-            preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,0);
+            preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,0);
           }
           preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
 

@@ -18,7 +18,8 @@ import {
   AccountRepoContext
 } from '../components/GlobalContextProvider';
 import uiStyle from '../components/uiStyle';
-
+import { printToFileAsync } from 'expo-print';
+import { shareAsync } from 'expo-sharing';
 
 const reactionThreshold = 500;
 const parseReactionTest = (rt) => {
@@ -63,7 +64,10 @@ function PrelimTestResultScreen({ route, navigation }) {
         .then((data) => setReportResults(data)); 
     
   }, [preliminaryReportRepoContext, prelimReportId]);
+
+  
   let allTestResults = [];
+  let pdfResults = [];
   var dict = {0:'FAIL', 1:'PASS'};
   Object.entries(reportResults).forEach(([key, value]) => {
     switch(key){
@@ -74,6 +78,7 @@ function PrelimTestResultScreen({ route, navigation }) {
           </Text>,
           
         );
+        pdfResults.push({test_name: 'Memory Test 1 Result: ', grade: dict[value]});
         break
       case 'memory_test2_result':
         allTestResults.push(
@@ -81,6 +86,8 @@ function PrelimTestResultScreen({ route, navigation }) {
             {'Memory Test 2 Result: ' + dict[value]}
           </Text>,
         );
+        pdfResults.push({test_name: 'Memory Test 2 Result: ', grade: dict[value]});
+
         break
       case 'reaction_test_result':
         allTestResults.push(
@@ -88,6 +95,8 @@ function PrelimTestResultScreen({ route, navigation }) {
             {'Reaction Test Result: ' + dict[value]}
           </Text>,
         );
+        pdfResults.push({test_name: 'Reaction Test Result: ', grade: dict[value]});
+
         break
       case 'balance_test1_result':
         allTestResults.push(
@@ -95,6 +104,8 @@ function PrelimTestResultScreen({ route, navigation }) {
             {'Balance Test 1 Result: ' + dict[value]}
           </Text>,
         );
+        pdfResults.push({test_name: 'Balance Test 1 Result: ', grade: dict[value]});
+
         break
       case 'balance_test2_result':
         allTestResults.push(
@@ -102,6 +113,8 @@ function PrelimTestResultScreen({ route, navigation }) {
             {'Balance Test 2 Result: ' + dict[value]}
           </Text>,
         );
+        pdfResults.push({test_name: 'Balance Test 2 Result: ', grade: dict[value]});
+
       
       
      
@@ -109,8 +122,29 @@ function PrelimTestResultScreen({ route, navigation }) {
     }
 
     console.log(key , value); // key ,value
+    console.log(pdfResults);
     
   });
+
+  const htmlPDF = `
+    <html>
+      <body>
+        <h1> Test </h1>
+      </body>
+    </html>
+  `;
+  const createPDF = async () => {
+    const file = await printToFileAsync({
+      html: htmlPDF,
+      base64: false
+    });
+
+    await shareAsync(file.uri);
+    // console.log(file.filePath);
+    alert(file.uri);
+
+  }
+
   const createAlert = () =>
   Alert.alert(
     'Alert',
@@ -157,6 +191,12 @@ function PrelimTestResultScreen({ route, navigation }) {
         }
       }} style={styles.bottomButton}>
                 <Text style={styles.buttonLabel}>Save Report</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.bottomButton}
+        onPress={createPDF}
+      >
+        <Text style={uiStyle.buttonLabel}>Generate PDF</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomButton}

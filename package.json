@@ -25,6 +25,7 @@
     "expo-asset": "~8.4.6",
     "expo-dev-client": "~0.8.6",
     "expo-file-system": "~13.1.4",
+    "expo-print": "~11.1.0",
     "expo-sharing": "~10.1.0",
     "expo-sqlite": "~10.1.0",
     "expo-status-bar": "~1.2.0",
@@ -52,7 +53,10 @@
         "lines": 80
       }
     },
-    "coverageReporters": ["json", "html"],
+    "coverageReporters": [
+      "json",
+      "html"
+    ],
     "preset": "jest-expo"
   },
   "devDependencies": {
