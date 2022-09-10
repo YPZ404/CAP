@@ -42,7 +42,8 @@
     "react-native-stopwatch-timer": "^0.0.21",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "reactstrap": "^9.1.4"
   },
   "jest": {
     "coverageThreshold": {
@@ -52,7 +53,10 @@
         "lines": 80
       }
     },
-    "coverageReporters": ["json", "html"],
+    "coverageReporters": [
+      "json",
+      "html"
+    ],
     "preset": "jest-expo"
   },
   "devDependencies": {
