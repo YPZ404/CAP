@@ -92,7 +92,7 @@ export default StyleSheet.create({
   },
   
   startCheckText: {
-    color: text,
+    color: '#003A67',
     fontWeight: 'bold',
     fontSize: 20,
   },
