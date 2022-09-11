@@ -1,6 +1,7 @@
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
-
+import * as MailComposer from 'expo-mail-composer';
+import { Alert } from 'react-native';
 /**
  *
  * @param fileName local file to write map contents to
@@ -25,10 +26,10 @@ const exportMapAsCsv = async (
   let attributes = '';
   let values = '';
   let first = true;
-  console.log('Tests',medical_tests);
+  // console.log('Tests',medical_tests);
   let totalContents = '';
   totalContents = totalContents.concat('test,result', '\n');
-  console.log(totalContents);
+  // console.log(totalContents);
   let medical_test_content = '';
 
   Object.entries(medical_tests).forEach(([key, value]) => {
@@ -44,9 +45,30 @@ const exportMapAsCsv = async (
 
 
   await FileSystem.writeAsStringAsync(filePath, totalContents);
+  const emailAttachments = [];
+  emailAttachments.push(filePath);
+
+  MailComposer.composeAsync({
+    recipients: ["matthewkarko@gmail.com"],
+    subject: "Medical Report for *insert patient name please*",
+    attachments: emailAttachments,
+    body: "This is the report for *insert patient name please*"
+  }).catch(() =>
+    Alert.alert("Unable To Send Feedback", undefined, [
+      {
+        text: "Copy feedback email",
+        onPress: () => Clipboard.setString("unleaded@reiner.design")
+      },
+      {
+        text: "OK"
+      }
+    ])
+  );
 
   // Share file
-  await Sharing.shareAsync(filePath);
+  // await Sharing.shareAsync(filePath);
+  // console.log(filePath);
+  // return filePath;
 };
 
 export { exportMapAsCsv };

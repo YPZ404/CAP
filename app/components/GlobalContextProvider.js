@@ -102,7 +102,6 @@ export function GlobalContextProvider(props) {
   const [incidentRepoContext, setIncidentRepoContext] = useState(null);
   const [preliminaryReportRepoContext, setPreliminaryReportRepoContext] = useState(null);
   const [medicalReportRepoContext, setMedicalReportRepoContext] = useState(null);
-
   const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useState([]);
 
 
