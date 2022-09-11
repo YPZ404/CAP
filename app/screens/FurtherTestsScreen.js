@@ -44,12 +44,12 @@ function FurtherTests({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          var counter = prelimReportId;
-          counter++;
-          setPrelimReportId(counter);
-          preliminaryReportRepoContext.createReport(null, counter, -10, -10,-10, -10, -10).then(() => {
+        
+          
+          preliminaryReportRepoContext.createReport(null, -10, -10,-10, -10, -10).then((reportId) => {
+            setPrelimReportId(reportId);
             preliminaryReportRepoContext
-              .getCurrentReportInformation(counter)
+              .getCurrentReportInformation(reportId)
               .then((data) => console.log(data))
                 
             

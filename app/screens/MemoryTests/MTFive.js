@@ -18,6 +18,7 @@ import {
   MemoryCorrectAnswerContext,
   PrelimReportIdContext,
   PreliminaryReportRepoContext,
+  MedicalReportRepoContext
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -35,19 +36,26 @@ function MTFive({ navigation }) {
   const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
+
 
   // Local state
   const [options] = useState(getShuffledOptions());
 
   function isEqual(a, b)
   {
-      return a.join() == b.join();
+    var counter = 3;
+    for(var i=0;i<a.length;i++){
+      if(!(a.includes(b[i]))){
+        counter--;
+      }
+    }
+    return counter;
   }
-
-  const handleCreateMultiResponse = (res) => {
-    const desc = 'Memory Test Part 2';
-    incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
-  };
+  // const handleCreateMultiResponse = (res) => {
+  //   const desc = 'Memory Test Part 2';
+  //   incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+  // };
 
   // updates const list when onCheckmarkPress() is called
   function onUpdate(name) {
@@ -79,16 +87,20 @@ function MTFive({ navigation }) {
 
           memoryCorrectAnswerContext.sort();
           chosenList.sort();
-          console.log(isEqual(memoryCorrectAnswerContext,chosenList));
-        
+  
+          const result = isEqual(memoryCorrectAnswerContext,chosenList);
+          console.log(result);
+          medicalReportRepoContext.updateMemoryTestReportResult2(prelimReportId,result);
+          medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data) => console.log(data));
 
-          if(isEqual(memoryCorrectAnswerContext,chosenList) == true){
+          if(result == 3){
             preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,1);
           }
           else{
             preliminaryReportRepoContext.updateMemoryTest2Result(prelimReportId,0);
           }
           preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
+
           navigation.navigate('Prelim Test Results', {
             secondMemoryTestResponses: chosenList,
           });

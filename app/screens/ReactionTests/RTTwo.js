@@ -13,7 +13,8 @@ import {
   IncidentReportRepoContext,
   ReportIdContext,
   PreliminaryReportRepoContext,
-  PrelimReportIdContext
+  PrelimReportIdContext,
+  MedicalReportRepoContext
 } from '../../components/GlobalContextProvider';
 
 function getRandomInt(min, max) {
@@ -25,9 +26,9 @@ function getRandomInt(min, max) {
 function RTTwo({ navigation }) {
   const [attemptResults, setAttemptResults] = useState([]);
   const [reportId] = useContext(ReportIdContext);
-  const incidentRepoContext = useContext(IncidentReportRepoContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [prelimReportId] = useContext(PrelimReportIdContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
 
   // Start time in milliseconds
   const [startMs, setStartMs] = useState(null);
@@ -78,6 +79,7 @@ function RTTwo({ navigation }) {
 
   // Check if user has failed or passed tests 
   useEffect(() => {
+    
     if (attemptResults.length === 3) {
       let grade = 'pass';
       if (attemptResults[0] >= threshold || attemptResults[1] >= threshold || 
@@ -87,22 +89,17 @@ function RTTwo({ navigation }) {
       } else {
         preliminaryReportRepoContext.updateReactionTestResult(prelimReportId,1); 
       }
-
-      // Possibly get rid of this? Do we really need the average anymore?
-      const avg = (attemptResults[0] + attemptResults[1] + attemptResults[2]) / 3;
       
       preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then((data) => console.log(data));
-      incidentRepoContext
-        .setReactionTest(reportId, attemptResults, avg, grade)
-        .catch(console.log);
       setAttemptResults([]);
-      navigation.navigate('Continue Tests', {screen: 'Balance Test 1'}, {
-        attemptResults: attemptResults,
-        avg: avg,
-        grade: grade,
+      medicalReportRepoContext.updateReactionTestResults(prelimReportId,attemptResults[0],attemptResults[1],attemptResults[2]);
+      medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>console.log(data));
+
+      navigation.navigate('Balance Test 1', {
+
       });
     }
-  }, [reportId, attemptResults, incidentRepoContext, navigation]);
+  }, [reportId, attemptResults, navigation]);
 
   return (
     <View style={uiStyle.textContainer} onTouchStart={btnOnPress}>

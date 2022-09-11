@@ -1,5 +1,5 @@
 export const TABLES_SQL = [
- 
+  // TODO: remove
 //   `
 // DROP TABLE IF EXISTS Patient;
 //   `,
@@ -39,6 +39,9 @@ export const TABLES_SQL = [
 //   `
 // DROP TABLE IF EXISTS VOMSNPCDistance;
 //   `,
+//   `
+// DROP TABLE IF EXISTS BalanceTestReport;
+//   `,
   `
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INTEGER PRIMARY KEY,
@@ -77,6 +80,31 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
   );
 `
 ,
+`
+CREATE TABLE IF NOT EXISTS MedicalReport (
+    report_id INTEGER PRIMARY KEY,
+    memory_test1_correct_count INTEGER,
+    memory_test2_correct_count INTEGER,
+    reaction_test_time_1 INTEGER,
+    reaction_test_time_2 INTEGER,
+    reaction_test_time_3 INTEGER,
+    balance_test1_variance FLOAT,
+    balance_test1_deviation FLOAT,
+    balance_test2_variance FLOAT,
+    balance_test2_deviation FLOAT
+
+  );
+`
+,
+
+`CREATE TABLE IF NOT EXISTS MemoryTestReport (
+  mt_id INTEGER PRIMARY KEY,
+  report_id INTEGER REFERENCES PreliminaryReport(report_id),
+  memory_test_1 INTEGER,
+  memory_test_2 INTEGER
+);`
+
+,
   //Instance of a multiple part response
   `
 CREATE TABLE IF NOT EXISTS MultiResponse (
@@ -105,16 +133,28 @@ CREATE TABLE IF NOT EXISTS SingleResponse (
 `,
   // Reaction time table that stores times in milliseconds
   `
-CREATE TABLE IF NOT EXISTS ReactionTest (
+CREATE TABLE IF NOT EXISTS ReactionTestReport (
     rt_id INTEGER PRIMARY KEY,
-    report_id INTEGER REFERENCES IncidentReport(report_id),
+    report_id INTEGER REFERENCES PreliminaryReport(report_id),
     time_attempt_1 INTEGER,
     time_attempt_2 INTEGER,
-    time_attempt_3 INTEGER,
-    time_average INTEGER,
-    grade VARCHAR(10)
+    time_attempt_3 INTEGER
 );
   `,
+
+  
+  // Reaction time table that stores times in milliseconds
+  `
+CREATE TABLE IF NOT EXISTS BalanceTestReport (
+    bt_id INTEGER PRIMARY KEY,
+    report_id INTEGER REFERENCES PreliminaryReport(report_id),
+    balance_test1_variance FLOAT,
+    balance_test1_deviation FLOAT,
+    balance_test2_variance FLOAT,
+    balance_test2_deviation FLOAT
+);
+  `
+  ,
 
   // User responses for symptom check after each VOMS test section
   `
