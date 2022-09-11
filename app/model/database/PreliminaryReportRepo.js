@@ -106,6 +106,20 @@
       return rs.rows.item(0);
 
     }
+
+    async getLatestReportDate(reportId) {
+      if (reportId === undefined || reportId === null) {
+        throw 'Invalid reportId';
+      }
+  
+      const sql = `SELECT date_of_test FROM PreliminaryReport WHERE report_id = ?;`;
+      const args = [reportId];
+  
+      const rs = await this.da.runSqlStmt(sql, args);
+      console.log(rs.rows.item(0));
+      return rs.rows.item(0);
+
+    }
     /**
      * 
      * @param {number} reportId 
