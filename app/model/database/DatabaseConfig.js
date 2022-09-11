@@ -1,47 +1,47 @@
 export const TABLES_SQL = [
   // TODO: remove
-//   `
-// DROP TABLE IF EXISTS Patient;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS IncidentReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponse;
-//   `,
+  `
+DROP TABLE IF EXISTS Patient;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS IncidentReport;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS PreliminaryReport;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS MultiResponse;
+  `,
 
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,  
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponsePart;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS SingleResponse;
-//   `,
-//   // TODO: remove
-//   `
-// DROP TABLE IF EXISTS ReactionTest;
-// `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSSymptoms;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSNPCDistance;
-//   `,
-//   `
-// DROP TABLE IF EXISTS BalanceTestReport;
-//   `,
+  `
+DROP TABLE IF EXISTS PreliminaryReport;
+  `,  
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS MultiResponsePart;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS SingleResponse;
+  `,
+  // TODO: remove
+  `
+DROP TABLE IF EXISTS ReactionTest;
+`,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS VOMSSymptoms;
+  `,
+  //TODO: remove
+  `
+DROP TABLE IF EXISTS VOMSNPCDistance;
+  `,
+  `
+DROP TABLE IF EXISTS BalanceTestReport;
+  `,
   `
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INTEGER PRIMARY KEY,
@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS IncidentReport (
 CREATE TABLE IF NOT EXISTS PreliminaryReport (
     report_id INTEGER PRIMARY KEY,
     patient_id INTEGER REFERENCES Account(account_id),
+    date_of_test VARCHAR(15),
     memory_test1_result INTEGER,
     memory_test2_result INTEGER,
     reaction_test_result INTEGER,
