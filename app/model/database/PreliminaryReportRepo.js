@@ -62,7 +62,7 @@
      * @return {Promise<any[]>} promise of the reportIds
      */
     async getPatientReports(patientId) {
-      const sql = 'SELECT * FROM PreliminaryReport WHERE patient_id == ?;';
+      const sql = 'SELECT * FROM PreliminaryReport WHERE patient_id = ?;';
       const args = [patientId];
   
       return new Promise((resolve, reject) => {
@@ -77,20 +77,22 @@
      * @param {number} reportId report id
      * @return {Promise<any[]>} array of SingleResponse rows
      */
-    // async getListofPatientReports(patientId) {
-    //     const sql = 'SELECT * FROM PreliminaryReport WHERE patient_id == ?;';
-    //     const args = [patientId];
+    async getListofPatientReports(patientId) {
+        const sql = 'SELECT * FROM PreliminaryReport WHERE patient_id = ?;';
+        const args = [patientId];
 
-    //     return new Promise((resolve, reject) => {
-    //     this.da.runSqlStmt(sql, args).then((rs) => {
-    //         if (rs.rows.length < 1) {
-    //         reject(new Error(`No report in  ${reportId}`));
-    //         return;
-    //         }
-    //         resolve(rs.rows._array);
-    //     });
-    //     });
-    // }
+        return new Promise((resolve, reject) => {
+        this.da.runSqlStmt(sql, args).then(
+          (rs) => {
+            if (rs.rows.length < 1) {
+            reject(new Error(`No report in  ${reportId}`));
+            return;
+            }
+            //console.log(rs.rows._array);
+            resolve(rs.rows._array);
+        });
+        });
+    }
     async getCurrentReportInformation(reportId) {
       if (reportId === undefined || reportId === null) {
         throw 'Invalid reportId';
@@ -100,6 +102,7 @@
       const args = [reportId];
   
       const rs = await this.da.runSqlStmt(sql, args);
+      console.log(rs.rows.item(0));
       return rs.rows.item(0);
 
     }

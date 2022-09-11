@@ -7,7 +7,7 @@ import { createDrawerNavigator,
   DrawerItemList,
   DrawerItem, } from '@react-navigation/drawer';
 import { getHeaderTitle } from '@react-navigation/elements';
-import { View, TouchableOpacity, Dimensions} from 'react-native';
+import { View, TouchableOpacity, Dimensions, StyleSheet} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from './app/screens/HomeScreen';
 import MechanismOfInjuryCheck from './app/screens/MechanismOfInjuryCheck';
@@ -85,8 +85,15 @@ import BTFive from './app/screens/BalanceTests/BTFive';
 import BTComplete from './app/screens/BalanceTests/BTComplete';
 import BTComplete2 from './app/screens/BalanceTests/BTComplete2';
 
+import HTOne from './app/screens/HopTests/HTOne';
+import HTTwo from './app/screens/HopTests/HTTwo';
+import HTComplete from './app/screens/HopTests/HTComplete';
+
 import Header from './Header';
 import LoginScreen from './app/screens/Login';
+import AllReports from './app/screens/AllReports';
+import AllPrelimReports from './app/screens/AllPrelimReports';
+import AllIncidentReports from './app/screens/AllIncidentReports';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -144,9 +151,10 @@ function CustomNavContent(){
     />
     <RootStack.Screen name="Profile Info" component={ProfileInfoScreen} />
     <RootStack.Screen name="Login" component={LoginScreen} />
-    <RootStack.Screen
-      name="Red flags checklist"
-      component={RedFlagsChecklist}
+    <RootStack.Screen name="Red flags checklist" component={RedFlagsChecklist}
+      options={{
+        headerTitle: () => <Header name="Red"></Header>
+      }}
     />
     <RootStack.Screen name="PCSS Checklist" component={PCSSChecklist} />
     <RootStack.Screen name="Next Steps" component={NextStepsScreen} />
@@ -157,6 +165,18 @@ function CustomNavContent(){
     <RootStack.Screen
       name="Text Question (IR3)"
       component={TextQuestionScreen}
+    />
+    <RootStack.Screen
+      name="All Reports"
+      component={AllReports}
+    />
+    <RootStack.Screen
+      name="Prelim Report"
+      component={AllPrelimReports}
+    />
+    <RootStack.Screen
+      name="Incident Reports"
+      component={AllIncidentReports}
     />
     <RootStack.Screen
       name="Checklist Question (Start Check)"
@@ -200,6 +220,10 @@ function CustomNavContent(){
     <RootStack.Screen name="Balance Test 5" component={BTFive} />
     <RootStack.Screen name="Balance Test Complete" component={BTComplete} options={{ title: 'Balance Test 1 Complete ' }} />
     <RootStack.Screen name="Balance Test Complete 2" component={BTComplete2} options={{ title: 'Balance Tests Complete ' }} />
+
+    <RootStack.Screen name="Hop Test 1" component={HTOne} options={{ title: 'Hop Test ' }} />
+    <RootStack.Screen name="Hop Test 2" component={HTTwo} options={{ title: 'Hop Test 1 ' }} />
+    <RootStack.Screen name="Hop Test Complete" component={HTComplete} options={{ title: 'Hop Test Complete ' }} />
 
     <RootStack.Screen name="Memory Test 5 Intro" component={MTFiveIntro} options={{ title: 'Memory Test 2' }}  />
     <RootStack.Screen name="Memory Test 5" component={MTFive} options={{ title: 'Memory Test 2' }}  />
@@ -276,24 +300,48 @@ function MyDrawer() {
             elevation: 25
           }
         }}/>
-      <Drawer.Screen name="Home Page" component={CustomNavContent} 
+      <Drawer.Screen name="Home Page" component={HomeScreen} 
         options={{
           headerTitle: () => <Header name=""></Header>,
           headerStyle: {
             height: (Dimensions.get('window').height)/9,
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
-            backgroundColor: '#9AD3FF',
+            backgroundColor: '#E2F2FF',
             elevation: 25
           }
         }}/>
       <Drawer.Screen name="Login" component={LoginScreen} />
+      <Drawer.Screen name="Reports" component={AllReports} />
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
+      <Drawer.Screen name="Continue Tests" component={CustomNavContent} 
+       options={{
+        headerTitle: () => <Header name=""></Header>,
+        headerStyle: {
+          height: (Dimensions.get('window').height)/9,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+          backgroundColor: '#E2F2FF',
+          elevation: 25
+        }
+      }}/>
     </Drawer.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+
+  TestHeader: {
+    height: (Dimensions.get('window').height)/9,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+          backgroundColor: '#E2F2FF',
+          elevation: 25
+  }
+
+});
 
 
 /**

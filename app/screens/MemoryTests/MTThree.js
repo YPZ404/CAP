@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#349BEB',
+    backgroundColor: '#9AD3FF',
   },
 
   buttonLabel: {

@@ -25,7 +25,7 @@ function BTComplete2({ navigation }) {
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Memory Test 5 Intro');
+          navigation.navigate('Hop Test 1');
         }}
         style={uiStyle.bottomButton}
       >

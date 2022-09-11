@@ -25,6 +25,7 @@ export class IncidentReportRepo {
     return rs.insertId;
   }
 
+  
   /**
    *
    * @param {number} patientId patient to update report for
@@ -44,13 +45,38 @@ export class IncidentReportRepo {
     });
   }
 
+  async updatePrelimReport(patientId, reportId) {
+    const sql =
+      'UPDATE PreliminaryReport SET patient_id = ? WHERE report_id = ?;';
+    const args = [patientId, reportId];
+
+    return new Promise((resolve, reject) => {
+      this.da.runSqlStmt(sql, args).then(
+        (rs) => resolve(rs.rowsAffected),
+        (err) => reject(err),
+      );
+    });
+  }
+
   /**
    *
    * @param {number} patientId patient to update report for
    * @return {Promise<any[]>} promise of the reportIds
    */
   async getReports(patientId) {
-    const sql = 'SELECT * FROM IncidentReport WHERE patient_id == ?;';
+    const sql = 'SELECT * FROM IncidentReport WHERE patient_id = ?;';
+    const args = [patientId];
+
+    return new Promise((resolve, reject) => {
+      this.da.runSqlStmt(sql, args).then(
+        (rs) => resolve(rs.rows._array),
+        (err) => reject(err),
+      );
+    });
+  }
+
+  async getPrelimReports(patientId) {
+    const sql = 'SELECT * FROM PreliminaryReport WHERE patient_id = ?;';
     const args = [patientId];
 
     return new Promise((resolve, reject) => {

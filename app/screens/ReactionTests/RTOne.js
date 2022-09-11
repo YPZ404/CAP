@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     borderRadius: 100,
-    backgroundColor: '#ff0000',
+    backgroundColor: '#9AD3FF',
   },
 
   startCheckText: {
