@@ -65,7 +65,6 @@ function MTTwo({ navigation }) {
 
   const [state, setState] = useState({ index: 0, imgs: threeImages });
   const { index, imgs } = state;
-
   return (
     <View style={uiStyle.container}>
       <View style={[uiStyle.container, { justifyContent: 'center' }]}>
@@ -78,6 +77,7 @@ function MTTwo({ navigation }) {
       <View>
         <TouchableOpacity
           onPress={() => {
+            console.log(currentDate);
             if (index === 0) {
               const correctAnswers = [];
               correctAnswers.push(imgs[0].title);

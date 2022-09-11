@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS IncidentReport (
 CREATE TABLE IF NOT EXISTS PreliminaryReport (
     report_id INTEGER PRIMARY KEY,
     patient_id INTEGER REFERENCES Account(account_id),
+    date_of_test VARCHAR(15),
     memory_test1_result INTEGER,
     memory_test2_result INTEGER,
     reaction_test_result INTEGER,
