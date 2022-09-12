@@ -37,6 +37,7 @@ import ChecklistQuestionScreen from './app/screens/RedFlagsChecklist';
 import { GlobalContextProvider } from './app/components/GlobalContextProvider';
 
 import PCSSChecklist from './app/screens/PCSSChecklist';
+import DSLScreen from './app/screens/DSLScreen';
 import FurtherTestsScreen from './app/screens/FurtherTestsScreen';
 import FurtherTestsResultsScreen from './app/screens/FurtherTestsResultsScreen';
 import PrelimTestResultScreen from './app/screens/PrelimTestResultScreen';
@@ -314,6 +315,7 @@ function MyDrawer() {
       <Drawer.Screen name="Login" component={LoginScreen} />
       <Drawer.Screen name="Reports" component={AllReports} />
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
+      <Drawer.Screen name="Daily Symptom Checklist" component={DSLScreen}/>
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
       <Drawer.Screen name="Continue Tests" component={CustomNavContent} 
