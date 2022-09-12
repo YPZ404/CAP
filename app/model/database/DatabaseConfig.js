@@ -16,9 +16,9 @@ export const TABLES_SQL = [
 // DROP TABLE IF EXISTS MultiResponse;
 //   `,
 
-  `
-DROP TABLE IF EXISTS PreliminaryReport;
-  `,  
+//   `
+// DROP TABLE IF EXISTS PreliminaryReport;
+//   `,  
 //   //TODO: remove
 //   `
 // DROP TABLE IF EXISTS MultiResponsePart;
