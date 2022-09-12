@@ -77,7 +77,7 @@ function MTTwo({ navigation }) {
       <View>
         <TouchableOpacity
           onPress={() => {
-            console.log(currentDate);
+            
             if (index === 0) {
               const correctAnswers = [];
               correctAnswers.push(imgs[0].title);
