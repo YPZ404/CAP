@@ -16,8 +16,9 @@ import {
   IncidentReportRepoContext,
   PatientContext,
   PatientRepoContext,
-  ReportIdContext,
-  MemoryCorrectAnswerContext
+  PrelimReportIdContext,
+  MemoryCorrectAnswerContext,
+  MedicalReportRepoContext
 } from '../../components/GlobalContextProvider';
 
 /**
@@ -30,17 +31,20 @@ import {
 function MTTwo({ navigation }) {
   // Context variables
   const [patient, setPatient] = useContext(PatientContext);
-  const [reportId, setReportId] = useContext(ReportIdContext);
+  const [prelimReportId] = useContext(PrelimReportIdContext);
   const patientRepoContext = useContext(PatientRepoContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
 
 
   const handleCreateMultiResponse = (res) => {
     console.log('correct answers: ' + res);
     const desc = 'Memory Test Correct Answers';
-    incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
+    // incidentRepoContext.setMultiResponse(reportId, desc, res).then((r) => {});
     setMemoryCorrectAnswerContext(res);
+    // medicalReportRepoContext.createMemoryTestReport(prelimReportId, -10, -10);
+    medicalReportRepoContext.createMedicalReport(prelimReportId,-10,-10,-10,-10,-10,-10,-10,-10,-10);
   };
 
   const arr = [];
@@ -61,7 +65,6 @@ function MTTwo({ navigation }) {
 
   const [state, setState] = useState({ index: 0, imgs: threeImages });
   const { index, imgs } = state;
-
   return (
     <View style={uiStyle.container}>
       <View style={[uiStyle.container, { justifyContent: 'center' }]}>
