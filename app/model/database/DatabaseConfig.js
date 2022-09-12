@@ -16,9 +16,9 @@ export const TABLES_SQL = [
 // DROP TABLE IF EXISTS MultiResponse;
 //   `,
 
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,  
+  `
+DROP TABLE IF EXISTS PreliminaryReport;
+  `,  
 //   //TODO: remove
 //   `
 // DROP TABLE IF EXISTS MultiResponsePart;
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
 ,
 `
 CREATE TABLE IF NOT EXISTS MedicalReport (
-    report_id INTEGER PRIMARY KEY,
+    report_id INTEGER REFERENCES PreliminaryReport(report_id),
     memory_test1_correct_count INTEGER,
     memory_test2_correct_count INTEGER,
     reaction_test_time_1 INTEGER,
