@@ -24,6 +24,7 @@ import {
 } from '../components/GlobalContextProvider';
 import { useContext, useState, useRef, useEffect } from 'react';
 import uiStyle from '../components/uiStyle';
+import { useIsFocused } from "@react-navigation/native";
 
 // function checkPatient(firstNameValue, lastNameValue){
 //     const [reportId] = useContext(ReportIdContext);
@@ -42,7 +43,7 @@ import uiStyle from '../components/uiStyle';
 //     }
 // }
 function LoginScreen({ navigation }){
-const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState([]);
   const patientRepoContext = useContext(PatientRepoContext);
   const accountRepoContext = useContext(AccountRepoContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
@@ -55,6 +56,7 @@ const [accounts, setAccounts] = useState([]);
   const [firstNameOfUser, onChangeFirstName] = useState('');
   const [lastNameOfUser, onChangeLastName] = useState('');
   const [passwordValue, onChangePassword] = useState('');
+  const focussed = useIsFocused();
 
   useEffect(() => {
     mounted.current = true; // Component is mounted
@@ -65,18 +67,21 @@ const [accounts, setAccounts] = useState([]);
   }, []);
 
   useEffect(() => {
-    // Everytime there is a new patientRepoContext we
-    // get patients from it.
-    if (accountRepoContext !== null) {
+    if (focussed) {
+      // Everytime there is a new patientRepoContext we
+      // get patients from it.
+      if (accountRepoContext !== null) {
         accountRepoContext.getAllAccounts().then((pts) => {
         if (mounted.current) {
           setAccounts(pts);
         }
-      });
-    } else {
-      console.log('null patientRepo');
-    }
-  }, [accountRepoContext]);
+        });
+      } else {
+        console.log('null patientRepo');
+      }    
+  }
+    
+  }, [focussed]);
 
   const checkAccount = (firstNameValue, lastNameValue, passwordValue)=> {
     if (accountRepoContext !== null) {

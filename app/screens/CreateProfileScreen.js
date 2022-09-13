@@ -119,7 +119,7 @@ function CreateProfileScreen({ navigation }) {
               weightOfUser,
               password,
             );
-            navigation.navigate('Home');
+            navigation.navigate('Home Page');
           }}
         >
           <Text style={uiStyle.buttonLabel}>Submit</Text>
