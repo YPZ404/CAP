@@ -54,7 +54,7 @@ function FurtherTests({ navigation }) {
                 
             
           });  
-          navigation.navigate('Memory Test 1')
+          navigation.navigate('Continue Tests', {screen: 'Memory Test 1'})
         }}
         style={uiStyle.bottomButton}
       >
