@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     },
     input: {
       width: Dimensions.get('window').width/1.5,
-      height: Dimensions.get('window').width/10,
+      height: Dimensions.get('window').width/8,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#fff',
@@ -203,7 +203,6 @@ const styles = StyleSheet.create({
       marginTop: (Dimensions.get('window').height)/80, 
       borderRadius: 20,
       padding:  Dimensions.get('window').width/20,
-      backgroundColor: '#FFFFFF',
     },
     text: {
       color: '#003A67',
