@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     marginBottom: (Dimensions.get('window').height)/80,
     marginTop: (Dimensions.get('window').height)/80, 
     borderRadius: 20,
-    padding:  Dimensions.get('window').width/20,
+    padding:  Dimensions.get('window').width/50,
     backgroundColor: '#FFFFFF',
   },
   titlecontainer: {

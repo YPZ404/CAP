@@ -146,7 +146,7 @@ const [accounts, setAccounts] = useState([]);
               lastNameOfUser,
               passwordValue
             )){
-                navigation.navigate('Continue Tests', {screen: 'Home'});
+                navigation.navigate("Home Page");
             }else{
                 createAlert();
             };
@@ -159,7 +159,7 @@ const [accounts, setAccounts] = useState([]);
           style={[styles.bottomButton, styles.shadowProp]}
           onPress={() => navigation.navigate('Continue Tests', {screen: 'Create Profile'})}
         >
-          <Text style={uiStyle.buttonLabel}>Create Login</Text>
+          <Text style={uiStyle.buttonLabel}>Sign Up</Text>
         </TouchableOpacity>    
       </SafeAreaView>
       </View>
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
       marginBottom: (Dimensions.get('window').height)/80,
       marginTop: (Dimensions.get('window').height)/80, 
       borderRadius: 20,
-      padding:  Dimensions.get('window').width/20,
+      padding:  Dimensions.get('window').width/50,
     },
     text: {
       color: '#003A67',
