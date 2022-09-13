@@ -5,9 +5,12 @@ import {
   SafeAreaView,
   TextInput,
   ScrollView,
-  TouchableOpacity,
   Alert,
+  Dimensions,
+  View,
+  ImageBackground,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
   IncidentReportRepoContext,
   PatientContext,
@@ -98,14 +101,18 @@ const [accounts, setAccounts] = useState([]);
       'Alert',
       'Incorrect Login',
       [
-        {
+        { 
           text: 'OK',
           onPress: () => navigation.navigate('Login'),
         },
       ],
     );
     return(
-        <SafeAreaView style={uiStyle.container}>
+      <SafeAreaView style={uiStyle.container}>
+      <View style={styles.imagecontainer}>
+        <ImageBackground source = {require('../../assets/logo.png')} style={styles.image}></ImageBackground>
+      </View>
+      <View style={styles.titlecontainer}>
       <Text style={styles.text}>
         Enter your first name and last name to login
       </Text>
@@ -132,7 +139,7 @@ const [accounts, setAccounts] = useState([]);
           returnKeyType="done"
         />
         <TouchableOpacity
-          style={styles.bottomButton}
+          style={[styles.bottomButton, styles.shadowProp]}
           onPress={() => {
             if(checkAccount(
               firstNameOfUser,
@@ -149,47 +156,85 @@ const [accounts, setAccounts] = useState([]);
           <Text style={uiStyle.buttonLabel}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.bottomButton}
+          style={[styles.bottomButton, styles.shadowProp]}
           onPress={() => navigation.navigate('Continue Tests', {screen: 'Create Profile'})}
         >
           <Text style={uiStyle.buttonLabel}>Create Login</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>    
       </SafeAreaView>
+      </View>
     </SafeAreaView>
+   
     );
 }
 
 const styles = StyleSheet.create({
     inputAreaContainer: {
-      flex: 1,
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height/4,
       alignItems: 'center',
+      backgroundColor: '#9AD3FF',
+      marginBottom: (Dimensions.get('window').height),
+      marginTop: (Dimensions.get('window').height)/45,
+    },
+    titlecontainer: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height/28,
+      alignItems: 'center',
+      backgroundColor: '#9AD3FF',
+      marginBottom: (Dimensions.get('window').height)/500,
+      marginTop: (Dimensions.get('window').height)/15,
+    },
+    imagecontainer: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height/5,
+      alignItems: 'center',
+      backgroundColor: '#9AD3FF',
+      marginBottom: (Dimensions.get('window').height)/500,
+      marginTop: (Dimensions.get('window').height)/800,
     },
     input: {
-      height: 40,
-      width: 300,
-      margin: 12,
-      borderRadius: 50,
-      padding: 10,
-      backgroundColor: '#D3D3D3',
+      width: Dimensions.get('window').width/1.5,
+      height: Dimensions.get('window').width/10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#fff',
+      marginBottom: (Dimensions.get('window').height)/80,
+      marginTop: (Dimensions.get('window').height)/80, 
+      borderRadius: 20,
+      padding:  Dimensions.get('window').width/20,
+      backgroundColor: '#FFFFFF',
     },
     text: {
-      fontSize: 16,
-      lineHeight: 21,
-      letterSpacing: 0.25,
-      marginHorizontal: 50,
-      marginVertical: 10,
+      color: '#003A67',
+      fontSize: Dimensions.get('window').width/25,
+      fontWeight: '800',
+      textAlign: 'center',
+      textAlignVertical: 'center',
     },
     bottomButton: {
-      marginLeft: 10,
-      marginRight: 10,
-      width: 300,
-      height: 50,
-      padding: 10,
-      marginVertical: 10,
-      borderRadius: 100,
-      backgroundColor: '#ff0000',
-      alignItems: 'center',
+      width: Dimensions.get('window').width/2.5,
+      height: Dimensions.get('window').width/10,
       justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 20,
+      backgroundColor: '#fff',
+      marginBottom: (Dimensions.get('window').height)/800,
+      marginTop: (Dimensions.get('window').height)/40,
+    },
+    shadowProp: {
+      shadowColor: '#171717',
+      shadowOffset: {width: -2, height: 4},
+      shadowOpacity: 0.5,
+      shadowRadius: 4,
+    },
+    image: {
+      width: Dimensions.get('window').width/2.8,
+      height: Dimensions.get('window').width/2.8,
+      marginBottom: (Dimensions.get('window').height)/1,
+      marginTop: (Dimensions.get('window').height)/15,
+      resizeMode: 'cover',
+      alignItems: 'center',
     },
   });
 
