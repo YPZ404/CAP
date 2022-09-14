@@ -61,7 +61,7 @@ function HomeScreen({ navigation }) {
                 <Text style={styles.buttonLabel}>Begin Check</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Choose Profile')} style={[styles.viewHistoryButton, styles.shadowProp]}>
+                onPress={() => navigation.navigate('Continue Tests', {screen: 'Choose Profile'})} style={[styles.viewHistoryButton, styles.shadowProp]}>
                 <Text style={styles.buttonLabel}>View History</Text>
               </TouchableOpacity>
               </View>      
