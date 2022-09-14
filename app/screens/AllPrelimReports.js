@@ -21,6 +21,7 @@ import {
   PreliminaryReportRepoContext,
 } from '../components/GlobalContextProvider';
 import { useContext, useState, useRef, useEffect } from 'react';
+import { exportMapAsPdf } from '../model/exportAsPdf';
 import uiStyle from '../components/uiStyle';
 
 
@@ -29,7 +30,7 @@ function AllPrelimReports({ navigation }){
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [, setPatient] = useContext(PatientContext);
   const [account] = useContext(AccountContext);
-  const [reportId] = useContext(ReportIdContext);
+  //const [reportId] = useContext(ReportIdContext);
   const mounted = useRef(false);
   const [reportResults, setReportResults] = useState([]);
  
@@ -42,6 +43,10 @@ function AllPrelimReports({ navigation }){
     };
   }, []);
 
+  const createPDF = async (results) => {
+    exportMapAsPdf("Basic Report", results);
+  }
+
   let usersButtons = [];
   var dict = {0:'FAIL', 1:'PASS'};
   //console.log(account.account_id);
@@ -49,13 +54,17 @@ function AllPrelimReports({ navigation }){
     let reports = [];
   preliminaryReportRepoContext.getListofPatientReports(account.account_id).then((values) => {
     //console.log(values);
-    setReportResults(values);
+    if(reportResults != null){
+      setReportResults(values);
+    }
+    
     // console.log(reports.length);
 
     });
     //console.log(reportResults);
     if (reportResults.length > 0) {
-        //console.log('yes');
+      let j = 1;
+      let z=0;
       for (let i = 0; i < reportResults.length; i++) {
           //console.log(reportResults[i]);
         const description = '\n Memory Test 1: '+dict[reportResults[i].memory_test1_result] + ' \n Memory Test 2: ' + dict[reportResults[i].memory_test2_result] +
@@ -63,13 +72,31 @@ function AllPrelimReports({ navigation }){
         dict[reportResults[i].balance_test2_result] +' \n';
         //console.log(description);
         usersButtons.push(
-          <Text key={i} style={uiStyle.text}>Report {reportResults[i].report_id} {description}</Text>,
+          <Text key={z} style={uiStyle.text}>Report {reportResults[i].report_id} {description}</Text>,
         );
+        usersButtons.push(
+          <TouchableOpacity
+        key={j} style={styles.bottomButton}
+        onPress={()=> {createPDF(description)}}
+      >
+        <Text style={uiStyle.buttonLabel}>Generate PDF report</Text>
+      </TouchableOpacity>
+        
+        );
+        j+=2;
+        z+=2;
+        // if(reportResults.length == 1){
+        //   reportResults.pop();
+        // }
+        // reportResults.slice(i+1, reportResults.length);
         //console.log(usersButtons[i]);
       }
-      }
+    }
       else{
-          <Text key={0} style={uiStyle.buttonLabel}>No such reports.</Text>
+        
+        usersButtons.push(
+          <Text key={1} style={uiStyle.buttonLabel}>No such reports.</Text>
+        );
       }
       
       
@@ -81,6 +108,7 @@ return(
     All Preliminary Reports for {account.first_name}
   </Text>
   <ScrollView>{usersButtons}</ScrollView>
+  
   <TouchableOpacity
     style={styles.bottomButton}
     onPress={() => navigation.navigate('Home')}

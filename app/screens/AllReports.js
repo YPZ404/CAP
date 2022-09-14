@@ -90,10 +90,11 @@ function AllReports({ navigation }){
                 
           }}
         >
-          <Text style={uiStyle.buttonLabel}>Preliminary Test Reports</Text>
+        <Text style={uiStyle.buttonLabel}>Preliminary Test Reports</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.bottomButton, styles.shadowProp]}
+        {<TouchableOpacity
+          style={styles.bottomButton}
+
           onPress={() => {
             if(account.account_id == null && account.first_name== 'John'){
                 createAlert();
@@ -104,7 +105,7 @@ function AllReports({ navigation }){
             }}
             >
           <Text style={uiStyle.buttonLabel}>Incident Reports</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> }
       </SafeAreaView>
       </View>
     </SafeAreaView>

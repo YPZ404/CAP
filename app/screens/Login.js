@@ -140,6 +140,7 @@ function LoginScreen({ navigation }){
           style={styles.input}
           onChangeText={onChangePassword}
           value={passwordValue}
+          secureTextEntry={true}
           placeholder="Password"
           returnKeyType="done"
         />
@@ -151,7 +152,7 @@ function LoginScreen({ navigation }){
               lastNameOfUser,
               passwordValue
             )){
-                navigation.navigate("Home Page");
+                navigation.navigate('Continue Tests', {screen: 'Home Page'});
             }else{
                 createAlert();
             };
