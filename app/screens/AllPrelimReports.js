@@ -121,6 +121,7 @@ return(
     <Text style={uiStyle.buttonLabel}>Return to Home</Text>
   </TouchableOpacity>
   </SafeAreaView>
+
 );
 
     
