@@ -139,7 +139,7 @@ const [accounts, setAccounts] = useState([]);
               lastNameOfUser,
               passwordValue
             )){
-                navigation.navigate('Continue Tests', {screen: 'Home'});
+                navigation.navigate('Continue Tests', {screen: 'Home Page'});
             }else{
                 createAlert();
             };
