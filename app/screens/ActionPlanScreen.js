@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
 	Text,
 	Alert,
@@ -51,8 +52,8 @@ function ActionPlanScreen({ navigation }) {
 		}
 	}
 	const [activeZone, setActiveZone] = useState(zones.red);
-	const [isSymptomTolerant, setIsSymptomTolerant] = useState(false);
-	const [isSymptomFree24Hours, setIsSymptomFree24Hours] = useState(false);
+	const [isSymptomTolerant, setIsSymptomTolerant] = useState(null);
+	const [isSymptomFree24Hours, setIsSymptomFree24Hours] = useState(null);
 
 	// whenever the data for injury date, doctor clearance or other symtom based information changes, update the zone.
 	useEffect(() => {
@@ -80,6 +81,21 @@ function ActionPlanScreen({ navigation }) {
 			setActiveZone(zones.green);
 		}
 	}, [isSymptomFree24Hours, isSymptomTolerant])
+
+	useEffect(async () => {
+		if(isSymptomFree24Hours == null || isSymptomFree24Hours == null){
+			return;
+		}
+		await AsyncStorage.setItem('actionplan.isSymptomFree24Hours', isSymptomFree24Hours.toString());
+		await AsyncStorage.setItem('actionplan.isSymptomTolerant', isSymptomTolerant.toString());
+	}, [isSymptomFree24Hours, isSymptomTolerant]);
+
+	useEffect(async () => {
+		const isSymptomFree24HoursString = await AsyncStorage.getItem('actionplan.isSymptomFree24Hours');
+		const isSymptomTolerantString = await AsyncStorage.getItem("actionplan.isSymptomTolerant");
+		setIsSymptomTolerant((isSymptomTolerantString === "true"));
+		setIsSymptomFree24Hours((isSymptomFree24HoursString === "true"));
+	}, []);
 
 	useEffect(() => {
 		createAlert();
