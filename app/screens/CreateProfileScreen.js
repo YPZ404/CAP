@@ -138,8 +138,6 @@ function CreateProfileScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   inputAreaContainer: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height/4,
     alignItems: 'center',
     backgroundColor: '#9AD3FF',
     marginBottom: (Dimensions.get('window').height),
@@ -159,7 +157,6 @@ const styles = StyleSheet.create({
   },
   titlecontainer: {
     width: Dimensions.get('window').width/1.2,
-    height: Dimensions.get('window').height/2,
     alignItems: 'center',
     backgroundColor: '#9AD3FF',
     marginBottom: (Dimensions.get('window').height)/500,
