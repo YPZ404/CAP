@@ -85,7 +85,7 @@ function AllReports({ navigation }){
         >
           <Text style={uiStyle.buttonLabel}>Preliminary Test Reports</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.bottomButton}
           onPress={() => {
             if(account.account_id == null && account.first_name== 'John'){
@@ -97,7 +97,7 @@ function AllReports({ navigation }){
         }}
         >
           <Text style={uiStyle.buttonLabel}>Incident Reports</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </SafeAreaView>
     </SafeAreaView>
     );
