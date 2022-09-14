@@ -1,5 +1,5 @@
 export const TABLES_SQL = [
-  // TODO: remove
+//   //TODO: remove
 //   `
 // DROP TABLE IF EXISTS Patient;
 //   `,
