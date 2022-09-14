@@ -1,11 +1,12 @@
 import React from 'react'
-import renderer from 'react-test-renderer';
 import MyCheckbox from '../MyCheckbox';
-
+import {fireEvent, render, screen} from "@testing-library/react-native";
 
 describe("<MyCheckbox />", () => {
-    it("contains checkmark when checked", () => {
-        const tree = renderer.create(<MyCheckbox onUpdate={() => {}}></MyCheckbox>).toJSON();
-        expect(tree.children[0]).toBe('checkmark');
+
+    it("is unchecked by default", () => {
+        render(<MyCheckbox />);
+        expect(screen.queryByTestId("checkmark")).toBeNull();
     });
+
 });

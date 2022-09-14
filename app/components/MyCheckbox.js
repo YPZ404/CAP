@@ -15,7 +15,7 @@ const MyCheckbox = (props) => {
   function onCheckmarkPress() {
     onChange((prev) => {
       let checked = !prev;
-      props.onUpdate(checked);
+      props.onUpdate();
       return checked;
     });
   }
