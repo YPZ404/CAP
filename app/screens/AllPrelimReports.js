@@ -77,7 +77,6 @@ function AllPrelimReports({ navigation }){
 // console.log(usersButtons);
 return(
     <SafeAreaView style={uiStyle.container}>
-       <View style={styles.titlecontainer}>
   <Text style={styles.text}>
     All Preliminary Reports for {account.first_name}
   </Text>
@@ -88,7 +87,6 @@ return(
   >
     <Text style={uiStyle.buttonLabel}>Return to Home</Text>
   </TouchableOpacity>
-  </View>
 </SafeAreaView>
 );
 
