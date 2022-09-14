@@ -60,6 +60,8 @@ function AllPrelimReports({ navigation }){
     });
     //console.log(reportResults);
     if (reportResults.length > 0) {
+      let j = 1;
+      let z=0;
       for (let i = 0; i < reportResults.length; i++) {
           //console.log(reportResults[i]);
         const description = '\n Memory Test 1: '+dict[reportResults[i].memory_test1_result] + ' \n Memory Test 2: ' + dict[reportResults[i].memory_test2_result] +
@@ -67,16 +69,19 @@ function AllPrelimReports({ navigation }){
         dict[reportResults[i].balance_test2_result] +' \n';
         //console.log(description);
         usersButtons.push(
-          <Text key={i} style={uiStyle.text}>Report {reportResults[i].report_id} {description}</Text>,
+          <Text key={z} style={uiStyle.text}>Report {reportResults[i].report_id} {description}</Text>,
         );
         usersButtons.push(
           <TouchableOpacity
-        style={styles.bottomButton}
+        key={j} style={styles.bottomButton}
         onPress={()=> {createPDF(description)}}
       >
         <Text style={uiStyle.buttonLabel}>Generate PDF report</Text>
       </TouchableOpacity>
+        
         );
+        j+=2;
+        z+=2;
         // if(reportResults.length == 1){
         //   reportResults.pop();
         // }
