@@ -5,9 +5,12 @@ import {
   SafeAreaView,
   TextInput,
   ScrollView,
-  TouchableOpacity,
   Alert,
+  Dimensions,
+  View,
+  ImageBackground,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler'; 
 import {
   IncidentReportRepoContext,
   PatientContext,
@@ -69,7 +72,7 @@ function AllPrelimReports({ navigation }){
         dict[reportResults[i].balance_test2_result] +' \n';
         //console.log(description);
         usersButtons.push(
-          <Text key={z} style={uiStyle.text}>Report {reportResults[i].report_id} {description}</Text>,
+          <Text key={z} style={styles.reporttext}>Report {reportResults[i].report_id} {description}</Text>,
         );
         usersButtons.push(
           <TouchableOpacity
@@ -98,59 +101,105 @@ function AllPrelimReports({ navigation }){
       
       
 //     console.log('done');
-// console.log(usersButtons);
+//console.log(usersButtons);
 return(
-    <SafeAreaView style={uiStyle.container}>
+  <SafeAreaView style={uiStyle.container}>
+  <View style = {styles.titlecontainer}>
   <Text style={styles.text}>
     All Preliminary Reports for {account.first_name}
   </Text>
-  <ScrollView>{usersButtons}</ScrollView>
-  
+  </View>
+  <View style={{height: Dimensions.get('window').height/2}} >
+    <ScrollView>
+      {usersButtons}
+    </ScrollView>
+  </View>
   <TouchableOpacity
     style={styles.bottomButton}
     onPress={() => navigation.navigate('Home')}
   >
     <Text style={uiStyle.buttonLabel}>Return to Home</Text>
   </TouchableOpacity>
-</SafeAreaView>
+  </SafeAreaView>
+
 );
 
     
 }
 
 const styles = StyleSheet.create({
-    inputAreaContainer: {
-      flex: 1,
-      alignItems: 'center',
-    },
-    input: {
-      height: 40,
-      width: 300,
-      margin: 12,
-      borderRadius: 50,
-      padding: 10,
-      backgroundColor: '#D3D3D3',
-    },
-    text: {
-      fontSize: 16,
-      lineHeight: 21,
-      letterSpacing: 0.25,
-      marginHorizontal: 50,
-      marginVertical: 10,
-    },
-    bottomButton: {
-      marginLeft: 10,
-      marginRight: 10,
-      width: 300,
-      height: 50,
-      padding: 10,
-      marginVertical: 10,
-      borderRadius: 100,
-      backgroundColor: '#ff0000',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+  inputAreaContainer: {
+    flex: 1,
+    alignItems: 'center',
+    
+  },
+  input: {
+    height: 40,
+    width: 300,
+    margin: 12,
+    borderRadius: 50,
+    padding: 10,
+    backgroundColor: '#D3D3D3',
+  },
+  text: {
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/18,
+    fontWeight: '800',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+   
+  },
+  reporttext: {
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/20,
+    fontWeight: '600',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    marginTop: (Dimensions.get('window').height)/50,
+    marginBottom: (Dimensions.get('window').height)/30,
+  },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.5,
+    height: Dimensions.get('window').width/10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    marginTop: (Dimensions.get('window').height)/5,
+  },
+  titlecontainer: {
+    alignItems: 'center',
+    backgroundColor: '#9AD3FF',
+    marginBottom: (Dimensions.get('window').height)/300,
+    marginTop: (Dimensions.get('window').height)/20,
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+});
 
 
 export default AllPrelimReports;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

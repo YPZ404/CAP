@@ -5,8 +5,12 @@ import {
   SafeAreaView,
   TextInput,
   ScrollView,
-  TouchableOpacity,
+  Alert,
+  Dimensions,
+  View,
+  ImageBackground,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
   IncidentReportRepoContext,
   PatientContext,
@@ -60,6 +64,7 @@ function CreateProfileScreen({ navigation }) {
 
   return (
     <SafeAreaView style={uiStyle.container}>
+      <View style={styles.titlecontainer}>
       <Text style={styles.text}>
         Enter your details and the results will be saved in your profile
       </Text>
@@ -105,7 +110,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TouchableOpacity
-          style={styles.bottomButton}
+          style={[styles.bottomButton, styles.shadowProp]}
           onPress={() => {
             onCreateAccount(
               firstNameOfUser,
@@ -114,53 +119,71 @@ function CreateProfileScreen({ navigation }) {
               weightOfUser,
               password,
             );
-            navigation.navigate('Home');
+            navigation.navigate('Home Page');
           }}
         >
           <Text style={uiStyle.buttonLabel}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.bottomButton}
-          onPress={() => navigation.goBack()}
+          style={[styles.bottomButton, styles.shadowProp]}
+          onPress={() => navigation.navigate('Login')}
         >
           <Text style={uiStyle.buttonLabel}>Back</Text>
         </TouchableOpacity>
       </SafeAreaView>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   inputAreaContainer: {
-    flex: 1,
     alignItems: 'center',
+    backgroundColor: '#9AD3FF',
+    marginBottom: (Dimensions.get('window').height),
+    marginTop: (Dimensions.get('window').height)/45,
   },
   input: {
-    height: 40,
-    width: 300,
-    margin: 12,
-    borderRadius: 50,
-    padding: 10,
-    backgroundColor: '#D3D3D3',
+    width: Dimensions.get('window').width/1.5,
+    height: Dimensions.get('window').width/8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    marginBottom: (Dimensions.get('window').height)/80,
+    marginTop: (Dimensions.get('window').height)/80, 
+    borderRadius: 20,
+    padding:  Dimensions.get('window').width/50,
+    backgroundColor: '#FFFFFF',
+  },
+  titlecontainer: {
+    width: Dimensions.get('window').width/1.2,
+    alignItems: 'center',
+    backgroundColor: '#9AD3FF',
+    marginBottom: (Dimensions.get('window').height)/500,
+    marginTop: (Dimensions.get('window').height)/15,
   },
   text: {
-    fontSize: 16,
-    lineHeight: 21,
-    letterSpacing: 0.25,
-    marginHorizontal: 50,
-    marginVertical: 10,
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/25,
+    fontWeight: '800',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
   bottomButton: {
-    marginLeft: 10,
-    marginRight: 10,
-    width: 300,
-    height: 50,
-    padding: 10,
-    marginVertical: 10,
-    borderRadius: 100,
-    backgroundColor: '#ff0000',
-    alignItems: 'center',
+    width: Dimensions.get('window').width/2.5,
+    height: Dimensions.get('window').width/10,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    marginBottom: (Dimensions.get('window').height)/800,
+    marginTop: (Dimensions.get('window').height)/40,
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
   },
 });
 
