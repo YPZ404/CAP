@@ -74,10 +74,9 @@ function AllPrelimReports({ navigation }){
       
       
 //     console.log('done');
-// console.log(usersButtons);
+console.log(usersButtons);
 return(
-    <SafeAreaView style={uiStyle.container}>
-       <View style={styles.titlecontainer}>
+  <SafeAreaView style={uiStyle.container}>
   <Text style={styles.text}>
     All Preliminary Reports for {account.first_name}
   </Text>
@@ -88,7 +87,6 @@ return(
   >
     <Text style={uiStyle.buttonLabel}>Return to Home</Text>
   </TouchableOpacity>
-  </View>
 </SafeAreaView>
 );
 
@@ -99,6 +97,11 @@ const styles = StyleSheet.create({
   inputAreaContainer: {
     flex: 1,
     alignItems: 'center',
+  },
+  Containerr: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   input: {
     height: 40,
@@ -143,3 +146,23 @@ const styles = StyleSheet.create({
 
 
 export default AllPrelimReports;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

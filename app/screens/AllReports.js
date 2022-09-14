@@ -85,7 +85,7 @@ function AllReports({ navigation }){
                   createAlert();
               }
               else{
-                navigation.navigate('Prelim Report'); 
+                navigation.navigate('Continue Tests', {screen: 'Prelim Report'}); 
               }
                 
           }}
