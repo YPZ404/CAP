@@ -128,6 +128,7 @@ const [accounts, setAccounts] = useState([]);
           style={styles.input}
           onChangeText={onChangePassword}
           value={passwordValue}
+          secureTextEntry={true}
           placeholder="Password"
           returnKeyType="done"
         />
