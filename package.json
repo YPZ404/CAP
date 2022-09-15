@@ -53,10 +53,7 @@
         "lines": 80
       }
     },
-    "coverageReporters": [
-      "json",
-      "html"
-    ],
+    "coverageReporters": ["json","html"],
     "preset": "jest-expo"
   },
   "devDependencies": {
