@@ -18,6 +18,7 @@ import { useIsFocused } from "@react-navigation/native";
 function BTFour({ navigation }) {
   const [text, setText] = useState("Start!");
   const startedText = () => setText("Recording!");
+  const readyText = () => setText("Ready!");
   const resetText = () => setText("Start!");
   const [data2, setData2] = useContext(dataContext2);
   const [subscription, setSubscription] = useState(null);
@@ -36,6 +37,7 @@ function BTFour({ navigation }) {
   useEffect(() => {
     if (focussed) {
       if (started) {
+        readyText();
         startTimer = setTimeout(() => {
           Vibration.vibrate();
           _subscribe();
