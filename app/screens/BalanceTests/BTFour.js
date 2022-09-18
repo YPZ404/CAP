@@ -27,23 +27,28 @@ function BTFour({ navigation }) {
   const x_arr = [];
   const y_arr = [];
   const z_arr = [];
-  var timer = null;
+
+  var startTimer = null;
+  var endTimer = null;
   const [started, setStarted] = useState(false);
   const focussed = useIsFocused();
 
   useEffect(() => {
     if (focussed) {
       if (started) {
-        _subscribe();
-        startedText();
-        timer = setTimeout(() => {
-          Accelerometer.removeAllListeners();
+        startTimer = setTimeout(() => {
           Vibration.vibrate();
-          setSubscription(null);
-          resetText();
-          // storeResult(data2);
-          navigation.navigate("Balance Test Complete 2");
-        }, 10000);
+          _subscribe();
+          startedText();
+          endTimer = setTimeout(() => {
+            Accelerometer.removeAllListeners();
+            Vibration.vibrate();
+            setSubscription(null);
+            resetText();
+            // storeResult(data2);
+            navigation.navigate("Balance Test Complete 2");
+          }, 10000);
+        }, 1000);
       } else {
         return () => {};
       }
@@ -53,7 +58,8 @@ function BTFour({ navigation }) {
       setSubscription(null);
       setStarted(false);
       storeResult(data2);
-      clearTimeout(timer);
+      clearTimeout(startTimer)
+      clearTimeout(endTimer);
     };
   }, [focussed, started]);
 
@@ -108,17 +114,6 @@ function BTFour({ navigation }) {
         onPress={() => {
           if (!subscription) {
             setStarted(true);
-            // _subscribe();
-            // startedText();
-            // setTimer(
-            //   setTimeout(() => {
-            //     Accelerometer.removeAllListeners();
-            //     Vibration.vibrate();
-            //     setSubscription(null);
-            //     resetText();
-            //     navigation.navigate("Balance Test 5");
-            //   }, 10000)
-            // );
           }
         }}
         style={styles.startCheckButton}
@@ -128,8 +123,6 @@ function BTFour({ navigation }) {
       <View style={uiStyle.textContainer}>
         <TouchableOpacity
           onPress={() => {
-            // Accelerometer.removeAllListeners();
-            // clearTimeout(timer);
             navigation.navigate("Balance Test 1");
           }}
           style={uiStyle.bottomButton}
