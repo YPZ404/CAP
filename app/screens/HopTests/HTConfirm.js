@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Dimensions,
   TextInput,
+  Alert,
 } from "react-native";
 import { useContext, useState, useRef, useEffect } from 'react';
 
@@ -14,6 +15,19 @@ import uiStyle from "../../components/uiStyle";
 
 function HTComplete({ navigation }) {
   const [hops, onChangedHops] = useState('');
+
+  const createAlert = (message) => {
+    Alert.alert("Alert", message, [
+      {
+        text: "Ok"
+      },
+    ]);
+  }
+
+  const storeData = () => { 
+    const hopsInt = parseInt(hops);
+    // to do
+  }
 
   return (
     <SafeAreaView style={uiStyle.container}>
@@ -36,8 +50,20 @@ function HTComplete({ navigation }) {
       
       <TouchableOpacity
         onPress={() => {
-          console.log(hops)
-          navigation.navigate("Hop Test Form");
+          if (hops) {
+            var digitsPattern = /^\d*$/
+            if (digitsPattern.test(hops)) {
+              storeData()
+              navigation.navigate("Hop Test Form");
+            }
+            else {
+              createAlert("Please enter whole numbers only")
+            }
+          }
+          else {
+            createAlert("Enter the number of hops")
+          }
+          
         }}
         style={uiStyle.bottomButton}
       >
