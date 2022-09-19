@@ -48,6 +48,7 @@ function HTOne({ navigation }) {
           defaultValue={value}
           style={styles.dropdown}
           dropDownContainerStyle={styles.dropdown}
+          dropDownDirection="TOP"
         />
       </SafeAreaView>
 
