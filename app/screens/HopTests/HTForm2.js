@@ -11,7 +11,7 @@ import Slider from '@react-native-community/slider';
 
 import uiStyle from "../../components/uiStyle";
 
-function HTForm({ navigation }) {
+function HTForm2({ navigation }) {
   // const [reportId] = useContext(ReportIdContext);
   // const incidentRepoContext = useContext(IncidentReportRepoContext);
 
@@ -24,7 +24,7 @@ function HTForm({ navigation }) {
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
-          <Text style={uiStyle.titleText}>Hop Test Pre-Test Form</Text>
+          <Text style={uiStyle.titleText}>Hop Test Post-Test Form</Text>
           <Text style={uiStyle.text}>
             Do you have any of these symptoms?
           </Text>
@@ -87,7 +87,7 @@ function HTForm({ navigation }) {
           //     sliderFourValue,
           //   )
           //   .catch(console.log);
-          navigation.navigate("Hop Test 2");
+          navigation.navigate("Memory Test 5 Intro");
         }}
         style={uiStyle.bottomButton}
       >
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HTForm;
+export default HTForm2;

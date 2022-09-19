@@ -90,6 +90,7 @@ import HTTwo from './app/screens/HopTests/HTTwo';
 import HTComplete from './app/screens/HopTests/HTComplete';
 import HTConfirm from "./app/screens/HopTests/HTConfirm";
 import HTForm from "./app/screens/HopTests/HTForm";
+import HTForm2 from "./app/screens/HopTests/HTForm2";
 
 import Header from './Header';
 import LoginScreen from './app/screens/Login';
@@ -223,6 +224,7 @@ function CustomNavContent(){
     <RootStack.Screen name="Hop Test 2" component={HTTwo} options={{ title: 'Hop Test 1 ' }} />
     <RootStack.Screen name="Hop Test Confirm" component={HTConfirm} options={{ title: 'Hop Test Confirm ' }} />
     <RootStack.Screen name="Hop Test Form" component={HTForm} options={{ title: 'Hop Test Form ' }} />
+    <RootStack.Screen name="Hop Test Form 2" component={HTForm2} options={{ title: 'Hop Test Form 2' }} />
     <RootStack.Screen name="Hop Test Complete" component={HTComplete} options={{ title: 'Hop Test Complete ' }} />
 
     <RootStack.Screen name="Memory Test 5 Intro" component={MTFiveIntro} options={{ title: 'Memory Test 2' }}  />

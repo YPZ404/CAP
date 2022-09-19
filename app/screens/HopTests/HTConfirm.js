@@ -13,7 +13,7 @@ import { useContext, useState, useRef, useEffect } from 'react';
 
 import uiStyle from "../../components/uiStyle";
 
-function HTComplete({ navigation }) {
+function HTConfirm({ navigation }) {
   const [hops, onChangedHops] = useState('');
 
   const createAlert = (message) => {
@@ -54,7 +54,7 @@ function HTComplete({ navigation }) {
             var digitsPattern = /^\d*$/
             if (digitsPattern.test(hops)) {
               storeData()
-              navigation.navigate("Hop Test Form");
+              navigation.navigate("Hop Test Form 2");
             }
             else {
               createAlert("Please enter whole numbers only")
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HTComplete;
+export default HTConfirm;

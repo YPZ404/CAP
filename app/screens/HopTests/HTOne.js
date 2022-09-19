@@ -55,7 +55,7 @@ function HTOne({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           setAgeHopTestContext(value);
-          navigation.navigate("Hop Test 2");
+          navigation.navigate("Hop Test Form");
         }}
         style={uiStyle.bottomButton}
       >

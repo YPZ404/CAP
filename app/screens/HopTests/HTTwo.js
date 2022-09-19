@@ -40,7 +40,7 @@ function HTTwo({ navigation }) {
     Alert.alert("Alert", message, [
       {
         text: "Yes",
-        onPress: () => navigation.navigate("Hop Test Form"),
+        onPress: () => navigation.navigate("Hop Test Form 2"),
       },
       {
         text: "No",
