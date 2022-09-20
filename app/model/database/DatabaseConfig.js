@@ -82,6 +82,14 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
 `
 ,
 `
+CREATE TABLE IF NOT EXISTS DailySymptonLog (
+    log_id INTEGER PRIMARY KEY,
+    dsl_result INTEGER
+
+  );
+`
+,
+`
 CREATE TABLE IF NOT EXISTS MedicalReport (
     report_id INTEGER REFERENCES PreliminaryReport(report_id),
     memory_test1_correct_count INTEGER,
