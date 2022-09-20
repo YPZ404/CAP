@@ -152,11 +152,7 @@ function CustomNavContent(){
     />
     <RootStack.Screen name="Profile Info" component={ProfileInfoScreen} />
     <RootStack.Screen name="Login" component={LoginScreen} />
-    <RootStack.Screen name="Red flags checklist" component={RedFlagsChecklist}
-      options={{
-        headerTitle: () => <Header name="Red"></Header>
-      }}
-    />
+    <RootStack.Screen name="Red flags checklist" component={RedFlagsChecklist} />
     <RootStack.Screen name="PCSS Checklist" component={PCSSChecklist} />
     <RootStack.Screen name="Next Steps" component={NextStepsScreen} />
     <RootStack.Screen

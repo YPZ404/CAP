@@ -47,7 +47,7 @@ const exportMapAsCsv = async (
   await FileSystem.writeAsStringAsync(filePath, totalContents);
   const emailAttachments = [];
   emailAttachments.push(filePath);
-
+  console.log(filePath);
   MailComposer.composeAsync({
     recipients: ["matthewkarko@gmail.com"],
     subject: "Medical Report for *insert patient name please*",

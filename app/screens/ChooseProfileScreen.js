@@ -91,7 +91,7 @@ function SelectProfileScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.bottomButton}
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('Home Page')}
         >
           <Text style={uiStyle.buttonLabel}>Back</Text>
         </TouchableOpacity>

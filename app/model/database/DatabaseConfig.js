@@ -1,5 +1,5 @@
 export const TABLES_SQL = [
-  // TODO: remove
+//   //TODO: remove
 //   `
 // DROP TABLE IF EXISTS Patient;
 //   `,
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
 ,
 `
 CREATE TABLE IF NOT EXISTS MedicalReport (
-    report_id INTEGER PRIMARY KEY,
+    report_id INTEGER REFERENCES PreliminaryReport(report_id),
     memory_test1_correct_count INTEGER,
     memory_test2_correct_count INTEGER,
     reaction_test_time_1 INTEGER,
