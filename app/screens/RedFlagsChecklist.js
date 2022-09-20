@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   Pressable,
+  Dimensions,
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
@@ -55,7 +56,10 @@ function RedFlagsChecklist({ navigation }) {
   const chosenList = [];
   return (
     <SafeAreaView style={uiStyle.container}>
-      <Text style={uiStyle.text}>
+      <Text style={styles.headingText}>
+        Red Flag Checklist
+      </Text>
+      <Text style={styles.subheadingText}>
         Are any of the following symptoms present? Select all that apply.
       </Text>
       <ScrollView>
@@ -144,6 +148,17 @@ function RedFlagsChecklist({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  headingText: {
+    color: '#003A67',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  subheadingText: {
+    color: '#003A67',
+    fontWeight: 'bold',
+    fontSize: 20,
+  }
+});
 
 export default RedFlagsChecklist;

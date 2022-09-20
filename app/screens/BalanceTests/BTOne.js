@@ -8,14 +8,19 @@ import {
   ScrollView,
 } from 'react-native';
 
+import { useContext } from 'react';
+
+import { MedicalReportRepoContext, PrelimReportIdContext } from '../../components/GlobalContextProvider';
 import uiStyle from '../../components/uiStyle';
 
 function BTOne({ navigation }) {
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
+  const [prelimReportId] = React.useContext(PrelimReportIdContext);
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
-          <Text style={uiStyle.titleText}>Instructions</Text>
+          <Text style={uiStyle.titleText}>Balance Test</Text>
           <Text style={uiStyle.stackedText}>
             This section consists of 2 tests with 2 recordings. Read the
             instructions carefully before starting each test.{'\n'}
@@ -40,7 +45,7 @@ function BTOne({ navigation }) {
 }
 
 const title = '#000000';
-const text = '#fff';
+const text = '#003A67';
 const background = '#fff';
 const buttons = '#ff0000';
 const styles = StyleSheet.create({

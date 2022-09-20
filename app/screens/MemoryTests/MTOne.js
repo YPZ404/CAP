@@ -21,7 +21,7 @@ function MTOne({ navigation }) {
   return (
     <SafeAreaView style={uiStyle.container}>
       <View style={uiStyle.container}>
-        <Text style={uiStyle.titleText}>Memory Test 1</Text>
+        <Text style={uiStyle.titleText}>Memory Test</Text>
         <ScrollView>
           <Text style={styles.text}>
               {'\n'} {'\n'}

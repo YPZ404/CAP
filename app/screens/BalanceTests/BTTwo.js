@@ -11,40 +11,46 @@ import { Accelerometer } from "expo-sensors";
 
 import uiStyle from "../../components/uiStyle";
 import { useContext, useState, useEffect } from "react";
-import { dataContext, PrelimReportIdContext, PreliminaryReportRepoContext, } from "../../components/GlobalContextProvider";
+import { dataContext, PrelimReportIdContext, PreliminaryReportRepoContext, MedicalReportRepoContext } from "../../components/GlobalContextProvider";
 import getStandardDeviation from "../../model/standardDeviation";
 import { useIsFocused } from "@react-navigation/native";
 
 function BTTwo({ navigation }) {
   const [text, setText] = useState("Start!");
   const startedText = () => setText("Recording!");
+  const readyText = () => setText("Ready!");
   const resetText = () => setText("Start!");
   const [data, setData] = useContext(dataContext);
   const [subscription, setSubscription] = useState(null);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [prelimReportId] = useContext(PrelimReportIdContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
 
   const x_arr = [];
   const y_arr = [];
   const z_arr = [];
-  // const [timer, setTimer] = useState(null);
-  var timer = null;
+  var startTimer = null;
+  var endTimer = null;
   const [started, setStarted] = useState(false);
   const focussed = useIsFocused();
 
   useEffect(() => {
     if (focussed) {
       if (started) {
-        _subscribe();
-        startedText();
-        timer = setTimeout(() => {
-          Accelerometer.removeAllListeners();
+        readyText()
+        startTimer = setTimeout(() => {
           Vibration.vibrate();
-          setSubscription(null);
-          resetText();
-          // storeResult(data);
-          navigation.navigate("Balance Test Complete");
-        }, 10000);
+          _subscribe();
+          startedText();
+          endTimer = setTimeout(() => {
+            Accelerometer.removeAllListeners();
+            Vibration.vibrate();
+            setSubscription(null);
+            resetText();
+            // storeResult(data);
+            navigation.navigate("Balance Test Complete");
+          }, 10000);
+        }, 1000);
       } else {
         return () => {};
       }
@@ -54,13 +60,18 @@ function BTTwo({ navigation }) {
       setSubscription(null);
       setStarted(false)
       storeResult(data);
-      clearTimeout(timer);
+      clearTimeout(startTimer);
+      clearTimeout(endTimer);
     };
   }, [focussed, started]);
 
   const storeResult = (info) => {
     var variation = Math.round(Math.pow(info, 2) * 1000) / 1000;
     var deviation = Math.round(info * 1000) / 1000;
+    console.log(variation);
+    console.log(deviation);
+    medicalReportRepoContext.updateBalanceTest1Result(prelimReportId,variation,deviation);
+    medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>console.log(data));
 
     var result = "FAIL";
     if (deviation < 0.2 && variation < 0.05) {
@@ -126,9 +137,6 @@ function BTTwo({ navigation }) {
       <View style={uiStyle.textContainer}>
         <TouchableOpacity
           onPress={() => {
-            // console.log("Cancelled")
-            // Accelerometer.removeAllListeners();
-            // clearTimeout(timer);
             navigation.navigate("Balance Test 1");
           }}
           style={uiStyle.bottomButton}

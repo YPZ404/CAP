@@ -44,17 +44,17 @@ function FurtherTests({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          var counter = prelimReportId;
-          counter++;
-          setPrelimReportId(counter);
-          preliminaryReportRepoContext.createReport(null, counter, -10, -10,-10, -10, -10).then(() => {
+          let currentDate = new Date().toJSON().slice(0,19);
+          
+          preliminaryReportRepoContext.createReport(null,currentDate, -10, -10,-10, -10, -10).then((reportId) => {
+            setPrelimReportId(reportId);
             preliminaryReportRepoContext
-              .getCurrentReportInformation(counter)
+              .getCurrentReportInformation(reportId)
               .then((data) => console.log(data))
                 
             
           });  
-          navigation.navigate('Memory Test 1')
+          navigation.navigate('Continue Tests', {screen: 'Memory Test 1'})
         }}
         style={uiStyle.bottomButton}
       >

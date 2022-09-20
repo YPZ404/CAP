@@ -18,6 +18,7 @@ import {
   MemoryCorrectAnswerContext,
   PreliminaryReportRepoContext,
   PrelimReportIdContext,
+  MedicalReportRepoContext
 } from '../../components/GlobalContextProvider';
 import DisplayOptions from '../../components/MemoryTests/DisplayOptions';
 import { getShuffledOptions } from '../../model/constants/MemoryTestOptions';
@@ -25,6 +26,7 @@ import MyCheckbox from "../../components/MyCheckbox";
 import updateProps from "react-native-reanimated/src/reanimated2/UpdateProps";
 import cbStyle from "../../components/checkboxStyle";
 import {Ionicons} from "@expo/vector-icons";
+import { exportMapAsCsv } from '../../model/exportAsCsv';
 
 /**a
  * The screen will be perform memory test.
@@ -39,6 +41,8 @@ function MTFour({ navigation }) {
   const [memoryCorrectAnswerContext] = useContext(MemoryCorrectAnswerContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const medicalReportRepoContext = useContext(MedicalReportRepoContext);
+
   
   // Local state
   const [options] = useState(getShuffledOptions());
@@ -46,7 +50,13 @@ function MTFour({ navigation }) {
 
   function isEqual(a, b)
   {
-      return a.join() == b.join();
+    var counter = 3;
+    for(var i=0;i<a.length;i++){
+      if(!(a.includes(b[i]))){
+        counter--;
+      }
+    }
+    return counter;
   }
 
   const handleCreateMultiResponse = (res) => {
@@ -104,7 +114,7 @@ function MTFour({ navigation }) {
   const chosenList = [];
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#349BEB' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#9AD3FF' }}>
       <Text style={uiStyle.text}>
         What three images does your patient remember?
       </Text>
@@ -116,13 +126,15 @@ function MTFour({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           //Logic to generate Pass or fail mark
-
-          memoryCorrectAnswerContext.sort();
-          chosenList.sort();
-          console.log(isEqual(memoryCorrectAnswerContext,chosenList));
-        
-
-          if(isEqual(memoryCorrectAnswerContext,chosenList) == true){
+          // memoryCorrectAnswerContext.sort();
+          // chosenList.sort();
+          
+          const result = isEqual(memoryCorrectAnswerContext,chosenList);
+          console.log(result);
+          medicalReportRepoContext.updateMemoryTestReportResult1(prelimReportId,result);
+          medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>console.log(data));
+          // exportMapAsCsv("test",medicalReportRepoContext.getCurrentMemoryTestReportInformation(prelimReportId));
+          if(result == 3){
             preliminaryReportRepoContext.updateMemoryTest1Result(prelimReportId,1);
           }
           else{
@@ -157,7 +169,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#349BEB',
+        backgroundColor: '#9AD3FF',
     },
 
     buttonLabel: {
