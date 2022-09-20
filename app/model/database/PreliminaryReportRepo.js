@@ -74,7 +74,7 @@
     }
     /**
      *
-     * @param {number} reportId report id
+     * @param {number} patientId report id
      * @return {Promise<any[]>} array of SingleResponse rows
      */
     async getListofPatientReports(patientId) {
@@ -85,7 +85,7 @@
         this.da.runSqlStmt(sql, args).then(
           (rs) => {
             if (rs.rows.length < 1) {
-            reject(new Error(`No report in  ${reportId}`));
+            reject(new Error(`No report in  ${patientId}`));
             return;
             }
             //console.log(rs.rows._array);
