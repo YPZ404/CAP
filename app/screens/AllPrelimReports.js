@@ -54,9 +54,9 @@ function AllPrelimReports({ navigation }){
     let reports = [];
   preliminaryReportRepoContext.getListofPatientReports(account.account_id).then((values) => {
     //console.log(values);
-    if(reportResults != null){
+    // if(reportResults != null){
       setReportResults(values);
-    }
+    //}
     
     // console.log(reports.length);
 
@@ -67,7 +67,13 @@ function AllPrelimReports({ navigation }){
       let z=0;
       for (let i = 0; i < reportResults.length; i++) {
           //console.log(reportResults[i]);
-        const description = '\n Memory Test 1: '+dict[reportResults[i].memory_test1_result] + ' \n Memory Test 2: ' + dict[reportResults[i].memory_test2_result] +
+          const dateAndTime = reportResults[i].date_of_test.split('T');
+          let time;
+          if(dateAndTime[1] != null){
+            time = dateAndTime[1].slice(3, 8);
+          }
+          
+        const description = ' '+dateAndTime[0]+' '+time+'\n Memory Test 1: '+dict[reportResults[i].memory_test1_result] + ' \n Memory Test 2: ' + dict[reportResults[i].memory_test2_result] +
         ' \n Reaction Test: '+ dict[reportResults[i].reaction_test_result] + ' \n Balance Test 1: '+ dict[reportResults[i].balance_test1_result] +' \n Balance Test 2: '+
         dict[reportResults[i].balance_test2_result] +' \n';
         //console.log(description);
