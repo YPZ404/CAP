@@ -10,9 +10,19 @@ describe("<MyCheckbox />", () => {
     });
 
     it("is checked when pressed", () => {
-        render(<MyCheckbox />);
-        fireEvent.click(screen.getByTestId("checkbox"));
-        expect(screen.queryByTestId("checkmark")).not.toBeNull();
+        let checked = false;
+        const {queryByTestId} = render(
+            <MyCheckbox
+                value={checked}
+                onUpdate={() => (checked = !checked)}
+                testID="checkbox"
+            />
+
+        );
+        const checkBox = queryByTestId('checkbox');
+        expect(checked).toBeFalsy();
+        fireEvent(checkBox, 'onUpdate', {nativeEvent: {}});
+        expect(checked).toBeTruthy();
     });
 
     it("is unchecked when pressed twice", () => {
