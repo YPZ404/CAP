@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
 	Text,
@@ -14,9 +14,10 @@ import Badge from '../components/Badge';
 
 import uiStyle from '../components/uiStyle';
 import MyCheckbox from '../components/MyCheckbox';
-
+import { PreliminaryReportRepoContext } from '../components/GlobalContextProvider';
 
 function ActionPlanScreen({ navigation }) {
+	
 	const createAlert = () =>
 		Alert.alert(
 		'Alert',
@@ -54,18 +55,28 @@ function ActionPlanScreen({ navigation }) {
 	const [activeZone, setActiveZone] = useState(zones.red);
 	const [isSymptomTolerant, setIsSymptomTolerant] = useState(null);
 	const [isSymptomFree24Hours, setIsSymptomFree24Hours] = useState(null);
-
+	const [strDate, setStrDate] = useState({'':''});
+	const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+	preliminaryReportRepoContext.getLatestReportDate().then((data)=>{
+		setStrDate(data);
+	});
+	
+	
+	
 	// whenever the data for injury date, doctor clearance or other symtom based information changes, update the zone.
 	useEffect(() => {
 		// for now, let's set the injury date to 2 days ago.
-		var injuryDate = new Date();
-		injuryDate.setDate(injuryDate.getDate() - 2);
-
+		
+		// console.log(Object.entries(strDate)[0][1]);
+		// console.log(strDate);
+		var injuryDate = new Date(Object.entries(strDate)[0][1]);
+		
+		injuryDate.setDate(injuryDate.getDate());
 		// calculate how long it was since the injury
 		var today = new Date();
 		var difference = today.getTime() - injuryDate.getTime();
 		var daysSinceInjury =  Math.floor(difference / (1000 * 3600 * 24));
-
+		console.log(daysSinceInjury);
 		// zone logic
 		if(daysSinceInjury <= 2){
 			setActiveZone(zones.red);
