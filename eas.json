@@ -5,10 +5,17 @@
   "build": {
     "preview": {
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
       },
       "ios": {
         "simulator": true
+      }
+    },
+    "debug": {
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleAndroidTest -DtestBuildType=release"
       }
     },
     "production": {}

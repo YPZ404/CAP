@@ -9,7 +9,8 @@
     },
     "android": {
       "type": "android.apk",
-      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY"
+      "binaryPath": "./e2e/bin/android.apk",
+      "testBinaryPath": "./e2e/bin/androidTest.apk"
     }
   },
   "devices": {
@@ -22,7 +23,7 @@
     "emulator": {
       "type": "android.emulator",
       "device": {
-        "avdName": "Pixel_3a_API_30_x86"
+        "avdName": "Pixel_4a_API_33"
       }
     }
   },

@@ -1,12 +1,14 @@
-const { reloadApp } = require('detox-expo-helpers');
-
 describe('Example', () => {
   beforeAll(async () => {
-    await reloadApp();
+    console.log("spaghetti testing");
+    await device.launchApp();
+    console.log("finished!");
   });
 
   beforeEach(async () => {
-    await reloadApp();
+    console.log("Awaiting react native");
+    await device.reloadReactNative();
+    console.log("Awaited react native");
   });
 
   it('should have a disclaimer screen', async () => {
