@@ -1,47 +1,45 @@
-export const TABLES_SQL = [
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS Patient;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS IncidentReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponse;
-//   `,
+var TABLES_SQL = [];
 
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,  
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponsePart;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS SingleResponse;
-//   `,
-//   // TODO: remove
-//   `
-// DROP TABLE IF EXISTS ReactionTest;
-// `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSSymptoms;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSNPCDistance;
-//   `,
-//   `
-// DROP TABLE IF EXISTS BalanceTestReport;
-//   `,
+if(__DEV__){
+  const DROP_SQL = [
+    `
+  DROP TABLE IF EXISTS Patient;
+    `,
+    `
+  DROP TABLE IF EXISTS IncidentReport;
+    `,
+    `
+  DROP TABLE IF EXISTS PreliminaryReport;
+    `,
+    `
+  DROP TABLE IF EXISTS MultiResponse;
+    `,
+    `
+  DROP TABLE IF EXISTS PreliminaryReport;
+    `,  
+    `
+  DROP TABLE IF EXISTS MultiResponsePart;
+    `,
+    `
+  DROP TABLE IF EXISTS SingleResponse;
+    `,
+    `
+  DROP TABLE IF EXISTS ReactionTest;
+  `,
+    `
+  DROP TABLE IF EXISTS VOMSSymptoms;
+    `,
+    `
+  DROP TABLE IF EXISTS VOMSNPCDistance;
+    `,
+    `
+  DROP TABLE IF EXISTS BalanceTestReport;
+    `,
+  ];
+  TABLES_SQL.push(...DROP_SQL);
+}
+
+CREATE_TABLES_SQL = [
   `
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INTEGER PRIMARY KEY,
@@ -179,3 +177,7 @@ CREATE TABLE IF NOT EXISTS VOMSNPCDistance (
 );
 `,
 ];
+
+TABLES_SQL.push(...CREATE_TABLES_SQL);
+
+export {TABLES_SQL};
