@@ -29,7 +29,7 @@ function ActionPlanScreen({ navigation }) {
 			},
 			{
 			text: 'Check Symptoms',
-			onPress: () => navigation.navigate('HEAD BUMPS'),
+			onPress: () => navigation.navigate('Continue Tests', {screen: "HEAD BUMPS"}),
 			},
 		],
     );
@@ -192,7 +192,7 @@ function ActionPlanScreen({ navigation }) {
 						</Text>
 				</ExpandableTab>
 				<View style={uiStyle.container}>
-					<TouchableOpacity style={styles.bottomButton} onPress={() => navigation.navigate("HEAD BUMPS")}>
+					<TouchableOpacity style={styles.bottomButton} onPress={() => navigation.navigate('Continue Tests', { screen: 'HEAD BUMPS' })}>
 						<Text style={uiStyle.buttonLabel}>Check Symptoms</Text>
 					</TouchableOpacity>
 				</View>
