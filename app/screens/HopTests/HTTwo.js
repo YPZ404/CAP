@@ -20,6 +20,7 @@ function HTTwo({ navigation }) {
   const [ageHopTestContext] = useContext(AgeHopTestContext);
   const [text, setText] = useState("Start!");
   const startedText = () => setText("Recording!");
+  const readyText = () => setText("Ready!");
   const resetText = () => setText("Start!");
   const [subscription, setSubscription] = useState(null);
 
@@ -52,6 +53,7 @@ function HTTwo({ navigation }) {
   useEffect(() => {
     if (focussed) {
       if (started) {
+        readyText();
         startTimer = setTimeout(() => {
           Vibration.vibrate();
           _subscribe();

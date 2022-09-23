@@ -152,7 +152,7 @@ function LoginScreen({ navigation }){
               lastNameOfUser,
               passwordValue
             )){
-                navigation.navigate('Continue Tests', {screen: 'Home Page'});
+                navigation.navigate('Home Page');
             }else{
                 createAlert();
             };
