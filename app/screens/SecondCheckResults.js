@@ -71,7 +71,7 @@ function SecondCheckResults({ route, navigation }) {
     screen = (
       <ScrollView styles={styles.scroll}>
         <View style={uiStyle.container}>
-          <Text style={styles.text}>
+          <Text style={uiStyle.stackedText}>
             The affected individual is displaying some symptoms of concussion.
             {'\n'} {'\n'}
             We strongly recommend you complete our preliminary tests.
