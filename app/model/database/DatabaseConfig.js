@@ -40,7 +40,7 @@ export const TABLES_SQL = [
 // DROP TABLE IF EXISTS VOMSNPCDistance;
 //   `,
 //   `
-// DROP TABLE IF EXISTS BalanceTestReport;
+// DROP TABLE IF EXISTS DailySymptonLog;
 //   `,
   `
 CREATE TABLE IF NOT EXISTS Patient (
@@ -81,8 +81,9 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
   );
 `
 ,
+// Add necessary stuff for user @mariam :)
 `
-CREATE TABLE IF NOT EXISTS DailySymptonLog (
+CREATE TABLE IF NOT EXISTS DailySymptomLog (
     log_id INTEGER PRIMARY KEY,
     dsl_result INTEGER
 

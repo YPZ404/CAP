@@ -95,6 +95,7 @@ import LoginScreen from './app/screens/Login';
 import AllReports from './app/screens/AllReports';
 import AllPrelimReports from './app/screens/AllPrelimReports';
 import AllIncidentReports from './app/screens/AllIncidentReports';
+import DSLComplete from './app/screens/DSLComplete';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -270,6 +271,7 @@ function CustomNavContent(){
     <RootStack.Screen name="VOMS VMS 1" component={VMS1} />
     <RootStack.Screen name="VOMS VMS 2" component={VMS2} />
     <RootStack.Screen name="VOMS VMS 3 Response 8" component={VMS3} />
+    <RootStack.Screen name="DSL Complete" component={DSLComplete}/>
   </RootStack.Navigator>
   );
 }
@@ -315,6 +317,7 @@ function MyDrawer() {
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
       <Drawer.Screen name="Continue Tests" component={CustomNavContent} 
+    
        options={{
         headerTitle: () => <Header name=""></Header>,
         headerStyle: {

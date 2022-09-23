@@ -442,5 +442,39 @@
       const rs = await this.da.runSqlStmt(sql, args);
       return rs.rows.item(0);
     }
+
+
+    async createDSL(dsl_result) {
+      const sql =
+        'INSERT INTO DailySymptomLog (dsl_result) VALUES (?);';
+  
+      return new Promise((resolve, reject) => {
+        this.da.runSqlStmt(sql, [dsl_result]).then((rs) => {
+          resolve(rs.insertId);
+        }, reject);
+      });
+    }
+
+    async updateDSL(dsl_result, logId){
+      
+      const rs = await this.da.runSqlStmt(
+      `UPDATE DailySymptomLog SET dsl_result = ? WHERE log_id = ?;`,
+      [dsl_result, logId],
+
+      );
+      return rs.insertId;
+
+  }
+  async getDSL(logId) {
+    
+
+    const sql = `SELECT * FROM DailySymptomLog WHERE log_id = ?;`;
+    const args = [logId];
+
+    const rs = await this.da.runSqlStmt(sql, args);
+    return rs.rows.item(0);
+  }
+
+
   }
   
