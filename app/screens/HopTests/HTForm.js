@@ -269,7 +269,7 @@ function HTForm({ navigation }) {
           //     sliderFourValue,
           //   )
           //   .catch(console.log);
-          navigation.navigate("Hop Test 2");
+          navigation.navigate("Hop Test 2", {hopTestPreForm:totalScore});
         }}
         style={uiStyle.bottomButton}
       >

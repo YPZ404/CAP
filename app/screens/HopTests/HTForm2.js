@@ -11,9 +11,12 @@ import Slider from '@react-native-community/slider';
 
 import uiStyle from "../../components/uiStyle";
 
-function HTForm2({ navigation }) {
+function HTForm2({ route, navigation }) {
   // const [reportId] = useContext(ReportIdContext);
   // const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const hopTestRoute = route.params;
+  var hopTestPreFormResult = Object.values(hopTestRoute)[0]
+  var hopTestCountResult = Object.values(hopTestRoute)[1]
 
   const [sliderOneValue, setSliderOneValue] = React.useState(0);
   const [sliderTwoValue, setSliderTwoValue] = React.useState(0);
@@ -258,7 +261,7 @@ function HTForm2({ navigation }) {
             + sliderSevenValue + sliderEightValue + sliderNineValue + sliderTenValue + sliderElevenValue + sliderTwelveValue
             + sliderThirteenValue + sliderFourteenValue + sliderFifteenValue + sliderSixteenValue + sliderSeventeenValue
             + sliderEighteenValue + sliderNineteenValue + sliderTwentyValue
-          console.log(totalScore)
+          // console.log(totalScore)
           // incidentRepoContext
           //   .addVOMSSymptoms(
           //     reportId,
@@ -269,7 +272,7 @@ function HTForm2({ navigation }) {
           //     sliderFourValue,
           //   )
           //   .catch(console.log);
-          navigation.navigate("Memory Test 5 Intro");
+          navigation.navigate("Hop Test Complete", {hopTestPreForm:hopTestPreFormResult, hopTestCount:hopTestCountResult, hopTestPostForm:totalScore});
         }}
         style={uiStyle.bottomButton}
       >

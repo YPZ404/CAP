@@ -9,12 +9,14 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import { useContext, useState, useRef, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import uiStyle from "../../components/uiStyle";
 
-function HTConfirm({ navigation }) {
+function HTConfirm({ route, navigation }) {
   const [hops, onChangedHops] = useState('');
+  const hopTestRoute = route.params;
+  var hopTestPreFormResult = Object.values(hopTestRoute)[0]
 
   const createAlert = (message) => {
     Alert.alert("Alert", message, [
@@ -22,11 +24,6 @@ function HTConfirm({ navigation }) {
         text: "Ok"
       },
     ]);
-  }
-
-  const storeData = () => { 
-    const hopsInt = parseInt(hops);
-    // to do
   }
 
   return (
@@ -53,8 +50,8 @@ function HTConfirm({ navigation }) {
           if (hops) {
             var digitsPattern = /^\d*$/
             if (digitsPattern.test(hops)) {
-              storeData()
-              navigation.navigate("Hop Test Form 2");
+              var hopsInt = parseInt(hops);
+              navigation.navigate("Hop Test Form 2", {hopTestPreForm:hopTestPreFormResult, hopTestCount:hopsInt});
             }
             else {
               createAlert("Please enter whole numbers only")

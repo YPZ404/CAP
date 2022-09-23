@@ -8,7 +8,15 @@ import {
 
 import uiStyle from '../../components/uiStyle';
 
-function HTComplete({ navigation }) {
+function HTComplete({ route, navigation }) {
+  const hopTestRoute = route.params;
+  var hopTestPreFormResult = Object.values(hopTestRoute)[0]
+  var hopTestCountResult = Object.values(hopTestRoute)[1]
+  var hopTestPostFormResult = Object.values(hopTestRoute)[2]
+  console.log(hopTestPreFormResult)
+  console.log(hopTestCountResult)
+  console.log(hopTestPostFormResult)
+
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>

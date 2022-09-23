@@ -11,18 +11,21 @@ import {
 import { Accelerometer } from "expo-sensors";
 
 import uiStyle from "../../components/uiStyle";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from 'react';
 import { useIsFocused } from "@react-navigation/native";
 
 import { AgeHopTestContext } from "../../components/GlobalContextProvider";
 
-function HTTwo({ navigation }) {
+function HTTwo({ route, navigation }) {
   const [ageHopTestContext] = useContext(AgeHopTestContext);
   const [text, setText] = useState("Start!");
   const startedText = () => setText("Recording!");
   const readyText = () => setText("Ready!");
   const resetText = () => setText("Start!");
   const [subscription, setSubscription] = useState(null);
+  const hopTestRoute = route.params;
+  var hopTestPreFormResult = Object.values(hopTestRoute)[0]
+
 
   var startTimer = null;
   var endTimer = null;
@@ -41,11 +44,11 @@ function HTTwo({ navigation }) {
     Alert.alert("Alert", message, [
       {
         text: "Yes",
-        onPress: () => navigation.navigate("Hop Test Form 2"),
+        onPress: () => navigation.navigate("Hop Test Form 2", {hopTestPreForm:hopTestPreFormResult, hopTestCount:hopCnt}),
       },
       {
         text: "No",
-        onPress: () => navigation.navigate("Hop Test Confirm"),
+        onPress: () => navigation.navigate("Hop Test Confirm", {hopTestPreForm:hopTestPreFormResult}),
       },
     ]);
   }
