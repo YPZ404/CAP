@@ -12,11 +12,13 @@ import uiStyle from '../components/uiStyle';
 import Slider from '@react-native-community/slider';
 import { useContext, useState} from 'react';
 import {
-  IncidentReportRepoContext,
-  ReportIdContext,
+  PreliminaryReportRepoContext,
+  DSLIdContext
 } from '../components/GlobalContextProvider';
 
-function PCSSChecklist({ navigation }) {
+function DSLScreen({ navigation }) {
+  const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
+  const [dslId, setDSLId] = useContext(DSLIdContext);
 
   const [sliderOneValue, setSliderOneValue] = useState(0);
   const [sliderTwoValue, setSliderTwoValue] = useState(0);
@@ -43,6 +45,7 @@ function PCSSChecklist({ navigation }) {
 
 
 
+
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
@@ -56,6 +59,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderOneValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider1 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -66,6 +70,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderTwoValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider2 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -76,6 +81,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderThreeValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider3 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -86,6 +92,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderFourValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider4 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -96,6 +103,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderFiveValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider5 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -106,6 +114,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderSixValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider6 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -117,6 +126,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderSevenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider7 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -127,6 +137,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderEightValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider8 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -137,6 +148,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderTwentyValue}</Text>
             </View>
             <Slider
+            ref={r => this.slider20 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -147,6 +159,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderNineValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider9 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -157,6 +170,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderTenValue}</Text>
             </View>
             <Slider
+             ref={r => this.slider10 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -167,6 +181,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderElevenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider11 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -177,6 +192,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderTwelveValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider12 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -187,6 +203,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderThirteenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider13 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -197,6 +214,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderFourteenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider14 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -207,6 +225,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderFifteenValue}</Text>
             </View>
             <Slider
+            ref={r => this.slider15 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -217,6 +236,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderSixteenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider16 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -227,6 +247,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderSeventeenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider17 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -237,6 +258,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderEighteenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider18 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -247,6 +269,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={[uiStyle.text]}>{sliderNineteenValue}</Text>
             </View>
             <Slider
+              ref={r => this.slider19 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -261,7 +284,56 @@ function PCSSChecklist({ navigation }) {
               sliderSevenValue+sliderEightValue+sliderNineValue+sliderTenValue+sliderElevenValue+
               sliderTwelveValue + sliderThirteenValue+sliderFourteenValue+sliderFifteenValue+sliderSixteenValue+
               sliderSeventeenValue+sliderEighteenValue+sliderNineteenValue+sliderTwentyValue;
-            navigation.navigate('Incident Report Result', {sliderResult: totalSliderValue});
+            setSliderOneValue(0);
+            setSliderTwoValue(0);
+            setSliderThreeValue(0);
+            setSliderFourValue(0);
+            setSliderFiveValue(0);
+            setSliderSixValue(0);
+            setSliderSevenValue(0);
+            setSliderEightValue(0);
+            setSliderNineValue(0);
+            setSliderTenValue(0);
+            setSliderElevenValue(0);
+            setSliderTwelveValue(0);
+            setSliderThirteenValue(0);
+            setSliderFourteenValue(0);
+            setSliderFifteenValue(0);
+            setSliderSixteenValue(0);
+            setSliderSeventeenValue(0);
+            setSliderEighteenValue(0);
+            setSliderNinteenValue(0);
+            setSliderTwentyValue(0);
+            this.slider1.setNativeProps({value:0});
+            this.slider2.setNativeProps({value:0});
+            this.slider3.setNativeProps({value:0});
+            this.slider4.setNativeProps({value:0});
+            this.slider5.setNativeProps({value:0});
+            this.slider6.setNativeProps({value:0});
+            this.slider7.setNativeProps({value:0});
+            this.slider8.setNativeProps({value:0});
+            this.slider9.setNativeProps({value:0});
+            this.slider10.setNativeProps({value:0});
+            this.slider11.setNativeProps({value:0});
+            this.slider12.setNativeProps({value:0});
+            this.slider13.setNativeProps({value:0});
+            this.slider14.setNativeProps({value:0});
+            this.slider15.setNativeProps({value:0});
+            this.slider16.setNativeProps({value:0});
+            this.slider17.setNativeProps({value:0});
+            this.slider18.setNativeProps({value:0});
+            this.slider19.setNativeProps({value:0});
+            this.slider20.setNativeProps({value:0});
+
+
+            // Add necessary stuff for user @mariam :)
+            preliminaryReportRepoContext.createDSL(totalSliderValue).then((data)=>setDSLId(data));
+            navigation.navigate('Continue Tests', { screen: 'DSL Complete'});
+           
+
+            
+
+
           }}
           style={uiStyle.bottomButton}
         >
@@ -287,4 +359,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PCSSChecklist;
+export default DSLScreen;
