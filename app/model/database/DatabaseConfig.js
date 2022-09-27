@@ -16,7 +16,10 @@ if(__DEV__){
     `,
     `
   DROP TABLE IF EXISTS PreliminaryReport;
-    `,  
+    `,
+    `
+  DROP TABLE IF EXISTS MedicalReport;
+    `,
     `
   DROP TABLE IF EXISTS MultiResponsePart;
     `,
@@ -74,8 +77,8 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
     memory_test2_result INTEGER,
     reaction_test_result INTEGER,
     balance_test1_result INTEGER,
-    balance_test2_result INTEGER
-
+    balance_test2_result INTEGER,
+    hop_test_result INTEGER
   );
 `
 ,
@@ -99,8 +102,10 @@ CREATE TABLE IF NOT EXISTS MedicalReport (
     balance_test1_variance FLOAT,
     balance_test1_deviation FLOAT,
     balance_test2_variance FLOAT,
-    balance_test2_deviation FLOAT
-
+    balance_test2_deviation FLOAT,
+    hop_test_pre_form INTEGER,
+    hop_test_count INTEGER,
+    hop_test_post_form INTEGER
   );
 `
 ,
