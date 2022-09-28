@@ -1,42 +1,38 @@
 import React from 'react'
 import MyCheckbox from '../MyCheckbox';
 import {fireEvent, render, screen} from "@testing-library/react-native";
+import inputRef from "react-native/Libraries/Components/DrawerAndroid/DrawerLayoutAndroid";
 
 describe("<MyCheckbox />", () => {
 
     it("is unchecked by default", () => {
-        render(<MyCheckbox />);
+        render(<MyCheckbox onUpdate={() => {}}/>);
         expect(screen.queryByTestId("checkmark")).toBeNull();
     });
 
     it("is checked when pressed", () => {
         let checked = false;
-        const {queryByTestId} = render(
-            <MyCheckbox
-                value={checked}
-                onUpdate={() => (checked = !checked)}
-                testID="checkbox"
-            />
-
-        );
-        const checkBox = queryByTestId('checkbox');
+        const checkBox = <MyCheckbox onUpdate={() => checked = !checked} />;
         expect(checked).toBeFalsy();
         fireEvent(checkBox, 'onUpdate', {nativeEvent: {}});
         expect(checked).toBeTruthy();
     });
 
     it("is unchecked when pressed twice", () => {
-        render(<MyCheckbox />);
-        fireEvent.click(screen.getByTestId("checkmark"));
-        fireEvent.click(screen.getByTestId("checkmark"));
-        expect(screen.queryByTestId("checkmark")).toBeNull();
+        let checked = false;
+        const checkBox = <MyCheckbox onUpdate={() => checked = !checked} />;
+        expect(checked).toBeFalsy();
+        fireEvent(checkBox, 'onUpdate', {nativeEvent: {}});
+        expect(checked).toBeTruthy();
+        fireEvent(checkBox, 'onUpdate', {nativeEvent: {}});
+        expect(checked).toBeFalsy();
     });
 
     it("calls onUpdate when pressed", () => {
         const onUpdate = jest.fn();
-        render(<MyCheckbox onUpdate={onUpdate} />);
+        const checkBox = <MyCheckbox onUpdate={onUpdate} />;
         expect(onUpdate).toHaveBeenCalledTimes(0);
-        fireEvent.click(screen.getByTestId("checkmark"));
+        fireEvent(checkBox, 'onUpdate', {nativeEvent: {}});
         expect(onUpdate).toHaveBeenCalledTimes(1);
     });
 
@@ -45,14 +41,4 @@ describe("<MyCheckbox />", () => {
         expect(screen.queryByTestId("checkmark")).toBeNull();
     });
 
-    it("has a checkmark when checked is true", () => {
-        render(<MyCheckbox checked={true} />);
-        fireEvent.click(screen.getByTestId("checkmark"));
-        expect(screen.queryByTestId("checkmark")).not.toBeNull();
-    });
-
-    it("has a transparent background when checked is false", () => {
-        render(<MyCheckbox checked={false} />);
-        expect(screen.queryByTestId("checkbox").props.style[0].backgroundColor).toBe("transparent");
-    });
 });
