@@ -37,6 +37,7 @@ import ChecklistQuestionScreen from './app/screens/RedFlagsChecklist';
 import { GlobalContextProvider } from './app/components/GlobalContextProvider';
 
 import PCSSChecklist from './app/screens/PCSSChecklist';
+import DSLScreen from './app/screens/DSLScreen';
 import FurtherTestsScreen from './app/screens/FurtherTestsScreen';
 import FurtherTestsResultsScreen from './app/screens/FurtherTestsResultsScreen';
 import PrelimTestResultScreen from './app/screens/PrelimTestResultScreen';
@@ -88,12 +89,16 @@ import BTComplete2 from './app/screens/BalanceTests/BTComplete2';
 import HTOne from './app/screens/HopTests/HTOne';
 import HTTwo from './app/screens/HopTests/HTTwo';
 import HTComplete from './app/screens/HopTests/HTComplete';
+import HTConfirm from "./app/screens/HopTests/HTConfirm";
+import HTForm from "./app/screens/HopTests/HTForm";
+import HTForm2 from "./app/screens/HopTests/HTForm2";
 
 import Header from './Header';
 import LoginScreen from './app/screens/Login';
 import AllReports from './app/screens/AllReports';
 import AllPrelimReports from './app/screens/AllPrelimReports';
 import AllIncidentReports from './app/screens/AllIncidentReports';
+import DSLComplete from './app/screens/DSLComplete';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -219,6 +224,9 @@ function CustomNavContent(){
 
     <RootStack.Screen name="Hop Test 1" component={HTOne} options={{ title: 'Hop Test ' }} />
     <RootStack.Screen name="Hop Test 2" component={HTTwo} options={{ title: 'Hop Test 1 ' }} />
+    <RootStack.Screen name="Hop Test Confirm" component={HTConfirm} options={{ title: 'Hop Test Confirm ' }} />
+    <RootStack.Screen name="Hop Test Form" component={HTForm} options={{ title: 'Hop Test Form ' }} />
+    <RootStack.Screen name="Hop Test Form 2" component={HTForm2} options={{ title: 'Hop Test Form 2' }} />
     <RootStack.Screen name="Hop Test Complete" component={HTComplete} options={{ title: 'Hop Test Complete ' }} />
 
     <RootStack.Screen name="Memory Test 5 Intro" component={MTFiveIntro} options={{ title: 'Memory Test 2' }}  />
@@ -269,6 +277,7 @@ function CustomNavContent(){
     <RootStack.Screen name="VOMS VMS 1" component={VMS1} />
     <RootStack.Screen name="VOMS VMS 2" component={VMS2} />
     <RootStack.Screen name="VOMS VMS 3 Response 8" component={VMS3} />
+    <RootStack.Screen name="DSL Complete" component={DSLComplete}/>
   </RootStack.Navigator>
   );
 }
@@ -310,9 +319,11 @@ function MyDrawer() {
       <Drawer.Screen name="Login" component={LoginScreen} />
       <Drawer.Screen name="Reports" component={AllReports} />
       <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
+      <Drawer.Screen name="Daily Symptom Checklist" component={DSLScreen}/>
       <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
       <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
       <Drawer.Screen name="Continue Tests" component={CustomNavContent} 
+    
        options={{
         headerTitle: () => <Header name=""></Header>,
         headerStyle: {

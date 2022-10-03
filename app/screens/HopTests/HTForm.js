@@ -1,57 +1,54 @@
-import * as React from 'react';
+import * as React from "react";
 import {
-  SafeAreaView,
   Text,
+  SafeAreaView,
   TouchableOpacity,
-  View,
-  StyleSheet,
   ScrollView,
-} from 'react-native';
-
-import uiStyle from '../components/uiStyle';
+  StyleSheet,
+  View,
+} from "react-native";
 import Slider from '@react-native-community/slider';
-import { useContext, useState} from 'react';
-import {
-  IncidentReportRepoContext,
-  ReportIdContext,
-} from '../components/GlobalContextProvider';
 
-function PCSSChecklist({ navigation }) {
+import uiStyle from "../../components/uiStyle";
 
-  const [sliderOneValue, setSliderOneValue] = useState(0);
-  const [sliderTwoValue, setSliderTwoValue] = useState(0);
-  const [sliderThreeValue, setSliderThreeValue] = useState(0);
-  const [sliderFourValue, setSliderFourValue] = useState(0);
-  const [sliderFiveValue, setSliderFiveValue] = useState(0);
-  const [sliderSixValue, setSliderSixValue] = useState(0);
-  const [sliderSevenValue, setSliderSevenValue] = useState(0);
-  const [sliderEightValue, setSliderEightValue] = useState(0);
-  const [sliderNineValue, setSliderNineValue] = useState(0);
-  const [sliderTenValue, setSliderTenValue] = useState(0);
-  const [sliderElevenValue, setSliderElevenValue] = useState(0);
-  const [sliderTwelveValue, setSliderTwelveValue] = useState(0);
-  const [sliderThirteenValue, setSliderThirteenValue] = useState(0);
-  const [sliderFourteenValue, setSliderFourteenValue] = useState(0);
-  const [sliderFifteenValue, setSliderFifteenValue] = useState(0);
-  const [sliderSixteenValue,setSliderSixteenValue] = useState(0);
-  const [sliderSeventeenValue, setSliderSeventeenValue] = useState(0);
-  const [sliderEighteenValue, setSliderEighteenValue] = useState(0);
-  const [sliderNineteenValue, setSliderNinteenValue] = useState(0);
-  const [sliderTwentyValue, setSliderTwentyValue] = useState(0);
+function HTForm({ navigation }) {
+  // const [reportId] = useContext(ReportIdContext);
+  // const incidentRepoContext = useContext(IncidentReportRepoContext);
 
-
-
-
+  const [sliderOneValue, setSliderOneValue] = React.useState(0);
+  const [sliderTwoValue, setSliderTwoValue] = React.useState(0);
+  const [sliderThreeValue, setSliderThreeValue] = React.useState(0);
+  const [sliderFourValue, setSliderFourValue] = React.useState(0);
+  const [sliderFiveValue, setSliderFiveValue] = React.useState(0);
+  const [sliderSixValue, setSliderSixValue] = React.useState(0);
+  const [sliderSevenValue, setSliderSevenValue] = React.useState(0);
+  const [sliderEightValue, setSliderEightValue] = React.useState(0);
+  const [sliderNineValue, setSliderNineValue] = React.useState(0);
+  const [sliderTenValue, setSliderTenValue] = React.useState(0);
+  const [sliderElevenValue, setSliderElevenValue] = React.useState(0);
+  const [sliderTwelveValue, setSliderTwelveValue] = React.useState(0);
+  const [sliderThirteenValue, setSliderThirteenValue] = React.useState(0);
+  const [sliderFourteenValue, setSliderFourteenValue] = React.useState(0);
+  const [sliderFifteenValue, setSliderFifteenValue] = React.useState(0);
+  const [sliderSixteenValue, setSliderSixteenValue] = React.useState(0);
+  const [sliderSeventeenValue, setSliderSeventeenValue] = React.useState(0);
+  const [sliderEighteenValue, setSliderEighteenValue] = React.useState(0);
+  const [sliderNineteenValue, setSliderNineteenValue] = React.useState(0);
+  const [sliderTwentyValue, setSliderTwentyValue] = React.useState(0);
 
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
-        <Text style={uiStyle.text}>
-          Does the affected person have any of these symptoms?
-        </Text>
-        <View style={[uiStyle.contentContainer]}>
-          <View style={styles.sliders}>
-            <View style={styles.sliderOne}>
+        <SafeAreaView style={uiStyle.container}>
+          <Text style={uiStyle.titleText}>Hop Test Pre-Test Form</Text>
+          <Text style={uiStyle.text}>
+            Do you have any of these symptoms?
+          </Text>
+        </SafeAreaView>
+        
+        <SafeAreaView style={[uiStyle.container]}>
+          <SafeAreaView style={styles.sliders}>
+          <View style={styles.sliderOne}>
               <Text style={uiStyle.text}>Headache:</Text>
               <Text style={[uiStyle.text]}>{sliderOneValue}</Text>
             </View>
@@ -134,16 +131,6 @@ function PCSSChecklist({ navigation }) {
             />
             <View style={styles.sliderOne}>
               <Text style={uiStyle.text}>Balance Problems:</Text>
-              <Text style={[uiStyle.text]}>{sliderTwentyValue}</Text>
-            </View>
-            <Slider
-              minimumValue={0}
-              maximumValue={6}
-              step={1}
-              onValueChange={(val) => setSliderTwentyValue(val)}
-            />
-            <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Pain other than headache:</Text>
               <Text style={[uiStyle.text]}>{sliderNineValue}</Text>
             </View>
             <Slider
@@ -153,7 +140,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderNineValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Feeling Slowed Down:</Text>
+              <Text style={uiStyle.text}>Pain other than headache:</Text>
               <Text style={[uiStyle.text]}>{sliderTenValue}</Text>
             </View>
             <Slider
@@ -163,7 +150,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderTenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Difficulty Concentrating:</Text>
+              <Text style={uiStyle.text}>Feeling Slowed Down:</Text>
               <Text style={[uiStyle.text]}>{sliderElevenValue}</Text>
             </View>
             <Slider
@@ -173,7 +160,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderElevenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Difficulty Remembering:</Text>
+              <Text style={uiStyle.text}>Difficulty Concentrating:</Text>
               <Text style={[uiStyle.text]}>{sliderTwelveValue}</Text>
             </View>
             <Slider
@@ -183,7 +170,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderTwelveValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Trouble falling asleep:</Text>
+              <Text style={uiStyle.text}>Difficulty Remembering:</Text>
               <Text style={[uiStyle.text]}>{sliderThirteenValue}</Text>
             </View>
             <Slider
@@ -193,7 +180,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderThirteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Fatigue or low energy:</Text>
+              <Text style={uiStyle.text}>Trouble falling asleep:</Text>
               <Text style={[uiStyle.text]}>{sliderFourteenValue}</Text>
             </View>
             <Slider
@@ -203,7 +190,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderFourteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Drowsiness:</Text>
+              <Text style={uiStyle.text}>Fatigue or low energy:</Text>
               <Text style={[uiStyle.text]}>{sliderFifteenValue}</Text>
             </View>
             <Slider
@@ -213,7 +200,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderFifteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Feeling more emotional:</Text>
+              <Text style={uiStyle.text}>Drowsiness:</Text>
               <Text style={[uiStyle.text]}>{sliderSixteenValue}</Text>
             </View>
             <Slider
@@ -223,7 +210,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderSixteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Irritability:</Text>
+              <Text style={uiStyle.text}>Feeling more emotional:</Text>
               <Text style={[uiStyle.text]}>{sliderSeventeenValue}</Text>
             </View>
             <Slider
@@ -233,7 +220,7 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderSeventeenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Sadness:</Text>
+              <Text style={uiStyle.text}>Irritability:</Text>
               <Text style={[uiStyle.text]}>{sliderEighteenValue}</Text>
             </View>
             <Slider
@@ -243,31 +230,51 @@ function PCSSChecklist({ navigation }) {
               onValueChange={(val) => setSliderEighteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Nervousness:</Text>
+              <Text style={uiStyle.text}>Sadness:</Text>
               <Text style={[uiStyle.text]}>{sliderNineteenValue}</Text>
             </View>
             <Slider
               minimumValue={0}
               maximumValue={6}
               step={1}
-              onValueChange={(val) => setSliderNinteenValue(val)}
+              onValueChange={(val) => setSliderNineteenValue(val)}
             />
-            
-          </View>
-        </View>
-        <TouchableOpacity
-          onPress={() => {
-            var totalSliderValue = sliderOneValue + sliderTwoValue + sliderThreeValue+sliderFourValue+sliderFiveValue+sliderSixValue+
-              sliderSevenValue+sliderEightValue+sliderNineValue+sliderTenValue+sliderElevenValue+
-              sliderTwelveValue + sliderThirteenValue+sliderFourteenValue+sliderFifteenValue+sliderSixteenValue+
-              sliderSeventeenValue+sliderEighteenValue+sliderNineteenValue+sliderTwentyValue;
-            navigation.navigate('Incident Report Result', {sliderResult: totalSliderValue});
-          }}
-          style={uiStyle.bottomButton}
-        >
+            <View style={styles.sliderOne}>
+              <Text style={uiStyle.text}>Nervousness:</Text>
+              <Text style={[uiStyle.text]}>{sliderTwentyValue}</Text>
+            </View>
+            <Slider
+              minimumValue={0}
+              maximumValue={6}
+              step={1}
+              onValueChange={(val) => setSliderTwentyValue(val)}
+            />
+          </SafeAreaView>
+        </SafeAreaView>
+      </ScrollView>
+      <TouchableOpacity
+        onPress={() => {
+          var totalScore = sliderOneValue + sliderTwoValue + sliderThreeValue + sliderFourValue + sliderFiveValue + sliderSixValue
+            + sliderSevenValue + sliderEightValue + sliderNineValue + sliderTenValue + sliderElevenValue + sliderTwelveValue
+            + sliderThirteenValue + sliderFourteenValue + sliderFifteenValue + sliderSixteenValue + sliderSeventeenValue
+            + sliderEighteenValue + sliderNineteenValue + sliderTwentyValue
+          // console.log(totalScore)
+          // incidentRepoContext
+          //   .addVOMSSymptoms(
+          //     reportId,
+          //     'Smooth Pursuits Horizontal',
+          //     sliderOneValue,
+          //     sliderTwoValue,
+          //     sliderThreeValue,
+          //     sliderFourValue,
+          //   )
+          //   .catch(console.log);
+          navigation.navigate("Hop Test 2", {hopTestPreForm:totalScore});
+        }}
+        style={uiStyle.bottomButton}
+      >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
-      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -287,4 +294,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PCSSChecklist;
+export default HTForm;

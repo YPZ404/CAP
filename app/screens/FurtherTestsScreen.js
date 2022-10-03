@@ -46,7 +46,7 @@ function FurtherTests({ navigation }) {
         onPress={() => {
           let currentDate = new Date().toJSON().slice(0,19);
           
-          preliminaryReportRepoContext.createReport(null,currentDate, -10, -10,-10, -10, -10).then((reportId) => {
+          preliminaryReportRepoContext.createReport(null,currentDate, -10, -10,-10, -10, -10, -10).then((reportId) => {
             setPrelimReportId(reportId);
             preliminaryReportRepoContext
               .getCurrentReportInformation(reportId)

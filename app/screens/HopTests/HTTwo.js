@@ -6,22 +6,26 @@ import {
   TouchableOpacity,
   View,
   Vibration,
+  Alert,
 } from "react-native";
 import { Accelerometer } from "expo-sensors";
 
 import uiStyle from "../../components/uiStyle";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from 'react';
 import { useIsFocused } from "@react-navigation/native";
 
 import { AgeHopTestContext } from "../../components/GlobalContextProvider";
 
-function HTTwo({ navigation }) {
+function HTTwo({ route, navigation }) {
   const [ageHopTestContext] = useContext(AgeHopTestContext);
   const [text, setText] = useState("Start!");
   const startedText = () => setText("Recording!");
   const readyText = () => setText("Ready!");
   const resetText = () => setText("Start!");
   const [subscription, setSubscription] = useState(null);
+  const hopTestRoute = route.params;
+  var hopTestPreFormResult = Object.values(hopTestRoute)[0]
+
 
   var startTimer = null;
   var endTimer = null;
@@ -29,6 +33,25 @@ function HTTwo({ navigation }) {
   const focussed = useIsFocused();
   var hopCnt = 0;
   
+  const createAlert = () => {
+    var message = "Did you hop " + hopCnt
+    if (hopCnt == 1) {
+      message += " time?"
+    }
+    else {
+      message += " times?"
+    }
+    Alert.alert("Alert", message, [
+      {
+        text: "Yes",
+        onPress: () => navigation.navigate("Hop Test Form 2", {hopTestPreForm:hopTestPreFormResult, hopTestCount:hopCnt}),
+      },
+      {
+        text: "No",
+        onPress: () => navigation.navigate("Hop Test Confirm", {hopTestPreForm:hopTestPreFormResult}),
+      },
+    ]);
+  }
 
   useEffect(() => {
     if (focussed) {
@@ -45,7 +68,8 @@ function HTTwo({ navigation }) {
             resetText();
             // storeResult(data);
             console.log("Hops: " + hopCnt);
-            navigation.navigate("Hop Test Complete");
+            createAlert()
+            // navigation.navigate("Hop Test Complete");
           }, 15000);
         }, 1000)
       } else {
