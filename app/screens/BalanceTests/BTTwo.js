@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Vibration,
+  Dimensions
 } from "react-native";
 import { Accelerometer } from "expo-sensors";
 
@@ -139,7 +140,7 @@ function BTTwo({ navigation }) {
           onPress={() => {
             navigation.navigate("Balance Test 1");
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Cancel</Text>
         </TouchableOpacity>
@@ -149,16 +150,7 @@ function BTTwo({ navigation }) {
 }
 
 const title = "#000000";
-const text = "#fff";
-const background = "#fff";
-const buttons = "#ff3333";
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: background,
-    justifyContent: "center",
-  },
   startCheckButton: {
     width: 200,
     height: 200,
@@ -166,19 +158,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 100,
-    backgroundColor: buttons,
+    backgroundColor: "#69C93C",
   },
   startCheckText: {
-    color: text,
+    color: "#fff",
     fontWeight: "bold",
-    fontSize: 20,
-  },
-  titleText: {
-    color: title,
     fontSize: 30,
-    position: "absolute",
-    top: 60,
-    fontWeight: "bold",
+  },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/15,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
   },
 });
 

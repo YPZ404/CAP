@@ -12,13 +12,15 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: background,
   },
+
   textContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   titleText: {
-    // Title text for Preliminary Tests
+    // Title text for all Tests
     color: '#003A67',
     fontSize: Dimensions.get('window').width/13,
     marginTop: Dimensions.get('window').width/8,
@@ -41,12 +43,16 @@ export default StyleSheet.create({
   },
 
   text: {
-    // text for questions in the concussion check
-    fontSize: 25,
-    lineHeight: 25,
+    // text for tests
+     // text for long instructions
+    color: '#003A67',
+    fontWeight: '700',
+    fontSize: Dimensions.get('window').width/20,
+    lineHeight: Dimensions.get('window').width/15,
     letterSpacing: 0.3,
-    marginHorizontal: 30,
-    marginVertical: 20,
+    marginHorizontal: Dimensions.get('window').width/10,
+    marginVertical: Dimensions.get('window').width/15,
+    textAlign: 'center',
   },
 
   stackedText: {
@@ -54,7 +60,7 @@ export default StyleSheet.create({
     color: '#003A67',
     fontWeight: '700',
     fontSize: Dimensions.get('window').width/25,
-    lineHeight: 25,
+    lineHeight: Dimensions.get('window').width/15,
     letterSpacing: 0.3,
     marginHorizontal: Dimensions.get('window').width/15,
     marginVertical: Dimensions.get('window').width/8,
