@@ -113,7 +113,7 @@ function ActionPlanScreen({ navigation }) {
 	}, []);
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={uiStyle.container}>
 			<ScrollView>
 				<Text style={[uiStyle.text, {textAlign: "center", marginBottom: 5}]}>Concussion Action Plan</Text>
 				<Badge color={activeZone.color}>{activeZone.name} ZONE</Badge>

@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Alert
+  Alert,
+  Dimensions
 } from 'react-native';
 
 import { useEffect, useContext, useState, useRef } from 'react';
@@ -170,28 +171,28 @@ function PrelimTestResultScreen({ route, navigation }) {
         else{
           navigation.navigate('Login');
         }
-      }} style={styles.bottomButton}>
+      }} style={[styles.bottomButton, uiStyle.shadowProp]}>
                 <Text style={styles.buttonLabel}>Save Report</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
         onPress={createPDF}
       >
         
-        <Text style={uiStyle.buttonLabel}>Generate PDF report</Text>
+        <Text style={styles.buttonLabel}>Generate PDF report</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
         onPress={createCSV}
       >
         {/* Natalie can you make this button bigger, it doesnt fit the text*/}
-        <Text style={uiStyle.buttonLabel}>Generate and Email Medical Report</Text>
+        <Text style={styles.buttonLabel}>Generate and Email Medical Report</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
         onPress={() => navigation.navigate('Home')}
       >
-        <Text style={uiStyle.buttonLabel}>Return to Home</Text>
+        <Text style={styles.buttonLabel}>Return to Home</Text>
       </TouchableOpacity>
     </View>
   );
@@ -199,16 +200,23 @@ function PrelimTestResultScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   bottomButton: {
-    marginLeft: 10,
-    width: 300,
-    height: 50,
-    padding: 10,
-    marginVertical: 10,
-    borderRadius: 100,
-    backgroundColor: '#FB582F',
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/12,
+    borderRadius: 20,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/25,
+    alignSelf: 'center',
   },
+  buttonLabel: {
+    // Buttom buttons in all tests
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  }
 });
 
 export default PrelimTestResultScreen;
