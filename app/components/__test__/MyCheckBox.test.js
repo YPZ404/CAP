@@ -1,7 +1,6 @@
 import React from 'react'
 import MyCheckbox from '../MyCheckbox';
 import {fireEvent, render, screen} from "@testing-library/react-native";
-import inputRef from "react-native/Libraries/Components/DrawerAndroid/DrawerLayoutAndroid";
 
 describe("<MyCheckbox />", () => {
 
@@ -39,6 +38,18 @@ describe("<MyCheckbox />", () => {
     it("has no checkmark when checked is false", () => {
         render(<MyCheckbox checked={false} />);
         expect(screen.queryByTestId("checkmark")).toBeNull();
+    });
+
+    it("calls onCheckmarkPress when pressed", () => {
+        const onCheckmarkPress = jest.fn();
+        const checkBox = <MyCheckbox onCheckmarkPress={onCheckmarkPress} />;
+        expect(onCheckmarkPress).toHaveBeenCalledTimes(0);
+        fireEvent(checkBox, 'onCheckmarkPress', {nativeEvent: {}});
+        expect(onCheckmarkPress).toHaveBeenCalledTimes(1);
+    });
+
+    it("has return correct style", () => {
+
     });
 
 });
