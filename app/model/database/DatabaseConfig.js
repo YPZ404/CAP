@@ -1,47 +1,48 @@
-export const TABLES_SQL = [
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS Patient;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS IncidentReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponse;
-//   `,
+var TABLES_SQL = [];
 
-//   `
-// DROP TABLE IF EXISTS PreliminaryReport;
-//   `,  
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS MultiResponsePart;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS SingleResponse;
-//   `,
-//   // TODO: remove
-//   `
-// DROP TABLE IF EXISTS ReactionTest;
-// `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSSymptoms;
-//   `,
-//   //TODO: remove
-//   `
-// DROP TABLE IF EXISTS VOMSNPCDistance;
-//   `,
-//   `
-// DROP TABLE IF EXISTS BalanceTestReport;
-//   `,
+if(__DEV__){
+  const DROP_SQL = [
+    `
+  DROP TABLE IF EXISTS Patient;
+    `,
+    `
+  DROP TABLE IF EXISTS IncidentReport;
+    `,
+    `
+  DROP TABLE IF EXISTS PreliminaryReport;
+    `,
+    `
+  DROP TABLE IF EXISTS MultiResponse;
+    `,
+    `
+  DROP TABLE IF EXISTS PreliminaryReport;
+    `,
+    `
+  DROP TABLE IF EXISTS MedicalReport;
+    `,
+    `
+  DROP TABLE IF EXISTS MultiResponsePart;
+    `,
+    `
+  DROP TABLE IF EXISTS SingleResponse;
+    `,
+    `
+  DROP TABLE IF EXISTS ReactionTest;
+  `,
+    `
+  DROP TABLE IF EXISTS VOMSSymptoms;
+    `,
+    `
+  DROP TABLE IF EXISTS VOMSNPCDistance;
+    `,
+    `
+  DROP TABLE IF EXISTS BalanceTestReport;
+    `,
+  ];
+  TABLES_SQL.push(...DROP_SQL);
+}
+
+CREATE_TABLES_SQL = [
   `
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INTEGER PRIMARY KEY,
@@ -76,7 +77,16 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
     memory_test2_result INTEGER,
     reaction_test_result INTEGER,
     balance_test1_result INTEGER,
-    balance_test2_result INTEGER
+    balance_test2_result INTEGER,
+    hop_test_result INTEGER
+  );
+`
+,
+// Add necessary stuff for user @mariam :)
+`
+CREATE TABLE IF NOT EXISTS DailySymptomLog (
+    log_id INTEGER PRIMARY KEY,
+    dsl_result INTEGER
 
   );
 `
@@ -92,8 +102,10 @@ CREATE TABLE IF NOT EXISTS MedicalReport (
     balance_test1_variance FLOAT,
     balance_test1_deviation FLOAT,
     balance_test2_variance FLOAT,
-    balance_test2_deviation FLOAT
-
+    balance_test2_deviation FLOAT,
+    hop_test_pre_form INTEGER,
+    hop_test_count INTEGER,
+    hop_test_post_form INTEGER
   );
 `
 ,
@@ -179,3 +191,7 @@ CREATE TABLE IF NOT EXISTS VOMSNPCDistance (
 );
 `,
 ];
+
+TABLES_SQL.push(...CREATE_TABLES_SQL);
+
+export {TABLES_SQL};

@@ -75,6 +75,8 @@ export const MemoryCorrectAnswerContext = React.createContext([]);
 
 export const AgeHopTestContext = React.createContext(0);
 
+export const DSLIdContext =  React.createContext(0);
+
 /**
  * Provider component
  */
@@ -106,6 +108,8 @@ export function GlobalContextProvider(props) {
   const [medicalReportRepoContext, setMedicalReportRepoContext] = useState(null);
   const [memoryCorrectAnswerContext, setMemoryCorrectAnswerContext] = useState([]);
   const [ageHopTestContext, setAgeHopTestContext] = useState(null);
+  const [dslId, setDSLId] = useState(0);
+  
 
 
 
@@ -139,7 +143,9 @@ export function GlobalContextProvider(props) {
                         <dataContext.Provider value={[data, setData]}>
                           <dataContext2.Provider value={[data2, setData2]}>
                             <AgeHopTestContext.Provider value={[ageHopTestContext, setAgeHopTestContext]}>
-                              {props.children}
+                              <DSLIdContext.Provider value={[dslId, setDSLId]}>
+                                {props.children}
+                              </DSLIdContext.Provider>
                             </AgeHopTestContext.Provider>
                           </dataContext2.Provider>
                         </dataContext.Provider>

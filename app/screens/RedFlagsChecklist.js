@@ -123,6 +123,7 @@ function RedFlagsChecklist({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           incidentRepoContext.createReport(null).then((id) => {
+
             // Update ReportId context;
             setReportId(id);
 
