@@ -49,3 +49,6 @@ bitbucket-pipelines.yml
 admin/
 coverage/
 Admin/
+
+*.app
+*.apk
