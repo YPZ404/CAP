@@ -26,12 +26,12 @@
     //   return rs.insertId;
     // }
 
-    async createReport(patientId,date_of_test, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result) {
+    async createReport(patientId,date_of_test, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result, hop_test_result) {
       const sql =
-        'INSERT INTO PreliminaryReport (patient_id, date_of_test, memory_test1_result,memory_test2_result, reaction_test_result, balance_test1_result , balance_test2_result) VALUES (?, ?, ?, ?, ?, ?, ?);';
+        'INSERT INTO PreliminaryReport (patient_id, date_of_test, memory_test1_result, memory_test2_result, reaction_test_result, balance_test1_result, balance_test2_result, hop_test_result) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
   
       return new Promise((resolve, reject) => {
-        this.da.runSqlStmt(sql, [patientId,date_of_test, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result]).then((rs) => {
+        this.da.runSqlStmt(sql, [patientId,date_of_test, memory_test1_result,memory_test2_result,reaction_test_result,balance_test1_result, balance_test2_result, hop_test_result]).then((rs) => {
           resolve(rs.insertId);
         }, reject);
       });
@@ -74,7 +74,7 @@
     }
     /**
      *
-     * @param {number} reportId report id
+     * @param {number} patientId report id
      * @return {Promise<any[]>} array of SingleResponse rows
      */
     async getListofPatientReports(patientId) {
@@ -85,7 +85,7 @@
         this.da.runSqlStmt(sql, args).then(
           (rs) => {
             if (rs.rows.length < 1) {
-            reject(new Error(`No report in  ${reportId}`));
+            reject(new Error(`No report in  ${patientId}`));
             return;
             }
             //console.log(rs.rows._array);
@@ -98,7 +98,7 @@
         throw 'Invalid reportId';
       }
   
-      const sql = `SELECT report_id, date_of_test, patient_id, memory_test1_result, memory_test2_result, reaction_test_result, balance_test1_result, balance_test2_result FROM PreliminaryReport WHERE report_id = ?;`;
+      const sql = `SELECT report_id, date_of_test, patient_id, memory_test1_result, memory_test2_result, reaction_test_result, balance_test1_result, balance_test2_result, hop_test_result FROM PreliminaryReport WHERE report_id = ?;`;
       const args = [reportId];
   
       const rs = await this.da.runSqlStmt(sql, args);
@@ -107,16 +107,12 @@
 
     }
 
-    async getLatestReportDate(reportId) {
-      if (reportId === undefined || reportId === null) {
-        throw 'Invalid reportId';
-      }
+    async getLatestReportDate() {
   
-      const sql = `SELECT date_of_test FROM PreliminaryReport WHERE report_id = ?;`;
-      const args = [reportId];
+      const sql = `SELECT date_of_test FROM PreliminaryReport ORDER BY rowid DESC LIMIT 1;`;
   
-      const rs = await this.da.runSqlStmt(sql, args);
-      console.log(rs.rows.item(0));
+      const rs = await this.da.runSqlStmt(sql);
+      // console.log(rs.rows.item(0));
       return rs.rows.item(0);
 
     }
@@ -182,6 +178,24 @@
       const rs = await this.da.runSqlStmt(
       `UPDATE PreliminaryReport SET balance_test2_result = ? WHERE report_id = ?;`,
       [balance_test2_result, reportId],
+
+      );
+      return rs.insertId;
+
+   }
+   
+   /**
+     * 
+     * @param {number} reportId 
+     * @param {number} hop_test_result 
+     * @returns 
+     */  
+    async updateHopTestResult(reportId, hop_test_result){
+      
+      const rs = await this.da.runSqlStmt(
+      `UPDATE PreliminaryReport SET hop_test_result = ? WHERE report_id = ?;`,
+
+      [hop_test_result, reportId],
 
       );
       return rs.insertId;
@@ -442,5 +456,39 @@
       const rs = await this.da.runSqlStmt(sql, args);
       return rs.rows.item(0);
     }
+
+
+    async createDSL(dsl_result) {
+      const sql =
+        'INSERT INTO DailySymptomLog (dsl_result) VALUES (?);';
+  
+      return new Promise((resolve, reject) => {
+        this.da.runSqlStmt(sql, [dsl_result]).then((rs) => {
+          resolve(rs.insertId);
+        }, reject);
+      });
+    }
+
+    async updateDSL(dsl_result, logId){
+      
+      const rs = await this.da.runSqlStmt(
+      `UPDATE DailySymptomLog SET dsl_result = ? WHERE log_id = ?;`,
+      [dsl_result, logId],
+
+      );
+      return rs.insertId;
+
+  }
+  async getDSL(logId) {
+    
+
+    const sql = `SELECT * FROM DailySymptomLog WHERE log_id = ?;`;
+    const args = [logId];
+
+    const rs = await this.da.runSqlStmt(sql, args);
+    return rs.rows.item(0);
+  }
+
+
   }
   

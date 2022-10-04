@@ -10,10 +10,13 @@
     "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"\n",
     "ci-test": "npx jest --ci --coverage",
     "doc": "jsdoc -c jsdoc.config.json -r app/ App.js -d doc/",
-    "build": "npx eas-cli build --platform all --profile preview --non-interactive"
+    "build": "npx eas-cli build --platform all --profile preview --non-interactive",
+    "e2e-ios": "detox test --configuration ios --loglevel verbose",
+    "e2e-android": "detox test --configuration android --loglevel verbose"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/checkbox": "^0.5.8",
     "@react-native-community/slider": "4.1.12",
     "@react-navigation/drawer": "^6.4.3",
@@ -25,6 +28,7 @@
     "expo-asset": "~8.4.6",
     "expo-dev-client": "~0.8.6",
     "expo-file-system": "~13.1.4",
+    "expo-linking": "~3.0.0",
     "expo-mail-composer": "~11.1.0",
     "expo-print": "~11.1.0",
     "expo-sharing": "~10.1.0",
@@ -43,6 +47,7 @@
     "react-native-sliders": "^1.1.1",
     "react-native-sqlite-storage": "^5.0.0",
     "react-native-stopwatch-timer": "^0.0.21",
+    "react-native-svg": "~12.1.1",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4"
@@ -67,9 +72,10 @@
     "@expo/vector-icons": "^12.0.0",
     "@react-native-community/eslint-config": "^3.1.0",
     "@testing-library/react-native": "^11.0.0",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^28.0.0",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
+    "detox": "^19.12.1",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.30.1",

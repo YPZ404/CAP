@@ -11,12 +11,12 @@
       this.da = da;
     }
 
-    async createMedicalReport(report_id, memory_test1_correct_count,memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2,reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation) {
+    async createMedicalReport(report_id, memory_test1_correct_count,memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2,reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation, hop_test_pre_form, hop_test_count, hop_test_post_form) {
       const sql =
-        'INSERT INTO MedicalReport (report_id, memory_test1_correct_count,memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2,reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+        'INSERT INTO MedicalReport (report_id, memory_test1_correct_count, memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2, reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation, hop_test_pre_form, hop_test_count, hop_test_post_form) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
   
       return new Promise((resolve, reject) => {
-        this.da.runSqlStmt(sql, [report_id, memory_test1_correct_count,memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2,reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation]).then((rs) => {
+        this.da.runSqlStmt(sql, [report_id, memory_test1_correct_count,memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2,reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation, hop_test_pre_form, hop_test_count, hop_test_post_form]).then((rs) => {
           resolve(rs.insertId);
         }, reject);
       });
@@ -27,7 +27,7 @@
         throw 'Invalid reportId';
       }
   
-      const sql = `SELECT report_id, memory_test1_correct_count,memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2,reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation FROM MedicalReport WHERE report_id = ?;`;
+      const sql = `SELECT report_id, memory_test1_correct_count,memory_test2_correct_count, reaction_test_time_1, reaction_test_time_2,reaction_test_time_3, balance_test1_variance, balance_test1_deviation, balance_test2_variance, balance_test2_deviation, hop_test_pre_form, hop_test_count, hop_test_post_form FROM MedicalReport WHERE report_id = ?;`;
       const args = [reportId];
   
       const rs = await this.da.runSqlStmt(sql, args);
@@ -92,6 +92,17 @@
     );
     return rs.insertId;
 
-  }
+   }
+   async updateHopTestResults(reportId, hop_test_pre_form, hop_test_count, hop_test_post_form){
+      
+    const rs = await this.da.runSqlStmt(
+    `UPDATE MedicalReport SET hop_test_pre_form = ?, hop_test_count = ?, hop_test_post_form = ? WHERE report_id = ?;`,
+
+    [hop_test_pre_form, hop_test_count, hop_test_post_form, reportId],
+
+    );
+    return rs.insertId;
+
+    }
 }
   

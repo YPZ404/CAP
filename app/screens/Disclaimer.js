@@ -16,7 +16,7 @@ function Disclaimer({ navigation }) {
  
   return (
    
-    <View style={styles.screen}>    
+    <View style={styles.screen} testID="disclaimer_screen">    
         <View style={styles.containerText}> 
           <ImageBackground style={styles.image} 
               source = {require('../../assets/b1.png')}>

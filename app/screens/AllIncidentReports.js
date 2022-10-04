@@ -5,9 +5,12 @@ import {
   SafeAreaView,
   TextInput,
   ScrollView,
-  TouchableOpacity,
   Alert,
+  Dimensions,
+  View,
+  ImageBackground,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
   IncidentReportRepoContext,
   PatientContext,
@@ -68,16 +71,18 @@ function AllIncidentReports({ navigation }){
 
     return(
         <SafeAreaView style={uiStyle.container}>
-      <Text style={styles.text}>
-        All Reports for {account.first_name}
-      </Text>
-      <ScrollView>{usersButtons}</ScrollView>
-      <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation.navigate('Home')}
-      >
-        <Text style={uiStyle.buttonLabel}>Return to Home</Text>
-      </TouchableOpacity>
+         <View style={styles.titlecontainer}>
+        <Text style={styles.text}>
+          All Incident Reports for {account.first_name}
+        </Text>
+        <ScrollView>{usersButtons}</ScrollView>
+        <TouchableOpacity
+          style={[styles.bottomButton, styles.shadowProp]}
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Text style={uiStyle.buttonLabel}>Return to Home</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
     );
 }
@@ -96,23 +101,35 @@ const styles = StyleSheet.create({
       backgroundColor: '#D3D3D3',
     },
     text: {
-      fontSize: 16,
-      lineHeight: 21,
-      letterSpacing: 0.25,
-      marginHorizontal: 50,
-      marginVertical: 10,
+      color: '#003A67',
+      fontSize: Dimensions.get('window').width/25,
+      fontWeight: '800',
+      textAlign: 'center',
+      textAlignVertical: 'center',
     },
     bottomButton: {
-      marginLeft: 10,
-      marginRight: 10,
-      width: 300,
-      height: 50,
-      padding: 10,
-      marginVertical: 10,
-      borderRadius: 100,
-      backgroundColor: '#ff0000',
-      alignItems: 'center',
+      width: Dimensions.get('window').width/1.5,
+      height: Dimensions.get('window').width/10,
       justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 20,
+      backgroundColor: '#fff',
+      marginBottom: (Dimensions.get('window').height)/30,
+      marginTop: (Dimensions.get('window').height)/1.5,
+    },
+    titlecontainer: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height/28,
+      alignItems: 'center',
+      backgroundColor: '#9AD3FF',
+      marginBottom: (Dimensions.get('window').height)/300,
+      marginTop: (Dimensions.get('window').height)/20,
+    },
+    shadowProp: {
+      shadowColor: '#171717',
+      shadowOffset: {width: -2, height: 4},
+      shadowOpacity: 0.5,
+      shadowRadius: 4,
     },
   });
 

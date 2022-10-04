@@ -33,7 +33,7 @@ function HTOne({ navigation }) {
           Read the instructions carefully before starting the test.{"\n"}
           {"\n"}
           Push 'Next' to navigate to the recording page, and hold the phone to
-          your chest while recording.{"\n"}
+          your chest while recording. Count the number of hops.{"\n"}
           {"\n"}
           The vibration indicates that the recording has started and finished.
         </Text>
@@ -48,13 +48,14 @@ function HTOne({ navigation }) {
           defaultValue={value}
           style={styles.dropdown}
           dropDownContainerStyle={styles.dropdown}
+          dropDownDirection="TOP"
         />
       </SafeAreaView>
 
       <TouchableOpacity
         onPress={() => {
           setAgeHopTestContext(value);
-          navigation.navigate("Hop Test 2");
+          navigation.navigate("Hop Test Form");
         }}
         style={uiStyle.bottomButton}
       >
