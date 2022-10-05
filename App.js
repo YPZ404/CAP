@@ -114,7 +114,7 @@ function OpenDisclaimer(){
                 headerTitle: () => <Header name="Disclaimer"></Header>,
                 headerLeft: () => (
                   <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity testID="menu_button"
                       style={{marginLeft: 15}}>
                       <MaterialCommunityIcons name='dots-vertical' size={28} color='#000'/>
                     </TouchableOpacity>
