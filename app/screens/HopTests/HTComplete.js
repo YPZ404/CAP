@@ -6,7 +6,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useContext, useState, useEffect } from "react";
-import { PrelimReportIdContext, PreliminaryReportRepoContext, MedicalReportRepoContext } from "../../components/GlobalContextProvider";
+import { PrelimReportIdContext, PreliminaryReportRepoContext, MedicalReportRepoContext, AgeHopTestContext } from "../../components/GlobalContextProvider";
 
 import uiStyle from '../../components/uiStyle';
 
@@ -18,7 +18,9 @@ function HTComplete({ route, navigation }) {
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [prelimReportId] = useContext(PrelimReportIdContext);
   const medicalReportRepoContext = useContext(MedicalReportRepoContext);
-
+  const [ageHopTestContext, setAgeHopTestContext] = useContext(AgeHopTestContext);
+  
+  // console.log(ageHopTestContext)
   // console.log(hopTestPreFormResult)
   // console.log(hopTestCountResult)
   // console.log(hopTestPostFormResult)
@@ -27,6 +29,48 @@ function HTComplete({ route, navigation }) {
     medicalReportRepoContext.updateHopTestResults(prelimReportId, hopTestPreFormResult, hopTestCountResult, hopTestPostFormResult);
     medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId)
       .then((data) => console.log(data));
+    
+    var result = "FAIL";
+    if (ageHopTestContext <= 3 && hopTestCountResult >= 0) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext == 4 && hopTestCountResult >= 1) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext == 5 && hopTestCountResult >= 4) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext == 6 && hopTestCountResult >= 8) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext == 7 && hopTestCountResult >= 10) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext == 8 && hopTestCountResult >= 13) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext >= 9 && ageHopTestContext <= 10 && hopTestCountResult >= 15) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext >= 11 && ageHopTestContext <= 12 && hopTestCountResult >= 17) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext >= 13 && ageHopTestContext <= 14 && hopTestCountResult >= 18) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext >= 15 && hopTestCountResult >= 20) {
+      result = "PASS";
+    }
+    
+    if(result == "FAIL"){
+      preliminaryReportRepoContext.updateHopTestResult(prelimReportId, 0);
+    }
+    else{
+      preliminaryReportRepoContext.updateHopTestResult(prelimReportId, 1);
+    }
+
+    preliminaryReportRepoContext.getCurrentReportInformation(prelimReportId).then(data => console.log(data));
+    
   }
 
   return (
