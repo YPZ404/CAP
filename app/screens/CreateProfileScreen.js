@@ -70,6 +70,7 @@ function CreateProfileScreen({ navigation }) {
       </Text>
       <SafeAreaView style={styles.inputAreaContainer}>
         <TextInput
+          maxLength={25}
           style={styles.input}
           onChangeText={onChangeFirstName}
           value={firstNameOfUser}
@@ -77,6 +78,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
+          maxLength={25}
           style={styles.input}
           onChangeText={onChangeLastName}
           value={lastNameOfUser}
@@ -112,14 +114,28 @@ function CreateProfileScreen({ navigation }) {
         <TouchableOpacity
           style={[styles.bottomButton, styles.shadowProp]}
           onPress={() => {
-            onCreateAccount(
-              firstNameOfUser,
-              lastNameOfUser,
-              ageOfUser,
-              weightOfUser,
-              password,
-            );
-            navigation.navigate('Home Page');
+
+            // Checking that none of the text fields are empty
+            if (firstNameOfUser == ''){
+              alert('Please enter first name.');
+            } else if (lastNameOfUser == ''){
+              alert('Please enter last name.')
+            } else if (ageOfUser == ''){
+              alert('Please enter age.')
+            } else if (weightOfUser == ''){
+              alert('Please enter weight.')
+            } else if (password == ''){
+              alert('Please enter password.')
+            } else {
+              onCreateAccount(
+                firstNameOfUser,
+                lastNameOfUser,
+                ageOfUser,
+                weightOfUser,
+                password,
+              );
+              navigation.navigate('Home Page');
+            }
           }}
         >
           <Text style={uiStyle.buttonLabel}>Submit</Text>
