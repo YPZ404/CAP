@@ -13,12 +13,14 @@ import Slider from '@react-native-community/slider';
 import { useContext, useState} from 'react';
 import {
   PreliminaryReportRepoContext,
-  DSLIdContext
+  DSLIdContext,
+  AccountContext
 } from '../components/GlobalContextProvider';
 
 function DSLScreen({ navigation }) {
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [dslId, setDSLId] = useContext(DSLIdContext);
+  const [account] = useContext(AccountContext);
 
   const [sliderOneValue, setSliderOneValue] = useState(0);
   const [sliderTwoValue, setSliderTwoValue] = useState(0);
@@ -145,50 +147,39 @@ function DSLScreen({ navigation }) {
             />
             <View style={styles.sliderOne}>
               <Text style={uiStyle.text}>Balance Problems:</Text>
-              <Text style={[uiStyle.text]}>{sliderTwentyValue}</Text>
-            </View>
-            <Slider
-            ref={r => this.slider20 = r}
-              minimumValue={0}
-              maximumValue={6}
-              step={1}
-              onValueChange={(val) => setSliderTwentyValue(val)}
-            />
-            <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Pain other than headache:</Text>
               <Text style={[uiStyle.text]}>{sliderNineValue}</Text>
             </View>
             <Slider
-              ref={r => this.slider9 = r}
+            ref={r => this.slider9 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
               onValueChange={(val) => setSliderNineValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Feeling Slowed Down:</Text>
+              <Text style={uiStyle.text}>Pain other than headache:</Text>
               <Text style={[uiStyle.text]}>{sliderTenValue}</Text>
             </View>
             <Slider
-             ref={r => this.slider10 = r}
+              ref={r => this.slider10 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
               onValueChange={(val) => setSliderTenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Difficulty Concentrating:</Text>
+              <Text style={uiStyle.text}>Feeling Slowed Down:</Text>
               <Text style={[uiStyle.text]}>{sliderElevenValue}</Text>
             </View>
             <Slider
-              ref={r => this.slider11 = r}
+             ref={r => this.slider11 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
               onValueChange={(val) => setSliderElevenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Difficulty Remembering:</Text>
+              <Text style={uiStyle.text}>Difficulty Concentrating:</Text>
               <Text style={[uiStyle.text]}>{sliderTwelveValue}</Text>
             </View>
             <Slider
@@ -199,7 +190,7 @@ function DSLScreen({ navigation }) {
               onValueChange={(val) => setSliderTwelveValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Trouble falling asleep:</Text>
+              <Text style={uiStyle.text}>Difficulty Remembering:</Text>
               <Text style={[uiStyle.text]}>{sliderThirteenValue}</Text>
             </View>
             <Slider
@@ -210,7 +201,7 @@ function DSLScreen({ navigation }) {
               onValueChange={(val) => setSliderThirteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Fatigue or low energy:</Text>
+              <Text style={uiStyle.text}>Trouble falling asleep:</Text>
               <Text style={[uiStyle.text]}>{sliderFourteenValue}</Text>
             </View>
             <Slider
@@ -221,29 +212,29 @@ function DSLScreen({ navigation }) {
               onValueChange={(val) => setSliderFourteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Drowsiness:</Text>
+              <Text style={uiStyle.text}>Fatigue or low energy:</Text>
               <Text style={[uiStyle.text]}>{sliderFifteenValue}</Text>
             </View>
             <Slider
-            ref={r => this.slider15 = r}
+              ref={r => this.slider15 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
               onValueChange={(val) => setSliderFifteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Feeling more emotional:</Text>
+              <Text style={uiStyle.text}>Drowsiness:</Text>
               <Text style={[uiStyle.text]}>{sliderSixteenValue}</Text>
             </View>
             <Slider
-              ref={r => this.slider16 = r}
+            ref={r => this.slider16 = r}
               minimumValue={0}
               maximumValue={6}
               step={1}
               onValueChange={(val) => setSliderSixteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Irritability:</Text>
+              <Text style={uiStyle.text}>Feeling more emotional:</Text>
               <Text style={[uiStyle.text]}>{sliderSeventeenValue}</Text>
             </View>
             <Slider
@@ -254,7 +245,7 @@ function DSLScreen({ navigation }) {
               onValueChange={(val) => setSliderSeventeenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Sadness:</Text>
+              <Text style={uiStyle.text}>Irritability:</Text>
               <Text style={[uiStyle.text]}>{sliderEighteenValue}</Text>
             </View>
             <Slider
@@ -265,7 +256,7 @@ function DSLScreen({ navigation }) {
               onValueChange={(val) => setSliderEighteenValue(val)}
             />
             <View style={styles.sliderOne}>
-              <Text style={uiStyle.text}>Nervousness:</Text>
+              <Text style={uiStyle.text}>Sadness:</Text>
               <Text style={[uiStyle.text]}>{sliderNineteenValue}</Text>
             </View>
             <Slider
@@ -275,6 +266,18 @@ function DSLScreen({ navigation }) {
               step={1}
               onValueChange={(val) => setSliderNinteenValue(val)}
             />
+            <View style={styles.sliderOne}>
+              <Text style={uiStyle.text}>Nervousness:</Text>
+              <Text style={[uiStyle.text]}>{sliderTwentyValue}</Text>
+            </View>
+            <Slider
+              ref={r => this.slider20 = r}
+              minimumValue={0}
+              maximumValue={6}
+              step={1}
+              onValueChange={(val) => setSliderTwentyValue(val)}
+            />
+            
             
           </View>
         </View>
@@ -327,7 +330,9 @@ function DSLScreen({ navigation }) {
 
 
             // Add necessary stuff for user @mariam :)
-            preliminaryReportRepoContext.createDSL(totalSliderValue).then((data)=>setDSLId(data));
+            preliminaryReportRepoContext.createDSL(account.account_id, sliderOneValue, sliderTwoValue, sliderThreeValue, sliderFourValue, sliderFiveValue, sliderSixValue, sliderSevenValue,sliderEightValue,sliderNineValue,sliderTenValue,sliderElevenValue,
+              sliderTwelveValue,  sliderThirteenValue,sliderFifteenValue,sliderSixteenValue,
+              sliderSeventeenValue,sliderEighteenValue,sliderNineteenValue,sliderTwentyValue, totalSliderValue).then((data)=>setDSLId(data));
             navigation.navigate('Continue Tests', { screen: 'DSL Complete'});
            
 
