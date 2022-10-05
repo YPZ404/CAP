@@ -42,9 +42,9 @@ describe("<MyCheckbox />", () => {
 
     it("calls onCheckmarkPress when pressed", () => {
         const pressedCallback = jest.fn();
-        const checkbox = render(<MyCheckbox onPress={pressedCallback}/>);
+        const checkbox = <MyCheckbox onPress={pressedCallback}/>;
         expect(pressedCallback).toHaveBeenCalledTimes(0);
-        fireEvent.press(checkbox);
+        fireEvent(checkbox, 'onPress', {nativeEvent: {}});
         expect(pressedCallback).toHaveBeenCalledTimes(1);
     });
 
