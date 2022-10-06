@@ -67,7 +67,7 @@ function AllDSReports({ navigation }){
       for (let i = 0; i < reportResults.length; i++) {
           //console.log(reportResults[i]);
           
-        const description = ' Headache: '+reportResults[i].headache_result+'/10' + ' \n Nausea: ' + reportResults[i].nausea_result + '/10'+
+        const description = '\n Headache: '+reportResults[i].headache_result+'/10' + ' \n Nausea: ' + reportResults[i].nausea_result + '/10'+
         ' \n Dizziness: '+ reportResults[i].dizziness_result + '/10'+' \n Vomiting: '+ reportResults[i].vomiting_result +'/10'+' \n Balance Problem: '+
         reportResults[i].balance_problem_result +'/10'+' \n Blurry or Double Vision: '+ reportResults[i].blurry_or_double_vision_result +'/10'
         + ' \n Sensitivity to light: '+ reportResults[i].sensitivity_to_light_result +'/10'+ ' \n Sensitivity to noise: '+ reportResults[i].sensitive_to_noise_result
@@ -79,7 +79,7 @@ function AllDSReports({ navigation }){
         ' \n';
         //console.log(description);
         usersButtons.push(
-          <Text key={z} style={styles.reporttext}>Report {reportResults[i].report_id} {description}</Text>,
+          <Text key={z} style={styles.reporttext}>Report {reportResults[i].log_id} {description}</Text>,
         );
         usersButtons.push(
           <TouchableOpacity
@@ -113,7 +113,7 @@ return(
   <SafeAreaView style={uiStyle.container}>
   <View style = {styles.titlecontainer}>
   <Text style={styles.text}>
-    All Preliminary Reports for {account.first_name}
+    All Daily Symptom Reports for {account.first_name}
   </Text>
   </View>
   <View style={{height: Dimensions.get('window').height/2}} >

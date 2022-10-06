@@ -498,7 +498,7 @@
     return new Promise((resolve, reject) => {
       this.da.runSqlStmt(sql, args).then(
         (rs) => {
-          //console.log(rs.rows.length);
+          
           if (rs.rows.length < 1) {
           reject(new Error(`No report in  ${patientId}`));
           return;
