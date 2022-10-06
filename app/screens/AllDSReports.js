@@ -66,8 +66,12 @@ function AllDSReports({ navigation }){
       let z=0;
       for (let i = 0; i < reportResults.length; i++) {
           //console.log(reportResults[i]);
-          
-        const description = '\n Headache: '+reportResults[i].headache_result+'/6' + ' \n Nausea: ' + reportResults[i].nausea_result + '/6'+
+          const dateAndTime = reportResults[i].date_of_test.split('T');
+          let time;
+          if(dateAndTime[1] != null){
+            time = dateAndTime[1].slice(0, 5);
+          }
+        const description = ' '+dateAndTime[0]+' '+time+'\n Headache: '+reportResults[i].headache_result+'/6' + ' \n Nausea: ' + reportResults[i].nausea_result + '/6'+
         ' \n Dizziness: '+ reportResults[i].dizziness_result + '/6'+' \n Vomiting: '+ reportResults[i].vomiting_result +'/6'+' \n Balance Problem: '+
         reportResults[i].balance_problem_result +'/6'+' \n Blurry or Double Vision: '+ reportResults[i].blurry_or_double_vision_result +'/6'
         + ' \n Sensitivity to light: '+ reportResults[i].sensitivity_to_light_result +'/6'+ ' \n Sensitivity to noise: '+ reportResults[i].sensitive_to_noise_result
