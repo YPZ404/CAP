@@ -4,11 +4,11 @@ import ExpandableTab from '../ExpandableTab';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
-describe("<ExpandableTab />", () => {/* 
+describe("<ExpandableTab />", () => { 
 	it("contains expandable child", () => {
 		const tree = renderer.create(<ExpandableTab color="green"><Text>child text</Text></ExpandableTab>).toJSON();
 		expect(tree.children[0].children[1].children[0].children[0].children[0]).toBe('child text');
-	});
+	}); /*
 	it("has colour based on prop", () => {
 		const tree = renderer.create(<ExpandableTab color="green"></ExpandableTab>).toJSON();
 		expect(tree.children[0].props.style[1].borderColor).toBe("green");
