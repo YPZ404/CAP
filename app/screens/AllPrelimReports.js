@@ -70,7 +70,7 @@ function AllPrelimReports({ navigation }){
           const dateAndTime = reportResults[i].date_of_test.split('T');
           let time;
           if(dateAndTime[1] != null){
-            time = dateAndTime[1].slice(3, 8);
+            time = dateAndTime[1].slice(0, 5);
           }
           
         const description = ' '+dateAndTime[0]+' '+time+'\n Memory Test 1: '+dict[reportResults[i].memory_test1_result] + ' \n Memory Test 2: ' + dict[reportResults[i].memory_test2_result] +
