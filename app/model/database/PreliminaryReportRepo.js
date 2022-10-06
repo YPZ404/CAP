@@ -489,6 +489,25 @@
     return rs.rows.item(0);
   }
 
+  async getDSLFromPatient(patientId) {
+    
+
+    const sql = `SELECT * FROM DailySymptomLog WHERE patient_id = ?;`;
+    const args = [patientId];
+
+    return new Promise((resolve, reject) => {
+      this.da.runSqlStmt(sql, args).then(
+        (rs) => {
+          //console.log(rs.rows.length);
+          if (rs.rows.length < 1) {
+          reject(new Error(`No report in  ${patientId}`));
+          return;
+          }
+          //console.log(rs.rows._array);
+          resolve(rs.rows._array);
+      });
+      });
+  }
 
   }
   
