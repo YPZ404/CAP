@@ -67,15 +67,15 @@ function AllDSReports({ navigation }){
       for (let i = 0; i < reportResults.length; i++) {
           //console.log(reportResults[i]);
           
-        const description = '\n Headache: '+reportResults[i].headache_result+'/10' + ' \n Nausea: ' + reportResults[i].nausea_result + '/10'+
-        ' \n Dizziness: '+ reportResults[i].dizziness_result + '/10'+' \n Vomiting: '+ reportResults[i].vomiting_result +'/10'+' \n Balance Problem: '+
-        reportResults[i].balance_problem_result +'/10'+' \n Blurry or Double Vision: '+ reportResults[i].blurry_or_double_vision_result +'/10'
-        + ' \n Sensitivity to light: '+ reportResults[i].sensitivity_to_light_result +'/10'+ ' \n Sensitivity to noise: '+ reportResults[i].sensitive_to_noise_result
-        +'/10'+ ' \n Pain other than headache: '+ reportResults[i].pain_other_than_headache_result+'/10'+ ' \n Feeling Slowed Down: '+reportResults[i].feeling_slowed_down_result+
-        '/10'+' \n Difficulty Concentrating: '+ reportResults[i].difficulty_concentrating_result +'/10'+ ' \n Difficulty Remembering: '+ reportResults[i].difficulty_remembering_result+
-        '/10'+' \n Trouble falling asleep: '+ reportResults[i].trouble_fall_asleep_result +'/10'+ ' \n Fatigue or low energy: '+ reportResults[i].fatigue_or_low_energy_result +'/10'+
-        ' \n Drowsiness: '+ reportResults[i].drowsiness_result +'/10'+ ' \n Feeling more emotional: '+ reportResults[i].feeling_more_emotional_result +'/10'+'\n Irritability: '+
-        reportResults[i].irritability_result +'/10'+ '\n Sadness: '+ reportResults[i].sadness_result +'/10'+' \n Nervousness: '+reportResults[i].nervousness_result +'/10'+
+        const description = '\n Headache: '+reportResults[i].headache_result+'/6' + ' \n Nausea: ' + reportResults[i].nausea_result + '/6'+
+        ' \n Dizziness: '+ reportResults[i].dizziness_result + '/6'+' \n Vomiting: '+ reportResults[i].vomiting_result +'/6'+' \n Balance Problem: '+
+        reportResults[i].balance_problem_result +'/6'+' \n Blurry or Double Vision: '+ reportResults[i].blurry_or_double_vision_result +'/6'
+        + ' \n Sensitivity to light: '+ reportResults[i].sensitivity_to_light_result +'/6'+ ' \n Sensitivity to noise: '+ reportResults[i].sensitive_to_noise_result
+        +'/6'+ ' \n Pain other than headache: '+ reportResults[i].pain_other_than_headache_result+'/6'+ ' \n Feeling Slowed Down: '+reportResults[i].feeling_slowed_down_result+
+        '/6'+' \n Difficulty Concentrating: '+ reportResults[i].difficulty_concentrating_result +'/6'+ ' \n Difficulty Remembering: '+ reportResults[i].difficulty_remembering_result+
+        '/6'+' \n Trouble falling asleep: '+ reportResults[i].trouble_fall_asleep_result +'/6'+ ' \n Fatigue or low energy: '+ reportResults[i].fatigue_or_low_energy_result +'/6'+
+        ' \n Drowsiness: '+ reportResults[i].drowsiness_result +'/6'+ ' \n Feeling more emotional: '+ reportResults[i].feeling_more_emotional_result +'/6'+'\n Irritability: '+
+        reportResults[i].irritability_result +'/6'+ '\n Sadness: '+ reportResults[i].sadness_result +'/6'+' \n Nervousness: '+reportResults[i].nervousness_result +'/6'+
         ' \n';
         //console.log(description);
         usersButtons.push(
