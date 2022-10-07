@@ -20,7 +20,7 @@ export default function DisplayOptions(props) {
       </View>
     );
   });
-  return <View style={styles.allCheckboxContainer}>{optionElements}</View>;
+  return <View testID='container' style={styles.allCheckboxContainer}>{optionElements}</View>;
 }
 
 const styles = StyleSheet.create({

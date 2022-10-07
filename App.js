@@ -152,148 +152,148 @@ function OpenDisclaimer(){
 function CustomNavContent(){
   return (
     <RootStack.Navigator testID='rootStackNavigator' screenOptions={{headerShown: false}}>
-    <RootStack.Screen name="Home" component={HomeScreen}/>
-    <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
-    <RootStack.Screen
+    <RootStack.Screen testID='home' name="Home" component={HomeScreen}/>
+    <RootStack.Screen testID='headBumps' name="HEAD BUMPS" component={HeadBumpsScreen} />
+    <RootStack.Screen testID='chooseProfile'
       name="Choose Profile"
       component={ChooseProfileScreen}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='sampleDatabase'
       name="Sample Database"
       component={SampleDatabaseScreen}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='createProfile'
       name="Create Profile"
       component={CreateProfileScreen}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='selectProfile'
       name="Select Profile"
       component={SelectProfileScreen}
     />
-    <RootStack.Screen name="Profile Info" component={ProfileInfoScreen} />
-    <RootStack.Screen name="Login" component={LoginScreen} />
-    <RootStack.Screen name="Red flags checklist" component={RedFlagsChecklist} />
-    <RootStack.Screen name="PCSS Checklist" component={PCSSChecklist} />
-    <RootStack.Screen name="Next Steps" component={NextStepsScreen} />
-    <RootStack.Screen
+    <RootStack.Screen testID='info' name="Profile Info" component={ProfileInfoScreen} />
+    <RootStack.Screen testID='login' name="Login" component={LoginScreen} />
+    <RootStack.Screen testID='redFlags' name="Red flags checklist" component={RedFlagsChecklist} />
+    <RootStack.Screen testID='PCSSChecklist' name="PCSS Checklist" component={PCSSChecklist} />
+    <RootStack.Screen testID='nextSteps' name="Next Steps" component={NextStepsScreen} />
+    <RootStack.Screen testID='mechanism'
       name="Mechanism Of Injury Check"
       component={MechanismOfInjuryCheck}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='txtQuestion'
       name="Text Question (IR3)"
       component={TextQuestionScreen}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='allReports'
       name="All Reports"
       component={AllReports}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='prelimReport'
       name="Prelim Report"
       component={AllPrelimReports}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='incidentReports'
       name="Incident Reports"
       component={AllIncidentReports}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='checklistQuestions'
       name="Checklist Question (Start Check)"
       component={ChecklistQuestionScreen}
     />
-    <RootStack.Screen name="Check Result" component={BadCheckScreen} />
-    <RootStack.Screen
+    <RootStack.Screen testID='checkResults' name="Check Result" component={BadCheckScreen} />
+    <RootStack.Screen testID='incidentReportResult'
       name="Incident Report Result"
       component={SecondCheckResults}
     />
-    <RootStack.Screen
+    <RootStack.Screen testID='furtherTests'
       name="Further Tests"
       component={FurtherTestsScreen}
       options={{ title: 'Preliminary Tests ' }}
     />
 
-<RootStack.Screen
+<RootStack.Screen testID='prelim'
       name="Prelim Test Results"
       component={PrelimTestResultScreen}
     />
 
-    <RootStack.Screen
+    <RootStack.Screen testID='further'
       name="Further Tests Results"
       component={FurtherTestsResultsScreen}
     />
 
-    <RootStack.Screen name="Memory Test 1" component={MTOne} options={{ title: 'Memory Test ' }} />
-    <RootStack.Screen name="Memory Test 2" component={MTTwo} options={{ title: 'Memory Test 1' }} />
-    <RootStack.Screen name="Memory Test 3" component={MTThree} options={{ title: 'Memory Test 1 ' }}  />
-    <RootStack.Screen name="Memory Test 4" component={MTFour} options={{ title: 'Memory Test 1' }}  />
+    <RootStack.Screen testID='mem1' name="Memory Test 1" component={MTOne} options={{ title: 'Memory Test ' }} />
+    <RootStack.Screen testID='mem2' name="Memory Test 2" component={MTTwo} options={{ title: 'Memory Test 1' }} />
+    <RootStack.Screen testID='mem3' name="Memory Test 3" component={MTThree} options={{ title: 'Memory Test 1 ' }}  />
+    <RootStack.Screen testID='mem4' name="Memory Test 4" component={MTFour} options={{ title: 'Memory Test 1' }}  />
 
-    <RootStack.Screen name="Reaction Test 1" component={RTOne} options={{ title: 'Reaction Test ' }}/>
-    <RootStack.Screen name="Reaction Test 2" component={RTTwo} options={{ title: 'Reaction Test ' }}/>
-    <RootStack.Screen name="Reaction Test 3" component={RTThree} />
-
-
-    <RootStack.Screen name="Balance Test 1" component={BTOne} options={{ title: 'Balance Tests ' }} />
-    <RootStack.Screen name="Balance Test 2" component={BTTwo} options={{ title: 'Balance Test 1 ' }}/>
-    <RootStack.Screen name="Balance Test 3" component={BTThree} />
-    <RootStack.Screen name="Balance Test 4" component={BTFour} options={{ title: 'Balance Test 2 ' }}/>
-    <RootStack.Screen name="Balance Test 5" component={BTFive} />
-    <RootStack.Screen name="Balance Test Complete" component={BTComplete} options={{ title: 'Balance Test 1 Complete ' }} />
-    <RootStack.Screen name="Balance Test Complete 2" component={BTComplete2} options={{ title: 'Balance Tests Complete ' }} />
-
-    <RootStack.Screen name="Hop Test 1" component={HTOne} options={{ title: 'Hop Test ' }} />
-    <RootStack.Screen name="Hop Test 2" component={HTTwo} options={{ title: 'Hop Test 1 ' }} />
-    <RootStack.Screen name="Hop Test Confirm" component={HTConfirm} options={{ title: 'Hop Test Confirm ' }} />
-    <RootStack.Screen name="Hop Test Form" component={HTForm} options={{ title: 'Hop Test Form ' }} />
-    <RootStack.Screen name="Hop Test Form 2" component={HTForm2} options={{ title: 'Hop Test Form 2' }} />
-    <RootStack.Screen name="Hop Test Complete" component={HTComplete} options={{ title: 'Hop Test Complete ' }} />
-
-    <RootStack.Screen name="Memory Test 5 Intro" component={MTFiveIntro} options={{ title: 'Memory Test 2' }}  />
-    <RootStack.Screen name="Memory Test 5" component={MTFive} options={{ title: 'Memory Test 2' }}  />
+    <RootStack.Screen testID='reac1' name="Reaction Test 1" component={RTOne} options={{ title: 'Reaction Test ' }}/>
+    <RootStack.Screen testID='reac2' name="Reaction Test 2" component={RTTwo} options={{ title: 'Reaction Test ' }}/>
+    <RootStack.Screen testID='reac3' name="Reaction Test 3" component={RTThree} />
 
 
-    <RootStack.Screen name="VOMS Start" component={VOMSStart} />
-    <RootStack.Screen
+    <RootStack.Screen testID='bal1' name="Balance Test 1" component={BTOne} options={{ title: 'Balance Tests ' }} />
+    <RootStack.Screen testID='bal2' name="Balance Test 2" component={BTTwo} options={{ title: 'Balance Test 1 ' }}/>
+    <RootStack.Screen testID='bal3' name="Balance Test 3" component={BTThree} />
+    <RootStack.Screen testID='bal4' name="Balance Test 4" component={BTFour} options={{ title: 'Balance Test 2 ' }}/>
+    <RootStack.Screen testID='bal5' name="Balance Test 5" component={BTFive} />
+    <RootStack.Screen testID='bal6' name="Balance Test Complete" component={BTComplete} options={{ title: 'Balance Test 1 Complete ' }} />
+    <RootStack.Screen testID='bal7' name="Balance Test Complete 2" component={BTComplete2} options={{ title: 'Balance Tests Complete ' }} />
+
+    <RootStack.Screen testID='hop1' name="Hop Test 1" component={HTOne} options={{ title: 'Hop Test ' }} />
+    <RootStack.Screen testID='hop2' name="Hop Test 2" component={HTTwo} options={{ title: 'Hop Test 1 ' }} />
+    <RootStack.Screen testID='hop3' name="Hop Test Confirm" component={HTConfirm} options={{ title: 'Hop Test Confirm ' }} />
+    <RootStack.Screen testID='hop4' name="Hop Test Form" component={HTForm} options={{ title: 'Hop Test Form ' }} />
+    <RootStack.Screen testID='hop5' name="Hop Test Form 2" component={HTForm2} options={{ title: 'Hop Test Form 2' }} />
+    <RootStack.Screen testID='hopComplete' name="Hop Test Complete" component={HTComplete} options={{ title: 'Hop Test Complete ' }} />
+
+    <RootStack.Screen testID='mem5Into' name="Memory Test 5 Intro" component={MTFiveIntro} options={{ title: 'Memory Test 2' }}  />
+    <RootStack.Screen testID='mem5' name="Memory Test 5" component={MTFive} options={{ title: 'Memory Test 2' }}  />
+
+
+    <RootStack.Screen testID='vomsStart' name="VOMS Start" component={VOMSStart} />
+    <RootStack.Screen testID='vomsInitial'
       name="VOMS Initial Symptoms"
       component={VOMSInitialSymptoms}
     />
 
-    <RootStack.Screen name="VOMS Smooth Pursuits 1" component={SP1} />
-    <RootStack.Screen name="VOMS Smooth Pursuits 2" component={SP2} />
-    <RootStack.Screen
+    <RootStack.Screen testID='VOMSsmooth' name="VOMS Smooth Pursuits 1" component={SP1} />
+    <RootStack.Screen testID='smooth2' name="VOMS Smooth Pursuits 2" component={SP2} />
+    <RootStack.Screen testID='smooth3'
       name="VOMS Smooth Pursuits 3 Response 1"
       component={SP3Response1}
     />
-    <RootStack.Screen name="VOMS Smooth Pursuits 4" component={SP4} />
-    <RootStack.Screen name="VOMS Smooth Pursuits 5" component={SP5} />
-    <RootStack.Screen
+    <RootStack.Screen testID='smooth4' name="VOMS Smooth Pursuits 4" component={SP4} />
+    <RootStack.Screen testID='smooth5' name="VOMS Smooth Pursuits 5" component={SP5} />
+    <RootStack.Screen testID='smooth6'
       name="VOMS Smooth Pursuits 6 Response 2"
       component={SP6Response2}
     />
 
-    <RootStack.Screen name="VOMS Saccades 1" component={S1} />
-    <RootStack.Screen name="VOMS Saccades 2" component={S2} />
-    <RootStack.Screen
+    <RootStack.Screen testID='sacc1' name="VOMS Saccades 1" component={S1} />
+    <RootStack.Screen testID='sacc2' name="VOMS Saccades 2" component={S2} />
+    <RootStack.Screen testID='sacc3'
       name="VOMS Saccades 3 Response 3"
       component={S3Response2}
     />
-    <RootStack.Screen name="VOMS Saccades 4" component={S4} />
-    <RootStack.Screen name="VOMS Saccades 5" component={S5} />
-    <RootStack.Screen name="VOMS Saccades 6 Response 4" component={S6} />
+    <RootStack.Screen testID='sacc4' name="VOMS Saccades 4" component={S4} />
+    <RootStack.Screen testID='sacc5' name="VOMS Saccades 5" component={S5} />
+    <RootStack.Screen testID='sacc6' name="VOMS Saccades 6 Response 4" component={S6} />
 
-    <RootStack.Screen name="VOMS VOR 1" component={VOR1} />
-    <RootStack.Screen name="VOMS VOR 2" component={VOR2} />
-    <RootStack.Screen name="VOMS VOR 3 Response 5" component={VOR3} />
-    <RootStack.Screen name="VOMS VOR 4" component={VOR4} />
-    <RootStack.Screen name="VOMS VOR 5" component={VOR5} />
-    <RootStack.Screen name="VOMS VOR 6 Response 6" component={VOR6} />
+    <RootStack.Screen testID='vor1' name="VOMS VOR 1" component={VOR1} />
+    <RootStack.Screen testID='vor2' name="VOMS VOR 2" component={VOR2} />
+    <RootStack.Screen testID='vor3' name="VOMS VOR 3 Response 5" component={VOR3} />
+    <RootStack.Screen testID='vor4' name="VOMS VOR 4" component={VOR4} />
+    <RootStack.Screen testID='vor5' name="VOMS VOR 5" component={VOR5} />
+    <RootStack.Screen testID='vor6' name="VOMS VOR 6 Response 6" component={VOR6} />
 
-    <RootStack.Screen name="VOMS NPC 1" component={NPC1} />
-    <RootStack.Screen name="VOMS NPC 2" component={NPC2} />
-    <RootStack.Screen name="VOMS NPC 3" component={NPC3} />
-    <RootStack.Screen name="VOMS NPC 4 Response 7" component={NPC4} />
+    <RootStack.Screen testID='npc1' name="VOMS NPC 1" component={NPC1} />
+    <RootStack.Screen testID='npc2' name="VOMS NPC 2" component={NPC2} />
+    <RootStack.Screen testID='npc3' name="VOMS NPC 3" component={NPC3} />
+    <RootStack.Screen testID='npc4' name="VOMS NPC 4 Response 7" component={NPC4} />
 
-    <RootStack.Screen name="VOMS VMS 1" component={VMS1} />
-    <RootStack.Screen name="VOMS VMS 2" component={VMS2} />
-    <RootStack.Screen name="VOMS VMS 3 Response 8" component={VMS3} />
-    <RootStack.Screen name="DSL Complete" component={DSLComplete}/>
+    <RootStack.Screen testID='vms1' name="VOMS VMS 1" component={VMS1} />
+    <RootStack.Screen testID='vms2' name="VOMS VMS 2" component={VMS2} />
+    <RootStack.Screen testID='vms3' name="VOMS VMS 3 Response 8" component={VMS3} />
+    <RootStack.Screen testID='dslComplete' name="DSL Complete" component={DSLComplete}/>
   </RootStack.Navigator>
   );
 }
@@ -369,7 +369,6 @@ const styles = StyleSheet.create({
           borderBottomRightRadius: 0,
           backgroundColor: '#E2F2FF',
           elevation: 25,
-          testID: "testHeader"
   }
 });
 
