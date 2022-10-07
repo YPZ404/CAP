@@ -99,6 +99,7 @@ import AllReports from './app/screens/AllReports';
 import AllPrelimReports from './app/screens/AllPrelimReports';
 import AllIncidentReports from './app/screens/AllIncidentReports';
 import DSLComplete from './app/screens/DSLComplete';
+import { ViewPagerAndroidBase } from 'react-native';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -113,14 +114,24 @@ function OpenDisclaimer(){
               options={{
                 headerTitle: () => <Header name="Disclaimer"></Header>,
                 headerLeft: () => (
-                  <View name='menu_button'
-                        component='menu_button'>
+                  <View testID={'menu_view'}
+                  accessible={true}
+                  accessibilityLabel={'menu_view'}
+                  name='menu_view'
+                  component='menu_view'>
                     
                     <TouchableOpacity testID={'menu_button'}
+                      accessible={true}
+                      accessibilityLabel={'menu_button'}
                       name='menu_button'
                       component='menu_button'
                       style={{marginLeft: 15}}>
-                      <MaterialCommunityIcons name='dots-vertical' size={28} color='#000'/>
+                      <MaterialCommunityIcons testID='dots-vertical'
+                      name='dots-vertical' 
+                      component='dots-vertical' 
+                      accessible={true}
+                      accessibilityLabel={'dots-vertical'}
+                      size={28} color='#000'/>
                     </TouchableOpacity>
                   </View>
                 ),
@@ -288,7 +299,7 @@ function CustomNavContent(){
 
 function CustomDrawerContent(props) {
   return (
-    <DrawerContentScrollView {...props}>
+    <DrawerContentScrollView testID='drawer_scrollView' accessible={true} accessibilityLabel={'drawer_scrollView'} {...props}>
       <DrawerItemList {...props} />
     </DrawerContentScrollView>
   );
@@ -300,7 +311,11 @@ function MyDrawer() {
       <Drawer.Screen setOptions={{headerShown: false}} name="Start" component={OpenDisclaimer} 
         options={{
           headerTitle: () => <Header name="Disclaimer"></Header>,
-          headerLeft: () => (<View/>),
+          headerLeft: () => (<View testID={'header_left_myDrawer'}
+                                    accessible={true}
+                                    accessibilityLabel={'header_left_myDrawer'}
+                                    name='header_left_myDrawer'
+                                    component='header_left_myDrawer'/>),
           headerStyle: {
             height: (Dimensions.get('window').height)/6,
             borderBottomLeftRadius: 0,
@@ -320,13 +335,13 @@ function MyDrawer() {
             elevation: 25
           }
         }}/>
-      <Drawer.Screen name="Login" component={LoginScreen} />
-      <Drawer.Screen name="Reports" component={AllReports} />
-      <Drawer.Screen name="Preliminary Tests" component={FurtherTestsScreen} />
-      <Drawer.Screen name="Daily Symptom Checklist" component={DSLScreen}/>
-      <Drawer.Screen name="Concussion Action Plan" component={ActionPlanScreen} />
-      <Drawer.Screen name="VOMS Tests" component={VOMSStart} /> 
-      <Drawer.Screen name="Continue Tests" component={CustomNavContent} 
+      <Drawer.Screen testID='Login' accessible={true} accessibilityLabel={'Login'} name="Login" component={LoginScreen} />
+      <Drawer.Screen testID='Reports' accessible={true} accessibilityLabel={'Reports'} name="Reports" component={AllReports} />
+      <Drawer.Screen testID='Preliminary Tests' accessible={true} accessibilityLabel={'Preliminary Tests'} name="Preliminary Tests" component={FurtherTestsScreen} />
+      <Drawer.Screen testID='Daily Symptom Checklist' accessible={true} accessibilityLabel={'Daily Symptom Checklist'} name="Daily Symptom Checklist" component={DSLScreen}/>
+      <Drawer.Screen testID='Concussion Action Plan' accessible={true} accessibilityLabel={'Concussion Action Plan'} name="Concussion Action Plan" component={ActionPlanScreen} />
+      <Drawer.Screen testID='VOMS tests' accessible={true} accessibilityLabel={'VOMS Tests'} name="VOMS Tests" component={VOMSStart} /> 
+      <Drawer.Screen testID='Continue Tests' accessible={true} accessibilityLabel={'Continue Tests'} name="Continue Tests" component={CustomNavContent} 
     
        options={{
         headerTitle: () => <Header name=""></Header>,
