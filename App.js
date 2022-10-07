@@ -103,6 +103,13 @@ import { ViewPagerAndroidBase } from 'react-native';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+Drawer.testID='drawerID';
+Drawer.setOptions=({
+    tabBarTestID: "drawerID",
+    testID: "drawerTI",
+    drawerContent: "drawerTest",
+    drawerTestID: "drawerTestID"
+});
 const OpenStack = createStackNavigator();
 
 function OpenDisclaimer(){
