@@ -107,8 +107,8 @@ const OpenStack = createStackNavigator();
 
 function OpenDisclaimer(){
   return (
-      <OpenStack.Navigator screenOptions={{headerShown: false}}>
-          <OpenStack.Screen 
+      <OpenStack.Navigator testID='openStackNavigator' screenOptions={{headerShown: false}}>
+          <OpenStack.Screen testID='openStackScreen'
               name="Disclaimer" 
               component={Disclaimer}
               options={{
@@ -151,7 +151,7 @@ function OpenDisclaimer(){
 
 function CustomNavContent(){
   return (
-    <RootStack.Navigator screenOptions={{headerShown: false}}>
+    <RootStack.Navigator testID='rootStackNavigator' screenOptions={{headerShown: false}}>
     <RootStack.Screen name="Home" component={HomeScreen}/>
     <RootStack.Screen name="HEAD BUMPS" component={HeadBumpsScreen} />
     <RootStack.Screen
@@ -301,17 +301,17 @@ function CustomNavContent(){
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView testID='drawer_scrollView' accessible={true} accessibilityLabel={'drawer_scrollView'} {...props}>
-      <DrawerItemList {...props} />
+      <DrawerItemList testID='drawerItemList' {...props} />
     </DrawerContentScrollView>
   );
 }
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props}/>}>
-      <Drawer.Screen setOptions={{headerShown: false}} name="Start" component={OpenDisclaimer} 
+    <Drawer.Navigator testID='navigator' drawerContent={(props) => <CustomDrawerContent {...props}/>}>
+      <Drawer.Screen testID='drawerNavScreen' setOptions={{headerShown: false}} name="Start" component={OpenDisclaimer} 
         options={{
-          headerTitle: () => <Header name="Disclaimer"></Header>,
+          headerTitle: () => <Header testID='disclaimerHeader' name="Disclaimer"></Header>,
           headerLeft: () => (<View testID={'header_left_myDrawer'}
                                     accessible={true}
                                     accessibilityLabel={'header_left_myDrawer'}
@@ -326,9 +326,9 @@ function MyDrawer() {
             testID: 'myDrawerHeader'
           }
         }}/>
-      <Drawer.Screen name="Home Page" component={HomeScreen} 
+      <Drawer.Screen testID='drawerHomePage' name="Home Page" component={HomeScreen} 
         options={{
-          headerTitle: () => <Header name=""></Header>,
+          headerTitle: () => <Header testID='headerDrawerScreenTitle' name=""></Header>,
           headerStyle: {
             height: (Dimensions.get('window').height)/9,
             borderBottomLeftRadius: 0,
@@ -347,7 +347,7 @@ function MyDrawer() {
       <Drawer.Screen testID='Continue Tests' accessible={true} accessibilityLabel={'Continue Tests'} name="Continue Tests" component={CustomNavContent} 
     
        options={{
-        headerTitle: () => <Header name=""></Header>,
+        headerTitle: () => <Header testID='headerTitle' name=""></Header>,
         headerStyle: {
           height: (Dimensions.get('window').height)/9,
           borderBottomLeftRadius: 0,
@@ -368,11 +368,10 @@ const styles = StyleSheet.create({
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
           backgroundColor: '#E2F2FF',
-          elevation: 25
+          elevation: 25,
+          testID: "testHeader"
   }
-
 });
-
 
 /**
  * The entry point for the application.
@@ -381,9 +380,9 @@ const styles = StyleSheet.create({
  */
  export default function App() {
   return (
-    <GlobalContextProvider>
-      <NavigationContainer >
-          <MyDrawer />
+    <GlobalContextProvider testID='globalContextProvider'>
+      <NavigationContainer testID='naviContainer' >
+          <MyDrawer testID='myDrawer' />
       </NavigationContainer>
     </GlobalContextProvider>
   );
