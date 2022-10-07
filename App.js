@@ -140,7 +140,8 @@ function OpenDisclaimer(){
                   borderBottomLeftRadius: 0,
                   borderBottomRightRadius: 0,
                   backgroundColor: '#9AD3FF',
-                  elevation: 25
+                  elevation: 25,
+                  testID: 'menuIcon'
                 }
               }}
           />
