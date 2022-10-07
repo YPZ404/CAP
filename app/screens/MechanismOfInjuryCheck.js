@@ -48,7 +48,7 @@ function MechanismOfInjuryCheck({ navigation }) {
       </Text>
       <SafeAreaView style={uiStyle.textContainer}>
         <View style={styles.sameRow}>
-          <Pressable
+          <Pressable testID='YES' accessible={true} accessibilityLabel={'YES'} label='YES'
             style={styles.buttonYes}
             onPress={() => {
               handleCreateSResponse('YES');
@@ -58,7 +58,7 @@ function MechanismOfInjuryCheck({ navigation }) {
             <Text style={styles.label}>YES</Text>
           </Pressable>
 
-          <Pressable
+          <Pressable testID='NO' accessible={true} accessibilityLabel={'NO'} label='NO'
             style={styles.buttonNo}
             onPress={() => {
               handleCreateSResponse('NO');
@@ -69,7 +69,7 @@ function MechanismOfInjuryCheck({ navigation }) {
           </Pressable>
         </View>
         <View style={styles.sameRow}>
-          <Pressable
+          <Pressable testID='MAYBE' accessible={true} accessibilityLabel={'MAYBE/UNSURE'} label='MAYBE'
             style={styles.buttonMaybe}
             onPress={() => {
               handleCreateSResponse('MAYBE');

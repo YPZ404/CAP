@@ -123,6 +123,7 @@ function LoginScreen({ navigation }){
       </Text>
       <SafeAreaView style={styles.inputAreaContainer}>
         <TextInput
+          testID='first_name' accessible={true} accessibilityLabel={'first_name'} label='first_name'
           style={styles.input}
           onChangeText={onChangeFirstName}
           value={firstNameOfUser}
@@ -130,6 +131,7 @@ function LoginScreen({ navigation }){
           returnKeyType="done"
         />
         <TextInput
+          testID='last_name' accessible={true} accessibilityLabel={'last_name'} label='last_name'
           style={styles.input}
           onChangeText={onChangeLastName}
           value={lastNameOfUser}
@@ -137,6 +139,7 @@ function LoginScreen({ navigation }){
           returnKeyType="done"
         />
         <TextInput
+          testID='password' accessible={true} accessibilityLabel={'password'} label='password'
           style={styles.input}
           onChangeText={onChangePassword}
           value={passwordValue}

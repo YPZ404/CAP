@@ -70,6 +70,7 @@ function CreateProfileScreen({ navigation }) {
       </Text>
       <SafeAreaView style={styles.inputAreaContainer}>
         <TextInput
+          testID='first_name' accessible={true} accessibilityLabel={'first_name'} label='first_name'
           style={styles.input}
           onChangeText={onChangeFirstName}
           value={firstNameOfUser}
@@ -77,6 +78,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
+          testID='last_name' accessible={true} accessibilityLabel={'last_name'} label='last_name'
           style={styles.input}
           onChangeText={onChangeLastName}
           value={lastNameOfUser}
@@ -84,6 +86,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
+          testID='age' accessible={true} accessibilityLabel={'age'} label='age'
           maxLength={3}
           style={styles.input}
           onChangeText={onChangeAge}
@@ -93,6 +96,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
+          testID='weight' accessible={true} accessibilityLabel={'weight'} label='weight'
           maxLength={3}
           style={styles.input}
           onChangeText={onChangeWeight}
@@ -102,6 +106,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
+          testID='password' accessible={true} accessibilityLabel={'password'} label='password'
           maxLength={9}
           style={styles.input}
           onChangeText={onChangePassword}

@@ -82,7 +82,7 @@ function BadCheckScreen({ navigation }) {
         The injured individual is showing severe symptoms and should seek medical attention immediately.
       </Text>    
       
-      <TouchableOpacity onPress={()=>{
+      <TouchableOpacity testID='callButton' accessible={true} accessibilityLabel={'callButton'} label='callButton' onPress={()=>{
         console.log("Call 000 button was pressed (BadCheckScreen.js)");
         Linking.openURL("tel:0123456789");
       }} style={styles.startCheckButton}>

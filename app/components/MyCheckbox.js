@@ -21,7 +21,7 @@ const MyCheckbox = (props) => {
   }
 
   return (
-    <Pressable
+    <Pressable testID='myCheckBox' accessible={true} accessibilityLabel={'myCheckBox'} label='myCheckBox'
       style={[styles.checkboxBase, checked && styles.checkboxChecked]}
       onPress={() => {
         onCheckmarkPress();

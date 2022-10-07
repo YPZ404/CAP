@@ -55,7 +55,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Headache:</Text>
               <Text style={[uiStyle.text]}>{sliderOneValue}</Text>
             </View>
-            <Slider
+            <Slider testID='headache' accessible={true} accessibilityLabel={'headache'} label='headache'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -65,7 +65,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Nausea: </Text>
               <Text style={[uiStyle.text]}>{sliderTwoValue}</Text>
             </View>
-            <Slider
+            <Slider testID='nausea' accessible={true} accessibilityLabel={'nausea'} label='nausea'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -75,7 +75,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Dizziness:</Text>
               <Text style={[uiStyle.text]}>{sliderThreeValue}</Text>
             </View>
-            <Slider
+            <Slider testID='dizziness' accessible={true} accessibilityLabel={'dizziness'} label='dizziness'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -85,7 +85,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Vomiting:</Text>
               <Text style={[uiStyle.text]}>{sliderFourValue}</Text>
             </View>
-            <Slider
+            <Slider testID='vomiting' accessible={true} accessibilityLabel={'vomiting'} label='vomiting'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -95,7 +95,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Balance Problem:</Text>
               <Text style={[uiStyle.text]}>{sliderFiveValue}</Text>
             </View>
-            <Slider
+            <Slider testID='balance' accessible={true} accessibilityLabel={'balance'} label='balance'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -105,7 +105,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Blurry or Double Vision:</Text>
               <Text style={[uiStyle.text]}>{sliderSixValue}</Text>
             </View>
-            <Slider
+            <Slider testID='blurry' accessible={true} accessibilityLabel={'blurry'} label='blurry'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -116,7 +116,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Sensitivity to light:</Text>
               <Text style={[uiStyle.text]}>{sliderSevenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='light' accessible={true} accessibilityLabel={'light'} label='light'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -126,7 +126,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Sensitivity to noise:</Text>
               <Text style={[uiStyle.text]}>{sliderEightValue}</Text>
             </View>
-            <Slider
+            <Slider testID='noise' accessible={true} accessibilityLabel={'noise'} label='noise'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -136,7 +136,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Balance Problems:</Text>
               <Text style={[uiStyle.text]}>{sliderTwentyValue}</Text>
             </View>
-            <Slider
+            <Slider testID='balance' accessible={true} accessibilityLabel={'balance'} label='balance'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -146,7 +146,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Pain other than headache:</Text>
               <Text style={[uiStyle.text]}>{sliderNineValue}</Text>
             </View>
-            <Slider
+            <Slider testID='pain' accessible={true} accessibilityLabel={'pain'} label='pain'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -156,7 +156,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Feeling Slowed Down:</Text>
               <Text style={[uiStyle.text]}>{sliderTenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='slowed' accessible={true} accessibilityLabel={'slowed'} label='slowed'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -166,7 +166,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Difficulty Concentrating:</Text>
               <Text style={[uiStyle.text]}>{sliderElevenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='concentrating' accessible={true} accessibilityLabel={'concentrating'} label='concentrating'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -176,7 +176,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Difficulty Remembering:</Text>
               <Text style={[uiStyle.text]}>{sliderTwelveValue}</Text>
             </View>
-            <Slider
+            <Slider testID='remembering' accessible={true} accessibilityLabel={'remembering'} label='remembering'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -186,7 +186,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Trouble falling asleep:</Text>
               <Text style={[uiStyle.text]}>{sliderThirteenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='sleeping' accessible={true} accessibilityLabel={'sleeping'} label='sleeping'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -196,7 +196,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Fatigue or low energy:</Text>
               <Text style={[uiStyle.text]}>{sliderFourteenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='fatigue' accessible={true} accessibilityLabel={'fatigue'} label='fatigue'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -206,7 +206,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Drowsiness:</Text>
               <Text style={[uiStyle.text]}>{sliderFifteenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='drowsiness' accessible={true} accessibilityLabel={'drowsiness'} label='drowsiness'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -216,7 +216,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Feeling more emotional:</Text>
               <Text style={[uiStyle.text]}>{sliderSixteenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='emotional' accessible={true} accessibilityLabel={'emotional'} label='emotional'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -226,7 +226,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Irritability:</Text>
               <Text style={[uiStyle.text]}>{sliderSeventeenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='irritability' accessible={true} accessibilityLabel={'irritability'} label='irritability'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -236,7 +236,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Sadness:</Text>
               <Text style={[uiStyle.text]}>{sliderEighteenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='sadness' accessible={true} accessibilityLabel={'sadness'} label='sadness'
               minimumValue={0}
               maximumValue={6}
               step={1}
@@ -246,7 +246,7 @@ function PCSSChecklist({ navigation }) {
               <Text style={uiStyle.text}>Nervousness:</Text>
               <Text style={[uiStyle.text]}>{sliderNineteenValue}</Text>
             </View>
-            <Slider
+            <Slider testID='nervousness' accessible={true} accessibilityLabel={'nervousness'} label='nervousness'
               minimumValue={0}
               maximumValue={6}
               step={1}

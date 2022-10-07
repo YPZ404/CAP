@@ -32,7 +32,7 @@ function BTOne({ navigation }) {
           </Text>
         </SafeAreaView>
       </ScrollView>
-      <TouchableOpacity
+      <TouchableOpacity testID='button' accessible={true} accessibilityLabel={'button'} label='button'
         onPress={() => {
           navigation.navigate('Balance Test 2');
         }}

@@ -102,9 +102,10 @@ function RTTwo({ navigation }) {
   }, [reportId, attemptResults, navigation]);
 
   return (
-    <View style={uiStyle.textContainer} onTouchStart={btnOnPress}>
-      <View style={uiStyle.textContainer}>
-        <TouchableOpacity style={[styles.reactionButton, btnStyle]}>
+    <View testID='btnOnPress' accessible={true} accessibilityLabel={'btnOnPress'} label='btnOnPress' style={uiStyle.textContainer} onTouchStart={btnOnPress}>
+      <View testID='btnView' accessible={true} accessibilityLabel={'btnView'} label='btnView' style={uiStyle.textContainer}>
+        <TouchableOpacity testID='btn' accessible={true} accessibilityLabel={'btn'} label='btn'
+        style={[styles.reactionButton, btnStyle]}>
           <Text style={styles.startText}>{btnTxt}</Text>
         </TouchableOpacity>
       </View>

@@ -114,7 +114,7 @@ function HTTwo({ route, navigation }) {
         dominant foot (i.e. the foot you would usually kick a ball with) for 15 seconds. {"\n"}
         {"\n"}
       </Text>
-      <TouchableOpacity
+      <TouchableOpacity testID='btn' accessible={true} accessibilityLabel={'btn'} label='btn'
         onPress={() => {
           if (!subscription) {
             setStarted(true);
@@ -125,7 +125,7 @@ function HTTwo({ route, navigation }) {
         <Text style={styles.startCheckText}>{text}</Text>
       </TouchableOpacity>
       <View style={uiStyle.textContainer}>
-        <TouchableOpacity
+        <TouchableOpacity testID='btn2' accessible={true} accessibilityLabel={'btn2'} label='btn2'
           onPress={() => {
             navigation.navigate("Hop Test 1");
           }}

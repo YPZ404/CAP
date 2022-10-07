@@ -87,7 +87,7 @@ function MTFour({ navigation }) {
       }
 
       return (
-          <Pressable
+          <Pressable testID='pressable' accessible={true} accessibilityLabel={'pressable'} label='pressable'
               style={[cbStyle.checkboxBase, checked && cbStyle.checkboxChecked]}
               onPress={onCheckmarkPress}
           >
@@ -123,7 +123,7 @@ function MTFour({ navigation }) {
           <DisplayOptions options={options} updateOption={onUpdate} />
         </SafeAreaView>
       </ScrollView>
-      <TouchableOpacity
+      <TouchableOpacity testID='remembering_touchable' accessible={true} accessibilityLabel={'remembering_touchable'} label='remembering_touchable'
         onPress={() => {
           //Logic to generate Pass or fail mark
           // memoryCorrectAnswerContext.sort();
