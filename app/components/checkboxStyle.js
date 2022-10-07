@@ -11,6 +11,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     margin: 3,
+    testID: 'checkBoxContainer'
   },
 
   checkboxBase: {
@@ -22,10 +23,12 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     backgroundColor: 'transparent',
+    testID: 'checkBoxBase'
   },
 
   checkboxChecked: {
     backgroundColor: '#C4C4C4',
+    testID: 'checkBoxChecked'
   },
 
   checkboxLabel: {
@@ -33,5 +36,6 @@ export default StyleSheet.create({
     fontWeight: '500',
     fontSize: 16,
     flexWrap: 'wrap',
+    testID: 'checkBoxLabel'
   },
 });

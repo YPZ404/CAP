@@ -322,7 +322,8 @@ function MyDrawer() {
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
             backgroundColor: '#9AD3FF',
-            elevation: 25
+            elevation: 25,
+            testID: 'myDrawerHeader'
           }
         }}/>
       <Drawer.Screen name="Home Page" component={HomeScreen} 
@@ -333,7 +334,8 @@ function MyDrawer() {
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
             backgroundColor: '#E2F2FF',
-            elevation: 25
+            elevation: 25,
+            testID: 'drawerScreenHeader'
           }
         }}/>
       <Drawer.Screen testID='Login' accessible={true} accessibilityLabel={'Login'} name="Login" component={LoginScreen} />
@@ -351,7 +353,8 @@ function MyDrawer() {
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
           backgroundColor: '#E2F2FF',
-          elevation: 25
+          elevation: 25,
+          testID: 'header'
         }
       }}/>
     </Drawer.Navigator>
