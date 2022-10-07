@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     margin: 1,
+    testID: 'checkBoxContainer'
   },
   checkboxLabel: checkboxStyle.checkboxLabel,
 });
