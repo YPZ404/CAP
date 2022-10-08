@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS DailySymptomLog (
     log_id INTEGER PRIMARY KEY,
     patient_id INTEGER REFERENCES Account(account_id),
     headache_result INTEGER,
+    date_of_test VARCHAR(15),
     nausea_result INTEGER,
     dizziness_result INTEGER,
     vomiting_result INTEGER,

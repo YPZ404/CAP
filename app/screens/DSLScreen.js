@@ -330,14 +330,11 @@ function DSLScreen({ navigation }) {
 
 
             // Add necessary stuff for user @mariam :)
-            preliminaryReportRepoContext.createDSL(account.account_id, sliderOneValue, sliderTwoValue, sliderThreeValue, sliderFourValue, sliderFiveValue, sliderSixValue, sliderSevenValue,sliderEightValue,sliderNineValue,sliderTenValue,sliderElevenValue,
+            let currentDate = new Date().toJSON().slice(0,19);
+            preliminaryReportRepoContext.createDSL(account.account_id, currentDate, sliderOneValue, sliderTwoValue, sliderThreeValue, sliderFourValue, sliderFiveValue, sliderSixValue, sliderSevenValue,sliderEightValue,sliderNineValue,sliderTenValue,sliderElevenValue,
               sliderTwelveValue,  sliderThirteenValue,sliderFifteenValue,sliderSixteenValue,
               sliderSeventeenValue,sliderEighteenValue,sliderNineteenValue,sliderTwentyValue, totalSliderValue).then((data)=>setDSLId(data));
             navigation.navigate('Continue Tests', { screen: 'DSL Complete'});
-           
-
-            
-
 
           }}
           style={uiStyle.bottomButton}
