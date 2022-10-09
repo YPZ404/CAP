@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     backgroundColor: '#fff',
-    marginTop: (Dimensions.get('window').height)/6,
+    marginTop: (Dimensions.get('window').height)/5,
   },
   titlecontainer: {
     alignItems: 'center',
