@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Button,
   ScrollView,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 
 
@@ -21,6 +23,8 @@ function DSLComplete({ navigation }) {
   
   return (
     <SafeAreaView style={uiStyle.container}>
+      <ImageBackground style={styles.image} 
+          source = {require('../../assets/b3.png')}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
           <Text style={uiStyle.titleText}>Daily Symptom Log Complete</Text>
@@ -37,10 +41,11 @@ function DSLComplete({ navigation }) {
           navigation.navigate('Home Page');
           
         }}
-        style={uiStyle.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
       >
         <Text style={uiStyle.startCheckText}>Return to Home</Text>
       </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -78,6 +83,22 @@ const styles = StyleSheet.create({
     top: 60,
     fontWeight: 'bold',
   },
+  bottomButton: {
+		width: Dimensions.get('window').width/1.3,
+    	height: Dimensions.get('window').width/7.5,
+		borderRadius: 20,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginBottom: (Dimensions.get('window').height)/2.5,
+		marginTop: (Dimensions.get('window').height)/20,
+		alignSelf: 'center'
+	},
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.12,
+    resizeMode: 'cover',
+  }
 });
 
 export default DSLComplete;
