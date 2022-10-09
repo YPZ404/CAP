@@ -7,6 +7,8 @@ function VOMSStart({ navigation }) {
   return (
     <SafeAreaView style={uiStyle.container}>
       <Text style={uiStyle.titleText}>VOMS Instructions</Text>
+      <ImageBackground style={styles.image} 
+          source = {require('../../../assets/b3.png')}>
       <ScrollView>
         <Text style={uiStyle.stackedText}>
           The affected person will now be doing a series of tests that track
@@ -15,10 +17,11 @@ function VOMSStart({ navigation }) {
       </ScrollView>
       <TouchableOpacity   
         onPress={() => navigation.navigate('Continue Tests',{screen: 'VOMS Initial Symptoms'})}
-        style={uiStyle.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
       >
         <Text style={uiStyle.buttonLabel}>Next</Text>
       </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: (Dimensions.get('window').height)/4.5,
+    marginBottom: (Dimensions.get('window').height)/2,
     marginTop: (Dimensions.get('window').height)/300,
     alignSelf: 'center',
   },
