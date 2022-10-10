@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS Account (
     last_name VARCHAR(200),
     age INTEGER,
     weight INTEGER,
-    password VARCHAR(9)
+    password VARCHAR(15)
 );`,
   //Instance of an incident report
   `
