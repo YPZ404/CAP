@@ -25,7 +25,7 @@ import { exportMapAsPdf } from '../model/exportAsPdf';
 import uiStyle from '../components/uiStyle';
 
 
-function AllPrelimReports({ navigation }){
+function AllDSReports({ navigation }){
   
   const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
   const [, setPatient] = useContext(PatientContext);
@@ -48,11 +48,10 @@ function AllPrelimReports({ navigation }){
   }
 
   let usersButtons = [];
-  var dict = {0:'FAIL', 1:'PASS'};
   //console.log(account.account_id);
 //   const reports = incidentRepoContext.getPrelimReports(account.account_id);
     let reports = [];
-  preliminaryReportRepoContext.getListofPatientReports(account.account_id).then((values) => {
+  preliminaryReportRepoContext.getDSLFromPatient(account.account_id).then((values) => {
     //console.log(values);
     // if(reportResults != null){
       setReportResults(values);
@@ -72,13 +71,19 @@ function AllPrelimReports({ navigation }){
           if(dateAndTime[1] != null){
             time = dateAndTime[1].slice(0, 5);
           }
-          
-        const description = ' '+dateAndTime[0]+' '+time+'\n Memory Test 1: '+dict[reportResults[i].memory_test1_result] + ' \n Memory Test 2: ' + dict[reportResults[i].memory_test2_result] +
-        ' \n Reaction Test: '+ dict[reportResults[i].reaction_test_result] + ' \n Balance Test 1: '+ dict[reportResults[i].balance_test1_result] +' \n Balance Test 2: '+
-        dict[reportResults[i].balance_test2_result] +' \n';
+        const description = ' '+dateAndTime[0]+' '+time+'\n Headache: '+reportResults[i].headache_result+'/6' + ' \n Nausea: ' + reportResults[i].nausea_result + '/6'+
+        ' \n Dizziness: '+ reportResults[i].dizziness_result + '/6'+' \n Vomiting: '+ reportResults[i].vomiting_result +'/6'+' \n Balance Problem: '+
+        reportResults[i].balance_problem_result +'/6'+' \n Blurry or Double Vision: '+ reportResults[i].blurry_or_double_vision_result +'/6'
+        + ' \n Sensitivity to light: '+ reportResults[i].sensitivity_to_light_result +'/6'+ ' \n Sensitivity to noise: '+ reportResults[i].sensitive_to_noise_result
+        +'/6'+ ' \n Pain other than headache: '+ reportResults[i].pain_other_than_headache_result+'/6'+ ' \n Feeling Slowed Down: '+reportResults[i].feeling_slowed_down_result+
+        '/6'+' \n Difficulty Concentrating: '+ reportResults[i].difficulty_concentrating_result +'/6'+ ' \n Difficulty Remembering: '+ reportResults[i].difficulty_remembering_result+
+        '/6'+' \n Trouble falling asleep: '+ reportResults[i].trouble_fall_asleep_result +'/6'+ ' \n Fatigue or low energy: '+ reportResults[i].fatigue_or_low_energy_result +'/6'+
+        ' \n Drowsiness: '+ reportResults[i].drowsiness_result +'/6'+ ' \n Feeling more emotional: '+ reportResults[i].feeling_more_emotional_result +'/6'+'\n Irritability: '+
+        reportResults[i].irritability_result +'/6'+ '\n Sadness: '+ reportResults[i].sadness_result +'/6'+' \n Nervousness: '+reportResults[i].nervousness_result +'/6'+
+        ' \n';
         //console.log(description);
         usersButtons.push(
-          <Text key={z} style={styles.reporttext}>Report {reportResults[i].report_id} {description}</Text>,
+          <Text key={z} style={styles.reporttext}>Report {reportResults[i].log_id} {description}</Text>,
         );
         usersButtons.push(
           <TouchableOpacity
@@ -112,7 +117,7 @@ return(
   <SafeAreaView style={uiStyle.container}>
   <View style = {styles.titlecontainer}>
   <Text style={styles.text}>
-    All Preliminary Reports for {account.first_name}
+    All Daily Symptom Reports for {account.first_name}
   </Text>
   </View>
   <View style={{height: Dimensions.get('window').height/2}} >
@@ -188,24 +193,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default AllPrelimReports;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default AllDSReports;
 
 
 

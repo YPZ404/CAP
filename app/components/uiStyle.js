@@ -1,9 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 // This file is for the UI of the test & reports. 
 // UI for disclaimer page, home page, account management are in their individual file
-const title = '#000000';
-const text = '#fff';
 const background = '#9AD3FF';
 const buttons = '#ff3333';
 const test_background = '#9AD3FF';
@@ -14,15 +12,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: background,
   },
+
   textContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   titleText: {
-    color: '#000000',
-    fontSize: 30,
-    marginTop: 20,
+    // Title text for all Tests
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/13,
+    marginTop: Dimensions.get('window').width/8,
     fontWeight: 'bold',
   },
 
@@ -42,40 +43,47 @@ export default StyleSheet.create({
   },
 
   text: {
-    // text for questions in the concussion check
-    fontSize: 25,
-    lineHeight: 25,
+    // text for tests
+     // text for long instructions
+    color: '#003A67',
+    fontWeight: '700',
+    fontSize: Dimensions.get('window').width/20,
+    lineHeight: Dimensions.get('window').width/15,
     letterSpacing: 0.3,
-    marginHorizontal: 30,
-    marginVertical: 20,
+    marginHorizontal: Dimensions.get('window').width/10,
+    marginVertical: Dimensions.get('window').width/15,
+    textAlign: 'center',
   },
 
   stackedText: {
     // text for long instructions
-    fontSize: 20,
-    lineHeight: 25,
+    color: '#003A67',
+    fontWeight: '700',
+    fontSize: Dimensions.get('window').width/25,
+    lineHeight: Dimensions.get('window').width/15,
     letterSpacing: 0.3,
-    marginHorizontal: 30,
-    marginVertical: 30,
+    marginHorizontal: Dimensions.get('window').width/15,
+    marginVertical: Dimensions.get('window').width/8,
+    textAlign: 'center',
   },
 
   bottomButton: {
-    // consistent with "View History" button on Home screen, i.e long red button on bottom
-    width: 300,
-    height: 50,
+    // Buttom buttons in all tests (except the introduction page - FurtherTestsScreen)
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
     padding: 10,
-    borderRadius: 100,
+    borderRadius: 20,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 50,
-    marginTop: 20,
+    marginBottom: (Dimensions.get('window').height)/11,
+    marginTop: (Dimensions.get('window').height)/300,
     alignSelf: 'center',
   },
   buttonLabel: {
-    // consistent with "View History" button on Home screen, i.e. white text in the button
+    // Buttom buttons in all tests
     color: '#003A67',
-    fontSize: 18,
+    fontSize: Dimensions.get('window').width/20,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'center',
@@ -117,5 +125,13 @@ export default StyleSheet.create({
     borderRadius: 50,
     backgroundColor: '#ff3333',
     transform: [{ scaleY: 0.76 }, { scaleX: 0.67 }],
+  },
+
+  // Shadow effect for all test buttoms
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
   },
 });

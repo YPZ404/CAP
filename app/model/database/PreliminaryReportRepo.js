@@ -458,12 +458,12 @@
     }
 
 
-    async createDSL(patient_id, headache_result, nausea_result, dizziness_result, vomiting_result, balance_problem_result, blurry_or_double_vision_result, sensitivity_to_light_result, sensitive_to_noise_result, pain_other_than_headache_result, feeling_in_a_fog_result, feeling_slowed_down_result, difficulty_concentrating_result, difficulty_remembering_result, trouble_fall_asleep_result, fatigue_or_low_energy_result, drowsiness_result, feeling_more_emotional_result, irritability_result,sadness_result, nervousness_result,dsl_result) {
+    async createDSL(patient_id, date_of_test,headache_result, nausea_result, dizziness_result, vomiting_result, balance_problem_result, blurry_or_double_vision_result, sensitivity_to_light_result, sensitive_to_noise_result, pain_other_than_headache_result, feeling_in_a_fog_result, feeling_slowed_down_result, difficulty_concentrating_result, difficulty_remembering_result, trouble_fall_asleep_result, fatigue_or_low_energy_result, drowsiness_result, feeling_more_emotional_result, irritability_result,sadness_result, nervousness_result,dsl_result) {
       const sql =
-        'INSERT INTO DailySymptomLog (patient_id, headache_result, nausea_result, dizziness_result, vomiting_result, balance_problem_result, blurry_or_double_vision_result, sensitivity_to_light_result, sensitive_to_noise_result, pain_other_than_headache_result, feeling_in_a_fog_result, feeling_slowed_down_result, difficulty_concentrating_result, difficulty_remembering_result, trouble_fall_asleep_result, fatigue_or_low_energy_result, drowsiness_result, feeling_more_emotional_result, irritability_result,sadness_result, nervousness_result,dsl_result) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+        'INSERT INTO DailySymptomLog (patient_id, date_of_test, headache_result, nausea_result, dizziness_result, vomiting_result, balance_problem_result, blurry_or_double_vision_result, sensitivity_to_light_result, sensitive_to_noise_result, pain_other_than_headache_result, feeling_in_a_fog_result, feeling_slowed_down_result, difficulty_concentrating_result, difficulty_remembering_result, trouble_fall_asleep_result, fatigue_or_low_energy_result, drowsiness_result, feeling_more_emotional_result, irritability_result,sadness_result, nervousness_result,dsl_result) VALUES (?,? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
   
       return new Promise((resolve, reject) => {
-        this.da.runSqlStmt(sql, [patient_id, headache_result, nausea_result, dizziness_result, vomiting_result, balance_problem_result, blurry_or_double_vision_result, sensitivity_to_light_result, sensitive_to_noise_result, pain_other_than_headache_result, feeling_in_a_fog_result, feeling_slowed_down_result, difficulty_concentrating_result, difficulty_remembering_result, trouble_fall_asleep_result, fatigue_or_low_energy_result, drowsiness_result, feeling_more_emotional_result, irritability_result,sadness_result, nervousness_result,dsl_result]).then((rs) => {
+        this.da.runSqlStmt(sql, [patient_id, date_of_test, headache_result, nausea_result, dizziness_result, vomiting_result, balance_problem_result, blurry_or_double_vision_result, sensitivity_to_light_result, sensitive_to_noise_result, pain_other_than_headache_result, feeling_in_a_fog_result, feeling_slowed_down_result, difficulty_concentrating_result, difficulty_remembering_result, trouble_fall_asleep_result, fatigue_or_low_energy_result, drowsiness_result, feeling_more_emotional_result, irritability_result,sadness_result, nervousness_result,dsl_result]).then((rs) => {
           resolve(rs.insertId);
         }, reject);
       });
@@ -489,6 +489,25 @@
     return rs.rows.item(0);
   }
 
+  async getDSLFromPatient(patientId) {
+    
+
+    const sql = `SELECT * FROM DailySymptomLog WHERE patient_id = ?;`;
+    const args = [patientId];
+
+    return new Promise((resolve, reject) => {
+      this.da.runSqlStmt(sql, args).then(
+        (rs) => {
+          
+          if (rs.rows.length < 1) {
+          reject(new Error(`No report in  ${patientId}`));
+          return;
+          }
+          //console.log(rs.rows._array);
+          resolve(rs.rows._array);
+      });
+      });
+  }
 
   }
   
