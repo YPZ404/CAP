@@ -6,7 +6,9 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Alert
+  Alert,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 import { useContext, useEffect, useRef, useState } from 'react';
 import {
@@ -103,13 +105,12 @@ function SecondCheckResults({ route, navigation }) {
             see a GP immediately.
           </Text>
             <TouchableOpacity
-              style={styles.bottomButton}
+              style={[styles.bottomButton, uiStyle.shadowProp]}
               onPress={() => navigation.navigate('Further Tests')}
             >
-              <Text style={styles.buttonLabel}>Complete Preliminary Tests</Text>
+              <Text style={uiStyle.buttonLabel}>Complete Preliminary Tests</Text>
             </TouchableOpacity>
         </View>
-        
       </ScrollView>
     );
   }
@@ -125,14 +126,16 @@ function SecondCheckResults({ route, navigation }) {
 const styles = StyleSheet.create({
   scroll: { flex: 1, alignItems: 'center' },
   bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 100,
-    backgroundColor: '#ff0000',
-    marginHorizontal: 50,
-    marginVertical: 10,
-    width: 300,
-    height: 50,
+    marginBottom: (Dimensions.get('window').height)/5,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
   },
   buttonLabel: {
     fontSize: 16,
