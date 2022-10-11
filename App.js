@@ -148,7 +148,6 @@ function OpenDisclaimer(){
                   borderBottomRightRadius: 0,
                   backgroundColor: '#9AD3FF',
                   elevation: 25,
-                  testID: 'menuIcon'
                 }
               }}
           />
@@ -330,7 +329,6 @@ function MyDrawer() {
             borderBottomRightRadius: 0,
             backgroundColor: '#9AD3FF',
             elevation: 25,
-            testID: 'myDrawerHeader'
           }
         }}/>
       <Drawer.Screen testID='drawerHomePage' name="Home Page" component={HomeScreen} 
@@ -342,7 +340,6 @@ function MyDrawer() {
             borderBottomRightRadius: 0,
             backgroundColor: '#E2F2FF',
             elevation: 25,
-            testID: 'drawerScreenHeader'
           }
         }}/>
       <Drawer.Screen testID='Login' accessible={true} accessibilityLabel={'Login'} name="Login" component={LoginScreen} />
@@ -361,7 +358,6 @@ function MyDrawer() {
           borderBottomRightRadius: 0,
           backgroundColor: '#E2F2FF',
           elevation: 25,
-          testID: 'header'
         }
       }}/>
     </Drawer.Navigator>
@@ -388,7 +384,7 @@ const styles = StyleSheet.create({
   return (
     <GlobalContextProvider testID='globalContextProvider'>
       <NavigationContainer testID='naviContainer' >
-          <MyDrawer testID='myDrawer' />
+          <MyDrawer/>
       </NavigationContainer>
     </GlobalContextProvider>
   );

@@ -60,7 +60,6 @@ describe('Example', () => {
     // Check that navigation for "Preliminary tests" button in menu works
     it('should be taken to prelim tests from menu item', async () => {
       await element(by.label('Preliminary Tests')).tap();
-      //await expect(element(by.text('Preliminary Tests'))).toBeVisible();
       await expect(element(by.text('Start!'))).toBeVisible();
     });
   
@@ -68,13 +67,12 @@ describe('Example', () => {
     it('should be taken to DSC from menu item', async () => {
       await element(by.label('Daily Symptom Checklist')).tap();
       await expect(element(by.text('Does the affected person have any of these symptoms?'))).toBeVisible();
-      //await expect(element(by.text('Next'))).toBeVisible();
     });
 
     // Check that navigation for "Concussion Action Plan" button in menu works
     it('should be taken to CAP from menu item', async () => {
         await element(by.label('Concussion Action Plan')).tap();
-        //await expect(element(by.text('Concussion Action Plan'))).toBeVisible();
+        await expect(element(by.text('View Action Plan'))).toBeVisible();
     });
   
     // Check that navigation for "VOMS Tests" button in menu works
@@ -84,5 +82,24 @@ describe('Example', () => {
         await expect(element(by.text('The affected person will now be doing a series of tests that track their eye movements.'))).toBeVisible();
         await expect(element(by.text('Next'))).toBeVisible();
     });
+
+    // Can continue tests
+    it('should be taken to VOMS Tests from menu item', async () => {
+      await element(by.label('Preliminary Tests')).tap();
+      await element(by.label('Start!')).tap();
+      await element(by.label('Start!')).tap();
+      await element(by.label('Next')).tap();
+      await element(by.label('Next')).tap();
+      await element(by.label('Next')).tap();
+      await element(by.label('Next')).tap();
+
+      await expect(element(by.text('What three images does your patient remember?'))).toBeVisible();
+      await element(by.type('RCTRootContentView')).swipe('right', 'fast', 0.5, 0.01, 0.01);
+      await element(by.label('Start')).tap();
+      await element(by.label('I understand')).tap();
+      await element(by.type('RCTRootContentView')).swipe('right', 'fast', 0.5, 0.01, 0.01);
+      await element(by.label('Continue Tests')).tap();
+      await expect(element(by.text('What three images does your patient remember?'))).toBeVisible();
   });
+});
   
