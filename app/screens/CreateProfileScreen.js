@@ -104,11 +104,12 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
-          maxLength={9}
+          maxLength={15}
           style={styles.input}
           onChangeText={onChangePassword}
           value={password}
-          placeholder="Password (maximum 9 characters)"
+          secureTextEntry={true}
+          placeholder="Password (maximum 15 characters)"
           returnKeyType="done"
         />
         <TouchableOpacity
@@ -126,7 +127,10 @@ function CreateProfileScreen({ navigation }) {
               alert('Please enter weight.')
             } else if (password == ''){
               alert('Please enter password.')
-            } else {
+            } else if (password.length <5){
+              alert('Please enter more than 5 characters for the password.')
+            }
+            else {
               onCreateAccount(
                 firstNameOfUser,
                 lastNameOfUser,
