@@ -64,7 +64,7 @@ describe('Example', () => {
         await expect(element(by.text('Please pass the phone to your supervisor so they can input the results.'))).toBeVisible();
         await expect(element(by.text('Next'))).toBeVisible();
         await element(by.text('Next')).tap();
-        await expect(element(by.text('What three images does your patient remember?'))).toBeVisible();
+        await expect(element(by.text('What three images does the injured individual remember?'))).toBeVisible();
         await expect(element(by.text('pen'))).toBeVisible();
         await expect(element(by.text('bird'))).toBeVisible();
         await expect(element(by.text('cup'))).toBeVisible();
