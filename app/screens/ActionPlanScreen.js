@@ -7,7 +7,8 @@ import {
 	ScrollView,
 	View,
 	TouchableOpacity,
-	StyleSheet
+	StyleSheet,
+	Dimensions
   } from 'react-native';
 import ExpandableTab from '../components/ExpandableTab';
 import Badge from '../components/Badge';
@@ -113,11 +114,11 @@ function ActionPlanScreen({ navigation }) {
 	}, []);
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={uiStyle.container}>
 			<ScrollView>
 				<Text style={[uiStyle.text, {textAlign: "center", marginBottom: 5}]}>Concussion Action Plan</Text>
 				<Badge color={activeZone.color}>{activeZone.name} ZONE</Badge>
-				<Text style={[{textAlign: "center", padding: 10}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear.</Text>
+				<Text style={[{textAlign: "center", padding: 10, fontWeight: "bold", color: "#003A67"}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear.</Text>
 				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color={activeZone.name == zones.red.name ? activeZone.color : "lightgrey"} footer="After 2 days of acute rest, you may move on to the next zone." header="RPE - Nothing at all, very very light. Heart rate < 120 bpm">
 					<Text style={{fontWeight:"bold"}}>Rest your child from any physical or cognitive activity.{"\n\n\n"}</Text>
 					<Text style={{fontWeight:"bold"}}>Supportive Care:{"\n\n"}</Text>
@@ -192,7 +193,7 @@ function ActionPlanScreen({ navigation }) {
 						</Text>
 				</ExpandableTab>
 				<View style={uiStyle.container}>
-					<TouchableOpacity style={styles.bottomButton} onPress={() => navigation.navigate('Continue Tests', { screen: 'HEAD BUMPS' })}>
+					<TouchableOpacity style={[styles.bottomButton, uiStyle.shadowProp]} onPress={() => navigation.navigate('Continue Tests', { screen: 'HEAD BUMPS' })}>
 						<Text style={uiStyle.buttonLabel}>Check Symptoms</Text>
 					</TouchableOpacity>
 				</View>
@@ -212,18 +213,6 @@ const styles = StyleSheet.create({
 		fontWeight: "bold" 
 	},
 
-	bottomButton: {
-		marginLeft: 5,
-		width: 300,
-		height: 50,
-		padding: 10,
-		marginVertical: 10,
-		borderRadius: 100,
-		backgroundColor: '#ff0000',
-		alignItems: 'center',
-		justifyContent: 'center',
-	  },
-
 	checkboxLabel: {
 		marginLeft: 8,
 		fontWeight: '500',
@@ -238,6 +227,18 @@ const styles = StyleSheet.create({
 		margin: 1,
 		padding: 5,
 	  },
+
+	bottomButton: {
+		width: Dimensions.get('window').width/1.3,
+    	height: Dimensions.get('window').width/7.5,
+		borderRadius: 20,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginBottom: (Dimensions.get('window').height)/10,
+		marginTop: (Dimensions.get('window').height)/20,
+		alignSelf: 'center'
+	  }
 });
 
 export default ActionPlanScreen;

@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   SafeAreaView,
+  Dimensions
 } from 'react-native';
 
 import { useContext, useEffect, useState } from 'react';
@@ -102,7 +103,7 @@ function RTTwo({ navigation }) {
   }, [reportId, attemptResults, navigation]);
 
   return (
-    <View style={uiStyle.textContainer} onTouchStart={btnOnPress}>
+    <View style={uiStyle.container} onTouchStart={btnOnPress}>
       <View style={uiStyle.textContainer}>
         <TouchableOpacity style={[styles.reactionButton, btnStyle]}>
           <Text style={styles.startText}>{btnTxt}</Text>
@@ -121,18 +122,18 @@ const styles = StyleSheet.create({
     borderRadius: 150,
   },
   startButton: {
-    backgroundColor: '#ff0000',
+    backgroundColor: '#69C93C',
   },
   startText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 35,
   },
   waitButton: {
-    backgroundColor: '#1820EB',
+    backgroundColor: '#1788E0',
   },
   pressButton: {
-    backgroundColor: '#FAD826',
+    backgroundColor: '#FF9E0C',
   },
 
   screenContainer: {

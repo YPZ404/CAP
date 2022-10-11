@@ -99,6 +99,7 @@ import AllReports from './app/screens/AllReports';
 import AllPrelimReports from './app/screens/AllPrelimReports';
 import AllIncidentReports from './app/screens/AllIncidentReports';
 import DSLComplete from './app/screens/DSLComplete';
+import AllDSReports from './app/screens/AllDSReports';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -174,6 +175,10 @@ function CustomNavContent(){
     <RootStack.Screen
       name="Prelim Report"
       component={AllPrelimReports}
+    />
+    <RootStack.Screen
+      name="DS Report"
+      component={AllDSReports}
     />
     <RootStack.Screen
       name="Incident Reports"

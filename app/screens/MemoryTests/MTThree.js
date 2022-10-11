@@ -5,6 +5,9 @@ import {
   View,
   Pressable,
   TouchableOpacity,
+  Dimensions,
+  ImageBackground
+
 } from 'react-native';
 
 import uiStyle from '../../components/uiStyle';
@@ -17,8 +20,10 @@ import uiStyle from '../../components/uiStyle';
  */
 function MTThree({ navigation }) {
   return (
-    <View style={styles.container}>
-      <View style={styles.container}>
+    <View style={uiStyle.container}>
+      <ImageBackground style={styles.image} 
+        source = {require('../../../assets/b3.png')}>
+      <View style={uiStyle.container}>
         <Text style={uiStyle.titleText}>Instructions</Text>
         <Text style={uiStyle.stackedText}>
           Please pass the phone to your supervisor so they can input the
@@ -28,43 +33,33 @@ function MTThree({ navigation }) {
       <View>
         <TouchableOpacity
           onPress={() => navigation.navigate('Memory Test 4')}
-          style={styles.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
-          <Text style={styles.buttonLabel}>Next</Text>
+          <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
       </View>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   bottomButton: {
-    // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
-    width: 300,
-    height: 50,
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
     padding: 10,
-    borderRadius: 100,
-    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 50,
-    marginTop: 20,
+    marginBottom: (Dimensions.get('window').height)/2,
+    marginTop: (Dimensions.get('window').height)/300,
     alignSelf: 'center',
   },
-
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#9AD3FF',
-  },
-
-  buttonLabel: {
-    // consistent with "View History" button on Home screen, i.e. white text in the button
-    color: '#003A67',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textAlignVertical: 'center',
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.12,
+    resizeMode: 'cover',
   }
 });
 

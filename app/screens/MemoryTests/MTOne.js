@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 
 import uiStyle from '../../components/uiStyle';
@@ -22,9 +24,11 @@ function MTOne({ navigation }) {
     <SafeAreaView style={uiStyle.container}>
       <View style={uiStyle.container}>
         <Text style={uiStyle.titleText}>Memory Test</Text>
+        <ImageBackground style={styles.image} 
+          source = {require('../../../assets/b3.png')}>
         <ScrollView>
-          <Text style={styles.text}>
-              {'\n'} {'\n'}
+          <Text style={uiStyle.stackedText}>
+          
             Welcome to the first memory test.{'\n'}
             {'\n'}
             The affected person will be presented with three images to remember.
@@ -40,52 +44,33 @@ function MTOne({ navigation }) {
 
         <TouchableOpacity
           onPress={() => navigation.navigate('Memory Test 2')}
-          style={styles.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
-          <Text style={styles.buttonLabel}>Start!</Text>
+          <Text style={uiStyle.buttonLabel}>Start!</Text>
         </TouchableOpacity>
+        </ImageBackground>
       </View>
    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-    text: {
-        fontSize: 25,
-        lineHeight: 25,
-        letterSpacing: 0.3,
-        marginHorizontal: 30,
-        marginVertical: 20,
-
-    },
-
-    buttonLabel: {
-        // consistent with "View History" button on Home screen, i.e. white text in the button
-        color: '#003A67',
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        textAlignVertical: 'center',
-    },
-
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#9AD3FF',
-    },
-
     bottomButton: {
-        // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
-        width: 300,
-        height: 50,
-        padding: 10,
-        borderRadius: 100,
-        backgroundColor: '#FFFFFF',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 50,
-        marginTop: 20,
-        alignSelf: 'center',
+      width: Dimensions.get('window').width/1.3,
+      height: Dimensions.get('window').width/7.5,
+      padding: 10,
+      borderRadius: 20,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: (Dimensions.get('window').height)/4.5,
+      marginTop: (Dimensions.get('window').height)/300,
+      alignSelf: 'center',
+    },
+    image: {
+      width: Dimensions.get('window').width/0.99,
+      height: Dimensions.get('window').height/1.25,
+      resizeMode: 'cover',
     }
 });
 
