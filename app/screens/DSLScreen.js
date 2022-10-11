@@ -288,8 +288,9 @@ function DSLScreen({ navigation }) {
               sliderTwelveValue + sliderThirteenValue+sliderFourteenValue+sliderFifteenValue+sliderSixteenValue+
               sliderSeventeenValue+sliderEighteenValue+sliderNineteenValue+sliderTwentyValue;
               
-            preliminaryReportRepoContext.createDSL(account.account_id, sliderOneValue, sliderTwoValue, sliderThreeValue, sliderFourValue, sliderFiveValue, sliderSixValue, sliderSevenValue,sliderEightValue,sliderNineValue,sliderTenValue,sliderElevenValue,
-                sliderTwelveValue, sliderThirteenValue,sliderFourteenValue, sliderFifteenValue,sliderSixteenValue,
+            let currentDate = new Date().toJSON().slice(0,19);
+            preliminaryReportRepoContext.createDSL(account.account_id, currentDate, sliderOneValue, sliderTwoValue, sliderThreeValue, sliderFourValue, sliderFiveValue, sliderSixValue, sliderSevenValue,sliderEightValue,sliderNineValue,sliderTenValue,sliderElevenValue,
+                sliderTwelveValue, sliderThirteenValue, sliderFourteenValue, sliderFifteenValue,sliderSixteenValue,
                 sliderSeventeenValue,sliderEighteenValue,sliderNineteenValue,sliderTwentyValue, totalSliderValue).then((data)=>setDSLId(data));
               
             setSliderOneValue(0);
@@ -335,10 +336,7 @@ function DSLScreen({ navigation }) {
 
 
             // Add necessary stuff for user @mariam :)
-            let currentDate = new Date().toJSON().slice(0,19);
-            preliminaryReportRepoContext.createDSL(account.account_id, currentDate, sliderOneValue, sliderTwoValue, sliderThreeValue, sliderFourValue, sliderFiveValue, sliderSixValue, sliderSevenValue,sliderEightValue,sliderNineValue,sliderTenValue,sliderElevenValue,
-              sliderTwelveValue,  sliderThirteenValue,sliderFifteenValue,sliderSixteenValue,
-              sliderSeventeenValue,sliderEighteenValue,sliderNineteenValue,sliderTwentyValue, totalSliderValue).then((data)=>setDSLId(data));
+            
             navigation.navigate('Continue Tests', { screen: 'DSL Complete'});
 
           }}
