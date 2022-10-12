@@ -45,7 +45,7 @@ function PCSSChecklist({ navigation }) {
 
 
   return (
-    <SafeAreaView style={uiStyle.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView>
         <Text style={uiStyle.text}>
           Does the affected person have any of these symptoms?
@@ -54,7 +54,7 @@ function PCSSChecklist({ navigation }) {
           <View style={styles.sliders}>
             <View style={styles.sliderOne}>
               <Text style={uiStyle.text}>Headache:</Text>
-              <Text style={[uiStyle.text]}>{sliderOneValue}</Text>
+              <Text style={[styles.text]}>{sliderOneValue}</Text>
             </View>
             <Slider
               minimumValue={0}
@@ -74,7 +74,7 @@ function PCSSChecklist({ navigation }) {
             />
             <View style={styles.sliderOne}>
               <Text style={uiStyle.text}>Dizziness:</Text>
-              <Text style={[uiStyle.text]}>{sliderThreeValue}</Text>
+              <Text style={[styles.text]}>{sliderThreeValue}</Text>
             </View>
             <Slider
               minimumValue={0}
@@ -84,7 +84,7 @@ function PCSSChecklist({ navigation }) {
             />
             <View style={styles.sliderOne}>
               <Text style={uiStyle.text}>Vomiting:</Text>
-              <Text style={[uiStyle.text]}>{sliderFourValue}</Text>
+              <Text style={[styles.text]}>{sliderFourValue}</Text>
             </View>
             <Slider
               minimumValue={0}
@@ -256,6 +256,7 @@ function PCSSChecklist({ navigation }) {
             
           </View>
         </View>
+        </ScrollView>
         <TouchableOpacity
           onPress={() => {
             var totalSliderValue = sliderOneValue + sliderTwoValue + sliderThreeValue+sliderFourValue+sliderFiveValue+sliderSixValue+
@@ -264,11 +265,11 @@ function PCSSChecklist({ navigation }) {
               sliderSeventeenValue+sliderEighteenValue+sliderNineteenValue+sliderTwentyValue;
             navigation.navigate('Incident Report Result', {sliderResult: totalSliderValue});
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
-      </ScrollView>
+       
     </SafeAreaView>
   );
 }
@@ -277,6 +278,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#9AD3FF'
   },
   sliders: {
     width: '80%',
@@ -290,11 +292,20 @@ const styles = StyleSheet.create({
     color: '#003A67',
     fontWeight: '700',
     fontSize: Dimensions.get('window').width/20,
-    lineHeight: Dimensions.get('window').width/15,
-    letterSpacing: 0.3,
-    marginHorizontal: Dimensions.get('window').width/10,
+    marginHorizontal: Dimensions.get('window').width/500,
     marginVertical: Dimensions.get('window').width/15,
-    textAlign: 'center',
+    textAlign: 'left',
+  },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: (Dimensions.get('window').height)/20,
+    alignSelf: 'center',
   }
 });
 

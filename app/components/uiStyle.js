@@ -10,7 +10,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: background,
+    backgroundColor: background
   },
 
   textContainer: {
