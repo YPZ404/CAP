@@ -6,11 +6,12 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  Alert
 } from 'react-native';
 
 import uiStyle from '../components/uiStyle';
 import Slider from '@react-native-community/slider';
-import { useContext, useState} from 'react';
+import { useContext, useState, useEffect} from 'react';
 import {
   PreliminaryReportRepoContext,
   DSLIdContext,
@@ -42,12 +43,27 @@ function DSLScreen({ navigation }) {
   const [sliderEighteenValue, setSliderEighteenValue] = useState(0);
   const [sliderNineteenValue, setSliderNinteenValue] = useState(0);
   const [sliderTwentyValue, setSliderTwentyValue] = useState(0);
+  
+  const createAlert = () =>
+  Alert.alert(
+    'Alert',
+    'Need to login to do the test.',
+    [
+      {
+        text: 'Save to a profile',
+        onPress: () => navigation.navigate('Login'),
+      },
+      
+    ],
+  );
 
+  useEffect(() => {
+    if(account.account_id == null && account.first_name == 'John'){
+      createAlert();
+    }
+  }, []);
 
-
-
-
-
+  
   return (
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
