@@ -48,7 +48,8 @@ function FurtherTests({ navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          let currentDate = new Date().toJSON().slice(0,19);
+          let currentDate = new Date();
+          currentDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000).toJSON().slice(0,19);
           
           preliminaryReportRepoContext.createReport(null,currentDate, -10, -10,-10, -10, -10, -10).then((reportId) => {
             setPrelimReportId(reportId);
