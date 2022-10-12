@@ -82,10 +82,10 @@ function SecondCheckResults({ route, navigation }) {
           </Text>
           <View style={styles.textContainer}>
             <TouchableOpacity
-              style={styles.bottomButton}
+              style={[styles.bottomButton, uiStyle.shadowProp]}
               onPress={() => navigation.navigate('Further Tests')}
             >
-              <Text style={uiStyles.buttonLabel}>Complete Preliminary Tests</Text>
+              <Text style={uiStyle.buttonLabel}>Complete Preliminary Tests</Text>
             </TouchableOpacity>
           </View>
         </View>
