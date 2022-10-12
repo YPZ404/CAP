@@ -113,6 +113,14 @@ function PrelimTestResultScreen({ route, navigation }) {
           </Text>,
         );
 
+        break
+      case 'hop_test_result':
+        allTestResults.push(
+          <Text key={5} style={uiStyle.text}>
+            {'Hop Test Result: ' + dict[value]}
+          </Text>,
+        );
+
     }
 
     // console.log(key , value); // key ,value
