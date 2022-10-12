@@ -31,7 +31,7 @@ function MTFiveIntro({ navigation }) {
           {'\n'} 
           {'\n'} 
           Please pass the phone to the supervisor to enter the images the 
-          patient remembers.
+          injured individual remembers.
         </Text>
       </View>
       <View>
