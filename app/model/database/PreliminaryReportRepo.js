@@ -85,8 +85,8 @@
         this.da.runSqlStmt(sql, args).then(
           (rs) => {
             if (rs.rows.length < 1) {
-            reject(new Error(`No report in  ${patientId}`));
-            return;
+            // reject(new Error(`No report in  ${patientId}`));
+            return [];
             }
             //console.log(rs.rows._array);
             resolve(rs.rows._array);
@@ -500,8 +500,8 @@
         (rs) => {
           
           if (rs.rows.length < 1) {
-          reject(new Error(`No report in  ${patientId}`));
-          return;
+          // reject(new Error(`No report in  ${patientId}`));
+          return [];
           }
           //console.log(rs.rows._array);
           resolve(rs.rows._array);
