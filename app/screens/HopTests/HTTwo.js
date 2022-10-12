@@ -7,6 +7,7 @@ import {
   View,
   Vibration,
   Alert,
+  Dimensions
 } from "react-native";
 import { Accelerometer } from "expo-sensors";
 
@@ -129,7 +130,7 @@ function HTTwo({ route, navigation }) {
           onPress={() => {
             navigation.navigate("Hop Test 1");
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Cancel</Text>
         </TouchableOpacity>
@@ -139,7 +140,6 @@ function HTTwo({ route, navigation }) {
 }
 
 const text = "#fff";
-const buttons = "#ff3333";
 const styles = StyleSheet.create({
   startCheckButton: {
     width: 200,
@@ -148,13 +148,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 100,
-    backgroundColor: buttons,
+    backgroundColor: "#69C93C",
   },
   startCheckText: {
     color: text,
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 30,
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/40,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
+  }
 });
 
 export default HTTwo;

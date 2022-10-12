@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Button,
   ScrollView,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 
 import { useContext } from 'react';
@@ -18,6 +20,8 @@ function BTOne({ navigation }) {
   const [prelimReportId] = React.useContext(PrelimReportIdContext);
   return (
     <SafeAreaView style={uiStyle.container}>
+       <ImageBackground style={styles.image} 
+        source = {require('../../../assets/b3.png')}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
           <Text style={uiStyle.titleText}>Balance Test</Text>
@@ -36,47 +40,33 @@ function BTOne({ navigation }) {
         onPress={() => {
           navigation.navigate('Balance Test 2');
         }}
-        style={uiStyle.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
       >
-        <Text style={uiStyle.startCheckText}>Next</Text>
+        <Text style={uiStyle.buttonLabel}>Next</Text>
       </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
 
-const title = '#000000';
-const text = '#003A67';
-const background = '#fff';
-const buttons = '#ff0000';
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: background,
-    justifyContent: 'center',
-  },
-  startCheckButton: {
-    width: 200,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
     padding: 10,
-    borderRadius: 100,
-    backgroundColor: buttons,
-    top: 50,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/4,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
   },
-  startCheckText: {
-    color: text,
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-  titleText: {
-    color: title,
-    fontSize: 30,
-    position: 'absolute',
-    top: 60,
-    fontWeight: 'bold',
-  },
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.12,
+    resizeMode: 'cover',
+  }
 });
 
 export default BTOne;

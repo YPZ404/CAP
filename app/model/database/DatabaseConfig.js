@@ -38,11 +38,18 @@ if(__DEV__){
     `
   DROP TABLE IF EXISTS BalanceTestReport;
     `,
+    `
+    DROP TABLE IF EXISTS DailySymptomLog;
+  `
+ 
+   
   ];
   TABLES_SQL.push(...DROP_SQL);
 }
 
 CREATE_TABLES_SQL = [
+ 
+  
   `
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INTEGER PRIMARY KEY,
@@ -58,7 +65,7 @@ CREATE TABLE IF NOT EXISTS Account (
     last_name VARCHAR(200),
     age INTEGER,
     weight INTEGER,
-    password VARCHAR(9)
+    password VARCHAR(15)
 );`,
   //Instance of an incident report
   `
@@ -82,10 +89,31 @@ CREATE TABLE IF NOT EXISTS PreliminaryReport (
   );
 `
 ,
-// Add necessary stuff for user @mariam :)
 `
 CREATE TABLE IF NOT EXISTS DailySymptomLog (
     log_id INTEGER PRIMARY KEY,
+    patient_id INTEGER REFERENCES Account(account_id),
+    headache_result INTEGER,
+    date_of_test VARCHAR(15),
+    nausea_result INTEGER,
+    dizziness_result INTEGER,
+    vomiting_result INTEGER,
+    balance_problem_result INTEGER,
+    blurry_or_double_vision_result INTEGER,
+    sensitivity_to_light_result INTEGER,
+    sensitive_to_noise_result INTEGER,
+    pain_other_than_headache_result INTEGER,
+    feeling_in_a_fog_result INTEGER,
+    feeling_slowed_down_result INTEGER,
+    difficulty_concentrating_result INTEGER,
+    difficulty_remembering_result INTEGER,
+    trouble_fall_asleep_result INTEGER,
+    fatigue_or_low_energy_result INTEGER,
+    drowsiness_result INTEGER,
+    feeling_more_emotional_result INTEGER,
+    irritability_result INTEGER,
+    sadness_result INTEGER,
+    nervousness_result INTEGER,
     dsl_result INTEGER
 
   );

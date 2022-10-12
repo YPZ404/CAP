@@ -6,6 +6,8 @@ import {
     TouchableOpacity,
     SafeAreaView,
     ScrollView, Pressable,
+    Dimensions,
+    ImageBackground
 } from 'react-native';
 
 import uiStyle from '../../components/uiStyle';
@@ -116,10 +118,10 @@ function MTFour({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#9AD3FF' }}>
       <Text style={uiStyle.text}>
-        What three images does your patient remember?
+        What three images does the injured individual remember?
       </Text>
       <ScrollView style={{ margin: 10 }}>
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={uiStyle.container}>
           <DisplayOptions options={options} updateOption={onUpdate} />
         </SafeAreaView>
       </ScrollView>
@@ -144,42 +146,39 @@ function MTFour({ navigation }) {
 
           navigation.navigate('Reaction Test 1');
         }}
-        style={styles.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
       >
-        <Text style={styles.buttonLabel}>Submit</Text>
+        <Text style={uiStyle.buttonLabel}>Submit</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-    bottomButton: {
-        // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
-        width: 300,
-        height: 50,
-        padding: 10,
-        borderRadius: 100,
-        backgroundColor: '#FFFFFF',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 50,
-        marginTop: 20,
-        alignSelf: 'center',
-    },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#9AD3FF',
-    },
-
-    buttonLabel: {
-        // consistent with "View History" button on Home screen, i.e. white text in the button
-        color: '#003A67',
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        textAlignVertical: 'center',
-    }
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/10,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
+  },
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.25,
+    resizeMode: 'cover',
+  },
+  buttonLabel: {
+    color: '#003A67',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  }
 });
 
 export default MTFour;

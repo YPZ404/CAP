@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Dimensions
 } from "react-native";
 import Slider from '@react-native-community/slider';
 
@@ -40,7 +41,7 @@ function HTForm({ navigation }) {
     <SafeAreaView style={uiStyle.container}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
-          <Text style={uiStyle.titleText}>Hop Test Pre-Test Form</Text>
+          <Text style={styles.titleText}>Hop Test Pre-Test Form</Text>
           <Text style={uiStyle.text}>
             Do you have any of these symptoms?
           </Text>
@@ -271,7 +272,7 @@ function HTForm({ navigation }) {
           //   .catch(console.log);
           navigation.navigate("Hop Test 2", {hopTestPreForm:totalScore});
         }}
-        style={uiStyle.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
       >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
@@ -292,6 +293,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/20,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
+  },
+  titleText: {
+    color: '#003A67',
+    fontSize: Dimensions.get('window').width/13,
+    marginTop: Dimensions.get('window').width/8,
+    fontWeight: 'bold',
+  }
 });
 
 export default HTForm;

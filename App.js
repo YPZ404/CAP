@@ -100,6 +100,7 @@ import AllPrelimReports from './app/screens/AllPrelimReports';
 import AllIncidentReports from './app/screens/AllIncidentReports';
 import DSLComplete from './app/screens/DSLComplete';
 import { ViewPagerAndroidBase } from 'react-native';
+import AllDSReports from './app/screens/AllDSReports';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -197,7 +198,7 @@ function CustomNavContent(){
       name="Prelim Report"
       component={AllPrelimReports}
     />
-    <RootStack.Screen testID='incidentReports'
+    <RootStack.Screen
       name="Incident Reports"
       component={AllIncidentReports}
     />

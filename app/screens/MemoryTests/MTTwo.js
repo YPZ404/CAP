@@ -8,6 +8,7 @@ import {
   Pressable,
   TouchableOpacity,
   Image,
+  Dimensions
 } from 'react-native';
 
 import uiStyle from '../../components/uiStyle';
@@ -92,9 +93,9 @@ function MTTwo({ navigation }) {
               }
             }
           }}
-          style={styles.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
-          <Text style={styles.buttonLabel}>Next</Text>
+          <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -102,37 +103,18 @@ function MTTwo({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 25,
-    lineHeight: 25,
-    letterSpacing: 0.3,
-    marginHorizontal: 50,
-    marginVertical: 10,
-  },
-
   bottomButton: {
-    // consistent with "View History" button on Home screen, i.e long blue button on bottom avoiding colors like red and green
-    width: 300,
-    height: 50,
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
     padding: 10,
-    borderRadius: 100,
-    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 50,
-    marginTop: 20,
+    marginBottom: (Dimensions.get('window').height)/4,
+    marginTop: (Dimensions.get('window').height)/300,
     alignSelf: 'center',
-  },
-
-  buttonLabel: {
-    // consistent with "View History" button on Home screen, i.e. white text in the button
-    color: '#003A67',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textAlignVertical: 'center',
   }
-
 });
 
 export default MTTwo;
