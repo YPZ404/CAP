@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    backgroundColor: '#9AD3FF',
+    backgroundColor: '#ffff',
     marginTop: (Dimensions.get('window').height)/40,
   },
   buttonLabel: {

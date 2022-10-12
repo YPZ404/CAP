@@ -85,7 +85,7 @@ function SecondCheckResults({ route, navigation }) {
               style={styles.bottomButton}
               onPress={() => navigation.navigate('Further Tests')}
             >
-              <Text style={styles.buttonLabel}>Complete Preliminary Tests</Text>
+              <Text style={uiStyles.buttonLabel}>Complete Preliminary Tests</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -136,13 +136,6 @@ const styles = StyleSheet.create({
     marginBottom: (Dimensions.get('window').height)/5,
     marginTop: (Dimensions.get('window').height)/300,
     alignSelf: 'center',
-  },
-  buttonLabel: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
   },
   text: {
     fontSize: 18,

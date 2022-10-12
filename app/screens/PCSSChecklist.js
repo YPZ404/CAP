@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  Dimensions
 } from 'react-native';
 
 import uiStyle from '../components/uiStyle';
@@ -63,7 +64,7 @@ function PCSSChecklist({ navigation }) {
             />
             <View style={styles.sliderOne}>
               <Text style={uiStyle.text}>Nausea: </Text>
-              <Text style={[uiStyle.text]}>{sliderTwoValue}</Text>
+              <Text style={[styles.text]}>{sliderTwoValue}</Text>
             </View>
             <Slider
               minimumValue={0}
@@ -285,6 +286,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  text: {
+    color: '#003A67',
+    fontWeight: '700',
+    fontSize: Dimensions.get('window').width/20,
+    lineHeight: Dimensions.get('window').width/15,
+    letterSpacing: 0.3,
+    marginHorizontal: Dimensions.get('window').width/10,
+    marginVertical: Dimensions.get('window').width/15,
+    textAlign: 'center',
+  }
 });
 
 export default PCSSChecklist;
