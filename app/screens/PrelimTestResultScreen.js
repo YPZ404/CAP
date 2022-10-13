@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
-  Dimensions
+  Dimensions,
+  Platform
 } from 'react-native';
 
 import { useEffect, useContext, useState, useRef } from 'react';
@@ -23,6 +24,7 @@ import uiStyle from '../components/uiStyle';
 import { shareAsync } from 'expo-sharing';
 import { exportMapAsCsv } from '../model/exportAsCsv';
 import { exportMapAsPdf } from '../model/exportAsPdf';
+import { IOSexportMapAsPdf } from '../model/IOSexportasPdf';
 
 const reactionThreshold = 500;
 const parseReactionTest = (rt) => {
@@ -139,6 +141,10 @@ function PrelimTestResultScreen({ route, navigation }) {
     exportMapAsPdf("Basic Report", reportResults);
   }
 
+  const createMedicalIOSPdf = async () => {
+    medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>IOSexportMapAsPdf(data));
+  }
+
   const createAlert = () =>
   Alert.alert(
     'Alert',
@@ -191,7 +197,7 @@ function PrelimTestResultScreen({ route, navigation }) {
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.bottomButton, uiStyle.shadowProp]}
-        onPress={createCSV}
+        onPress={() => {Platform.OS === 'ios' ? createMedicalIOSPdf() : createCSV()}}
       >
         {/* Natalie can you make this button bigger, it doesnt fit the text*/}
         <Text style={styles.buttonLabel}>Generate and Email Medical Report</Text>

@@ -22,7 +22,6 @@ const exportMapAsCsv = async (
 
   // Write csv file using object
   const filePath = FileSystem.documentDirectory + `${fileName}.csv`;
-
   let attributes = '';
   let values = '';
   let first = true;
@@ -56,7 +55,7 @@ const exportMapAsCsv = async (
     Alert.alert("Unable To Send Feedback", undefined, [
       {
         text: "Copy feedback email",
-        onPress: () => Clipboard.setString("bphslatealerts@gmail.com")
+        onPress: () => Clipboard.setString("test@gmail.com")
       },
       {
         text: "OK"

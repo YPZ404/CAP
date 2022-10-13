@@ -92,31 +92,10 @@ function BadCheckScreen({ navigation }) {
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>{
 
-        console.log("Save report was pressed (BadCheckScreen.js)");
-
-        if(account.account_id != null && account.first_name != 'John'){
-          console.log(account.account_id);
-          console.log(account.first_name);
-          createAlert();
-        }
-        else{
-          navigation.navigate('Login');
-        }
+        navigation.navigate('Home Page')
       }} style={styles.bottomButton}>
-                <Text style={styles.buttonLabel}>Save Report</Text>
-              </TouchableOpacity>
-      {/* <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation.navigate('Create Profile')}
-      >
-        <Text style={uiStyle.buttonLabel}>Save to new profile</Text>
+                <Text style={styles.buttonLabel}>Return Home</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation.navigate('Select Profile')}
-      >
-        <Text style={uiStyle.buttonLabel}>Save to existing profile</Text>
-      </TouchableOpacity> */}
     </SafeAreaView>
   );
 }

@@ -10,7 +10,6 @@ import { printToFileAsync } from 'expo-print';
  * @return {Promise<void>}
  */
 const exportMapAsPdf = async (
-  fileName,
   basic_tests
 ) => {
   if (!(await Sharing.isAvailableAsync())) {
