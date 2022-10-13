@@ -116,7 +116,7 @@ function CreateProfileScreen({ navigation }) {
           style={[styles.bottomButton, styles.shadowProp]}
           onPress={() => {
 
-            // Checking that none of the text fields are empty
+            // Checking that none of the text fields are empty          
             if (firstNameOfUser == ''){
               alert('Please enter first name.');
             } else if (lastNameOfUser == ''){

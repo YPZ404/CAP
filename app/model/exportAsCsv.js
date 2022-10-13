@@ -21,7 +21,7 @@ const exportMapAsCsv = async (
   }
 
   // Write csv file using object
-  const filePath = `${FileSystem.cacheDirectory}/${fileName}.csv`;
+  const filePath = FileSystem.documentDirectory + `${fileName}.csv`;
 
   let attributes = '';
   let values = '';
@@ -43,13 +43,12 @@ const exportMapAsCsv = async (
 
   totalContents = totalContents.concat(medical_test_content);
 
-
   await FileSystem.writeAsStringAsync(filePath, totalContents);
   const emailAttachments = [];
   emailAttachments.push(filePath);
   console.log(filePath);
   MailComposer.composeAsync({
-    recipients: ["matthewkarko@gmail.com"],
+    recipients: ["bphslatealerts@gmail.com"],
     subject: "Medical Report for *insert patient name please*",
     attachments: emailAttachments,
     body: "This is the report for *insert patient name please*"
@@ -57,7 +56,7 @@ const exportMapAsCsv = async (
     Alert.alert("Unable To Send Feedback", undefined, [
       {
         text: "Copy feedback email",
-        onPress: () => Clipboard.setString("unleaded@reiner.design")
+        onPress: () => Clipboard.setString("bphslatealerts@gmail.com")
       },
       {
         text: "OK"
