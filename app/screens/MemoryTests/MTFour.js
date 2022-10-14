@@ -118,7 +118,7 @@ function MTFour({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#9AD3FF' }}>
       <Text style={uiStyle.text}>
-        What three images does your patient remember?
+        What three images does the injured individual remember?
       </Text>
       <ScrollView style={{ margin: 10 }}>
         <SafeAreaView style={uiStyle.container}>

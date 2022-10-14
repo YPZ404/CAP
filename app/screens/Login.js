@@ -159,6 +159,7 @@ function LoginScreen({ navigation }){
                 lastNameOfUser,
                 passwordValue
               )){
+                Alert.alert('Successfully logged in');
                   navigation.navigate('Home Page');
               }else{
                   createAlert();

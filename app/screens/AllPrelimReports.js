@@ -75,7 +75,7 @@ function AllPrelimReports({ navigation }){
           
         const description = ' '+dateAndTime[0]+' '+time+'\n Memory Test 1: '+dict[reportResults[i].memory_test1_result] + ' \n Memory Test 2: ' + dict[reportResults[i].memory_test2_result] +
         ' \n Reaction Test: '+ dict[reportResults[i].reaction_test_result] + ' \n Balance Test 1: '+ dict[reportResults[i].balance_test1_result] +' \n Balance Test 2: '+
-        dict[reportResults[i].balance_test2_result] +' \n';
+        dict[reportResults[i].balance_test2_result] + ' \n Hop Test: '+ dict[reportResults[i].hop_test_result] + ' \n';
         //console.log(description);
         usersButtons.push(
           <Text key={z} style={styles.reporttext}>Report {reportResults[i].report_id} {description}</Text>,

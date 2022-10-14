@@ -6,12 +6,13 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  Dimensions
+  Dimensions,
+  Alert
 } from 'react-native';
 
 import uiStyle from '../components/uiStyle';
 import Slider from '@react-native-community/slider';
-import { useContext, useState} from 'react';
+import { useContext, useState, useEffect} from 'react';
 import {
   PreliminaryReportRepoContext,
   DSLIdContext,
@@ -43,12 +44,27 @@ function DSLScreen({ navigation }) {
   const [sliderEighteenValue, setSliderEighteenValue] = useState(0);
   const [sliderNineteenValue, setSliderNinteenValue] = useState(0);
   const [sliderTwentyValue, setSliderTwentyValue] = useState(0);
+  
+  const createAlert = () =>
+  Alert.alert(
+    'Alert',
+    'Need to login to do the test.',
+    [
+      {
+        text: 'Save to a profile',
+        onPress: () => navigation.navigate('Login'),
+      },
+      
+    ],
+  );
 
+  useEffect(() => {
+    if(account.account_id == null && account.first_name == 'John'){
+      createAlert();
+    }
+  }, []);
 
-
-
-
-
+  
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -288,8 +304,9 @@ function DSLScreen({ navigation }) {
               sliderSevenValue+sliderEightValue+sliderNineValue+sliderTenValue+sliderElevenValue+
               sliderTwelveValue + sliderThirteenValue+sliderFourteenValue+sliderFifteenValue+sliderSixteenValue+
               sliderSeventeenValue+sliderEighteenValue+sliderNineteenValue+sliderTwentyValue;
-              
-            let currentDate = new Date().toJSON().slice(0,19);
+            
+            let currentDate = new Date();
+            currentDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000).toJSON().slice(0,19);
             preliminaryReportRepoContext.createDSL(account.account_id, currentDate, sliderOneValue, sliderTwoValue, sliderThreeValue, sliderFourValue, sliderFiveValue, sliderSixValue, sliderSevenValue,sliderEightValue,sliderNineValue,sliderTenValue,sliderElevenValue,
                 sliderTwelveValue, sliderThirteenValue, sliderFourteenValue, sliderFifteenValue,sliderSixteenValue,
                 sliderSeventeenValue,sliderEighteenValue,sliderNineteenValue,sliderTwentyValue, totalSliderValue).then((data)=>setDSLId(data));
