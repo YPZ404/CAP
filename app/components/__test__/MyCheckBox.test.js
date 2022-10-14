@@ -1,7 +1,9 @@
+
 import React, {useState} from 'react'
 import MyCheckbox from '../MyCheckbox';
 import {fireEvent, render, screen} from "@testing-library/react-native";
 import {StyleSheet} from "react-native";
+
 
 describe("<MyCheckbox />", () => {
 
@@ -49,5 +51,17 @@ describe("<MyCheckbox />", () => {
         expect(pressedCallback).toHaveBeenCalledTimes(1);
     });
 
+    it("works", () => {
+        const onUpdateMock = jest.fn();
+        render(<MyCheckbox onUpdate={onUpdateMock} />);
+
+        expect(onUpdateMock).toHaveBeenCalledTimes(0);
+        expect(screen.queryByTestId("checkmark")).toBeNull();
+
+        const pressable = screen.getByTestId("Pressable");
+        fireEvent.press(pressable);
+
+        expect(onUpdateMock).toHaveBeenCalledTimes(1);
+    });
 
 });
