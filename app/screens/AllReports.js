@@ -100,11 +100,11 @@ function AllReports({ navigation }){
                 createAlert();
             }
             else{
-                navigation.navigate('Incident Reports')
+              navigation.navigate('Continue Tests', {screen: 'DS Report'}); 
             }
             }}
             >
-          <Text style={uiStyle.buttonLabel}>Incident Reports</Text>
+          <Text style={uiStyle.buttonLabel}>Daily Symptom Reports</Text>
         </TouchableOpacity> }
       </SafeAreaView>
       </View>

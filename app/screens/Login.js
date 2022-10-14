@@ -147,16 +147,24 @@ function LoginScreen({ navigation }){
         <TouchableOpacity
           style={[styles.bottomButton, styles.shadowProp]}
           onPress={() => {
-            if(checkAccount(
-              firstNameOfUser,
-              lastNameOfUser,
-              passwordValue
-            )){
-                navigation.navigate('Home Page');
-            }else{
-                createAlert();
-            };
-            
+
+            // Checking that none of the text fields are empty
+            if (firstNameOfUser == ''){
+              alert('Please enter first name.');
+            } else if (lastNameOfUser == ''){
+              alert('Please enter last name.')
+            } else {
+              if(checkAccount(
+                firstNameOfUser,
+                lastNameOfUser,
+                passwordValue
+              )){
+                Alert.alert('Successfully logged in');
+                  navigation.navigate('Home Page');
+              }else{
+                  createAlert();
+              };
+            }
           }}
         >
           <Text style={uiStyle.buttonLabel}>Submit</Text>
