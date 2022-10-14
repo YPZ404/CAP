@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Alert,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 import {
   IncidentReportRepoContext,
@@ -75,21 +77,19 @@ function BadCheckScreen({ navigation }) {
   );
 
   return (
-
     <SafeAreaView style={uiStyle.container}>
-      
-      <Text style={uiStyle.text}>
+      <ImageBackground style={styles.image} 
+        source = {require('../../assets/b3.png')}>
+      <Text style={uiStyle.stackedText}>
         The injured individual is showing severe symptoms and should seek medical attention immediately.
       </Text>    
-      
       <TouchableOpacity onPress={()=>{
         console.log("Call 000 button was pressed (BadCheckScreen.js)");
         Linking.openURL("tel:0123456789");
-      }} style={styles.startCheckButton}>
-            <View style={uiStyle.startCheckButton}>
+      }} style={uiStyle.startCheckButton}>
               <Text style={uiStyle.startCheckText}>Call 000</Text>
-             </View>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={()=>{
 
         console.log("Save report was pressed (BadCheckScreen.js)");
@@ -102,8 +102,8 @@ function BadCheckScreen({ navigation }) {
         else{
           navigation.navigate('Login');
         }
-      }} style={styles.bottomButton}>
-                <Text style={styles.buttonLabel}>Save Report</Text>
+      }} style={[styles.bottomButton, uiStyle.shadowProp]}>
+                <Text style={uiStyle.buttonLabel}>Save Report</Text>
               </TouchableOpacity>
       {/* <TouchableOpacity
         style={styles.bottomButton}
@@ -117,6 +117,7 @@ function BadCheckScreen({ navigation }) {
       >
         <Text style={uiStyle.buttonLabel}>Save to existing profile</Text>
       </TouchableOpacity> */}
+    </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -146,16 +147,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   bottomButton: {
-    marginLeft: 10,
-    width: 300,
-    height: 50,
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
     padding: 10,
-    marginVertical: 10,
-    borderRadius: 100,
-    backgroundColor: '#FB582F',
+    borderRadius: 20,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: (Dimensions.get('window').height)/10,
+    alignSelf: 'center',
   },
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.12,
+    resizeMode: 'cover',
+  }
 });
 
 export default BadCheckScreen;

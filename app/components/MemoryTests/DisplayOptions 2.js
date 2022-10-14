@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'flex-start',
     justifyContent: 'space-evenly',
-    margin: 10,
+    margin: 10
   },
   checkboxContainer: {
     flexDirection: 'row',

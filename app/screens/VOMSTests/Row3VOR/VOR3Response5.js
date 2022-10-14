@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
 import uiStyle from '../../../components/uiStyle';
 import Slider from '@react-native-community/slider';
@@ -89,7 +90,7 @@ function VOR3Response5({ navigation }) {
 
             navigation.navigate('VOMS VOR 4');
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
@@ -111,6 +112,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: (Dimensions.get('window').height)/15,
+    alignSelf: 'center',
+  }
 });
 
 export default VOR3Response5;

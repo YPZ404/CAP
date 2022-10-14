@@ -1,8 +1,8 @@
-import React from 'react'
+
+import React, {useState} from 'react'
 import MyCheckbox from '../MyCheckbox';
 import {fireEvent, render, screen} from "@testing-library/react-native";
-
-
+import {StyleSheet} from "react-native";
 
 
 describe("<MyCheckbox />", () => {

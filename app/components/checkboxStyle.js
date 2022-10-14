@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 export default StyleSheet.create({
   allCheckboxContainer: {
     flexDirection: 'column',
@@ -11,6 +11,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     margin: 3,
+    marginTop: (Dimensions.get('window').height)/42
   },
 
   checkboxBase: {
@@ -20,8 +21,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: 'black',
-    backgroundColor: 'transparent',
+    borderColor: 'white',
+    backgroundColor: 'white',
   },
 
   checkboxChecked: {
@@ -33,5 +34,7 @@ export default StyleSheet.create({
     fontWeight: '500',
     fontSize: 16,
     flexWrap: 'wrap',
+    color: '#003A67',
+    fontWeight: 'bold'
   },
 });

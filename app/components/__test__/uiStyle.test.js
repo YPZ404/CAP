@@ -2,6 +2,7 @@
 
 import {Dimensions} from "react-native";
 
+
 it('has styles', () => {
     const styles = require('../uiStyle');
     expect(styles).toBeDefined();

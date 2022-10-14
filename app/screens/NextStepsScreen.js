@@ -7,6 +7,8 @@ import {
   Button,
   ScrollView,
   View,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 
 import uiStyle from '../components/uiStyle';
@@ -15,6 +17,8 @@ function NextStepsScreen({ navigation }) {
   return (
     <SafeAreaView style={uiStyle.container}>
       <Text style={uiStyle.titleText}>Information</Text>
+      <ImageBackground style={styles.image} 
+          source = {require('../../assets/b3.png')}> 
       <ScrollView>
         <Text style={uiStyle.stackedText}>
           At this stage, the affected individual presents no symptoms
@@ -28,64 +32,33 @@ function NextStepsScreen({ navigation }) {
       </ScrollView>
       <TouchableOpacity
         onPress={() => navigation.navigate('Mechanism Of Injury Check')}
-        style={uiStyle.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
       >
         <Text style={uiStyle.buttonLabel}>Start</Text>
       </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
 
-const title = '#000000';
-const background = '#fff';
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: background,
-    justifyContent: 'center',
-  },
-  titleText: {
-    color: title,
-    fontSize: 30,
-    position: 'absolute',
-    top: 60,
-    fontWeight: 'bold',
-  },
-  normalText1: {
-    color: title,
-    fontSize: 20,
-    position: 'absolute',
-    left: 30,
-    right: 30,
-    top: 150,
-    fontWeight: 'bold',
-  },
-  normalText2: {
-    color: title,
-    fontSize: 20,
-    position: 'absolute',
-    left: 30,
-    right: 30,
-    top: 350,
-    fontWeight: 'bold',
-  },
-  startButton: {
-    width: 200,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
     padding: 10,
-    borderRadius: 100,
-    backgroundColor: '#ff0000',
-    position: 'absolute',
-    top: 450,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/4,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
   },
-  startText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
+  image: {
+    width: Dimensions.get('window').width/0.99,
+    height: Dimensions.get('window').height/1.27,
+    resizeMode: 'cover',
+  }
 });
 
 export default NextStepsScreen;
