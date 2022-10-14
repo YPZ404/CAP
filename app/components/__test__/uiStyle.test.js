@@ -1,5 +1,7 @@
 //unit test for uiStyle.js
 
+import {Dimensions} from "react-native";
+
 it('has styles', () => {
     const styles = require('../uiStyle');
     expect(styles).toBeDefined();
@@ -77,9 +79,9 @@ it('should has textContainer with correct content', function () {
 it('should has titleText with correct content', function () {
     const styles = require('../uiStyle');
     expect(styles.default.titleText).toEqual({
-        color: '#000000',
-        fontSize: 30,
-        marginTop: 20,
+        color: '#003A67',
+        fontSize: Dimensions.get('window').width/13,
+        marginTop: Dimensions.get('window').width/8,
         fontWeight: 'bold',
     });
 });
@@ -107,22 +109,28 @@ it('should has textNoAbsolute with correct content', function () {
 it('should has text with correct content', function () {
     const styles = require('../uiStyle');
     expect(styles.default.text).toEqual({
-        fontSize: 25,
-        lineHeight: 25,
+        color: '#003A67',
+        fontWeight: '700',
+        fontSize: Dimensions.get('window').width/20,
+        lineHeight: Dimensions.get('window').width/15,
         letterSpacing: 0.3,
-        marginHorizontal: 30,
-        marginVertical: 20,
+        marginHorizontal: Dimensions.get('window').width/10,
+        marginVertical: Dimensions.get('window').width/15,
+        textAlign: 'center',
     });
 });
 
 it('should has stackedText with correct content', function () {
     const styles = require('../uiStyle');
     expect(styles.default.stackedText).toEqual({
-        fontSize: 20,
-        lineHeight: 25,
+        color: '#003A67',
+        fontWeight: '700',
+        fontSize: Dimensions.get('window').width/25,
+        lineHeight: Dimensions.get('window').width/15,
         letterSpacing: 0.3,
-        marginHorizontal: 30,
-        marginVertical: 30,
+        marginHorizontal: Dimensions.get('window').width/15,
+        marginVertical: Dimensions.get('window').width/8,
+        textAlign: 'center',
     });
 });
 
