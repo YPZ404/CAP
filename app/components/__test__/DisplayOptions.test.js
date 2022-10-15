@@ -10,7 +10,8 @@ it("has correct return styles", () => {
         flexGrow: 1,
         alignItems: 'flex-start',
         justifyContent: 'space-evenly',
-        margin: 10
+        margin: 10,
+        color: "white"
     });
 });
 
