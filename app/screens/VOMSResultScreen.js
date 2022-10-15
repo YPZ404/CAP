@@ -79,87 +79,13 @@ function VOMSResultScreen({ route, navigation }) {
     allTestResults.push(<Text key={count} style={uiStyle.text}>{
 
         obj.symptom_name + '\n\n'+
-        obj.patient_id + '\n' +
-        obj.headache_rating + '\n' +
-        obj.nausea_rating +  '\n' +
-        obj.dizziness_rating +  '\n' +
-        obj.fogginess_rating +  '\n\n\n' 
+        'Headache rating: ' + obj.headache_rating + '\n' +
+        'Nausea rating: ' + obj.nausea_rating +  '\n' +
+        'Dizziness rating: ' + obj.dizziness_rating +  '\n' +
+        'Fogginess rating: ' + obj.fogginess_rating +  '\n\n\n' 
         }</Text>);
        count++; 
   })
-
-//   var dict = {0:'FAIL', 1:'PASS'};
-//   Object.entries(reportResults).forEach(([key, value]) => {
-//     switch(key){
-//       case 'memory_test1_result':
-//         allTestResults.push(
-//           <Text key={0} style={uiStyle.text}>
-//             {'Memory Test 1 Result: ' + dict[value]}
-//           </Text>,
-          
-//         );
-       
-//         break
-//       case 'memory_test2_result':
-//         allTestResults.push(
-//           <Text key={1} style={uiStyle.text}>
-//             {'Memory Test 2 Result: ' + dict[value]}
-//           </Text>,
-//         );
-
-//         break
-//       case 'reaction_test_result':
-//         allTestResults.push(
-//           <Text key={2} style={uiStyle.text}>
-//             {'Reaction Test Result: ' + dict[value]}
-//           </Text>,
-//         );
-
-//         break
-//       case 'balance_test1_result':
-//         allTestResults.push(
-//           <Text key={3} style={uiStyle.text}>
-//             {'Balance Test 1 Result: ' + dict[value]}
-//           </Text>,
-//         );
-
-//         break
-//       case 'balance_test2_result':
-//         allTestResults.push(
-//           <Text key={4} style={uiStyle.text}>
-//             {'Balance Test 2 Result: ' + dict[value]}
-//           </Text>,
-//         );
-
-//         break
-//       case 'hop_test_result':
-//         allTestResults.push(
-//           <Text key={5} style={uiStyle.text}>
-//             {'Hop Test Result: ' + dict[value]}
-//           </Text>,
-//         );
-
-//     }
-
-//     // console.log(key , value); // key ,value
-//     // console.log(pdfResults);
-    
-//   });
-
-//   const htmlPDF = `
-//     <ul>
-//       {% for iresult in pdfResults %}
-//         <li>{{ iresult.test_name iresult.grade}}</li>
-//       {% endfor %}  
-//     </ul>
-//   `;
-  const createPDF = async () => {
-    exportMapAsPdf(reportResults);
-  }
-
-  const createMedicalIOSPdf = async () => {
-    medicalReportRepoContext.getCurrentMedicalReportInformation(prelimReportId).then((data)=>IOSexportMapAsPdf(data));
-  }
 
   const createAlert = () =>
   Alert.alert(
