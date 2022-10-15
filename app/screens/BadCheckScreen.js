@@ -96,6 +96,7 @@ function BadCheckScreen({ navigation }) {
       }} style={styles.bottomButton}>
                 <Text style={styles.buttonLabel}>Return Home</Text>
       </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
