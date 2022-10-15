@@ -67,8 +67,8 @@ pipelines:
             - apk add --no-cache git
             - apk add --no-cache wget
             - npm install -g eas-cli
-            - wget -O android.apk $(eas build:list --json --limit=1 --platform=android | jq '.[0].artifacts.buildUrl' | cut -d "|" -f 2 | sed 's:^.\(.*\).$:\1:')
-            - wget -O ios.tar.gz $(eas build:list --json --limit=1 --platform=ios | jq '.[0].artifacts.buildUrl' | cut -d "|" -f 2 | sed 's:^.\(.*\).$:\1:')
+            - wget -O android.apk $(eas build:list --json --non-interactive --limit=1 --platform=android | jq '.[0].artifacts.buildUrl' | cut -d "|" -f 2 | sed 's:^.\(.*\).$:\1:')
+            - wget -O ios.tar.gz $(eas build:list --json --limit=1 --non-interactive --platform=ios | jq '.[0].artifacts.buildUrl' | cut -d "|" -f 2 | sed 's:^.\(.*\).$:\1:')
             - pipe: atlassian/bitbucket-upload-file:0.1.2
               variables:
                 BITBUCKET_USERNAME: $BITBUCKET_USERNAME
