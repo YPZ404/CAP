@@ -42,7 +42,7 @@ if(__DEV__){
     DROP TABLE IF EXISTS DailySymptomLog;
   `,
   `
-    DROP TABLE IF EXISTS VOMSSymtpomReport;
+    DROP TABLE IF EXISTS VOMSSymptomReport;
   `
  
    
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS BalanceTestReport (
 
   // User responses for symptom check after each VOMS test section
   `
-CREATE TABLE IF NOT EXISTS VOMSSymtpomReport (
+CREATE TABLE IF NOT EXISTS VOMSSymptomReport (
     symptom_report_id INTEGER PRIMARY KEY,
     symptom_name VARCHAR(50),
     patient_id INTEGER REFERENCES Account(account_id),

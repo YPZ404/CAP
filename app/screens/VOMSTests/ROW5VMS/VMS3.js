@@ -101,8 +101,11 @@ function VMS3({ navigation }) {
                 sliderThreeValue,
                 sliderFourValue,
               )
-              
-            navigation.navigate('Memory Test 5');
+              .then((data) => {
+                incidentRepoContext.getVOMS(data)
+                                  .then((data)=> console.log(data));
+              })
+            navigation.navigate('VOMS Test Results');
           }}
           style={[styles.bottomButton, uiStyle.shadowProp]}
         >

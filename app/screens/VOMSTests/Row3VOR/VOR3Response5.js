@@ -12,14 +12,15 @@ import uiStyle from '../../../components/uiStyle';
 import Slider from '@react-native-community/slider';
 import {
   IncidentReportRepoContext,
-  ReportIdContext,
+  PrelimReportIdContext,
+  AccountContext
 } from '../../../components/GlobalContextProvider';
 import { useContext } from 'react';
 
 function VOR3Response5({ navigation }) {
-  const [reportId] = useContext(ReportIdContext);
+  const [reportId] = useContext(PrelimReportIdContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
-
+  const account = useContext(AccountContext);
   const [sliderOneValue, setSliderOneValue] = React.useState(0);
   const [sliderTwoValue, setSliderTwoValue] = React.useState(0);
   const [sliderThreeValue, setSliderThreeValue] = React.useState(0);
@@ -78,16 +79,19 @@ function VOR3Response5({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             incidentRepoContext
-              .addVOMSSymptoms(
-                reportId,
+              .createVOMSReport(
                 'Vestibular Ocular Reflex Horizontal',
+                account.account_id,
+                reportId,
                 sliderOneValue,
                 sliderTwoValue,
                 sliderThreeValue,
                 sliderFourValue,
               )
-              .catch(console.log);
-
+              .then((data) => {
+                incidentRepoContext.getVOMS(data)
+                                  .then((data)=> console.log(data));
+              })
             navigation.navigate('VOMS VOR 4');
           }}
           style={[styles.bottomButton, uiStyle.shadowProp]}
