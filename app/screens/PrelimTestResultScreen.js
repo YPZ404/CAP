@@ -138,7 +138,7 @@ function PrelimTestResultScreen({ route, navigation }) {
     </ul>
   `;
   const createPDF = async () => {
-    exportMapAsPdf("Basic Report", reportResults);
+    exportMapAsPdf(reportResults);
   }
 
   const createMedicalIOSPdf = async () => {
