@@ -341,4 +341,27 @@ export class IncidentReportRepo {
     const rs = await this.da.runSqlStmt(sql, args);
     return rs.rows.item(0);
   }
+
+
+
+  async createVOMSReport(symptom_name, account_id, report_id, headache_rating, nausea_rating, dizziness_rating, fogginess_rating) {
+    const sql =
+      'INSERT INTO VOMSSymtpomReport (symptom_name, patient_id, report_id, headache_rating, nausea_rating, dizziness_rating, fogginess_rating) VALUES (?, ?, ?, ?, ?, ?, ?);';
+
+    return new Promise((resolve, reject) => {
+      this.da.runSqlStmt(sql, [symptom_name, account_id, report_id, headache_rating, nausea_rating, dizziness_rating, fogginess_rating]).then((rs) => {
+        resolve(rs.insertId);
+      }, reject);
+    });
+  }
+
+  async getVOMS(symptom_report_id) {
+    
+
+    const sql = `SELECT * FROM VOMSSymtpomReport WHERE symptom_report_id = ?;`;
+    const args = [symptom_report_id];
+
+    const rs = await this.da.runSqlStmt(sql, args);
+    return rs.rows.item(0);
+  }
 }
