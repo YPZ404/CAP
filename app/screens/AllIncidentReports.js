@@ -131,6 +131,15 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.5,
       shadowRadius: 4,
     },
+    pdfButton: {
+      width: Dimensions.get('window').width/1.5,
+      height: Dimensions.get('window').width/10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 20,
+      backgroundColor: '#fff',
+      marginTop: (Dimensions.get('window').height)/500,
+    }
   });
 
 

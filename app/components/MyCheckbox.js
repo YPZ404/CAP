@@ -23,9 +23,8 @@ const MyCheckbox = (props) => {
   return (
     <Pressable
       style={[styles.checkboxBase, checked && styles.checkboxChecked]}
-      onPress={() => {
-        onCheckmarkPress();
-      }}
+      onPress={onCheckmarkPress}
+      testID="Pressable"
     >
       {checked && <Ionicons name="checkmark" size={24} color="black" />}
     </Pressable>
@@ -40,8 +39,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: 'black',
-    backgroundColor: 'transparent',
+    borderColor: 'white',
+    backgroundColor: 'white',
   },
 
   checkboxChecked: {

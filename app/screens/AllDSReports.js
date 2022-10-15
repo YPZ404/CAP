@@ -87,7 +87,7 @@ function AllDSReports({ navigation }){
         );
         usersButtons.push(
           <TouchableOpacity
-        key={j} style={styles.bottomButton}
+        key={j} style={styles.pdfButton}
         onPress={()=> {createPDF(description)}}
       >
         <Text style={uiStyle.buttonLabel}>Generate PDF report</Text>
@@ -120,13 +120,15 @@ return(
     All Daily Symptom Reports for {account.first_name}
   </Text>
   </View>
+  <View style={styles.reportContainer} >
   <View style={{height: Dimensions.get('window').height/2}} >
     <ScrollView>
       {usersButtons}
     </ScrollView>
   </View>
+  </View>
   <TouchableOpacity
-    style={styles.bottomButton}
+    style={[styles.bottomButton, uiStyle.shadowProp]}
     onPress={() => navigation.navigate('Home')}
   >
     <Text style={uiStyle.buttonLabel}>Return to Home</Text>
@@ -176,7 +178,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     backgroundColor: '#fff',
-    marginTop: (Dimensions.get('window').height)/5,
+    marginTop: (Dimensions.get('window').height)/30,
+    marginBottom: (Dimensions.get('window').height)/20,
   },
   titlecontainer: {
     alignItems: 'center',
@@ -189,6 +192,23 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.5,
     shadowRadius: 4,
+  },
+  pdfButton: {
+    width: Dimensions.get('window').width/1.5,
+    height: Dimensions.get('window').width/10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#C1E4FF',
+    marginTop: (Dimensions.get('window').height)/500,
+  },
+  reportContainer: {
+    flex: 1,
+    alignItems: 'center',
+    width: Dimensions.get('window').width/1.2,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    marginTop: (Dimensions.get('window').height)/50,
   },
 });
 
