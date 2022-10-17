@@ -1,4 +1,3 @@
-
 describe('Example', () => {
     beforeAll(async () => {
       await device.launchApp();
@@ -82,22 +81,25 @@ describe('Example', () => {
         await element(by.text('Next')).tap();
 
         // Perform balance tests
+        await device.disableSynchronization();
         await element(by.text('Start!')).tap();
-        await waitFor(element(by.text('Next'))).toBeVisible().withTimeout(10000).then(async () => {
+        await waitFor(element(by.text('Next'))).toBeVisible().withTimeout(11000).then(async () => {
             await element(by.text('Next')).tap();
         });
         await element(by.text('Start!')).tap();
 
-        await waitFor(element(by.text('Next'))).toBeVisible().withTimeout(10000).then(async () => {
+        await waitFor(element(by.text('Next'))).toBeVisible().withTimeout(11000).then(async () => {
             await element(by.text('Next')).tap();
         });
         await element(by.text('Next')).tap();
         await element(by.text('Next')).tap();
+        
         await element(by.text('Start!')).tap();
 
         await waitFor(element(by.text('Alert'))).toBeVisible().withTimeout(15000).then(async () => {
             await element(by.text('Yes')).tap();
         });
+
         await element(by.text('Next')).tap();
         await element(by.text('Next')).tap();
         await element(by.text('Next')).tap();
@@ -121,8 +123,6 @@ describe('Example', () => {
         await expect(element(by.text('Reaction Test: PASS'))).toBeVisible();
         await expect(element(by.text('Balance Test 1: UNDEFINED'))).toBeVisible();
         await expect(element(by.text('Balance Test 1: UNDEFINED'))).toBeVisible();
-
-        await device.disableSynchronization();
     });
 });
   
