@@ -33,7 +33,7 @@ function BTComplete2({ navigation }) {
         }}
         style={[styles.bottomButton, uiStyle.shadowProp]}
       >
-        <Text style={uiStyle.startCheckText}>Next</Text>
+        <Text style={uiStyle.buttonLabel}>Next</Text>
       </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
