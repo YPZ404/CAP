@@ -63,6 +63,9 @@ function BTTwo({ navigation }) {
       storeResult(data);
       clearTimeout(startTimer);
       clearTimeout(endTimer);
+      clearInterval(startTimer, endTimer);
+      clearImmediate(startTimer, endTimer);
+      window.clearInterval(startTimer, endTimer);
     };
   }, [focussed, started]);
 

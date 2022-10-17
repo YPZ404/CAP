@@ -83,6 +83,9 @@ function HTTwo({ route, navigation }) {
       setStarted(false)
       clearTimeout(startTimer);
       clearTimeout(endTimer);
+      clearInterval(startTimer, endTimer);
+      clearImmediate(startTimer, endTimer);
+      window.clearInterval(startTimer, endTimer);
     };
   }, [focussed, started]);
 
@@ -119,6 +122,7 @@ function HTTwo({ route, navigation }) {
         onPress={() => {
           if (!subscription) {
             setStarted(true);
+            clearInterval(startTimer, endTimer);
           }
         }}
         style={styles.startCheckButton}
