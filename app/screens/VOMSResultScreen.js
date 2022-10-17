@@ -118,31 +118,6 @@ function VOMSResultScreen({ route, navigation }) {
     <View style={uiStyle.container}>
       <Text style={uiStyle.titleText}>VOMS Tests Results</Text>
       <ScrollView>{allTestResults}</ScrollView>
-      {/* Natalie can you fix these buttons plz */}
-      <TouchableOpacity onPress={()=>{
-        if(account.account_id != null && account.first_name != 'John'){
-          
-          createAlert();
-        }
-        else{
-          navigation.navigate('Login');
-        }
-      }} style={[styles.bottomButton, uiStyle.shadowProp]}>
-                <Text style={styles.buttonLabel}>Save Report</Text>
-      </TouchableOpacity>
-      {/* <TouchableOpacity
-        style={[styles.bottomButton, uiStyle.shadowProp]}
-        onPress={navigation.navigate('Login')}
-      >
-        
-        <Text style={styles.buttonLabel}>Generate PDF report</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.bottomButton, uiStyle.shadowProp]}
-        onPress={navigation.navigate('Login')}
-      >
-        <Text style={styles.buttonLabel}>Generate and Email Medical Report</Text>
-      </TouchableOpacity> */}
       <TouchableOpacity
         style={[styles.bottomButton, uiStyle.shadowProp]}
         onPress={() => navigation.navigate('Home')}
