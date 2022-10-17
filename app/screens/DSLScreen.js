@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  Dimensions,
   Alert
 } from 'react-native';
 
@@ -65,7 +66,7 @@ function DSLScreen({ navigation }) {
 
   
   return (
-    <SafeAreaView style={uiStyle.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView>
         <Text style={uiStyle.text}>
           Does the affected person have any of these symptoms?
@@ -357,7 +358,7 @@ function DSLScreen({ navigation }) {
             navigation.navigate('Continue Tests', { screen: 'DSL Complete'});
 
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
@@ -370,6 +371,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#9AD3FF'
   },
   sliders: {
     width: '80%',
@@ -379,6 +381,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: (Dimensions.get('window').height)/20,
+    marginBottom: (Dimensions.get('window').height)/50,
+    alignSelf: 'center',
+  }
 });
 
 export default DSLScreen;

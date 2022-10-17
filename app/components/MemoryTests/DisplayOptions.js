@@ -30,12 +30,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-evenly',
     margin: 10,
+    color: "white"
   },
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 5,
     margin: 1,
+    
   },
   checkboxLabel: checkboxStyle.checkboxLabel,
 });

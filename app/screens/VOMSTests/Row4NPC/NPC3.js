@@ -27,7 +27,7 @@ function NPC3({ navigation }) {
 
   return (
     <SafeAreaView style={uiStyle.container}>
-      <SafeAreaView style={uiStyle.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={uiStyle.text}>
           Please select the distance measured when the affected individual saw
           double.
@@ -54,7 +54,7 @@ function NPC3({ navigation }) {
               .catch(console.log);
             navigation.navigate('VOMS NPC 4 Response 7');
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
+    marginTop: (Dimensions.get('window').height)/8,
   },
   sliders: {
     width: '80%',
@@ -76,6 +77,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/5,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
+  }
 });
 
 export default NPC3;

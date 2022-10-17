@@ -62,7 +62,7 @@ function SP2({ navigation }) {
       <TouchableOpacity
         // onPress={() => navigation.navigate('Voms SP 3 Response 1')}
         onPress={() => navigation.navigate('VOMS Smooth Pursuits 3 Response 1')}
-        style={uiStyle.bottomButton}
+        style={[styles.bottomButton, uiStyle.shadowProp]}
       >
         <Text style={uiStyle.buttonLabel}>Next</Text>
       </TouchableOpacity>
@@ -75,6 +75,18 @@ const styles = StyleSheet.create({
     ...uiStyle.contentContainer,
     justifyContent: 'center',
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: (Dimensions.get('window').height)/20,
+    marginTop: (Dimensions.get('window').height)/300,
+    alignSelf: 'center',
+  }
 });
 
 export default SP2;

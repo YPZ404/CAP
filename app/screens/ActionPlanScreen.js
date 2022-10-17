@@ -118,8 +118,8 @@ function ActionPlanScreen({ navigation }) {
 			<ScrollView>
 				<Text style={[uiStyle.text, {textAlign: "center", marginBottom: 5}]}>Concussion Action Plan</Text>
 				<Badge color={activeZone.color}>{activeZone.name} ZONE</Badge>
-				<Text style={[{textAlign: "center", padding: 10, fontWeight: "bold", color: "#003A67"}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear.</Text>
-				<ExpandableTab title="Red Zone" subtitle="Days 1 and 2 following injury" color={activeZone.name == zones.red.name ? activeZone.color : "lightgrey"} footer="After 2 days of acute rest, you may move on to the next zone." header="RPE - Nothing at all, very very light. Heart rate < 120 bpm">
+				<Text style={[{textAlign: "center", padding: 10, fontWeight: "bold", color: "#003A67"}]}>Have your child complete the following zone and stepwise program. Aim to keep activity within the rating of perceived exertion (RPE) or heart rate guide (if your child has a heart rate monitoring device).{"\n\n"} Seek urgent medical attention if your child's symptoms worsen or if other symptoms appear. {'\n'}</Text>
+				<ExpandableTab title="Red    Zone" subtitle="Days 1 and 2 following injury" color={activeZone.name == zones.red.name ? activeZone.color : "lightgrey"} footer="After 2 days of acute rest, you may move on to the next zone." header="RPE - Nothing at all, very very light. Heart rate < 120 bpm">
 					<Text style={{fontWeight:"bold"}}>Rest your child from any physical or cognitive activity.{"\n\n\n"}</Text>
 					<Text style={{fontWeight:"bold"}}>Supportive Care:{"\n\n"}</Text>
 					<Text>

@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
 import uiStyle from '../../../components/uiStyle';
 import Slider from '@react-native-community/slider';
@@ -88,7 +89,7 @@ function NPC4Response7({ navigation }) {
               .catch(console.log);
             navigation.navigate('VOMS VMS 1');
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
@@ -119,6 +120,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: (Dimensions.get('window').height)/20,
+    alignSelf: 'center',
+  }
 });
 
 export default NPC4Response7;

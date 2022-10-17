@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  Dimensions
 } from 'react-native';
 import uiStyle from '../../../components/uiStyle';
 import Slider from '@react-native-community/slider';
@@ -88,7 +89,7 @@ function VOR6Response6({ navigation }) {
               .catch(console.log);
             navigation.navigate('VOMS NPC 1');
           }}
-          style={uiStyle.bottomButton}
+          style={[styles.bottomButton, uiStyle.shadowProp]}
         >
           <Text style={uiStyle.buttonLabel}>Next</Text>
         </TouchableOpacity>
@@ -110,6 +111,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  bottomButton: {
+    width: Dimensions.get('window').width/1.3,
+    height: Dimensions.get('window').width/7.5,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: (Dimensions.get('window').height)/15,
+    alignSelf: 'center',
+  }
 });
 
 export default VOR6Response6;

@@ -3,14 +3,13 @@ import { StyleSheet, Dimensions } from 'react-native';
 // This file is for the UI of the test & reports. 
 // UI for disclaimer page, home page, account management are in their individual file
 const background = '#9AD3FF';
-const buttons = '#ff3333';
 const test_background = '#9AD3FF';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: background,
+    backgroundColor: background
   },
 
   textContainer: {
@@ -95,12 +94,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    backgroundColor: buttons,
-    margin: 10,
+    backgroundColor: '#003A67',
+    marginLeft: (Dimensions.get('window').width)/3.8
   },
   
   startCheckText: {
-    color: '#003A67',
+    color: '#fff',
     fontWeight: 'bold',
     fontSize: 20,
   },

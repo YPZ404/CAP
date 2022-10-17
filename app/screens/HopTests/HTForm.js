@@ -38,7 +38,7 @@ function HTForm({ navigation }) {
   const [sliderTwentyValue, setSliderTwentyValue] = React.useState(0);
 
   return (
-    <SafeAreaView style={uiStyle.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView>
         <SafeAreaView style={uiStyle.container}>
           <Text style={styles.titleText}>Hop Test Pre-Test Form</Text>
@@ -284,6 +284,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#9AD3FF'
   },
   sliders: {
     width: '80%',
@@ -302,7 +303,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: (Dimensions.get('window').height)/20,
-    marginTop: (Dimensions.get('window').height)/300,
+    marginTop: (Dimensions.get('window').height)/50,
     alignSelf: 'center',
   },
   titleText: {
