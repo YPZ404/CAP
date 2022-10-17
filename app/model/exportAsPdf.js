@@ -53,7 +53,9 @@ const exportMapAsPdf = async (
               break
             case 'balance_test2_result':
                 basic_test_content = basic_test_content.concat('Balance Test 2 Result',sep,dict[value],end); 
-
+              break
+            case 'hop_test_result':
+                basic_test_content = basic_test_content.concat('Hop Test Result',sep,dict[value],end); 
           }
     }
     
