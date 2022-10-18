@@ -71,7 +71,6 @@ function ActionPlanScreen({ navigation }) {
 
 		// Otherwise, fetch date of injury from database
 		} else {
-			console.log(injuryDate);
 			var injuryDate = new Date(Object.entries(strDate)[0][1]);
 			injuryDate.setDate(injuryDate.getDate());
 		}
