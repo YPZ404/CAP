@@ -12,13 +12,15 @@ import uiStyle from '../../components/uiStyle';
 import Slider from '@react-native-community/slider';
 import {
   IncidentReportRepoContext,
-  ReportIdContext,
+  PrelimReportIdContext,
+  AccountContext
 } from '../../components/GlobalContextProvider';
 import { useContext } from 'react';
 
 function VOMSInitialSymptoms({ navigation }) {
-  const [reportId] = useContext(ReportIdContext);
+  const [reportId] = useContext(PrelimReportIdContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
+  const account = useContext(AccountContext);
 
   const [sliderOneValue, setSliderOneValue] = React.useState(0);
   const [sliderTwoValue, setSliderTwoValue] = React.useState(0);
@@ -82,15 +84,19 @@ function VOMSInitialSymptoms({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             incidentRepoContext
-              .addVOMSSymptoms(
-                reportId,
+              .createVOMSReport(
                 'Initial',
+                account.account_id,
+                reportId,
                 sliderOneValue,
                 sliderTwoValue,
                 sliderThreeValue,
                 sliderFourValue,
               )
-              .catch(console.log);
+              .then((data) => {
+                incidentRepoContext.getVOMS(data)
+                                  .then((data)=> console.log(data));
+                    })
             navigation.navigate('VOMS Smooth Pursuits 1');
           }}
           style={[styles.bottomButton, uiStyle.shadowProp]}
