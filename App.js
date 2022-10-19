@@ -100,6 +100,7 @@ import AllPrelimReports from './app/screens/AllPrelimReports';
 import AllIncidentReports from './app/screens/AllIncidentReports';
 import DSLComplete from './app/screens/DSLComplete';
 import AllDSReports from './app/screens/AllDSReports';
+import VOMSResultScreen from './app/screens/VOMSResultScreen';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -203,6 +204,11 @@ function CustomNavContent(){
       name="Prelim Test Results"
       component={PrelimTestResultScreen}
     />
+
+  <RootStack.Screen
+        name="VOMS Test Results"
+        component={VOMSResultScreen}
+      />
 
     <RootStack.Screen
       name="Further Tests Results"

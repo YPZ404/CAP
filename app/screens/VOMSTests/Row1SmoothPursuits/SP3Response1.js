@@ -13,11 +13,13 @@ import Slider from '@react-native-community/slider';
 import { useContext } from 'react';
 import {
   IncidentReportRepoContext,
-  ReportIdContext,
+  PrelimReportIdContext,
+  AccountContext
 } from '../../../components/GlobalContextProvider';
 
 function SP3Response1({ navigation }) {
-  const [reportId] = useContext(ReportIdContext);
+  const [reportId] = useContext(PrelimReportIdContext);
+  const [account] = useContext(AccountContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
 
   const [sliderOneValue, setSliderOneValue] = React.useState(0);
@@ -78,15 +80,19 @@ function SP3Response1({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             incidentRepoContext
-              .addVOMSSymptoms(
-                reportId,
+              .createVOMSReport(
                 'Smooth Pursuits Horizontal',
+                account.account_id,
+                reportId,
                 sliderOneValue,
                 sliderTwoValue,
                 sliderThreeValue,
                 sliderFourValue,
               )
-              .catch(console.log);
+              .then((data) => {
+                incidentRepoContext.getVOMS(data)
+                                  .then((data)=> console.log(data));
+              })
             navigation.navigate('VOMS Smooth Pursuits 4');
           }}
           style={[styles.bottomButton, uiStyle.shadowProp]}

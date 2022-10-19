@@ -35,7 +35,10 @@ function HTComplete({ route, navigation }) {
     
     var result = "FAIL";
 
-    if (ageHopTestContext <= 4 && hopTestCountResult >= 1) {
+    if (ageHopTestContext <= 3 && hopTestCountResult >= 0) {
+      result = "PASS";
+    }
+    else if (ageHopTestContext == 4 && hopTestCountResult >= 1) {
       result = "PASS";
     }
     else if (ageHopTestContext == 5 && hopTestCountResult >= 4) {
