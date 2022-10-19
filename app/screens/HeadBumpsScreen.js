@@ -7,9 +7,8 @@ function HeadBumpsScreen ({navigation}) {
 	return(
 		<SafeAreaView style={uiStyle.container}>
 			<View style={styles.container}>
-			<Text style={styles.text}>Over the next few days, symptoms may worsen or other symptoms may appear. 
+			<Text style={[styles.text, {marginBottom: 40}]}>Over the next few days, symptoms may worsen or other symptoms may appear. 
 				Watch out for HEAD BUMPS (symptoms listed below). If they occur, seek urgent medical attention.
-				{'\n'}
 			</Text>
 				<FlatList
 					scrollEnabled={false}
