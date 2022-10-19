@@ -101,6 +101,7 @@ import AllIncidentReports from './app/screens/AllIncidentReports';
 import DSLComplete from './app/screens/DSLComplete';
 import { ViewPagerAndroidBase } from 'react-native';
 import AllDSReports from './app/screens/AllDSReports';
+import VOMSResultScreen from './app/screens/VOMSResultScreen';
 
 const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
