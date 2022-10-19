@@ -9,15 +9,13 @@ describe('Example', () => {
       await element(by.text('Begin Check')).tap();
       await element(by.text('OK')).tap();
       await element(by.type('RCTRootContentView')).tap({x: 230, y: 740});
-      await element(by.type('RCTRootContentView')).tap({x: 230, y: 740});
+      await element(by.type('RCTRootContentView')).tap({x: 230, y: 600});
       await element(by.text('MAYBE/UNSURE')).tap();
-      await element(by.type('RCTRootContentView')).swipe('up', 'fast', 0.5, 0.5, 0.5);
-      await element(by.type('RCTRootContentView')).swipe('up', 'fast', 0.5, 0.5, 0.5);
       await element(by.text('Next')).tap();
       await element(by.text('Complete Preliminary Tests')).tap();
       await element(by.text('Start!')).tap();
     });
-  
+   
     // Check that memory test disclaimer page shows correct information
     it('memory test should display correct labels/text', async () => {
         await expect(element(by.text('Memory Test'))).toBeVisible();

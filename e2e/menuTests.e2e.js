@@ -54,7 +54,7 @@ describe('Example', () => {
       await element(by.label('Reports')).tap();
       await expect(element(by.text('Which reports would you like to access?'))).toBeVisible();
       await expect(element(by.text('Preliminary Test Reports'))).toBeVisible();
-      await expect(element(by.text('Incident Reports'))).toBeVisible();
+      await expect(element(by.text('Daily Symptom Reports'))).toBeVisible();
     });
   
     // Check that navigation for "Preliminary tests" button in menu works
@@ -84,7 +84,7 @@ describe('Example', () => {
     });
 
     // Can continue tests
-    it('should be taken to VOMS Tests from menu item', async () => {
+    it('should be able to continue tests', async () => {
       await element(by.label('Preliminary Tests')).tap();
       await element(by.label('Start!')).tap();
       await element(by.label('Start!')).tap();
@@ -93,13 +93,13 @@ describe('Example', () => {
       await element(by.label('Next')).tap();
       await element(by.label('Next')).tap();
 
-      await expect(element(by.text('What three images does your patient remember?'))).toBeVisible();
+      await expect(element(by.text('What three images does the injured individual remember?'))).toBeVisible();
       await element(by.type('RCTRootContentView')).swipe('right', 'fast', 0.5, 0.01, 0.01);
       await element(by.label('Start')).tap();
       await element(by.label('I understand')).tap();
       await element(by.type('RCTRootContentView')).swipe('right', 'fast', 0.5, 0.01, 0.01);
       await element(by.label('Continue Tests')).tap();
-      await expect(element(by.text('What three images does your patient remember?'))).toBeVisible();
+      await expect(element(by.text('What three images does the injured individual remember?'))).toBeVisible();
   });
 });
   

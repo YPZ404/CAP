@@ -25,6 +25,7 @@ describe('Example', () => {
         await element(by.type('RCTUITextField')).atIndex(1).typeText('Johnson');
         await element(by.type('RCTUITextField')).atIndex(2).typeText('hey123');
         await element(by.text('Submit')).tap();
+        await element(by.text('OK')).tap();
         await element(by.text('View Reports')).tap();
     });
 
@@ -32,8 +33,9 @@ describe('Example', () => {
     it('User can login to see incident reports in View Reports', async () => {
 
         // Check that there are no incident reports
-        await element(by.text('Incident Reports')).tap();
-        await expect(element(by.text('All Incident Reports for William'))).toBeVisible();
+        await element(by.text('Daily Symptom Reports')).tap();
+        await expect(element(by.text('All Daily Symptom Reports for William'))).toBeVisible();
+        await expect(element(by.text('No such reports.'))).toBeVisible();
         await expect(element(by.text('Return to Home'))).toBeVisible();
     });
 
@@ -45,5 +47,4 @@ describe('Example', () => {
       await expect(element(by.text('All Preliminary Reports for William'))).toBeVisible();
       await expect(element(by.text('No such reports.'))).toBeVisible();
   });
-
 });

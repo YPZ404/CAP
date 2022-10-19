@@ -38,8 +38,5 @@ describe('Example', () => {
         await waitFor(element(by.text('Press!'))).toBeVisible().withTimeout(7000).then(async () => {
             await element(by.text('Press!')).tap();
         });
-        await element(by.type('RCTRootContentView')).tap({x: 200, y: 500});
-        await element(by.text('Next')).tap();
-        expect(element(by.text("Balance Test")).toBeVisible()); 
     });
 });
