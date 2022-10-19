@@ -341,4 +341,37 @@ export class IncidentReportRepo {
     const rs = await this.da.runSqlStmt(sql, args);
     return rs.rows.item(0);
   }
+
+
+
+  async createVOMSReport(symptom_name, account_id, report_id, headache_rating, nausea_rating, dizziness_rating, fogginess_rating) {
+    const sql =
+      'INSERT INTO VOMSSymptomReport (symptom_name, patient_id, report_id, headache_rating, nausea_rating, dizziness_rating, fogginess_rating) VALUES (?, ?, ?, ?, ?, ?, ?);';
+
+    return new Promise((resolve, reject) => {
+      this.da.runSqlStmt(sql, [symptom_name, account_id, report_id, headache_rating, nausea_rating, dizziness_rating, fogginess_rating]).then((rs) => {
+        resolve(rs.insertId);
+      }, reject);
+    });
+  }
+
+  async getVOMS(symptom_report_id) {
+    
+
+    const sql = `SELECT * FROM VOMSSymptomReport WHERE symptom_report_id = ?;`;
+    const args = [symptom_report_id];
+
+    const rs = await this.da.runSqlStmt(sql, args);
+    return rs.rows.item(0);
+  }
+  
+  async getVOMSCluster(report_id) {
+    
+
+    const sql = `SELECT symptom_name, patient_id, nausea_rating, dizziness_rating, headache_rating, fogginess_rating FROM VOMSSymptomReport WHERE report_id = ?;`;
+    const args = [report_id];
+
+    const rs = await this.da.runSqlStmt(sql, args);
+    return rs.rows;
+  }
 }

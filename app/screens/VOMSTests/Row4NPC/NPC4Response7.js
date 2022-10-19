@@ -11,15 +11,16 @@ import {
 import uiStyle from '../../../components/uiStyle';
 import Slider from '@react-native-community/slider';
 import {
+  AccountContext,
   IncidentReportRepoContext,
-  ReportIdContext,
+  PrelimReportIdContext,
 } from '../../../components/GlobalContextProvider';
 import { useContext } from 'react';
 
 function NPC4Response7({ navigation }) {
-  const [reportId] = useContext(ReportIdContext);
+  const [reportId] = useContext(PrelimReportIdContext);
   const incidentRepoContext = useContext(IncidentReportRepoContext);
-
+  const account = useContext(AccountContext);
   const [sliderOneValue, setSliderOneValue] = React.useState(0);
   const [sliderTwoValue, setSliderTwoValue] = React.useState(0);
   const [sliderThreeValue, setSliderThreeValue] = React.useState(0);
@@ -78,15 +79,19 @@ function NPC4Response7({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             incidentRepoContext
-              .addVOMSSymptoms(
+              .createVOMSReport(
+                'Near Point of Convergance',
+                account.account_id,
                 reportId,
-                'Near Point Of Convergence',
                 sliderOneValue,
                 sliderTwoValue,
                 sliderThreeValue,
                 sliderFourValue,
               )
-              .catch(console.log);
+              .then((data) => {
+                incidentRepoContext.getVOMS(data)
+                                  .then((data)=> console.log(data));
+              })
             navigation.navigate('VOMS VMS 1');
           }}
           style={[styles.bottomButton, uiStyle.shadowProp]}
