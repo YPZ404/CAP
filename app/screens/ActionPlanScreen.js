@@ -62,22 +62,25 @@ function ActionPlanScreen({ navigation }) {
 		setStrDate(data);
 	});
 	
-	
-	
 	// whenever the data for injury date, doctor clearance or other symtom based information changes, update the zone.
 	useEffect(() => {
-		// for now, let's set the injury date to 2 days ago.
+
+		// Initialise days since injury to 0 if user has not performed prelim tests or logged in
+		if (new Date(Object.entries(strDate)[0][1] == NaN)){
+			var injuryDate = new Date();
+
+		// Otherwise, fetch date of injury from database
+		} else {
+			var injuryDate = new Date(Object.entries(strDate)[0][1]);
+			injuryDate.setDate(injuryDate.getDate());
+		}
 		
-		// console.log(Object.entries(strDate)[0][1]);
-		// console.log(strDate);
-		var injuryDate = new Date(Object.entries(strDate)[0][1]);
-		
-		injuryDate.setDate(injuryDate.getDate());
 		// calculate how long it was since the injury
 		var today = new Date();
 		var difference = today.getTime() - injuryDate.getTime();
 		var daysSinceInjury =  Math.floor(difference / (1000 * 3600 * 24));
 		console.log(daysSinceInjury);
+
 		// zone logic
 		if(daysSinceInjury <= 2){
 			setActiveZone(zones.red);
