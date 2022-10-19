@@ -16,7 +16,7 @@ describe('Example', () => {
       await element(by.text('Start!')).tap();
     });
    
-    // Check that memory test disclaimer page shows correct information
+    // Check that memory test disclaimer page shows correct info
     it('memory test should display correct labels/text', async () => {
         await expect(element(by.text('Memory Test'))).toBeVisible();
         await expect(element(by.text('Start!'))).toBeVisible();
