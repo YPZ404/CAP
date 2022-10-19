@@ -69,8 +69,8 @@ function MTTwo({ navigation }) {
   return (
     <View style={uiStyle.container}>
       <View style={[uiStyle.container, { justifyContent: 'center' }]}>
-        <Text style={uiStyle.titleText}>{imgs[index].title}</Text>
-        <Image
+        <Text style={styles.text}>{imgs[index].title}</Text>
+        <Image testID='image' accessible={true} accessibilityLabel={'image'} label='image' 
           style={{ width: 300, height: 300, resizeMode: 'contain' }}
           source={imgs[index].src}
         />

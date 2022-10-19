@@ -21,12 +21,12 @@ const MyCheckbox = (props) => {
   }
 
   return (
-    <Pressable
+    <Pressable testID='myCheckBox' accessible={true} accessibilityLabel={'myCheckBox'} label='myCheckBox'
       style={[styles.checkboxBase, checked && styles.checkboxChecked]}
       onPress={onCheckmarkPress}
       testID="Pressable"
     >
-      {checked && <Ionicons name="checkmark" size={24} color="black" />}
+      {checked && <Ionicons testID='checkMark' name="checkmark" size={24} color="black" />}
     </Pressable>
   );
 };

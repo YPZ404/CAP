@@ -15,12 +15,12 @@ export default function DisplayOptions(props) {
   const optionElements = props.options.map((opt) => {
     return (
       <View key={opt} style={styles.checkboxContainer}>
-        <MyCheckbox onUpdate={() => props.updateOption(opt)} />
+        <MyCheckbox testID={opt} accessible={true} accessibilityLabel={opt} label={opt} onUpdate={() => props.updateOption(opt)} />
         <Text style={styles.checkboxLabel}>{opt}</Text>
       </View>
     );
   });
-  return <View style={styles.allCheckboxContainer}>{optionElements}</View>;
+  return <View testID='container' style={styles.allCheckboxContainer}>{optionElements}</View>;
 }
 
 const styles = StyleSheet.create({

@@ -86,6 +86,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
+          testID='age' accessible={true} accessibilityLabel={'age'} label='age'
           maxLength={3}
           style={styles.input}
           onChangeText={onChangeAge}
@@ -95,6 +96,7 @@ function CreateProfileScreen({ navigation }) {
           returnKeyType="done"
         />
         <TextInput
+          testID='weight' accessible={true} accessibilityLabel={'weight'} label='weight'
           maxLength={3}
           style={styles.input}
           onChangeText={onChangeWeight}

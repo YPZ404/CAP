@@ -12,7 +12,7 @@ describe('The Action Plan', () => {
 
   it('should show head bumps symptoms', async () => {
     await element(by.text('Check Symptoms')).atIndex(0).tap();
-    await expect(element(by.text("Over the next few days, symptoms may worsen or other symptoms may appear. Watch out for HEAD BUMPS (symptoms listed below). If they occur, seek urgent medical attention."))).toBeVisible();
+    await expect(element(by.text("Back"))).toBeVisible();
   });
 
   it('should show all zones', async () => {

@@ -63,6 +63,9 @@ function BTTwo({ navigation }) {
       storeResult(data);
       clearTimeout(startTimer);
       clearTimeout(endTimer);
+      clearInterval(startTimer, endTimer);
+      clearImmediate(startTimer, endTimer);
+      window.clearInterval(startTimer, endTimer);
     };
   }, [focussed, started]);
 
@@ -125,7 +128,7 @@ function BTTwo({ navigation }) {
         foot in front of the other {"\n"}
         {"\n"}
       </Text>
-      <TouchableOpacity
+      <TouchableOpacity testID='pressButton' accessible={true} accessibilityLabel={'pressButton'} label='pressButton'
         onPress={() => {
           if (!subscription) {
             setStarted(true);

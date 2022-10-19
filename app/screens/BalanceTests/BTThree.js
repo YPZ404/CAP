@@ -87,7 +87,7 @@ function BTThree({ navigation }) {
         </SafeAreaView>
       </ScrollView>
 
-      <TouchableOpacity
+      <TouchableOpacity testID='pressButton' accessible={true} accessibilityLabel={'pressButton'} label='pressButton'
         onPress={() => {
           navigation.navigate("Balance Test 4");
           handleCreateMultiResponse([deviation, variation]);

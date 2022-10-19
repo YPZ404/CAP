@@ -63,6 +63,9 @@ function BTFour({ navigation }) {
       storeResult(data2);
       clearTimeout(startTimer)
       clearTimeout(endTimer);
+      clearInterval(startTimer, endTimer);
+      clearImmediate(startTimer, endTimer);
+      window.clearInterval(startTimer, endTimer);
     };
   }, [focussed, started]);
 

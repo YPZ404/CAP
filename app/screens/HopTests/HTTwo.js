@@ -83,6 +83,9 @@ function HTTwo({ route, navigation }) {
       setStarted(false)
       clearTimeout(startTimer);
       clearTimeout(endTimer);
+      clearInterval(startTimer, endTimer);
+      clearImmediate(startTimer, endTimer);
+      window.clearInterval(startTimer, endTimer);
     };
   }, [focussed, started]);
 
@@ -115,10 +118,11 @@ function HTTwo({ route, navigation }) {
         dominant foot (i.e. the foot you would usually kick a ball with) for 15 seconds. {"\n"}
         {"\n"}
       </Text>
-      <TouchableOpacity
+      <TouchableOpacity testID='btn' accessible={true} accessibilityLabel={'btn'} label='btn'
         onPress={() => {
           if (!subscription) {
             setStarted(true);
+            clearInterval(startTimer, endTimer);
           }
         }}
         style={styles.startCheckButton}
@@ -126,7 +130,7 @@ function HTTwo({ route, navigation }) {
         <Text style={styles.startCheckText}>{text}</Text>
       </TouchableOpacity>
       <View style={uiStyle.textContainer}>
-        <TouchableOpacity
+        <TouchableOpacity testID='btn2' accessible={true} accessibilityLabel={'btn2'} label='btn2'
           onPress={() => {
             navigation.navigate("Hop Test 1");
           }}
