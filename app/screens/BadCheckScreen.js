@@ -94,7 +94,7 @@ function BadCheckScreen({ navigation }) {
 
         navigation.navigate('Home Page')
       }} style={styles.bottomButton}>
-                <Text style={styles.buttonLabel}>Return Home</Text>
+                <Text style={uiStyle.buttonLabel}>Return Home</Text>
       </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
