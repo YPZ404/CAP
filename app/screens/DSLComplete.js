@@ -43,7 +43,7 @@ function DSLComplete({ navigation }) {
         }}
         style={[styles.bottomButton, uiStyle.shadowProp]}
       >
-        <Text style={uiStyle.startCheckText}>Return to Home</Text>
+        <Text style={uiStyle.buttonLabel}>Return to Home</Text>
       </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
