@@ -15,7 +15,6 @@ import Badge from '../components/Badge';
 
 import uiStyle from '../components/uiStyle';
 import MyCheckbox from '../components/MyCheckbox';
-import { PreliminaryReportRepoContext } from '../components/GlobalContextProvider';
 
 function ActionPlanScreen({ navigation }) {
 	
@@ -56,30 +55,17 @@ function ActionPlanScreen({ navigation }) {
 	const [activeZone, setActiveZone] = useState(zones.red);
 	const [isSymptomTolerant, setIsSymptomTolerant] = useState(null);
 	const [isSymptomFree24Hours, setIsSymptomFree24Hours] = useState(null);
-	const [strDate, setStrDate] = useState({'':''});
-	const preliminaryReportRepoContext = useContext(PreliminaryReportRepoContext);
-	preliminaryReportRepoContext.getLatestReportDate().then((data)=>{
-		setStrDate(data);
-	});
-	
+
 	// whenever the data for injury date, doctor clearance or other symtom based information changes, update the zone.
 	useEffect(() => {
+		// for now, let's set the injury date to 2 days ago.
+		var injuryDate = new Date();
+		injuryDate.setDate(injuryDate.getDate() - 2);
 
-		// Initialise days since injury to 0 if user has not performed prelim tests or logged in
-		if (new Date(Object.entries(strDate)[0][1] == NaN)){
-			var injuryDate = new Date();
-
-		// Otherwise, fetch date of injury from database
-		} else {
-			var injuryDate = new Date(Object.entries(strDate)[0][1]);
-			injuryDate.setDate(injuryDate.getDate());
-		}
-		
 		// calculate how long it was since the injury
 		var today = new Date();
 		var difference = today.getTime() - injuryDate.getTime();
 		var daysSinceInjury =  Math.floor(difference / (1000 * 3600 * 24));
-		console.log(daysSinceInjury);
 
 		// zone logic
 		if(daysSinceInjury <= 2){
