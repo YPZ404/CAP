@@ -116,6 +116,19 @@
       return rs.rows.item(0);
 
     }
+
+    /**
+     * @param account_id the id of the account to get the date from.
+     * @returns the latest report date based on an accountid, or throws an error.
+     */
+    async getLatestReportDate(account_id) {
+      
+      const sql = `SELECT date_of_test FROM PreliminaryReport WHERE patient_id = ? ORDER BY rowid DESC LIMIT 1;`;
+  
+      const rs = await this.da.runSqlStmt(sql, [account_id]);
+      return rs.rows.item(0);
+    }
+
     /**
      * 
      * @param {number} reportId 
