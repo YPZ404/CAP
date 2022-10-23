@@ -262,6 +262,10 @@ function CustomNavContent(){
       name="VOMS Initial Symptoms"
       component={VOMSInitialSymptoms}
     />
+    <RootStack.Screen testID='vomsInitial'
+      name="VOMS Test Results"
+      component={VOMSResultScreen}
+    />
 
     <RootStack.Screen testID='VOMSsmooth' name="VOMS Smooth Pursuits 1" component={SP1} />
     <RootStack.Screen testID='smooth2' name="VOMS Smooth Pursuits 2" component={SP2} />
