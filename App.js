@@ -199,6 +199,10 @@ function CustomNavContent(){
       name="Prelim Report"
       component={AllPrelimReports}
     />
+    <RootStack.Screen testID='dslReport'
+      name="DS Report"
+      component={AllDSReports}
+    />
     <RootStack.Screen
       name="Incident Reports"
       component={AllIncidentReports}
@@ -261,6 +265,10 @@ function CustomNavContent(){
     <RootStack.Screen testID='vomsInitial'
       name="VOMS Initial Symptoms"
       component={VOMSInitialSymptoms}
+    />
+    <RootStack.Screen testID='vomsInitial'
+      name="VOMS Test Results"
+      component={VOMSResultScreen}
     />
 
     <RootStack.Screen testID='VOMSsmooth' name="VOMS Smooth Pursuits 1" component={SP1} />
