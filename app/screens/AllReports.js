@@ -93,7 +93,7 @@ function AllReports({ navigation }){
         <Text style={uiStyle.buttonLabel}>Preliminary Test Reports</Text>
         </TouchableOpacity>
         {<TouchableOpacity
-          style={styles.bottomButton}
+          style={[styles.bottomButton,  styles.shadowProp]}
 
           onPress={() => {
             if(account.account_id == null && account.first_name== 'John'){
