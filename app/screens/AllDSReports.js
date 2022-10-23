@@ -121,16 +121,16 @@ return(
   </Text>
   </View>
   <View style={styles.reportContainer} >
-  <View style={{height: Dimensions.get('window').height/2}} >
     <ScrollView>
       {usersButtons}
     </ScrollView>
   </View>
-  </View>
+  
   <TouchableOpacity
     style={[styles.bottomButton, uiStyle.shadowProp]}
     onPress={() => navigation.navigate('Home')}
   >
+    
     <Text style={uiStyle.buttonLabel}>Return to Home</Text>
   </TouchableOpacity>
   </SafeAreaView>
@@ -168,8 +168,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     textAlignVertical: 'center',
-    marginTop: (Dimensions.get('window').height)/50,
-    marginBottom: (Dimensions.get('window').height)/30,
+    marginTop: (Dimensions.get('window').height)/40,
   },
   bottomButton: {
     width: Dimensions.get('window').width/1.5,
