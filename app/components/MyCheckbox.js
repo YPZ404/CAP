@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: 'black',
     backgroundColor: 'white',
   },
 

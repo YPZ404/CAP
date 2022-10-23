@@ -199,6 +199,10 @@ function CustomNavContent(){
       name="Prelim Report"
       component={AllPrelimReports}
     />
+    <RootStack.Screen testID='dslReport'
+      name="DS Report"
+      component={AllDSReports}
+    />
     <RootStack.Screen
       name="Incident Reports"
       component={AllIncidentReports}
